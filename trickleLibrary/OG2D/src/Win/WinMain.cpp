@@ -88,8 +88,10 @@ int main() {
 	glViewport(0, 0, OGTK._window._widht, OGTK._window._height);
 	glLoadIdentity();
 	glOrtho(0.f, OGTK._window._widht, 0.f, OGTK._window._height, -1.f, 1.f);
+	//glOrtho(0.f, OGTK._window._widht,OGTK._window._height, 0.f, 0.f, 1.f);
 	// 操作対象の行列をモデリングビュー行列に切り替えておく
 	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 	//ウインドウの座標の巻線に基づいてポリゴンをカリングする
 	glEnable(GL_CULL_FACE);
 	//深さの比較を行い、深度バッファを更新する

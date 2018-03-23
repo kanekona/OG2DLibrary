@@ -3,30 +3,39 @@
 //|システムクラス１              |//
 //|履歴：2018/03/20金子翔       |//
 //|____________________________|//
+
 // Windows:GLEWをスタティックライブラリ形式で利用
 #define GLEW_STATIC
 // GLFWのヘッダ内で他のライブラリを取り込む	
 #define GLFW_INCLUDE_GLEXT
 #define GLFW_INCLUDE_GLU
-//#if defined(_MSC_VER)
+#define GLM_FORCE_SWIZZLE
 
-//#endif
+// いくつかの余計な警告を表示しないようにする
+#pragma warning (disable:4244)
+#pragma warning (disable:4522)
+#pragma warning (disable:4800)
+#pragma warning (disable:4996)
 
-
-//#if defined(_MSC_VER)
-// Windows:外部ライブラリのリンク指定
 #pragma comment(lib, "OPENGL32.lib")
 #pragma comment(lib, "GLU32.lib")
+
+#if defined(_MSC_VER)
+// Windows:外部ライブラリのリンク指定
 #if defined (_DEBUG)
 #pragma comment(lib, "glew32sd.lib")
 #pragma comment(lib, "glfw3d.lib")
 #else
-#pragma comment(lib, "glew32sd.lib")
+#pragma comment(lib, "glew32s.lib")
 #pragma comment(lib, "glfw3.lib")
 #endif
-//#endif
-#define GLM_FORCE_SWIZZLE
+#endif
+
+#if defined(_MSC_VER)
+//EWを先にインクルードする必要がある。
 #include <GL/glew.h>
+#endif
+
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
