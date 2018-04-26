@@ -43,17 +43,21 @@ void FPS::Update() {
 	
 void FPS::SetData(void data_())
 {
+	//関数登録する
 	this->data.push_back(data_);
 }
 void FPS::DeleteData()
 {
+	//全解放
 	this->data.clear();
 }
 FPS::~FPS()
 {
+	//前解放
 	this->data.clear();
 }
 FPS::SP FPS::Create()
 {
+	//スマートポインタを返す
 	return FPS::SP(new FPS());
 }

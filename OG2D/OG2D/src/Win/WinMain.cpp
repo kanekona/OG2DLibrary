@@ -3,10 +3,18 @@
 //|履歴：2018/03/20金子翔       |//
 //|履歴：2018/03/23金子翔       |//
 //|____________________________|//
+//数値演算定数
 #define _USE_MATH_DEFINES
 //小数点誤差修正
 #define _OX_EPSILON_ 0.0000001f
 #include "OGSystem\OGTask.h"
+//メモリリーク検知
+#if (_DEBUG)
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#define new ::new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#endif
 //------------------
 //class定義
 //------------------
@@ -16,21 +24,25 @@ _OGTK OGTK;
 //------------------
 void TaskSystem()
 {
+	//更新処理
 	OGTK._myGameUpdate();
 }
 void TaskRender()
 {
+	//描画処理
 	OGTK._myGameRender2D();
 	OGTK._myGameRender3D();
 }
 void TaskFinalize()
 {
+	//解放処理
 	OGTK._myGameFinalize();
 }
 //------------------
 //初期化
 //------------------
-void Initialize() {
+void Initialize() 
+{
 
 }
 //------------------
@@ -57,12 +69,19 @@ bool Update() {
 //メイン
 //------------------
 int main() {
+	//メモリリーク検知
+#if(_DEBUG)
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+#endif
 	//FWの初期化
 	if (!glfwInit()) {
 		return -1;
 	}
+	//ゲームエンジンの生成
 	gameEngine = new EngineSystem();
+	//タスクの初期化処理
 	OGTK._myGameInitialize();
+	//ゲームエンジンの初期化
 	gameEngine->Initialize();
 	//使用OpenGLのVersion指定
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -74,6 +93,7 @@ int main() {
 #if defined(_MSC_VER)
 	//GLEW初期化
 	if (glewInit() != GLEW_OK) {
+		//ウィンドウとカーソルをすべて破棄しリソースを解放します。
 		glfwTerminate();
 		return -1;
 	}

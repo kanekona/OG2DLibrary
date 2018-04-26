@@ -4,6 +4,7 @@ class Input
 {
 public:
 	//enum
+	//入力用
 	enum in {
 		B1,
 		B2,
@@ -21,6 +22,7 @@ public:
 		SL,
 	};
 	//class
+	//ゲームパッド
 	class GamePad
 	{
 	public:
@@ -78,6 +80,7 @@ public:
 		int buttons() const;
 		int axes() const;
 	};
+	//キーボード
 	class KeyBoard
 	{
 	public:
@@ -103,6 +106,7 @@ public:
 	private:
 		int KeyData[256];
 	};
+	//マウス
 	class Mouse
 	{
 	public:
@@ -134,31 +138,36 @@ public:
 	private:
 		int MouseData[256];
 	};
+	//ゲームパッドとキーボードを区別する
 	struct InputData
 	{
 		int button;		//ゲームパッドのボタン
 		int key;		//キーボードのキー
 	};
 	//class宣言
+	//ゲームパッド配列
 	std::vector<GamePad> pad;
+	//キーボード
 	KeyBoard key;
+	//マウス
 	Mouse mouse;
 	//変数
-	bool Pad_Connection;
+	bool Pad_Connection;				//ゲームパッドの存在有無
 	//関数
-	void Inputinit(GLFWwindow *w);
-	bool on(int in_, int padNum = 0);
-	bool down(int in_, int padNum = 0);
-	bool up(int in_, int padNum = 0);
-	void upDate();
+	void Inputinit(GLFWwindow *w);		//入力初期化
+	bool on(int in_, int padNum = 0);	//押してるとき
+	bool down(int in_, int padNum = 0);	//押したとき
+	bool up(int in_, int padNum = 0);	//あげたとき
+	void upDate();						//入力情報更新
 private:
-	void ResetInputData();
-	int inputData[256];
-	std::vector<Input::GamePad> initGamePad();
-	KeyBoard initkeyBoard();
-	Mouse initMouse();
-	InputData inputdata[14];
+	void ResetInputData();				//入力状態をリセット
+	int inputData[256];					//入力データ
+	std::vector<Input::GamePad> initGamePad();//ゲームパッド初期化
+	KeyBoard initkeyBoard();			//キーボード初期化
+	Mouse initMouse();					//マウス初期化
+	InputData inputdata[14];			//in分のデータ
 };
+//簡易引数用
 namespace In
 {
 	enum
@@ -214,6 +223,7 @@ namespace In
 		UP, DOWN, LEFT, RIGHT,
 	};
 }
+//マウス用簡易引数
 namespace Mouse
 {
 	enum
