@@ -44,7 +44,7 @@ void TaskFinalize()
 //------------------
 void Initialize() 
 {
-
+	random::Init();
 }
 //------------------
 //‰ð•ú

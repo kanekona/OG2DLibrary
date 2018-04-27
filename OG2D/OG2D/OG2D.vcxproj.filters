@@ -60,6 +60,9 @@
     <Filter Include="ソースファイル\OGSystem\System\Easing">
       <UniqueIdentifier>{29be51b7-4dbe-4f28-a121-cac4cd17db15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソースファイル\OGSystem\System\Random">
+      <UniqueIdentifier>{21c3b19b-d1a7-4fb0-9d09-2144e0b54aac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Win\WinMain.cpp">
@@ -107,7 +110,6 @@
     <ClCompile Include="src\OGSystem\OGsystem.cpp">
       <Filter>ソースファイル\OGSystem\System</Filter>
     </ClCompile>
-    <ClCompile Include="src\Block\block.cpp" />
     <ClCompile Include="src\OGSystem\Audio\SoundManager.cpp">
       <Filter>ソースファイル\OGSystem\System\Sound</Filter>
     </ClCompile>
@@ -116,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="src\Shader\shader.cpp">
       <Filter>ソースファイル\OGSystem\System\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGSystem\Random\Random.cpp">
+      <Filter>ソースファイル\OGSystem\System\Random</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,9 +169,6 @@
     <ClInclude Include="src\OGSystem\Audio\StreamingSound.h">
       <Filter>ソースファイル\OGSystem\System\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="src\Block\block.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\OGSystem\Audio\SoundManager.h">
       <Filter>ソースファイル\OGSystem\System\Sound</Filter>
     </ClInclude>
@@ -178,6 +180,9 @@
     </ClInclude>
     <ClInclude Include="src\OGSystem\Easing\easing.hpp">
       <Filter>ソースファイル\OGSystem\System\Easing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\Random\Random.h">
+      <Filter>ソースファイル\OGSystem\System\Random</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -16,6 +16,7 @@
 #include "Timer\glTimer.h"
 #include "Easing\easing.hpp"
 #include "Audio\StreamingSound.h"
+#include "Random\Random.h"
 
 class EngineSystem
 {
