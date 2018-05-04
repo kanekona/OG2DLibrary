@@ -164,11 +164,15 @@
     <ClCompile Include="src\OGSystem\OGsystem.cpp" />
     <ClCompile Include="src\OGSystem\OGTask.cpp" />
     <ClCompile Include="src\OGSystem\Random\Random.cpp" />
+    <ClCompile Include="src\OGSystem\Shader\shader.cpp" />
+    <ClCompile Include="src\OGSystem\TaskObject.cpp" />
     <ClCompile Include="src\OGSystem\Texture\Texture.cpp" />
     <ClCompile Include="src\OGSystem\Timer\glTimer.cpp" />
     <ClCompile Include="src\OGSystem\Window\Window.cpp" />
     <ClCompile Include="src\OGSystem\_OGsystem.cpp" />
-    <ClCompile Include="src\Shader\shader.cpp" />
+    <ClCompile Include="src\Task\Task_Sample.cpp" />
+    <ClCompile Include="src\Task\Task_Sample2.cpp" />
+    <ClCompile Include="src\Task\TestObject.cpp" />
     <ClCompile Include="src\Win\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -186,12 +190,15 @@
     <ClInclude Include="src\OGSystem\OGsystem.h" />
     <ClInclude Include="src\OGSystem\OGTask.h" />
     <ClInclude Include="src\OGSystem\Random\Random.h" />
+    <ClInclude Include="src\OGSystem\Shader\shader.h" />
+    <ClInclude Include="src\OGSystem\TaskObject.h" />
     <ClInclude Include="src\OGSystem\Texture\Texture.h" />
     <ClInclude Include="src\OGSystem\Timer\glTimer.h" />
     <ClInclude Include="src\OGSystem\Window\Window.h" />
     <ClInclude Include="src\OGSystem\_OGsystem.h" />
-    <ClInclude Include="src\Shader\shader.h" />
-    <ClInclude Include="src\Win\WinMain.h" />
+    <ClInclude Include="src\Task\Task_Sample.h" />
+    <ClInclude Include="src\Task\Task_Sample2.h" />
+    <ClInclude Include="src\Task\TestObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

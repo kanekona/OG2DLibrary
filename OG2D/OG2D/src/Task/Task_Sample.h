@@ -1,23 +1,21 @@
 #pragma once
-//______________________________//
-//|サンプルタスク               |//
-//|履歴：2018/03/20金子翔       |//
-//|____________________________|//
-#include "Win\WinMain.h"
+//_____________________________
+//|サンプルタスク   
+//|履歴：2018/03/20
+//|____________________________
+
 #include "OGSystem\OGsystem.h"
 
-class Sample
+class Sample : public TaskObject
 {
 public:
-	void Initialize();
-	TaskFlag UpDate();
+	std::string taskName = "Sample";
+	virtual ~Sample();
+	typedef std::shared_ptr<Sample> SP;
+	static Sample::SP Create(bool);
+	Sample();
+	bool Initialize();
+	void UpDate();
 	void Render2D();
-	void Finalize();
-	//☆☆☆☆//
-	//追加変数//
-	//☆☆☆☆//
-	Sound s;
-	Sound a;
-	std::string file2 = "stereo.wav";
-	std::string file = "playandhope.wav";
+	bool Finalize();
 };

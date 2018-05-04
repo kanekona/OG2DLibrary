@@ -1,21 +1,21 @@
 #pragma once
-//______________________________//
-//|タスクサンプル               |//
-//|履歴：2018/03/20金子翔       |//
-//|____________________________|//
-#include "Win\WinMain.h"
-#include "OGSystem\OGsystem.h"
-#include "Player\Player.h"
+//____________________________
+//|タスクサンプル              
+//|履歴：2018/03/20  
+//|___________________________
 
-class Sample2
+#include "OGSystem\OGsystem.h"
+
+class Sample2 : public TaskObject
 {
 public:
-	void Initialize();
-	TaskFlag UpDate();
+	std::string taskName = "Sample2";
+	virtual ~Sample2();
+	typedef std::shared_ptr<Sample2> SP;
+	static Sample2::SP Create(bool);
+	Sample2();
+	bool Initialize();
+	void UpDate();
 	void Render2D();
-	void Finalize();
-	//☆☆☆☆//
-	//追加変数//
-	//☆☆☆☆//
-	Player player;
+	bool Finalize();
 };

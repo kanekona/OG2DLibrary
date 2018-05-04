@@ -4,12 +4,11 @@
 //--------------------------------------------------
 //@:Textureclass									
 //--------------------------------------------------
-void Texture::TextureCreate(std::string path)
+void Texture::Create(std::string path)
 {
 	GLuint id;
-	this->TextureID = 1;
-	//テクスチャをサイズ分だけ生成する
-	glGenTextures(this->TextureID, &id);
+	//テクスチャを1つだけ生成する
+	glGenTextures(1, &id);
 	//テクスチャをバインドする
 	glBindTexture(GL_TEXTURE_2D, id);
 	//画像を読み込む
@@ -24,7 +23,7 @@ void Texture::TextureCreate(std::string path)
 	//画像データをOpenGLへ送る
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glTexImage2D(GL_TEXTURE_2D, 0, type, width, height, 0, type, GL_UNSIGNED_BYTE, data);
-	TextureSize = Vec2(width, height);
+	this->TextureSize = Vec2(width, height);
 	//元データの破棄
 	stbi_image_free(data);
 	//表示用設定
@@ -34,11 +33,11 @@ void Texture::TextureCreate(std::string path)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	this->_TexId = id;
-	_materix[0] = { 0,0 };
-	_materix[1] = { width,0 };
-	_materix[2] = { width,height };
-	_materix[3] = { 0,height };
-	angle = 0.f;
+	this->_materix[0] = { 0,0 };
+	this->_materix[1] = { width,0 };
+	this->_materix[2] = { width,height };
+	this->_materix[3] = { 0,height };
+	this->angle = 0.f;
 }
 Texture::Texture()
 {

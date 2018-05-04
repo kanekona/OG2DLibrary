@@ -1,28 +1,65 @@
 #include "Task_Sample2.h"
-void Sample2::Initialize()
+#include "Task_Sample.h"
+
+bool Sample2::Initialize()
 {
-	std::cout << "Sample2‰Šú‰»" << std::endl;
-	player.Initialize();
+	std::cout << "Sample2:" << "Initialize()" << std::endl;
+	__super::Init(taskName);
+	return true;
 }
 
-TaskFlag Sample2::UpDate()
+void Sample2::UpDate()
 {
-	player.UpDate();
-	TaskFlag nowtask = Task_Sample2;
-	if (Input::KeyInputUp(Input::SPACE))
+	std::cout << "Sample2:" << "UpDate()" << std::endl;
+	if (OGge->in.key.down(In::SPACE))
 	{
-		nowtask = Task_Sample;
+		this->Kill();
 	}
-	return nowtask;
 }
 
 void Sample2::Render2D()
 {
-	player.Render();
+	std::cout << "Sample2:" << "Render2D()" << std::endl;
 }
 
-void Sample2::Finalize()
+bool Sample2::Finalize()
 {
-	std::cout << "Sample2‰ð•ú" << std::endl;
-	player.Finalize();
+	std::cout << "Sample2:" << "Finalize()" << std::endl;
+	if (this->GetNextTask() && !OGge->GetDeleteEngine())
+	{
+		auto nextTask = Sample::Create(true);
+		this->Kill();
+	}
+	return true;
+}
+
+Sample2::Sample2()
+{
+	std::cout << "Sample2:" << "()" << std::endl;
+}
+
+Sample2::~Sample2()
+{
+	std::cout << "Sample2:" << "~()" << std::endl;
+	this->Finalize();
+}
+
+Sample2::SP Sample2::Create(bool flag_)
+{
+	std::cout << "Sample2:" << "Create()" << std::endl;
+	Sample2::SP to = Sample2::SP(new Sample2());
+	if (to)
+	{
+		to->me = to;
+		if (flag_)
+		{
+			OGge->SetTaskObject(to);
+		}
+		if (!to->Initialize())
+		{
+			to->Kill();
+		}
+		return to;
+	}
+	return nullptr;
 }

@@ -17,12 +17,13 @@
 #include "Easing\easing.hpp"
 #include "Audio\StreamingSound.h"
 #include "Random\Random.h"
+#include "TaskObject.h"
 
 class EngineSystem
 {
 public:
 	EngineSystem();
-	EngineSystem(int widht, int height, char* name, bool screen);
+	EngineSystem(int,int,char*,bool = false);
 	~EngineSystem();
 	Camera2D::SP camera;
 	Window::SP window;
@@ -30,27 +31,42 @@ public:
 	Audio::SP audiodevice;
 	SoundManager::SP soundManager;
 	Input in;
+	std::vector<std::pair<DWORD, TaskObject::SP>> taskobjects;
+	std::vector<TaskObject::SP> addTaskObjects;
 	void Initialize();
 	void Update();
-	void SetWindow(int width, int height, char* name, bool screen);
-	void SetCursorOn(const bool on);
-	void SetIcon(std::string filpath_);
+	void SetWindow(int,int,char*,bool = false);
+	void SetWindowPos(Vec2&);
+	void SetCursorOn(const bool);
+	void SetIcon(std::string);
 	bool DebugFunction;
-	void SetPause(const bool ispause_);
+	void SetPause(const bool);
 	bool GetPause() const;
 	void GameEnd();
 	bool GetEnd() const;
 	void ChengeTask();
+	void Task_UpDate();
+	void Task_Render_AF();
+	void TaskGameUpDate();
+	void TaskKillCheck();
+	void SetTaskObject(const TaskObject::SP&);
+	void KillTask(const TaskObject::SP&);
+	void AllTaskDelete();
+	bool GetDeleteEngine();
+	void SetDeleteEngine(bool);
 private:
 	bool end;
 	int w_wi;
 	int w_he;
 	char* w_na;
-	bool w_sc;
+	bool w_sc;;
 	bool isPause;
 	bool Cursor_on;
 	std::string path = "./data/image/";
 	std::string file;
+	Vec2 w_pos;
+	bool DeleteEngine;
+	void TaskApplication();
 };
 
-extern EngineSystem* gameEngine;
+extern EngineSystem* OGge;

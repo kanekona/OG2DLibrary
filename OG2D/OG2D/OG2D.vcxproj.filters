@@ -116,17 +116,26 @@
     <ClCompile Include="src\OGSystem\Timer\glTimer.cpp">
       <Filter>ソースファイル\OGSystem\System\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Shader\shader.cpp">
-      <Filter>ソースファイル\OGSystem\System\Shader</Filter>
-    </ClCompile>
     <ClCompile Include="src\OGSystem\Random\Random.cpp">
       <Filter>ソースファイル\OGSystem\System\Random</Filter>
     </ClCompile>
+    <ClCompile Include="src\OGSystem\TaskObject.cpp">
+      <Filter>ソースファイル\OGSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Task\Task_Sample.cpp">
+      <Filter>ソースファイル\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Task\Task_Sample2.cpp">
+      <Filter>ソースファイル\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Task\TestObject.cpp">
+      <Filter>ソースファイル\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGSystem\Shader\shader.cpp">
+      <Filter>ソースファイル\OGSystem\System\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Win\WinMain.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
     <ClInclude Include="src\Object\Object.h">
       <Filter>ソースファイル\Object</Filter>
     </ClInclude>
@@ -172,9 +181,6 @@
     <ClInclude Include="src\OGSystem\Audio\SoundManager.h">
       <Filter>ソースファイル\OGSystem\System\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="src\Shader\shader.h">
-      <Filter>ソースファイル\OGSystem\System\Shader</Filter>
-    </ClInclude>
     <ClInclude Include="src\OGSystem\Timer\glTimer.h">
       <Filter>ソースファイル\OGSystem\System\Timer</Filter>
     </ClInclude>
@@ -183,6 +189,21 @@
     </ClInclude>
     <ClInclude Include="src\OGSystem\Random\Random.h">
       <Filter>ソースファイル\OGSystem\System\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\TaskObject.h">
+      <Filter>ソースファイル\OGSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Task\Task_Sample.h">
+      <Filter>ソースファイル\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Task\Task_Sample2.h">
+      <Filter>ソースファイル\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Task\TestObject.h">
+      <Filter>ソースファイル\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\Shader\shader.h">
+      <Filter>ソースファイル\OGSystem\System\Shader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

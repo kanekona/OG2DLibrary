@@ -16,6 +16,9 @@
 #define GLFW_INCLUDE_GLU
 #define GLM_FORCE_SWIZZLE
 
+//GLincludeより前にwindowsをincludeをする必要がある
+#include <Windows.h>
+
 // いくつかの余計な警告を表示しないようにする
 #pragma warning (disable:4244)
 #pragma warning (disable:4522)
@@ -57,6 +60,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <utility>
 
 #define PI 3.1415926f
 typedef unsigned char u_char;
@@ -248,6 +252,7 @@ public:
 	Box2D operator-=(Box2D b) { x -= b.x; y -= b.y; w -= b.w; h -= b.h; }
 };
 namespace OG {
+	//便利機能関数や数学計算
 	float ToRadian(const  float  degree_);
 	void MulitMatrixf(GLfloat*src1, GLfloat*src2, GLfloat*dst);
 	void Normalize(GLfloat *v);
