@@ -21,20 +21,17 @@
 //------------------
 //class定義
 //------------------
-_OGTK OGTK;
+_OGTK* OGTK;
 //------------------
 //タスクシステム
 //------------------
 void TaskSystem()
 {
 	OGge->TaskGameUpDate();
-	//更新処理
-	//OGTK._myGameUpdate();
 }
 void TaskRender()
 {
-	//描画処理
-
+	
 }
 void TaskFinalize()
 {
@@ -47,7 +44,7 @@ void TaskFinalize()
 void Initialize() 
 {
 	random::Init();
-	OGTK.StartTaskObject();
+	OGTK->StartTaskObject();
 }
 //------------------
 //解放
@@ -83,8 +80,9 @@ int main() {
 	}
 	//ゲームエンジンの生成
 	OGge = new EngineSystem();
+	OGTK = new _OGTK();
 	//タスクの初期化処理
-	OGTK._myGameInitialize();
+	OGTK->_myGameInitialize();
 	//ゲームエンジンの初期化
 	OGge->Initialize();
 	//使用OpenGLのVersion指定
@@ -122,7 +120,7 @@ int main() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	//初期化処理
 	Initialize();
-	//ウィンドウの生成位置の指定
+	delete OGTK;
 	//ウィンドウが存在する場合ループ
 	while (!glfwWindowShouldClose(OGge->window->window)) {
 		//エンジン内の更新処理
