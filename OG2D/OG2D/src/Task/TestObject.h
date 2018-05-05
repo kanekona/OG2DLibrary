@@ -1,7 +1,7 @@
 #pragma once
 #include "OGSystem\OGsystem.h"
 #include "Object\Object.h"
-#include "OGSystem\TaskObject.h"
+
 class TestObject : public GameObject , public TaskObject
 {
 public:

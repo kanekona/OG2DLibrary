@@ -9,6 +9,8 @@
 //小数点誤差修正
 #define _OX_EPSILON_ 0.0000001f
 #include "OGSystem\OGTask.h"
+#include "ft2build.h"
+#include FT_FREETYPE_H
 //メモリリーク検知
 #if (_DEBUG)
 #define _CRTDBG_MAP_ALLOC
@@ -32,14 +34,12 @@ void TaskSystem()
 void TaskRender()
 {
 	//描画処理
-	//OGTK._myGameRender2D();
-	//OGTK._myGameRender3D();
+
 }
 void TaskFinalize()
 {
-	OGge->SetDeleteEngine(true);
 	//解放処理
-	//OGTK._myGameFinalize();
+	OGge->SetDeleteEngine(true);
 }
 //------------------
 //初期化

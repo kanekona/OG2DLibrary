@@ -10,7 +10,7 @@ bool Sample2::Initialize()
 
 void Sample2::UpDate()
 {
-	std::cout << "Sample2:" << "UpDate()" << std::endl;
+	//std::cout << "Sample2:" << "UpDate()" << std::endl;
 	if (OGge->in.key.down(In::SPACE))
 	{
 		this->Kill();
@@ -19,7 +19,7 @@ void Sample2::UpDate()
 
 void Sample2::Render2D()
 {
-	std::cout << "Sample2:" << "Render2D()" << std::endl;
+	//std::cout << "Sample2:" << "Render2D()" << std::endl;
 }
 
 bool Sample2::Finalize()

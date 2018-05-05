@@ -10,7 +10,7 @@ bool TestObject::Initialize()
 }
 void TestObject::UpDate()
 {
-	std::cout << "TestObject:" << "UpDate()" << std::endl;
+	//std::cout << "TestObject:" << "UpDate()" << std::endl;
 	if (OGge->in.key.down(In::Z))
 	{
 		this->Kill();
@@ -19,7 +19,7 @@ void TestObject::UpDate()
 
 void TestObject::Render2D()
 {
-	std::cout << "TestObject:" << "Render2D()" << std::endl;
+	//std::cout << "TestObject:" << "Render2D()" << std::endl;
 	Box2D draw(this->position, this->Scale);
 	draw.OffsetSize();
 	this->sampleImage.Draw(draw, Box2D(0, 0, 128, 128));

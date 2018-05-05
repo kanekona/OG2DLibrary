@@ -4,10 +4,10 @@
 //|履歴：2018/03/20       
 //|____________________________
 
-//#if !defined (DEBUG)
-//// Degub版のみコンソールを表示する設定
-//#pragma comment(linker, "/subsystem:windows /entry:mainCRTStartup")
-//#endif
+#if !defined (_DEBUG)
+// Degub版のみコンソールを表示する設定
+#pragma comment(linker, "/subsystem:windows /entry:mainCRTStartup")
+#endif
 
 // Windows:GLEWをスタティックライブラリ形式で利用
 #define GLEW_STATIC
@@ -28,6 +28,7 @@
 #pragma comment(lib, "OPENGL32.lib")
 #pragma comment(lib, "GLU32.lib")
 #pragma comment(lib, "Win64/OpenAL32.lib")
+#pragma comment(lib, "freetype.lib")
 
 #if defined(_MSC_VER)
 // Windows:外部ライブラリのリンク指定
