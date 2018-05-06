@@ -4,7 +4,7 @@ bool TestObject::Initialize()
 {
 	std::cout << "TestObject:" << "Initialize()" << std::endl;
 	__super::Init(taskName);
-	this->CreateObject(Cube, Vec2(100, 100), Vec2(128, 128), 0.0f);
+	this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128), 0.0f);
 	this->sampleImage.Create("Collision.png");
 	return true;
 }
@@ -15,6 +15,11 @@ void TestObject::UpDate()
 	{
 		this->Kill();
 	}
+}
+
+bool TestObject::TestCheck()
+{
+	return true;
 }
 
 void TestObject::Render2D()

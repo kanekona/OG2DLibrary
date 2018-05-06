@@ -5,6 +5,7 @@
 class TestObject : public GameObject , public TaskObject
 {
 public:
+	bool TestCheck();
 	std::string taskName = "TestObject";
 	virtual ~TestObject();
 	typedef std::shared_ptr<TestObject> SP;

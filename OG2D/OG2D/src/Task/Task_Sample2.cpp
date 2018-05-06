@@ -22,6 +22,11 @@ void Sample2::Render2D()
 	//std::cout << "Sample2:" << "Render2D()" << std::endl;
 }
 
+bool Sample2::CheckOn()
+{
+	return true;
+}
+
 bool Sample2::Finalize()
 {
 	std::cout << "Sample2:" << "Finalize()" << std::endl;

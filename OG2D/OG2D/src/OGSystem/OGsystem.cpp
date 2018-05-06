@@ -4,6 +4,7 @@
 //--------------------------------------------------
 EngineSystem::EngineSystem()
 {
+	//Window情報がセットされなかった時のための初期設定
 	this->w_wi = 960;
 	this->w_he = 540;
 	this->w_na = "NoName";
@@ -22,21 +23,34 @@ EngineSystem::EngineSystem(int widht, int height, char* name, bool screen)
 }
 void EngineSystem::Initialize()
 {
+	//初期化処理
+	//カメラ2Dの生成
 	this->camera = Camera2D::Create(Box2D(0, 0, 960, 540));
+	//Windowの生成
 	this->window = Window::Create(w_wi, w_he, w_na, w_sc, w_pos);
+	//Window設定
 	this->window->LimitsWindow();
 	this->window->InMouseMode(this->Cursor_on);
-	this->fps = FPS::Create();
 	this->window->setIcon(this->path + this->file);
+	//fpsの設定
+	//※デバッグ時のみ使用する
+#if(_DEBUG)
+	this->fps = FPS::Create();
+#endif
+	//入力関連の初期化
 	this->in.Inputinit(this->window->window);
+	//サウンド管理の初期化
 	this->soundManager = SoundManager::Create();
+	//オーディオデバイスの初期化と設定
 	this->audiodevice = Audio::Create();
+	//各値の初期化
 	DebugFunction = false;
 	this->isPause = false;
 	this->end = false;
 }
 void EngineSystem::SetWindow(int width, int height, char* name, bool screen)
 {
+	//Window情報を登録する
 	this->w_wi = width;
 	this->w_he = height;
 	this->w_na = name;
@@ -44,20 +58,26 @@ void EngineSystem::SetWindow(int width, int height, char* name, bool screen)
 }
 void EngineSystem::SetCursorOn(const bool on)
 {
+	//カーソルの可視化有無
 	this->Cursor_on = on;
 }
 void EngineSystem::SetIcon(std::string filepath_)
 {
+	//アイコンに使用する画像の設定
 	this->file = filepath_;
 }
 void EngineSystem::Update()
 {
+	//カメラと入力状況の更新
 	this->camera->CameraUpdate();
 	this->in.upDate();
+#if(_DEBUG)
 	this->fps->Update();
+#endif
 }
 void EngineSystem::Task_UpDate()
 {
+	//登録タスクの更新処理を呼ぶ
 	for (int id = 0; id < this->taskobjects.size();++id)
 	{
 		if (this->taskobjects[id].second->GetKillCount() == 0) 
@@ -68,6 +88,7 @@ void EngineSystem::Task_UpDate()
 }
 void EngineSystem::Task_Render_AF()
 {
+	//登録タスクの描画処理を呼ぶ
 	for (int id = 0; id < this->taskobjects.size(); ++id)
 	{
 		if (this->taskobjects[id].second->GetKillCount() == 0) 
@@ -78,33 +99,39 @@ void EngineSystem::Task_Render_AF()
 }
 void EngineSystem::TaskGameUpDate()
 {
-	this->Task_UpDate();
-	this->Task_Render_AF();
-	this->TaskApplication();
-	this->TaskKillCheck();
+	this->Task_UpDate();		//更新処理
+	this->Task_Render_AF();		//描画処理
+	this->TaskApplication();	//登録予定のタスクを登録する
+	this->TaskKillCheck();		//削除予定のタスクを削除する
 }
 EngineSystem::~EngineSystem()
 {
+	//登録しているタスクをすべて破棄する
 	this->AllTaskDelete();
 }
 void EngineSystem::SetPause(const bool ispause_)
 {
+	//ポーズ設定
 	this->isPause = ispause_;
 }
 bool EngineSystem::GetPause() const
 {
+	//ポーズ状況を返す
 	return this->isPause;
 }
 void EngineSystem::GameEnd()
 {
+	//アプリケーションの終了予定設定
 	this->end = true;
 }
 bool EngineSystem::GetEnd() const
 {
+	//アプリケーションを終了の有無を返す
 	return this->end;
 }
 void EngineSystem::ChengeTask()
 {
+	//タスクを変更する際に元に戻したい処理
 	this->camera->SetPos(Vec2(0.f, 0.f));
 	this->camera->SetSize(Vec2(this->window->_widht, this->window->_height));
 	this->SetPause(false);
@@ -112,10 +139,12 @@ void EngineSystem::ChengeTask()
 }
 void EngineSystem::SetTaskObject(const TaskObject::SP& To)
 {
+	//タスクを登録予定に登録
 	this->addTaskObjects.push_back(To);
 }
 void EngineSystem::TaskApplication()
 {
+	//登録予定のものを登録する
 	for (int i = 0; i < this->addTaskObjects.size(); ++i)
 	{
 		std::pair<DWORD, TaskObject::SP> d;
@@ -129,6 +158,7 @@ void EngineSystem::TaskApplication()
 }
 void EngineSystem::KillTask(const TaskObject::SP& To)
 {
+	//削除予定のタスクを削除する
 	for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
 	{
 		if (id->second == To)
@@ -139,6 +169,7 @@ void EngineSystem::KillTask(const TaskObject::SP& To)
 }
 void EngineSystem::TaskKillCheck()
 {
+	//削除予定のタスクを削除する
 	auto id = this->taskobjects.begin();
 	while (id != this->taskobjects.end())
 	{
@@ -156,18 +187,33 @@ void EngineSystem::TaskKillCheck()
 }
 void EngineSystem::AllTaskDelete()
 {
+	//全削除
 	this->taskobjects.clear();
 }
 void EngineSystem::SetWindowPos(Vec2& pos)
 {
+	//Windowの位置を返す
 	this->w_pos = pos;
 }
 void EngineSystem::SetDeleteEngine(bool flag)
 {
+	//エンジンの終了を登録
 	this->DeleteEngine = flag;
 }
 bool EngineSystem::GetDeleteEngine()
 {
+	//エンジン終了を返す
 	return this->DeleteEngine;
 }
+//template <class T> std::shared_ptr<T> EngineSystem::GetTask(const std::string& taskName)
+//{
+//	for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
+//	{
+//		if ((*id).second->taskName == taskName)
+//		{
+//			return std::static_pointer_cast<T>((*id).second);
+//		}
+//	}
+//	return nullptr;
+//}
 EngineSystem* OGge;

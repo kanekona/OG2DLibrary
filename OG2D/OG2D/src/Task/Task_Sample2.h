@@ -9,6 +9,7 @@
 class Sample2 : public TaskObject
 {
 public:
+	bool CheckOn();
 	std::string taskName = "Sample2";
 	virtual ~Sample2();
 	typedef std::shared_ptr<Sample2> SP;

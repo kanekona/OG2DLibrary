@@ -11,7 +11,11 @@ bool Sample::Initialize()
 
 void Sample::UpDate()
 {
-	//std::cout << "Sample:" << "UpDate()" << std::endl;
+	auto test = OGge->GetTask<TestObject>("TestObject");
+	if (test != nullptr)
+	{
+		test->TestCheck();
+	}
 	if (OGge->in.key.down(In::SPACE))
 	{
 		this->Kill();
