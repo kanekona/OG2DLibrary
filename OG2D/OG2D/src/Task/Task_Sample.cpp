@@ -6,6 +6,8 @@ bool Sample::Initialize()
 	std::cout << "Sample:" << "Initialize()" << std::endl;
 	__super::Init(taskName);
 	auto testObject = TestObject::Create(true);
+	this->testImg.Create((std::string)"back.png");
+	this->SetDrawOrder(0.0f);
 	return true;
 }
 
@@ -25,11 +27,13 @@ void Sample::UpDate()
 void Sample::Render2D()
 {
 	//std::cout << "Sample:" << "Render2D()" << std::endl;
+	this->testImg.Draw(Box2D(0, 0, 960, 540), Box2D(0, 0, 1080, 720));
 }
 
 bool Sample::Finalize()
 {
 	std::cout << "Sample:" << "Finalize()" << std::endl;
+	this->testImg.Finalize();
 	if (this->GetNextTask() && !OGge->GetDeleteEngine())
 	{
 		this->Kill(false);

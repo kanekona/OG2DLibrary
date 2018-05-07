@@ -7,10 +7,11 @@ public:
 	typedef std::shared_ptr<TaskObject> SP;	//スマートポインタ
 	typedef std::weak_ptr<TaskObject> WP;	//サブオーバー
 	WP me;									//自分の情報
-	std::string taskName;					//タスクに名をつける
 private:
 	bool NextTask;							//終了時に次のタスクを生成できるか
 	int KillCount;							//削除するかどうかの判断用
+	std::string taskName;					//タスクに名をつける
+	float order;							//描画順番
 public:
 	bool Init(std::string&);				//初期化処理
 	void T_UpDate();						//更新処理
@@ -23,5 +24,8 @@ public:
 	int GetKillCount();						//削除状況を返す
 	bool GetNextTask();						//次のタスクが作れるかどうかを返す
 	void ResetKillCount();					//削除状況をリセットする
+	void SetDrawOrder(float);				//描画順を登録する
+	float GetDrawOrder() const;				//描画順を返す
+	std::string GetTaskName() const;		//タスク名を返す
 private:
 };

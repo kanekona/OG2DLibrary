@@ -5,6 +5,7 @@ bool TaskObject::Init(std::string& name_)
 	this->taskName = name_;
 	this->KillCount = 0;
 	this->NextTask = true;
+	this->order = 0.0f;
 	return true;
 }
 void TaskObject::T_UpDate()
@@ -35,4 +36,16 @@ void TaskObject::Delete()
 void TaskObject::ResetKillCount()
 {
 	this->KillCount = 0;
+}
+void TaskObject::SetDrawOrder(float order_)
+{
+	this->order = order_;
+}
+float TaskObject::GetDrawOrder() const
+{
+	return this->order;
+}
+std::string TaskObject::GetTaskName() const
+{
+	return this->taskName;
 }

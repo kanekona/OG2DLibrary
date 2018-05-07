@@ -61,7 +61,7 @@ void EngineSystem::SetCursorOn(const bool on)
 	//カーソルの可視化有無
 	this->Cursor_on = on;
 }
-void EngineSystem::SetIcon(std::string filepath_)
+void EngineSystem::SetIcon(std::string& filepath_)
 {
 	//アイコンに使用する画像の設定
 	this->file = filepath_;
@@ -88,14 +88,41 @@ void EngineSystem::Task_UpDate()
 }
 void EngineSystem::Task_Render_AF()
 {
+	std::vector<OrderCheck> orders;
+	//オブジェクトの数だけ順番を確認するclassを生成する
+	orders.resize(this->taskobjects.size());
+
+	for (int i = 0; i < this->taskobjects.size();++i)
+	{
+		if (orders[i].order_s < this->taskobjects[i].second->GetDrawOrder())
+		{
+			if (i + 1 != taskobjects.size())
+			{
+				orders[i + 1] = orders[i];
+			}
+			orders[i].id = i;
+			orders[i].order_s = this->taskobjects[i].second->GetDrawOrder();
+			i -= 1;
+		}
+	}
+
 	//登録タスクの描画処理を呼ぶ
-	for (int id = 0; id < this->taskobjects.size(); ++id)
+	/*for (int id = 0; id < this->taskobjects.size(); ++id)
 	{
 		if (this->taskobjects[id].second->GetKillCount() == 0) 
 		{
 			this->taskobjects[id].second->Draw2D();
 		}
+	}*/
+	for (int i = 0; i < this->taskobjects.size(); ++i)
+	{
+		if (this->taskobjects[orders[i].id].second->GetKillCount() == 0)
+		{
+			this->taskobjects[orders[i].id].second->Draw2D();
+		}
 	}
+	//生成したclassをdeleteする
+
 }
 void EngineSystem::TaskGameUpDate()
 {

@@ -93,7 +93,7 @@ public:
 		:r((float)_r), CenterX((float)_x), CenterY((float)_y)
 	{
 	};
-	Circle(Circle &_c)
+	Circle(Circle&_c)
 		:r(_c.r), CenterX(_c.CenterX), CenterY(_c.CenterY)
 	{
 	};
@@ -132,12 +132,12 @@ public:
 	void Normalize();
 	float GetLength();
 
-	Vec2 Vec2::operator+(Vec2 v) { return Vec2(x + v.x, y + v.y); }
-	Vec2 Vec2::operator-(Vec2 v) { return Vec2(x - v.x, y - v.y); }
+	Vec2 Vec2::operator+(Vec2& v) { return Vec2(x + v.x, y + v.y); }
+	Vec2 Vec2::operator-(Vec2& v) { return Vec2(x - v.x, y - v.y); }
 	Vec2 Vec2::operator*(float n) { return Vec2(x*n, y*n); }
-	void Vec2::operator+=(Vec2 v) { x += v.x; y += v.y; }
+	void Vec2::operator+=(Vec2& v) { x += v.x; y += v.y; }
 	void Vec2::operator*=(float n) { x *= n; y *= n; }
-	void Vec2::operator-=(Vec2 v) { x -= v.x; y -= v.y; }
+	void Vec2::operator-=(Vec2& v) { x -= v.x; y -= v.y; }
 };
 class Mat4 {
 public:
@@ -220,7 +220,7 @@ public:
 		:x(b_.x), y(b_.y), w(b_.w), h(b_.h)
 	{
 	}
-	Box2D(const Vec2 p, const Vec2 s)
+	Box2D(const Vec2& p, const Vec2& s)
 		:x(p.x), y(p.y), w(s.x), h(s.y)
 	{
 	}
@@ -249,27 +249,28 @@ public:
 		this->w = this->w + this->x;
 		this->h = this->h + this->y;
 	}
-	Box2D operator+=(Box2D b) { x += b.x; y += b.y; w += b.w; h += b.h; }
-	Box2D operator-=(Box2D b) { x -= b.x; y -= b.y; w -= b.w; h -= b.h; }
+	Box2D operator+=(Box2D& b) { x += b.x; y += b.y; w += b.w; h += b.h; }
+	Box2D operator-=(Box2D& b) { x -= b.x; y -= b.y; w -= b.w; h -= b.h; }
 };
 namespace OG {
 	//便利機能関数や数学計算
-	float ToRadian(const  float  degree_);
-	void MulitMatrixf(GLfloat*src1, GLfloat*src2, GLfloat*dst);
-	void Normalize(GLfloat *v);
-	void Cross(float* src1, float* src2, float* dst);
-	float inner(Vec2 _v1, Vec2 _v2);
-	float inner(float _x1, float _y1, float _x2, float _y2);
-	float inner(int _x1, int _y1, int _x2, int _y2);
-	float cross(Vec2 _v1, Vec2 _v2);
-	float cross(float _x1, float _y1, float _x2, float _y2);
-	float cross(int _x1, int _y1, int _x2, int _y2);
-	float doubleinner(Vec2 _v);
-	float doubleinner(float _x, float _y);
-	float doubleinner(int _x, int _y);
-	float get_distance(float x, float y, float x1, float y1, float x2, float y2);
-	void _Rotate(float _angle, Vec2 _b[4]);
-	void LineHitDraw(Vec2 _b[4]);
+	float ToRadian(const  float);
+	void MulitMatrixf(GLfloat*, GLfloat*, GLfloat*);
+	void Normalize(GLfloat*);
+	void Cross(float*, float*, float*);
+	float inner(Vec2&, Vec2&);
+	float inner(float,float,float,float);
+	float inner(int,int,int,int);
+	float cross(Vec2&, Vec2&);
+	float cross(float,float,float,float);
+	float cross(int,int,int,int);
+	float doubleinner(Vec2&);
+	float doubleinner(float,float);
+	float doubleinner(int,int);
+	float get_distance(float,float,float,float,float,float);
+	void _Rotate(float _angle, Vec2*);
+	void LineHitDraw(Vec2*);
+	void LineHitDraw(Vec2*, Color&);
 }
 class Color
 {

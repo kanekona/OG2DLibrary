@@ -44,7 +44,7 @@ void GameObject::CreateObject(Objform form, Vec2 _posi, Vec2 _Sca, float _ang)
 	}
 	this->angle = _ang;
 }
-bool GameObject::hit(GameObject o)
+bool GameObject::hit(GameObject& o)
 {
 	switch (this->objform)
 	{

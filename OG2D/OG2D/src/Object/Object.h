@@ -21,7 +21,7 @@ public:
 	CollisionCircle collisionBall;					//円当たり判定
 	bool Gravity;									//重力の有無
 	float mass;										//質量
-	bool hit(GameObject o);							//GameObject同士の当たり判定
+	bool hit(GameObject& o);							//GameObject同士の当たり判定
 	GameObject();									//コンストラクタ	
 	GameObject(										//コンストラクタ
 		Objform form, 

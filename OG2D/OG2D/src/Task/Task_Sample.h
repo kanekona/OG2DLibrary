@@ -8,6 +8,7 @@
 
 class Sample : public TaskObject
 {
+	Texture testImg;
 public:
 	std::string taskName = "Sample";
 	virtual ~Sample();

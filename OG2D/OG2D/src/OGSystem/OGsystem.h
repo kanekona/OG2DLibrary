@@ -19,6 +19,23 @@
 #include "Random\Random.h"
 #include "TaskObject.h"
 
+class OrderCheck
+{
+public:
+	OrderCheck()
+	{
+		this->id = -1;
+		this->order_s = -1.f;
+	}
+	int id;
+	float order_s;
+	typedef std::shared_ptr<OrderCheck> SP;
+	SP Create()
+	{
+		return OrderCheck::SP(new OrderCheck());
+	}
+};
+
 class EngineSystem
 {
 public:
@@ -46,7 +63,7 @@ public:
 		bool = false);
 	void SetWindowPos(Vec2&);	//Window生成位置設定
 	void SetCursorOn(const bool);	//カーソル可視化有無
-	void SetIcon(std::string);	//アイコン使用画像設定
+	void SetIcon(std::string&);	//アイコン使用画像設定
 	bool DebugFunction;		//デバッグ機能
 	void SetPause(const bool);	//ポーズ設定
 	bool GetPause() const;		//ポーズを返す
@@ -70,7 +87,7 @@ public:
 	{
 		for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
 		{
-			if ((*id).second->taskName == taskName)
+			if ((*id).second->GetTaskName() == taskName)
 			{
 				return std::static_pointer_cast<T>((*id).second);
 			}

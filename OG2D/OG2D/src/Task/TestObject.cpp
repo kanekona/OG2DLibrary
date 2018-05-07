@@ -5,7 +5,8 @@ bool TestObject::Initialize()
 	std::cout << "TestObject:" << "Initialize()" << std::endl;
 	__super::Init(taskName);
 	this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128), 0.0f);
-	this->sampleImage.Create("Collision.png");
+	this->sampleImage.Create((std::string)"Collision.png");
+	this->SetDrawOrder(1.0f);
 	return true;
 }
 void TestObject::UpDate()
@@ -14,6 +15,14 @@ void TestObject::UpDate()
 	if (OGge->in.key.down(In::Z))
 	{
 		this->Kill();
+	}
+	if (OGge->in.key.on(In::Q))
+	{
+		this->angle -= 1.0f;
+	}
+	if (OGge->in.key.on(In::E))
+	{
+		this->angle += 1.0f;
 	}
 }
 
@@ -27,7 +36,9 @@ void TestObject::Render2D()
 	//std::cout << "TestObject:" << "Render2D()" << std::endl;
 	Box2D draw(this->position, this->Scale);
 	draw.OffsetSize();
+	this->sampleImage.Rotate(this->angle);
 	this->sampleImage.Draw(draw, Box2D(0, 0, 128, 128));
+	this->LineDraw();
 }
 
 bool TestObject::Finalize()
