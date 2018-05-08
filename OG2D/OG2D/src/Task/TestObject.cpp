@@ -6,21 +6,21 @@ bool TestObject::Initialize()
 	__super::Init(taskName);
 	this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128), 0.0f);
 	this->sampleImage.Create((std::string)"Collision.png");
-	this->SetDrawOrder(1.0f);
+	this->SetDrawOrder(0.0f);
 	return true;
 }
 void TestObject::UpDate()
 {
 	//std::cout << "TestObject:" << "UpDate()" << std::endl;
-	if (OGge->in.key.down(In::Z))
+	if (OGge->in->key.down(In::Z))
 	{
 		this->Kill();
 	}
-	if (OGge->in.key.on(In::Q))
+	if (OGge->in->key.on(In::Q))
 	{
 		this->angle -= 1.0f;
 	}
-	if (OGge->in.key.on(In::E))
+	if (OGge->in->key.on(In::E))
 	{
 		this->angle += 1.0f;
 	}

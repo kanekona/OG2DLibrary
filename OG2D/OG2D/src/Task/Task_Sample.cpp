@@ -7,19 +7,20 @@ bool Sample::Initialize()
 	__super::Init(taskName);
 	auto testObject = TestObject::Create(true);
 	this->testImg.Create((std::string)"back.png");
-	this->SetDrawOrder(0.0f);
+	this->SetDrawOrder(1.0f);
 	return true;
 }
 
 void Sample::UpDate()
 {
-	auto test = OGge->GetTask<TestObject>("TestObject");
-	if (test != nullptr)
+	if (OGge->in->key.down(In::SPACE))
 	{
-		test->TestCheck();
-	}
-	if (OGge->in.key.down(In::SPACE))
-	{
+
+		auto test = OGge->GetTask<TestObject>("TestObject");
+		if (test != nullptr)
+		{
+			test->SetDrawOrder(1.0f);
+		}
 		this->Kill();
 	}
 }

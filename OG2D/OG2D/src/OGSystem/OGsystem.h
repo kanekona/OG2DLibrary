@@ -8,7 +8,6 @@
 #include "Window\Window.h"
 #include "FPS\FPS.h"
 #include "Input\Input.h"
-#include "Font\Font.h"
 #include "Texture\Texture.h"
 #include "Collision\Collision.h"
 #include "Font\Font.h"
@@ -29,11 +28,6 @@ public:
 	}
 	int id;
 	float order_s;
-	typedef std::shared_ptr<OrderCheck> SP;
-	SP Create()
-	{
-		return OrderCheck::SP(new OrderCheck());
-	}
 };
 
 class EngineSystem
@@ -46,12 +40,18 @@ public:
 		char*,
 		bool = false);
 	~EngineSystem();		//デストラクタ
-	Camera2D::SP camera;	//カメラ2D
-	Window::SP window;		//Window
-	FPS::SP fps;			//fps
-	Audio::SP audiodevice;	//Audio
-	SoundManager::SP soundManager;	//Sound管理
-	Input in;				//入力状況
+	//Camera2D::SP camera;	//カメラ2D
+	Camera2D* camera;
+	//Window::SP window;		//Window
+	Window* window;
+	//FPS::SP fps;			//fps
+	FPS* fps;
+	//Audio::SP audiodevice;//Audio
+	Audio* audiodevice;
+	//SoundManager::SP soundManager;//Sound管理
+	SoundManager* soundManager;
+	//Input in;				//入力状況
+	Input* in;
 	std::vector<std::pair<DWORD, TaskObject::SP>> taskobjects;	//タスクオブジェクト達
 	std::vector<TaskObject::SP> addTaskObjects;	//登録予定タスク達
 	void Initialize();		//初期化処理
@@ -64,7 +64,7 @@ public:
 	void SetWindowPos(Vec2&);	//Window生成位置設定
 	void SetCursorOn(const bool);	//カーソル可視化有無
 	void SetIcon(std::string&);	//アイコン使用画像設定
-	bool DebugFunction;		//デバッグ機能
+	bool DebugFunction;			//デバッグ機能
 	void SetPause(const bool);	//ポーズ設定
 	bool GetPause() const;		//ポーズを返す
 	void GameEnd();				//アプリケーション終了登録
@@ -102,11 +102,15 @@ private:
 	bool w_sc;			//WindowMode
 	bool isPause;		//PauseCheck
 	bool Cursor_on;		//カーソル可視化
-	std::string path = "./data/image/";	//ファイルパス
+	const std::string path = "./data/image/";	//ファイルパス
 	std::string file;	//ファイル名
 	Vec2 w_pos;			//WindowPosition
+	std::vector<OrderCheck> Orders;	//描画順
 	bool DeleteEngine;	//Engine終了状況
 	void TaskApplication();	//タスク登録予定を登録する
+	void ConfigDrawOrder();	//描画順を設定する
+	bool CheckAddTask();	//登録予定のタスクの有無
+	bool CheckKillTask();	//削除予定のタスクの有無
 };
 
 extern EngineSystem* OGge;

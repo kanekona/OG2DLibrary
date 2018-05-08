@@ -6,7 +6,7 @@ private:
 	std::shared_ptr<Audio::Buffer> buffer;
 	std::shared_ptr<Audio::Source> source;
 	bool isloop_;
-	std::string filepath_ = "./data/bgm/";
+	const std::string filepath_ = "./data/bgm/";
 	float volume_;
 public:
 	Sound();

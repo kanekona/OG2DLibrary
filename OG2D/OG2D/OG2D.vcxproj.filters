@@ -63,6 +63,9 @@
     <Filter Include="ソースファイル\OGSystem\System\Random">
       <UniqueIdentifier>{21c3b19b-d1a7-4fb0-9d09-2144e0b54aac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソースファイル\OGSystem\System\OG">
+      <UniqueIdentifier>{2699226e-5a52-4698-a296-ca1342d9a4e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Win\WinMain.cpp">
@@ -70,9 +73,6 @@
     </ClCompile>
     <ClCompile Include="src\Object\Object.cpp">
       <Filter>ソースファイル\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="src\OGSystem\_OGsystem.cpp">
-      <Filter>ソースファイル\OGSystem\System</Filter>
     </ClCompile>
     <ClCompile Include="src\OGSystem\OGTask.cpp">
       <Filter>ソースファイル\OGSystem</Filter>
@@ -107,9 +107,6 @@
     <ClCompile Include="src\OGSystem\Audio\StreamingSound.cpp">
       <Filter>ソースファイル\OGSystem\System\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\OGsystem.cpp">
-      <Filter>ソースファイル\OGSystem\System</Filter>
-    </ClCompile>
     <ClCompile Include="src\OGSystem\Audio\SoundManager.cpp">
       <Filter>ソースファイル\OGSystem\System\Sound</Filter>
     </ClCompile>
@@ -134,6 +131,15 @@
     <ClCompile Include="src\OGSystem\Shader\shader.cpp">
       <Filter>ソースファイル\OGSystem\System\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="src\OGSystem\_OGsystem.cpp">
+      <Filter>ソースファイル\OGSystem\System\OG</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGSystem\OGsystem.cpp">
+      <Filter>ソースファイル\OGSystem\System\OG</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGSystem\OGlib.cpp">
+      <Filter>ソースファイル\OGSystem\System\OG</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Object\Object.h">
@@ -141,12 +147,6 @@
     </ClInclude>
     <ClInclude Include="src\OGSystem\OGTask.h">
       <Filter>ソースファイル\OGSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="src\OGSystem\OGsystem.h">
-      <Filter>ソースファイル\OGSystem\System</Filter>
-    </ClInclude>
-    <ClInclude Include="src\OGSystem\_OGsystem.h">
-      <Filter>ソースファイル\OGSystem\System</Filter>
     </ClInclude>
     <ClInclude Include="src\OGSystem\Camera\Camera.h">
       <Filter>ソースファイル\OGSystem\System\Camera</Filter>
@@ -204,6 +204,15 @@
     </ClInclude>
     <ClInclude Include="src\OGSystem\Shader\shader.h">
       <Filter>ソースファイル\OGSystem\System\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\_OGsystem.h">
+      <Filter>ソースファイル\OGSystem\System\OG</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\OGsystem.h">
+      <Filter>ソースファイル\OGSystem\System\OG</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\OGlib.h">
+      <Filter>ソースファイル\OGSystem\System\OG</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

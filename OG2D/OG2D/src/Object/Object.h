@@ -3,7 +3,8 @@
 //|ゲームオブジェクト            
 //|履歴：2018/03/20   
 //|____________________________
-#include "OGSystem\OGsystem.h"
+#include "OGSystem\OGlib.h"
+#include "OGSystem\Collision\Collision.h"
 enum Objform
 {
 	Non,											//無

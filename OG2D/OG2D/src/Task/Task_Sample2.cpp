@@ -5,13 +5,13 @@ bool Sample2::Initialize()
 {
 	std::cout << "Sample2:" << "Initialize()" << std::endl;
 	__super::Init(taskName);
+	this->SetDrawOrder(0.5f);
 	return true;
 }
 
 void Sample2::UpDate()
 {
-	//std::cout << "Sample2:" << "UpDate()" << std::endl;
-	if (OGge->in.key.down(In::SPACE))
+	if (OGge->in->key.down(In::SPACE))
 	{
 		this->Kill();
 	}

@@ -1,6 +1,6 @@
 #pragma once
 #include "OGSystem\_OGsystem.h"
-#include <functional>
+
 class FPS {
 public:
 	FPS();							//コンストラクタ

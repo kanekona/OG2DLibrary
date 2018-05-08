@@ -9,6 +9,7 @@
 //小数点誤差修正
 #define _OX_EPSILON_ 0.0000001f
 #include "OGSystem\OGTask.h"
+#include "OGSystem\Random\Random.h"
 //#include "ft2build.h"
 //#include FT_FREETYPE_H
 //メモリリーク検知
@@ -138,7 +139,7 @@ void Finalize()
 //更新
 //------------------
 bool Update() {
-	if (OGge->in.key.down(In::ESCAPE) || OGge->GetEnd())
+	if (OGge->in->key.down(In::ESCAPE) || OGge->GetEnd())
 	{
 		TaskFinalize();
 		//ウィンドウの破棄

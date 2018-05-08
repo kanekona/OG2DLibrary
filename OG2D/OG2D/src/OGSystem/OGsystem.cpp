@@ -24,25 +24,26 @@ EngineSystem::EngineSystem(int widht, int height, char* name, bool screen)
 void EngineSystem::Initialize()
 {
 	//初期化処理
-	//カメラ2Dの生成
-	this->camera = Camera2D::Create(Box2D(0, 0, 960, 540));
 	//Windowの生成
-	this->window = Window::Create(w_wi, w_he, w_na, w_sc, w_pos);
+	this->window = new Window(w_wi, w_he, w_na, w_sc, w_pos);
 	//Window設定
 	this->window->LimitsWindow();
 	this->window->InMouseMode(this->Cursor_on);
 	this->window->setIcon(this->path + this->file);
+	//カメラ2Dの生成
+	this->camera = new Camera2D(Box2D(0, 0, w_wi, w_he));
 	//fpsの設定
 	//※デバッグ時のみ使用する
 #if(_DEBUG)
-	this->fps = FPS::Create();
+	this->fps = new FPS();
 #endif
 	//入力関連の初期化
-	this->in.Inputinit(this->window->window);
+	this->in = new Input();
+	this->in->Inputinit(this->window->window);
 	//サウンド管理の初期化
-	this->soundManager = SoundManager::Create();
+	this->soundManager = new SoundManager();
 	//オーディオデバイスの初期化と設定
-	this->audiodevice = Audio::Create();
+	this->audiodevice = new Audio();
 	//各値の初期化
 	DebugFunction = false;
 	this->isPause = false;
@@ -70,7 +71,7 @@ void EngineSystem::Update()
 {
 	//カメラと入力状況の更新
 	this->camera->CameraUpdate();
-	this->in.upDate();
+	this->in->upDate();
 #if(_DEBUG)
 	this->fps->Update();
 #endif
@@ -88,53 +89,64 @@ void EngineSystem::Task_UpDate()
 }
 void EngineSystem::Task_Render_AF()
 {
-	std::vector<OrderCheck> orders;
-	//オブジェクトの数だけ順番を確認するclassを生成する
-	orders.resize(this->taskobjects.size());
-
-	for (int i = 0; i < this->taskobjects.size();++i)
-	{
-		if (orders[i].order_s < this->taskobjects[i].second->GetDrawOrder())
-		{
-			if (i + 1 != taskobjects.size())
-			{
-				orders[i + 1] = orders[i];
-			}
-			orders[i].id = i;
-			orders[i].order_s = this->taskobjects[i].second->GetDrawOrder();
-			i -= 1;
-		}
-	}
-
-	//登録タスクの描画処理を呼ぶ
-	/*for (int id = 0; id < this->taskobjects.size(); ++id)
-	{
-		if (this->taskobjects[id].second->GetKillCount() == 0) 
-		{
-			this->taskobjects[id].second->Draw2D();
-		}
-	}*/
+	//描画順にDraw2Dを実行する
 	for (int i = 0; i < this->taskobjects.size(); ++i)
 	{
-		if (this->taskobjects[orders[i].id].second->GetKillCount() == 0)
+		if (this->taskobjects[this->Orders[i].id].second->GetKillCount() == 0)
 		{
-			this->taskobjects[orders[i].id].second->Draw2D();
+			this->taskobjects[this->Orders[i].id].second->Draw2D();
 		}
 	}
-	//生成したclassをdeleteする
-
 }
 void EngineSystem::TaskGameUpDate()
 {
 	this->Task_UpDate();		//更新処理
 	this->Task_Render_AF();		//描画処理
-	this->TaskApplication();	//登録予定のタスクを登録する
-	this->TaskKillCheck();		//削除予定のタスクを削除する
+	if (this->CheckAddTask() || this->CheckKillTask())
+	{
+		this->TaskApplication();	//登録予定のタスクを登録する
+		this->TaskKillCheck();		//削除予定のタスクを削除する
+		this->ConfigDrawOrder();	//タスクの集合体の変更後に描画順を設定する
+	}
+}
+void EngineSystem::ConfigDrawOrder()
+{
+	//描画順の設定
+	//登録タスク分の描画順を入れておくclassを作っておく
+	this->Orders.resize(this->taskobjects.size());
+	//初期状態をコピーする
+	for (int i = 0; i < this->taskobjects.size(); ++i)
+	{
+		this->Orders[i].id = i;
+		this->Orders[i].order_s = this->taskobjects[i].second->GetDrawOrder();
+	}
+	//描画順に合わせてidとorderを並び替える
+	for (int i = 0; i < this->taskobjects.size(); ++i)
+	{
+		for (int j = i; j < this->taskobjects.size(); ++j)
+		{
+			if (this->Orders[i].order_s > this->Orders[j].order_s)
+			{
+				OrderCheck kari = this->Orders[i];
+				this->Orders[i] = this->Orders[j];
+				this->Orders[j] = kari;
+			}
+		}
+	}
 }
 EngineSystem::~EngineSystem()
 {
 	//登録しているタスクをすべて破棄する
 	this->AllTaskDelete();
+	//生成したclassをdeleteする
+	delete this->audiodevice;
+	delete this->soundManager;
+#if(_DEBUG)
+	delete this->fps;
+#endif
+	delete this->in;
+	delete this->window;
+	delete this->camera;
 }
 void EngineSystem::SetPause(const bool ispause_)
 {
@@ -211,6 +223,21 @@ void EngineSystem::TaskKillCheck()
 			++id;
 		}
 	}
+}
+bool EngineSystem::CheckAddTask()
+{
+	return this->addTaskObjects.size() > 0;
+}
+bool EngineSystem::CheckKillTask()
+{
+	for (int i = 0; i < this->taskobjects.size(); ++i)
+	{
+		if (taskobjects[i].second->GetKillCount() > 0)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 void EngineSystem::AllTaskDelete()
 {

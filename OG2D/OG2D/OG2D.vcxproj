@@ -107,12 +107,16 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>Windows\lib\Debug</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -161,6 +165,7 @@
     <ClCompile Include="src\OGSystem\Font\Font.cpp" />
     <ClCompile Include="src\OGSystem\FPS\FPS.cpp" />
     <ClCompile Include="src\OGSystem\Input\Input.cpp" />
+    <ClCompile Include="src\OGSystem\OGlib.cpp" />
     <ClCompile Include="src\OGSystem\OGsystem.cpp" />
     <ClCompile Include="src\OGSystem\OGTask.cpp" />
     <ClCompile Include="src\OGSystem\Random\Random.cpp" />
@@ -187,6 +192,7 @@
     <ClInclude Include="src\OGSystem\Font\Font.h" />
     <ClInclude Include="src\OGSystem\FPS\FPS.h" />
     <ClInclude Include="src\OGSystem\Input\Input.h" />
+    <ClInclude Include="src\OGSystem\OGlib.h" />
     <ClInclude Include="src\OGSystem\OGsystem.h" />
     <ClInclude Include="src\OGSystem\OGTask.h" />
     <ClInclude Include="src\OGSystem\Random\Random.h" />
