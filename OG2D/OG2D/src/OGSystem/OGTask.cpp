@@ -1,11 +1,11 @@
 #include "OGSystem\OGTask.h"
-void _OGTK::_myGameInitialize()
+void OGTK::_myGameInitialize()
 {
 	//¶¬‚·‚éWindowî•ñ
 	OGge->SetWindow(960, 540, "WindowName", false);	
 }
 
-void _OGTK::StartTaskObject()
+void OGTK::StartTaskObject()
 {
 	//ƒ^ƒXƒN‚Ì‰Šú‰»
 	auto TopTask = Sample::Create(true);

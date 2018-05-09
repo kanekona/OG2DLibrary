@@ -6,7 +6,7 @@
 #include "OGSystem\OGsystem.h"
 #include "Task\Task_Sample.h"
 
-class _OGTK
+class OGTK
 {
 public:
 	void _myGameInitialize();		//GammeEngine‚Ì‰Šú‰»‚Éİ’è‚µ‚½‚¢ˆ—‚ğs‚¤‰Šú‰»ŠÖ”
