@@ -32,6 +32,19 @@ public:
 
 class EngineSystem
 {
+private:
+	bool end;			//終了状況
+	int w_wi;			//WindowSize
+	int w_he;			//WindowSize
+	char* w_na;			//WindowName
+	bool w_sc;			//WindowMode
+	bool isPause;		//PauseCheck
+	bool Cursor_on;		//カーソル可視化
+	const std::string path = "./data/image/";	//ファイルパス
+	std::string file;	//ファイル名
+	Vec2 w_pos;			//WindowPosition
+	std::vector<OrderCheck> Orders;	//描画順
+	bool DeleteEngine;	//Engine終了状況
 public:
 	EngineSystem();			//コンストラクタ
 	EngineSystem(			//コンストラクタ
@@ -52,9 +65,8 @@ public:
 	SoundManager* soundManager;
 	//Input in;				//入力状況
 	Input* in;
-	std::vector<std::pair<DWORD, TaskObject::SP>> taskobjects;	//タスクオブジェクト達
-	std::vector<TaskObject::SP> addTaskObjects;	//登録予定タスク達
-	void Initialize();		//初期化処理
+	
+	bool Initialize();		//初期化処理
 	void Update();			//更新処理
 	void SetWindow(			//Window情報登録
 		int,
@@ -70,15 +82,9 @@ public:
 	void GameEnd();				//アプリケーション終了登録
 	bool GetEnd() const;		//アプリケーション終了を返す
 	void ChengeTask();			//タスク変更時処理
-	void Task_UpDate();			//タスク更新処理
-	void Task_Render_AF();		//タスク描画処理
 	void TaskGameUpDate();		//タスク達の更新処理
-	void TaskKillCheck();		//削除予定のタスクを削除
 	void SetTaskObject(			//タスクを登録
 		const TaskObject::SP&);
-	void KillTask(				//タスクを削除
-		const TaskObject::SP&);
-	void AllTaskDelete();		//登録タスク全削除
 	bool GetDeleteEngine();		//エンジン終了を返す
 	void SetDeleteEngine(bool);	//エンジン終了登録
 	//template <class T>std::shared_ptr<T> GetTask(const std::string&);
@@ -95,22 +101,16 @@ public:
 		return nullptr;
 	}
 private:
-	bool end;			//終了状況
-	int w_wi;			//WindowSize
-	int w_he;			//WindowSize
-	char* w_na;			//WindowName
-	bool w_sc;			//WindowMode
-	bool isPause;		//PauseCheck
-	bool Cursor_on;		//カーソル可視化
-	const std::string path = "./data/image/";	//ファイルパス
-	std::string file;	//ファイル名
-	Vec2 w_pos;			//WindowPosition
-	std::vector<OrderCheck> Orders;	//描画順
-	bool DeleteEngine;	//Engine終了状況
 	void TaskApplication();	//タスク登録予定を登録する
 	void ConfigDrawOrder();	//描画順を設定する
 	bool CheckAddTask();	//登録予定のタスクの有無
 	bool CheckKillTask();	//削除予定のタスクの有無
+	void Task_UpDate();			//タスク更新処理
+	void Task_Render_AF();		//タスク描画処理
+	void TaskKillCheck();		//削除予定のタスクを削除
+	void AllTaskDelete();		//登録タスク全削除
+	std::vector<std::pair<DWORD, TaskObject::SP>> taskobjects;	//タスクオブジェクト達
+	std::vector<TaskObject::SP> addTaskObjects;	//登録予定タスク達
 };
 
 extern EngineSystem* OGge;

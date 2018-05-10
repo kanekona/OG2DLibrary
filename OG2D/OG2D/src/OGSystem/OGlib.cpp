@@ -1,15 +1,15 @@
 #include "OGlib.h"
 Circle::Circle()
-	:CenterX(0.f), CenterY(0.f), r(0.f)
+	:center_x(0.f), center_y(0.f), r(0.f)
 {}
 Circle::Circle(float _x, float _y, float _r)
-	:r(_r), CenterX(_x), CenterY(_y)
+	:r(_r), center_x(_x), center_y(_y)
 {}
 Circle::Circle(int _x, int _y, int _r)
-	:r((float)_r), CenterX((float)_x), CenterY((float)_y)
+	:r((float)_r), center_x((float)_x), center_y((float)_y)
 {}
 Circle::Circle(Circle&_c)
-	:r(_c.r), CenterX(_c.CenterX), CenterY(_c.CenterY)
+	:r(_c.r), center_x(_c.center_x), center_y(_c.center_y)
 {}
 Vec3::Vec3()
 	:x(0.f), y(0.f), z(0.f)

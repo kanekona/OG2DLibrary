@@ -184,9 +184,6 @@
     <ClInclude Include="src\OGSystem\Timer\glTimer.h">
       <Filter>ソースファイル\OGSystem\System\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Easing\easing.hpp">
-      <Filter>ソースファイル\OGSystem\System\Easing</Filter>
-    </ClInclude>
     <ClInclude Include="src\OGSystem\Random\Random.h">
       <Filter>ソースファイル\OGSystem\System\Random</Filter>
     </ClInclude>
@@ -213,6 +210,9 @@
     </ClInclude>
     <ClInclude Include="src\OGSystem\OGlib.h">
       <Filter>ソースファイル\OGSystem\System\OG</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\Easing\Easing.hpp">
+      <Filter>ソースファイル\OGSystem\System\Easing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

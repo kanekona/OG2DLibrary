@@ -60,7 +60,7 @@ bool Update() {
 	{
 		TaskFinalize();
 		//ウィンドウの破棄
-		glfwDestroyWindow(OGge->window->window);
+		glfwDestroyWindow(OGge->window->GetWindow());
 		return true;
 	}
 	return false;
@@ -88,7 +88,7 @@ int main() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 	//使用するウィンドウを設定する
-	glfwMakeContextCurrent(OGge->window->window);
+	glfwMakeContextCurrent(OGge->window->GetWindow());
 	//同期(ダブルバッファの入れ替えタイミングの指定)
 	glfwSwapInterval(1);
 #if defined(_MSC_VER)
@@ -102,7 +102,7 @@ int main() {
 	// 透視変換行列を設定
 	glMatrixMode(GL_PROJECTION);
 	//描画範囲の指定
-	glViewport(0, 0, OGge->window->_widht, OGge->window->_height);
+	glViewport(0, 0, (GLsizei)OGge->window->GetSize().x, (GLsizei)OGge->window->GetSize().y);
 	//行列の初期化
 	glLoadIdentity();
 	// 操作対象の行列をモデリングビュー行列に切り替えておく
@@ -121,7 +121,7 @@ int main() {
 	Initialize();
 	delete ogtk;
 	//ウィンドウが存在する場合ループ
-	while (!glfwWindowShouldClose(OGge->window->window)) {
+	while (!glfwWindowShouldClose(OGge->window->GetWindow())) {
 		//エンジン内の更新処理
 		OGge->Update();
 		//捜査対象の行列をモデルビュー行列に変更
@@ -138,7 +138,7 @@ int main() {
 		//描画処理
 		TaskRender();
 		//指定したウィンドウのダブルバッファを行う
-		glfwSwapBuffers(OGge->window->window);
+		glfwSwapBuffers(OGge->window->GetWindow());
 		//ウィンドウ、マウス、キーボードの入力の状態をアップデートする
 		glfwPollEvents();
 	}

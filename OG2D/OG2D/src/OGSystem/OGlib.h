@@ -14,7 +14,7 @@ class Color;
 class Circle
 {
 public:
-	float CenterX, CenterY, r;
+	float center_x, center_y, r;
 	Circle();
 	Circle(float, float, float);
 	Circle(int, int, int);

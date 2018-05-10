@@ -4,7 +4,7 @@
 //--------------------------------------------------
 //@:Textureclass									
 //--------------------------------------------------
-void Texture::Create(std::string& path)
+bool Texture::Create(std::string& path)
 {
 	GLuint id;
 	//テクスチャを1つだけ生成する
@@ -38,6 +38,7 @@ void Texture::Create(std::string& path)
 	this->_materix[2] = { width,height };
 	this->_materix[3] = { 0,height };
 	this->angle = 0.f;
+	return true;
 }
 Texture::Texture()
 {
@@ -79,9 +80,10 @@ void Texture::Draw(Box2D draw, Box2D src,Color color_) {
 	glDisable(GL_ALPHA_TEST);
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 }
-void Texture::Finalize()
+bool Texture::Finalize()
 {
 	glDeleteTextures(1, &this->_TexId);
+	return true;
 }
 void Texture::Rotate(float radian)
 {

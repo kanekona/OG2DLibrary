@@ -21,7 +21,7 @@ EngineSystem::EngineSystem(int widht, int height, char* name, bool screen)
 	this->w_na = name;
 	this->w_sc = screen;
 }
-void EngineSystem::Initialize()
+bool EngineSystem::Initialize()
 {
 	//初期化処理
 	//Windowの生成
@@ -39,7 +39,7 @@ void EngineSystem::Initialize()
 #endif
 	//入力関連の初期化
 	this->in = new Input();
-	this->in->Inputinit(this->window->window);
+	this->in->Inputinit(this->window->GetWindow());
 	//サウンド管理の初期化
 	this->soundManager = new SoundManager();
 	//オーディオデバイスの初期化と設定
@@ -48,6 +48,7 @@ void EngineSystem::Initialize()
 	DebugFunction = false;
 	this->isPause = false;
 	this->end = false;
+	return true;
 }
 void EngineSystem::SetWindow(int width, int height, char* name, bool screen)
 {
@@ -172,9 +173,9 @@ void EngineSystem::ChengeTask()
 {
 	//タスクを変更する際に元に戻したい処理
 	this->camera->SetPos(Vec2(0.f, 0.f));
-	this->camera->SetSize(Vec2(this->window->_widht, this->window->_height));
+	this->camera->SetSize(this->window->GetSize());
 	this->SetPause(false);
-	this->soundManager->AllDelete();
+	//this->soundManager->AllDelete();
 }
 void EngineSystem::SetTaskObject(const TaskObject::SP& To)
 {
@@ -194,17 +195,6 @@ void EngineSystem::TaskApplication()
 		}
 	}
 	addTaskObjects.clear();
-}
-void EngineSystem::KillTask(const TaskObject::SP& To)
-{
-	//削除予定のタスクを削除する
-	for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
-	{
-		if (id->second == To)
-		{
-			this->taskobjects.erase(id);
-		}
-	}
 }
 void EngineSystem::TaskKillCheck()
 {

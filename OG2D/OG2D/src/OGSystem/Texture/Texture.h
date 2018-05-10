@@ -5,12 +5,12 @@ class Texture {
 public:
 	Texture();							//コンストラクタ
 	~Texture();							//デストラクタ	
-	void Create(std::string&);			//画像データの生成
+	bool Create(std::string&);			//画像データの生成
 	void Draw(							//描画処理
 		Box2D, 
 		Box2D, 
 		Color = { 1.0f,1.0f,1.0f,1.0f });
-	void Finalize();					//解放処理
+	bool Finalize();					//解放処理
 	void Rotate(float);				//回転の適応
 private:
 	GLuint _TexId;						//テクスチャのID
