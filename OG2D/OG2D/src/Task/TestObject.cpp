@@ -47,7 +47,7 @@ bool TestObject::Finalize()
 	this->sampleImage.Finalize();
 	if (this->GetNextTask() && !OGge->GetDeleteEngine())
 	{
-		this->Kill();
+		
 	}
 	return true;
 }

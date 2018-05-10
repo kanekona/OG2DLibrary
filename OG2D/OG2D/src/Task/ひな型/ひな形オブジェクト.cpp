@@ -19,6 +19,11 @@ void 「生成するclass名」::UpDate()
 	//--------------------
 	//更新時に行う処理を記述
 	//--------------------
+	if(OGge->in->key.down(In::Z))
+	{
+		//自分を消す場合はKillを使う
+		this->Kill();
+	}
 }
 
 void 「生成するclass名」::Render2D()
@@ -40,8 +45,7 @@ bool 「生成するclass名」::Finalize()
 	//次のタスクを作るかかつアプリケーションが終了予定かどうか
 	if (this->GetNextTask() && !OGge->GetDeleteEngine())
 	{
-		//自分を消す場合はKillを使う
-		this->Kill();
+		
 	}
 	return true;
 }

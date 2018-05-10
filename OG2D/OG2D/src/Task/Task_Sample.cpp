@@ -37,7 +37,7 @@ bool Sample::Finalize()
 	this->testImg.Finalize();
 	if (this->GetNextTask() && !OGge->GetDeleteEngine())
 	{
-		this->Kill(false);
+		//this->Kill(false);
 		auto nextTask = Sample2::Create(true);
 	}
 	return true;

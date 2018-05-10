@@ -33,7 +33,6 @@ bool Sample2::Finalize()
 	if (this->GetNextTask() && !OGge->GetDeleteEngine())
 	{
 		auto nextTask = Sample::Create(true);
-		this->Kill();
 	}
 	return true;
 }
