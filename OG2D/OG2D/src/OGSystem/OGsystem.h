@@ -100,6 +100,19 @@ public:
 		}
 		return nullptr;
 	}
+	template <class T> std::shared_ptr<std::vector<std::shared_ptr<T>>> GetTasks(const std::string& taskName)
+	{
+		std::shared_ptr<std::vector<std::shared_ptr<T>>> w = std::shared_ptr<std::vector<std::shared_ptr<T>>>(new std::vector<std::shared_ptr<T>> ());
+
+		for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
+		{
+			if ((*id).second->GetTaskName() == taskName)
+			{
+				w->push_back(std::static_pointer_cast<T>((*id).second));
+			}
+		}
+		return w;
+	}
 private:
 	void TaskApplication();	//ƒ^ƒXƒN“o˜^—\’è‚ğ“o˜^‚·‚é
 	void ConfigDrawOrder();	//•`‰æ‡‚ğİ’è‚·‚é

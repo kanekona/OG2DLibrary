@@ -6,6 +6,8 @@ bool Sample::Initialize()
 	std::cout << "Sample:" << "Initialize()" << std::endl;
 	__super::Init(taskName);
 	auto testObject = TestObject::Create(true);
+	auto task2 = TestObject::Create(true);
+	auto task3 = TestObject::Create(true);
 	this->testImg.Create((std::string)"back.png");
 	this->SetDrawOrder(1.0f);
 	return true;
@@ -16,12 +18,11 @@ void Sample::UpDate()
 	if (OGge->in->key.down(In::SPACE))
 	{
 
-		auto test = OGge->GetTask<TestObject>("TestObject");
-		if (test != nullptr)
+		auto test = OGge->GetTasks<TaskObject>("TestObject");
+		if (!test)
 		{
-			test->SetDrawOrder(1.0f);
+			return;
 		}
-		this->Kill();
 	}
 }
 
