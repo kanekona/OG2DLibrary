@@ -17,11 +17,15 @@ void Sample::UpDate()
 {
 	if (OGge->in->key.down(In::SPACE))
 	{
-
-		auto test = OGge->GetTasks<TaskObject>("TestObject");
+		auto testa = OGge->GetTask<TestObject>("TestObject");
+		auto test = OGge->GetTasks<TestObject>("TestObjec");
 		if (!test)
 		{
 			return;
+		}
+		if (testa)
+		{
+
 		}
 	}
 }
