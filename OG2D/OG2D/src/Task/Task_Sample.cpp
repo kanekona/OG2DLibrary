@@ -19,14 +19,11 @@ void Sample::UpDate()
 	{
 		auto testa = OGge->GetTask<TestObject>("TestObject");
 		auto test = OGge->GetTasks<TestObject>("TestObjec");
-		if (!test)
+		for (auto id = (*test).begin(); id != (*test).end(); ++id)
 		{
-			return;
+			std::cout << (*id)->TestCheck();
 		}
-		if (testa)
-		{
-
-		}
+		std::cout << std::endl;
 	}
 }
 
