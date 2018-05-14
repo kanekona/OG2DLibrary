@@ -1,12 +1,27 @@
 #include "TestObject.h"
 
+TestObject::TestObject(bool flag_)
+{
+	this->isMove = flag_;
+}
+
 bool TestObject::Initialize()
 {
 	std::cout << "TestObject:" << "Initialize()" << std::endl;
-	__super::Init(taskName);
+	if (isMove)
+	{
+		__super::Init(taskName);
+	}
+	else
+	{
+		__super::Init((std::string)"testobj");
+	}
 	this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128), 0.0f);
 	this->sampleImage.Create((std::string)"Collision.png");
-	this->SetDrawOrder(0.0f);
+	rm->SetTextureData((std::string)"test",&sampleImage);
+	this->SetDrawOrder(1.0f);
+	this->Radius = { 0.8f,0.5f };
+	this->isHit = false;
 	return true;
 }
 void TestObject::UpDate()
@@ -16,13 +31,34 @@ void TestObject::UpDate()
 	{
 		this->Kill();
 	}
-	if (OGge->in->key.on(In::Q))
+	if (this->isMove)
 	{
-		this->angle -= 1.0f;
-	}
-	if (OGge->in->key.on(In::E))
-	{
-		this->angle += 1.0f;
+		if (OGge->in->key.on(In::Q))
+		{
+			this->angle -= 1.0f;
+		}
+		if (OGge->in->key.on(In::E))
+		{
+			this->angle += 1.0f;
+		}
+		if (OGge->in->on(In::CU))
+		{
+			this->position.y -= 1.0f;
+		}
+		if (OGge->in->on(In::CD))
+		{
+			this->position.y += 1.0f;
+		}
+		if (OGge->in->on(In::CL))
+		{
+			this->position.x -= 1.0f;
+		}
+		if (OGge->in->on(In::CR))
+		{
+			this->position.x += 1.0f;
+		}
+		auto t = OGge->GetTask<TestObject>("testobj");
+		this->isHit = this->hit(*t);
 	}
 }
 
@@ -37,7 +73,14 @@ void TestObject::Render2D()
 	Box2D draw(this->position, this->Scale);
 	draw.OffsetSize();
 	this->sampleImage.Rotate(this->angle);
-	this->sampleImage.Draw(draw, Box2D(0, 0, 128, 128));
+	if (this->isHit)
+	{
+		this->sampleImage.Draw(draw, Box2D(0, 128, 128, 256), Color{ 1.f,1.f,1.f,0.3f });
+	}
+	else
+	{
+		this->sampleImage.Draw(draw, Box2D(0, 0, 128, 128), Color{ 1.f,1.f,1.f,0.3f });
+	}
 	this->LineDraw();
 }
 
@@ -63,10 +106,10 @@ TestObject::~TestObject()
 	this->Finalize();
 }
 
-TestObject::SP TestObject::Create(bool flag_)
+TestObject::SP TestObject::Create(bool is_move_,bool flag_)
 {
 	std::cout << "TestObject:" << "Create()" << std::endl;
-	TestObject::SP to = TestObject::SP(new TestObject());
+	TestObject::SP to = TestObject::SP(new TestObject(is_move_));
 	if (to)
 	{
 		to->me = to;

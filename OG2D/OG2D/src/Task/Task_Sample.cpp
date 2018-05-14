@@ -6,10 +6,9 @@ bool Sample::Initialize()
 	std::cout << "Sample:" << "Initialize()" << std::endl;
 	__super::Init(taskName);
 	auto testObject = TestObject::Create(true);
-	auto task2 = TestObject::Create(true);
-	auto task3 = TestObject::Create(true);
+	auto testObject2 = TestObject::Create(false);
 	this->testImg.Create((std::string)"back.png");
-	this->SetDrawOrder(1.0f);
+	this->SetDrawOrder(0.0f);
 	return true;
 }
 
@@ -17,20 +16,14 @@ void Sample::UpDate()
 {
 	if (OGge->in->key.down(In::SPACE))
 	{
-		auto testa = OGge->GetTask<TestObject>("TestObject");
-		auto test = OGge->GetTasks<TestObject>("TestObjec");
-		for (auto id = (*test).begin(); id != (*test).end(); ++id)
-		{
-			std::cout << (*id)->TestCheck();
-		}
-		std::cout << std::endl;
+		this->Kill();
 	}
 }
 
 void Sample::Render2D()
 {
 	//std::cout << "Sample:" << "Render2D()" << std::endl;
-	this->testImg.Draw(Box2D(0, 0, 960, 540), Box2D(0, 0, 1080, 720));
+	//this->testImg.Draw(Box2D(0, 0, 960, 540), Box2D(0, 0, 1080, 720));
 }
 
 bool Sample::Finalize()

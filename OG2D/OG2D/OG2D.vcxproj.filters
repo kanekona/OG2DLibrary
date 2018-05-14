@@ -66,6 +66,9 @@
     <Filter Include="ソースファイル\OGSystem\System\OG">
       <UniqueIdentifier>{2699226e-5a52-4698-a296-ca1342d9a4e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソースファイル\OGSystem\System\ResourceManager">
+      <UniqueIdentifier>{fe1a5c95-0871-4418-be71-97604a8462e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Win\WinMain.cpp">
@@ -140,6 +143,9 @@
     <ClCompile Include="src\OGSystem\OGlib.cpp">
       <Filter>ソースファイル\OGSystem\System\OG</Filter>
     </ClCompile>
+    <ClCompile Include="src\OGSystem\ResourceManager\ResourceManager.cpp">
+      <Filter>ソースファイル\OGSystem\System\ResourceManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Object\Object.h">
@@ -213,6 +219,9 @@
     </ClInclude>
     <ClInclude Include="src\OGSystem\Easing\Easing.hpp">
       <Filter>ソースファイル\OGSystem\System\Easing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\ResourceManager\ResourceManager.h">
+      <Filter>ソースファイル\OGSystem\System\ResourceManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
