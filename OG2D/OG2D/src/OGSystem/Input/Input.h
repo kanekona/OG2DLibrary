@@ -52,10 +52,10 @@ public:
 			AXIS_BUTTON_NUM,
 		};
 		explicit GamePad(const int id);		//コンストラクタ
-		bool on(const int index);			//indexのonのboolを返す
-		bool down(const int index);			//indexのdownのboolを返す
-		bool up(const int index);			//indexのupのboolを返す
-		float axis(const int index);		//indexのスティックの値を返す(0~1)
+		bool on(const int index) const;		//indexのonのboolを返す
+		bool down(const int index) const;	//indexのdownのboolを返す
+		bool up(const int index) const;		//indexのupのboolを返す
+		float axis(const int index) const;	//indexのスティックの値を返す(0~1)
 		bool isPresent() const;				//ゲームパッドの有無
 		void upDate();						//入力状況の更新
 		void Initialize();					//初期化処理
@@ -96,9 +96,9 @@ public:
 			UP, DOWN, LEFT, RIGHT,
 		};
 		explicit KeyBoard();				//コンストラクタ
-		bool up(const int index);			//indexのupのboolを返す
-		bool down(const int index);			//indexのdownのboolを返す
-		bool on(const int index);			//indexのonのboolを返す
+		bool up(const int index) const;		//indexのupのboolを返す
+		bool down(const int index) const;	//indexのdownのboolを返す
+		bool on(const int index) const;		//indexのonのboolを返す
 		void upDate();						//入力状況の更新
 		void SetWindow(GLFWwindow* w);		//反映させるWindowを登録する
 		bool isPresent;						//キーボードの有無(おそらく必要ないがパッドにあるので一応こちらでも準備しておく)
@@ -129,9 +129,9 @@ public:
 		void upDate();						//入力状況の更新
 		void SetWindow(GLFWwindow *w);		//反映させるWindowを登録する
 		Vec2 GetPos() const;				//Windowの0,0座標から見た位置を返す
-		bool on(const int index);			//indexのonのboolを返す
-		bool down(const int index);			//indexのdownのboolを返す
-		bool up(const int index);			//indexのupのboolを返す
+		bool on(const int index) const;		//indexのonのboolを返す
+		bool down(const int index) const;	//indexのdownのboolを返す
+		bool up(const int index) const;		//indexのupのboolを返す
 		bool isPresent;						//マウスの有無の情報
 		std::vector<u_char> button_on;		//buttonのonを格納する変数
 		std::vector<u_char> button_down;	//buttonのdownを格納する変数
@@ -158,9 +158,9 @@ public:
 	bool Pad_Connection;				//ゲームパッドの存在有無
 	//関数
 	void Inputinit(GLFWwindow *w);		//入力初期化
-	bool on(int in_, int padNum = 0);	//押してるとき
-	bool down(int in_, int padNum = 0);	//押したとき
-	bool up(int in_, int padNum = 0);	//あげたとき
+	bool on(int in_, int padNum = 0) const;		//押してるとき
+	bool down(int in_, int padNum = 0) const;	//押したとき
+	bool up(int in_, int padNum = 0) const;		//あげたとき
 	void upDate();						//入力情報更新
 private:
 	void ResetInputData();				//入力状態をリセット

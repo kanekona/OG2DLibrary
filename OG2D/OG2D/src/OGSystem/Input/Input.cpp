@@ -77,19 +77,19 @@ int Input::GamePad::axes() const
 {
 	return axis_num;
 }
-bool Input::GamePad::on(const int index)
+bool Input::GamePad::on(const int index) const
 {
 	return button_on[index];
 }
-bool Input::GamePad::down(const int index)
+bool Input::GamePad::down(const int index) const
 {
 	return button_down[index];
 }
-bool Input::GamePad::up(const int index)
+bool Input::GamePad::up(const int index) const
 {
 	return button_up[index];
 }
-float Input::GamePad::axis(const int index)
+float Input::GamePad::axis(const int index) const
 {
 	return axis_value[index];
 }
@@ -214,15 +214,15 @@ void Input::KeyBoard::SetWindow(GLFWwindow* w)
 {
 	this->nowWindow = w;
 }
-bool Input::KeyBoard::down(const int index)
+bool Input::KeyBoard::down(const int index) const
 {
 	return button_down[index];
 }
-bool Input::KeyBoard::on(const int index)
+bool Input::KeyBoard::on(const int index) const
 {
 	return button_on[index];
 }
-bool Input::KeyBoard::up(const int index)
+bool Input::KeyBoard::up(const int index) const
 {
 	return button_up[index];
 }
@@ -275,15 +275,15 @@ void Input::Mouse::SetWindow(GLFWwindow* w)
 {
 	this->nowWindow = w;
 }
-bool Input::Mouse::on(const int index)
+bool Input::Mouse::on(const int index) const
 {
 	return button_on[index];
 }
-bool Input::Mouse::down(const int index)
+bool Input::Mouse::down(const int index) const
 {
 	return button_down[index];
 }
-bool Input::Mouse::up(const int index)
+bool Input::Mouse::up(const int index) const
 {
 	return button_up[index];
 }
@@ -382,7 +382,7 @@ void Input::upDate()
 	this->key.upDate();
 	this->mouse.upDate();
 }
-bool Input::down(int index, int padNum)
+bool Input::down(int index, int padNum) const
 {
 	//選択された番号のゲームパッドが存在しない場合
 	if (!this->Pad_Connection)
@@ -391,7 +391,7 @@ bool Input::down(int index, int padNum)
 	}
 	return this->key.down(this->inputdata[index].key) || this->pad[padNum].down(this->inputdata[index].button);
 }
-bool Input::on(int index, int padNum)
+bool Input::on(int index, int padNum) const
 {
 	//選択された番号のゲームパッドが存在しない場合
 	if (!this->Pad_Connection)
@@ -400,7 +400,7 @@ bool Input::on(int index, int padNum)
 	}
 	return this->key.on(this->inputdata[index].key) || this->pad[padNum].on(this->inputdata[index].button);
 }
-bool Input::up(int index, int padNum)
+bool Input::up(int index, int padNum) const
 {
 	//選択された番号のゲームパッドが存在しない場合
 	if (!this->Pad_Connection)

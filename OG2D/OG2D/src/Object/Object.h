@@ -29,14 +29,14 @@ public:
 		Objform form, 
 		Vec2 _posi, 
 		Vec2 _Sca, 
-		float _ang = 0.0f
+		float _ang
 	);
 	~GameObject();									//デストラクタ
 	void CreateObject(								//GameObjectの情報を登録
 		Objform form,
 		Vec2 _posi,
 		Vec2 _Sca,
-		float _ang = 0.0f
+		float _ang 
 	);
 	std::string objectTag;							//タグ名
 	void LineDraw();								//当たり判定をラインを引いて確認用
