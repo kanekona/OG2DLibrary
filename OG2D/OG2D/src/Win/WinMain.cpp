@@ -146,8 +146,8 @@ int main() {
 	//解放
 	Finalize();
 	//ゲームエンジンの内容を解放
-	delete rm;
 	delete OGge;
+	delete rm;
 	//GLFWのライブラリを終了する
 	glfwTerminate();
 }
