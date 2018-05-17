@@ -9,6 +9,7 @@ bool Sample::Initialize()
 	//auto testObject2 = TestObject::Create(false);
 	this->testImg.Create((std::string)"back.png");
 	this->SetDrawOrder(0.0f);
+	__super::SetDrawOrder(0.0f);
 	time.Start();
 	return true;
 }
@@ -16,6 +17,14 @@ bool Sample::Initialize()
 void Sample::UpDate()
 {
 	std::cout << "update" << std::endl;
+	auto test = OGge->GetTasks<TestObject>("TestObject");
+	for (auto id = (*test).begin(); id != (*test).end(); ++id)
+	{
+		if ((*id)->TestCheck())
+		{
+
+		}
+	}
 	if (OGge->in->key.down(In::SPACE))
 	{
 		this->Kill();
