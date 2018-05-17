@@ -26,7 +26,7 @@ bool TestObject::Initialize()
 }
 void TestObject::UpDate()
 {
-	//std::cout << "TestObject:" << "UpDate()" << std::endl;
+	std::cout << "TestObject:" << "UpDate()" << std::endl;
 	if (OGge->in->key.down(In::Z))
 	{
 		this->Kill();
@@ -58,7 +58,10 @@ void TestObject::UpDate()
 			this->position.x += 1.0f;
 		}
 		auto t = OGge->GetTask<TestObject>("testobj");
-		this->isHit = this->hit(*t);
+		if (t)
+		{
+			this->isHit = this->hit(*t);
+		}
 	}
 }
 

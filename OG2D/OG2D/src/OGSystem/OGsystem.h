@@ -94,9 +94,12 @@ public:
 	{
 		for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
 		{
-			if ((*id).second->GetTaskName() == taskName)
+			if ((*id).second)
 			{
-				return std::static_pointer_cast<T>((*id).second);
+				if ((*id).second->GetTaskName() == taskName)
+				{
+					return std::static_pointer_cast<T>((*id).second);
+				}
 			}
 		}
 		return nullptr;
@@ -104,18 +107,15 @@ public:
 	template <class T> std::shared_ptr<std::vector<std::shared_ptr<T>>> GetTasks(const std::string& taskName)
 	{
 		std::shared_ptr<std::vector<std::shared_ptr<T>>> w = std::shared_ptr<std::vector<std::shared_ptr<T>>>(new std::vector<std::shared_ptr<T>> ());
-		bool flag = false;
 		for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
 		{
-			if ((*id).second->GetTaskName() == taskName)
+			if ((*id).second)
 			{
-				w->push_back(std::static_pointer_cast<T>((*id).second));
-				flag = true;
+				if ((*id).second->GetTaskName() == taskName)
+				{
+					w->push_back(std::static_pointer_cast<T>((*id).second));
+				}
 			}
-		}
-		if (!flag)
-		{
-			//w = nullptr;
 		}
 		return w;
 	}

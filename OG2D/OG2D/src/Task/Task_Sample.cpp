@@ -6,17 +6,33 @@ bool Sample::Initialize()
 	std::cout << "Sample:" << "Initialize()" << std::endl;
 	__super::Init(taskName);
 	auto testObject = TestObject::Create(true);
-	auto testObject2 = TestObject::Create(false);
+	//auto testObject2 = TestObject::Create(false);
 	this->testImg.Create((std::string)"back.png");
 	this->SetDrawOrder(0.0f);
+	time.Start();
 	return true;
 }
 
 void Sample::UpDate()
 {
+	std::cout << "update" << std::endl;
 	if (OGge->in->key.down(In::SPACE))
 	{
 		this->Kill();
+	}
+	if (OGge->in->key.down(In::Z))
+	{
+		OGge->SetPause(true);
+		time.Pause();
+	}
+}
+
+void Sample::Pause()
+{
+	std::cout << "Puase" << std::endl;
+	if (OGge->in->key.down(In::Z))
+	{
+		OGge->SetPause(false);
 	}
 }
 

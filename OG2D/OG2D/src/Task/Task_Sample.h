@@ -9,6 +9,7 @@
 class Sample : public TaskObject
 {
 	Texture testImg;
+	Time time;
 public:
 	std::string taskName = "Sample";
 	virtual ~Sample();
@@ -18,5 +19,6 @@ public:
 	bool Initialize();
 	void UpDate();
 	void Render2D();
+	void Pause();
 	bool Finalize();
 };
