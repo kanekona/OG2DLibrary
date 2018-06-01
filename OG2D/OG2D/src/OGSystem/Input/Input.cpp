@@ -44,6 +44,8 @@ Input::GamePad::GamePad(const int id) :
 	std::fill(std::begin(button_up), std::end(button_up), 0);
 	axis_value.resize(axis_num);
 	std::fill(std::begin(axis_value), std::end(axis_value), 0.0f);
+	registAxisButton(0, 1, 0.f);
+	registAxisButton(2, 3, 0.f);
 }
 void Input::GamePad::Reset()
 {
