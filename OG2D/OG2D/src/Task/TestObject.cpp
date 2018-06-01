@@ -26,7 +26,6 @@ bool TestObject::Initialize()
 }
 void TestObject::UpDate()
 {
-	std::cout << "TestObject:" << "UpDate()" << std::endl;
 	if (OGge->in->key.down(In::Z))
 	{
 		this->Kill();

@@ -56,6 +56,9 @@ public:
 		bool down(const int index) const;	//indexのdownのboolを返す
 		bool up(const int index) const;		//indexのupのboolを返す
 		float axis(const int index) const;	//indexのスティックの値を返す(0~1)
+		bool axis_on(const int index) const;
+		bool axis_down(const int index) const;
+		bool axis_up(const int index) const;
 		bool isPresent() const;				//ゲームパッドの有無
 		void upDate();						//入力状況の更新
 		void Initialize();					//初期化処理

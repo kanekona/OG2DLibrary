@@ -16,7 +16,6 @@ bool Sample::Initialize()
 
 void Sample::UpDate()
 {
-	std::cout << "update" << std::endl;
 	auto test = OGge->GetTasks<TestObject>("TestObject");
 	for (auto id = (*test).begin(); id != (*test).end(); ++id)
 	{
@@ -38,7 +37,6 @@ void Sample::UpDate()
 
 void Sample::Pause()
 {
-	std::cout << "Puase" << std::endl;
 	if (OGge->in->key.down(In::Z))
 	{
 		OGge->SetPause(false);

@@ -93,6 +93,18 @@ float Input::GamePad::axis(const int index) const
 {
 	return axis_value[index];
 }
+bool Input::GamePad::axis_on(const int index) const
+{
+	return this->axis_button_on[index];
+}
+bool Input::GamePad::axis_down(const int index) const
+{
+	return this->axis_button_down[index];
+}
+bool Input::GamePad::axis_up(const int index) const
+{
+	return this->axis_button_up[index];
+}
 bool Input::GamePad::registAxisButton(const int x_index, const int y_index, const float axis_threshold_)
 {
 	// ²”Ô†‚ª”ÍˆÍŠO‚Ìê‡‚Íİ’è‚µ‚È‚¢
