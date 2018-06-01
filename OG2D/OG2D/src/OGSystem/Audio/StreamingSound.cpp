@@ -66,7 +66,7 @@ StreamingSound::StreamingSound(const std::string& path, const bool loop) :
 	this->isplay_ = false;
 	this->param_->backStartPos = false;
 }
-void StreamingSound::createSound(std::string& path_, bool loop)
+void StreamingSound::createSound(const std::string& path_, bool loop)
 {
 	source_ = std::make_shared<Audio::Source>();
 	param_ = std::make_shared<Param>();

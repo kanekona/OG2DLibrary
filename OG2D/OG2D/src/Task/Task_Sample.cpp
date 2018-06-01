@@ -7,7 +7,7 @@ bool Sample::Initialize()
 	__super::Init(taskName);
 	auto testObject = TestObject::Create(true);
 	//auto testObject2 = TestObject::Create(false);
-	this->testImg.Create((std::string)"back.png");
+	this->testImg.Create("back.png");
 	this->SetDrawOrder(0.0f);
 	__super::SetDrawOrder(0.0f);
 	time.Start();
@@ -47,8 +47,7 @@ void Sample::Pause()
 
 void Sample::Render2D()
 {
-	//std::cout << "Sample:" << "Render2D()" << std::endl;
-	//this->testImg.Draw(Box2D(0, 0, 960, 540), Box2D(0, 0, 1080, 720));
+	
 }
 
 bool Sample::Finalize()
@@ -57,7 +56,6 @@ bool Sample::Finalize()
 	this->testImg.Finalize();
 	if (this->GetNextTask() && !OGge->GetDeleteEngine())
 	{
-		//this->Kill(false);
 		auto nextTask = Sample2::Create(true);
 	}
 	return true;

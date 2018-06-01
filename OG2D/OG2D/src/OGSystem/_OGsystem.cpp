@@ -18,7 +18,7 @@ namespace OG {
 		v[1] *= m;
 		v[2] *= m;
 	}
-	void LineHitDraw(Vec2* _b, Color& color_) {
+	void LineHitDraw(Vec2* _b, const Color& color_) {
 		glColor4f(color_.red, color_.green, color_.blue, color_.alpha);
 		glBegin(GL_LINES);
 		glVertex2f((_b)->x, (_b)->y);
@@ -68,7 +68,7 @@ namespace OG {
 		glEnd();
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 	}
-	void _Rotate(float _ang, Vec2* _b)
+	void _Rotate(const float _ang, Vec2* _b)
 	{
 		//ラジアンの値に変更
 		float tora = OG::ToRadian(_ang);

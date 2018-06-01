@@ -33,7 +33,6 @@ public:
 
 class EngineSystem
 {
-private:
 	bool end;			//終了状況
 	int w_wi;			//WindowSize
 	int w_he;			//WindowSize
@@ -46,38 +45,34 @@ private:
 	Vec2 w_pos;			//WindowPosition
 	std::vector<OrderCheck> Orders;	//描画順
 	bool DeleteEngine;	//Engine終了状況
+	std::vector<std::pair<DWORD, TaskObject::SP>> taskobjects;	//タスクオブジェクト達
+	std::vector<TaskObject::SP> addTaskObjects;	//登録予定タスク達
 public:
+	Camera2D * camera;		//カメラ2D
+	Window* window;			//window
+	FPS* fps;				//フレームレート
+	Audio* audiodevice;		//デバイス管理
+	SoundManager* soundManager;	//サウンド管理
+	Input* in;				//入力管理
+	bool DebugFunction;			//デバッグ機能
 	EngineSystem();			//コンストラクタ
 	EngineSystem(			//コンストラクタ
-		int,
-		int,
+		const int,
+		const int,
 		char*,
-		bool = false);
+		const bool = false);
 	~EngineSystem();		//デストラクタ
-	//Camera2D::SP camera;	//カメラ2D
-	Camera2D* camera;
-	//Window::SP window;		//Window
-	Window* window;
-	//FPS::SP fps;			//fps
-	FPS* fps;
-	//Audio::SP audiodevice;//Audio
-	Audio* audiodevice;
-	//SoundManager::SP soundManager;//Sound管理
-	SoundManager* soundManager;
-	//Input in;				//入力状況
-	Input* in;
 	
 	bool Initialize();		//初期化処理
 	void Update();			//更新処理
 	void SetWindow(			//Window情報登録
-		int,
-		int,
+		const int,
+		const int,
 		char*,
-		bool = false);
-	void SetWindowPos(Vec2&);	//Window生成位置設定
+		const bool = false);
+	void SetWindowPos(const Vec2&);	//Window生成位置設定
 	void SetCursorOn(const bool);	//カーソル可視化有無
-	void SetIcon(std::string&);	//アイコン使用画像設定
-	bool DebugFunction;			//デバッグ機能
+	void SetIcon(const std::string&);	//アイコン使用画像設定
 	void SetPause(const bool);	//ポーズ設定
 	bool GetPause() const;		//ポーズを返す
 	void GameEnd();				//アプリケーション終了登録
@@ -87,8 +82,7 @@ public:
 	void SetTaskObject(			//タスクを登録
 		const TaskObject::SP&);
 	bool GetDeleteEngine();		//エンジン終了を返す
-	void SetDeleteEngine(bool);	//エンジン終了登録
-	//template <class T>std::shared_ptr<T> GetTask(const std::string&);
+	void SetDeleteEngine(const bool);	//エンジン終了登録
 	//タスク検索(最初の同名のタスクを返す)
 	template <class T> std::shared_ptr<T> GetTask(const std::string& taskName)
 	{
@@ -99,6 +93,16 @@ public:
 				if ((*id).second->GetTaskName() == taskName)
 				{
 					return std::static_pointer_cast<T>((*id).second);
+				}
+			}
+		}
+		for (auto id = this->addTaskObjects.begin(); id != this->addTaskObjects.end(); ++id)
+		{
+			if ((*id))
+			{
+				if ((*id)->GetTaskName() == taskName)
+				{
+					return std::static_pointer_cast<T>(*id);
 				}
 			}
 		}
@@ -117,6 +121,16 @@ public:
 				}
 			}
 		}
+		for (auto id = this->addTaskObjects.begin(); id != this->addTaskObjects.end(); ++id)
+		{
+			if ((*id))
+			{
+				if ((*id)->GetTaskName() == taskName)
+				{
+					w->push_back(std::static_pointer_cast<T>((*id)));
+				}
+			}
+		}
 		return w;
 	}
 private:
@@ -128,8 +142,6 @@ private:
 	void Task_Render_AF();		//タスク描画処理
 	void TaskKillCheck();		//削除予定のタスクを削除
 	void AllTaskDelete();		//登録タスク全削除
-	std::vector<std::pair<DWORD, TaskObject::SP>> taskobjects;	//タスクオブジェクト達
-	std::vector<TaskObject::SP> addTaskObjects;	//登録予定タスク達
 };
 
 extern EngineSystem* OGge;

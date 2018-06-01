@@ -9,7 +9,7 @@ Window::Window()
 	this->isIcon = false;
 	this->isVisualization = false;
 }
-Window::Window(int wi, int he, char* name, bool screen,Vec2& pos)
+Window::Window(const int wi, const int he, char* name, const bool screen,const Vec2& pos)
 	:_widht(wi)
 	, _height(he)
 	, _Name(name)
@@ -34,7 +34,7 @@ Window::~Window()
 	glfwSetWindowIcon(this->window, 0, NULL);
 }
 
-bool Window::createWindow(int wi, int he, char* name, bool screen,Vec2& pos)
+bool Window::createWindow(const int wi, const int he, char* name, const bool screen,const Vec2& pos)
 {
 	this->_widht = wi;
 	this->_height = he;
@@ -55,7 +55,7 @@ bool Window::createWindow(int wi, int he, char* name, bool screen,Vec2& pos)
 	glfwSetWindowPos(this->window, this->position.x, this->position.y);
 	return true;
 }
-void Window::setIcon(std::string& path_)
+void Window::setIcon(const std::string& path_)
 {
 	//stbimage‚ðŽg‚Á‚Ä‰æ‘œ‚ð“Ç‚Ýž‚Þ
 	image[0].pixels = stbi_load(path_.c_str(), &image[0].width, &image[0].height, 0, 4);
@@ -128,7 +128,7 @@ Vec2 Window::GetPos() const
 	glfwGetWindowPos(this->window, &x, &y);
 	return Vec2(x, y);
 }
-void Window::SetWindowPos(Vec2& pos)
+void Window::SetWindowPos(const Vec2& pos)
 {
 	this->position = pos;
 }

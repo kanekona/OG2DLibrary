@@ -9,7 +9,7 @@ private:
 public:
 	Easing() { cnt = 0; this->toplay = true; };
 	//イージング用カウンタ
-	float Time(float duration)
+	float Time(const float duration)
 	{
 		if (cnt <= duration)
 		{
@@ -25,6 +25,12 @@ public:
 	bool isplay() const
 	{
 		return this->toplay;
+	}
+	//タイム初期化
+	void ResetTime()
+	{
+		this->cnt = 0;
+		this->toplay = true;
 	}
 
 	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間

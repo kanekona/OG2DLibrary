@@ -26,17 +26,17 @@ public:
 	bool hit(GameObject& o);						//GameObject同士の当たり判定
 	GameObject();									//コンストラクタ	
 	GameObject(										//コンストラクタ
-		Objform form, 
-		Vec2 _posi, 
-		Vec2 _Sca, 
-		float _ang
+		const Objform& form, 
+		const Vec2& _posi, 
+		const Vec2& _Sca, 
+		float _ang = 0.0f
 	);
 	~GameObject();									//デストラクタ
 	void CreateObject(								//GameObjectの情報を登録
-		Objform form,
-		Vec2 _posi,
-		Vec2 _Sca,
-		float _ang 
+		const Objform& form,
+		const Vec2& _posi,
+		const Vec2& _Sca,
+		const float _ang = 0.0f
 	);
 	std::string objectTag;							//タグ名
 	void LineDraw();								//当たり判定をラインを引いて確認用

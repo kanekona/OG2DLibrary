@@ -171,6 +171,7 @@
     <ClCompile Include="src\OGSystem\Random\Random.cpp" />
     <ClCompile Include="src\OGSystem\ResourceManager\ResourceManager.cpp" />
     <ClCompile Include="src\OGSystem\Shader\shader.cpp" />
+    <ClCompile Include="src\OGSystem\System.cpp" />
     <ClCompile Include="src\OGSystem\TaskObject.cpp" />
     <ClCompile Include="src\OGSystem\Texture\Texture.cpp" />
     <ClCompile Include="src\OGSystem\Timer\glTimer.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="src\OGSystem\Random\Random.h" />
     <ClInclude Include="src\OGSystem\ResourceManager\ResourceManager.h" />
     <ClInclude Include="src\OGSystem\Shader\shader.h" />
+    <ClInclude Include="src\OGSystem\System.h" />
     <ClInclude Include="src\OGSystem\TaskObject.h" />
     <ClInclude Include="src\OGSystem\Texture\Texture.h" />
     <ClInclude Include="src\OGSystem\Timer\glTimer.h" />

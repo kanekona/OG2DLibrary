@@ -16,7 +16,7 @@ public:
 	{
 	public:
 		Buffer();
-		explicit Buffer(std::string& path_);
+		explicit Buffer(const std::string& path_);
 		~Buffer();
 		ALuint id_;
 		float nowTime;

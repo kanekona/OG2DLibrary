@@ -4,7 +4,7 @@
 //--------------------------------------------------
 //@:Textureclass									
 //--------------------------------------------------
-bool Texture::Create(std::string& path)
+bool Texture::Create(const std::string& path)
 {
 	//GLuint id;
 	//テクスチャを1つだけ生成する
@@ -40,10 +40,11 @@ bool Texture::Create(std::string& path)
 	return true;
 }
 Texture::Texture()
+	:FileName("./data/image/")
 {
 
 }
-void Texture::Draw(Box2D& draw, Box2D& src,Color color_) {
+void Texture::Draw(const Box2D& draw, const Box2D& src,const Color color_) {
 	//座標
 	GLfloat vtx[] = {
 		draw.x,draw.h,
@@ -86,11 +87,11 @@ bool Texture::Finalize()
 	glDeleteTextures(1, &this->_TexId);
 	return true;
 }
-void Texture::Rotate(float radian)
+void Texture::Rotate(const float radian)
 {
 	this->angle = radian;
 }
-void Texture::_Rotate(float radian, GLfloat *_mate)
+void Texture::_Rotate(const float radian, GLfloat *_mate)
 {
 	//ラジアンの値に変更
 	float tora = OG::ToRadian(radian);

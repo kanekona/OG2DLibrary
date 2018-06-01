@@ -14,7 +14,7 @@ EngineSystem::EngineSystem()
 	this->w_pos = { 1920 - this->w_wi, 50 };
 	this->DeleteEngine = false;
 }
-EngineSystem::EngineSystem(int widht, int height, char* name, bool screen)
+EngineSystem::EngineSystem(const int widht,const int height, char* name, const bool screen)
 {
 	this->w_he = widht;
 	this->w_he = height;
@@ -50,7 +50,7 @@ bool EngineSystem::Initialize()
 	this->end = false;
 	return true;
 }
-void EngineSystem::SetWindow(int width, int height, char* name, bool screen)
+void EngineSystem::SetWindow(const int width, const int height, char* name, const bool screen)
 {
 	//Window情報を登録する
 	this->w_wi = width;
@@ -63,7 +63,7 @@ void EngineSystem::SetCursorOn(const bool on)
 	//カーソルの可視化有無
 	this->Cursor_on = on;
 }
-void EngineSystem::SetIcon(std::string& filepath_)
+void EngineSystem::SetIcon(const std::string& filepath_)
 {
 	//アイコンに使用する画像の設定
 	this->file = filepath_;
@@ -241,12 +241,12 @@ void EngineSystem::AllTaskDelete()
 	//全削除
 	this->taskobjects.clear();
 }
-void EngineSystem::SetWindowPos(Vec2& pos)
+void EngineSystem::SetWindowPos(const Vec2& pos)
 {
 	//Windowの位置を返す
 	this->w_pos = pos;
 }
-void EngineSystem::SetDeleteEngine(bool flag)
+void EngineSystem::SetDeleteEngine(const bool flag)
 {
 	//エンジンの終了を登録
 	this->DeleteEngine = flag;

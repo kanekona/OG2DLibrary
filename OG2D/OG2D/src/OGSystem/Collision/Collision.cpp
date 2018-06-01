@@ -3,7 +3,7 @@
 //@:Collisionclass									
 //--------------------------------------------------
 //’·•ûŒ`~’·•ûŒ`
-bool CollisionBox::hitBox(CollisionBox& b)
+bool CollisionBox::hitBox(const CollisionBox& b)
 {
 	//’¸“_î•ñ‚ÌƒZƒbƒg
 	Vec2 _ver[4] = {
@@ -44,7 +44,7 @@ bool CollisionBox::hitBox(CollisionBox& b)
 	return false;
 }
 //’·•ûŒ`~‰~
-bool CollisionBox::hitCircle(CollisionCircle& b)
+bool CollisionBox::hitCircle(const CollisionCircle& b)
 {
 	//’¸“_î•ñ‚ÌƒZƒbƒg
 	Vec2 _ver[1] = {
@@ -74,7 +74,7 @@ bool CollisionBox::hitCircle(CollisionCircle& b)
 	return false;
 }
 //‰~~’·•ûŒ`
-bool CollisionCircle::hitBox(CollisionBox& b)
+bool CollisionCircle::hitBox(const CollisionBox& b)
 {
 	//’¸“_î•ñ‚ÌƒZƒbƒg
 	Vec2 _ver[1] = {
@@ -104,7 +104,7 @@ bool CollisionCircle::hitBox(CollisionBox& b)
 	return false;
 }
 //‰~~‰~
-bool CollisionCircle::hitCircle(CollisionCircle& b)
+bool CollisionCircle::hitCircle(const CollisionCircle& b)
 {
 	//‰~‚Ì”ÍˆÍ“à‚É‘ŠŽè‚Ì‰~‚Ì”ÍˆÍ‚ª‘¶Ý‚·‚éê‡TRUE‚ð•Ô‚·
 	if (((b.hitBase.center_x - this->hitBase.center_x)*
@@ -121,7 +121,7 @@ bool CollisionCircle::hitCircle(CollisionCircle& b)
 void CollisionBox::hitdraw() {
 
 }
-void CollisionBox::Rotate(float _angle) {
+void CollisionBox::Rotate(const float _angle) {
 	//‰ñ“]‚Ì’l‚ðŠi”[
 	this->angle = _angle;
 }

@@ -8,7 +8,8 @@ FPS::FPS()
 	//fpsŒv‘ª—p
 	this->lastTime = (float)glfwGetTime();
 }
-void FPS::Update() {
+void FPS::Update() 
+{
 	//60‰ñ“®ì‚µ‚½‚ç‚»‚ÌŽž‚ÌŽžŠÔ‚Æ‘O‚ÌŽžŠÔ‚©‚çfps‚ð‹‚ß‚é
 	if (this->count == 60) {
 		this->fps = this->count / ((float)glfwGetTime() - this->lastTime);

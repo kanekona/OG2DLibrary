@@ -1,22 +1,33 @@
 #include "TaskObject.h"
-
-bool TaskObject::Init(std::string& name_)
+TaskObject::TaskObject()
 {
-	this->taskName = name_;
+	this->taskName = "";
 	this->KillCount = 0;
 	this->NextTask = true;
 	this->order = 0.0f;
+	this->isPause = false;
+}
+bool TaskObject::Init(const std::string& name_)
+{
+	this->taskName = name_;
 	return true;
 }
 void TaskObject::T_UpDate()
 {
-	UpDate();
+	if (!this->isPause)
+	{
+		UpDate();
+	}
+	else
+	{
+		PauseUpDate();
+	}
 }
 void TaskObject::T_Render()
 {
 	Render2D();
 }
-void TaskObject::Kill(bool on)
+void TaskObject::Kill(const bool on)
 {
 	this->NextTask = on;
 	this->KillCount++;
@@ -33,7 +44,7 @@ void TaskObject::ResetKillCount()
 {
 	this->KillCount = 0;
 }
-void TaskObject::SetDrawOrder(float order_)
+void TaskObject::SetDrawOrder(const float order_)
 {
 	if (order_ >= 0.0f)
 	{
@@ -54,7 +65,7 @@ std::string TaskObject::GetTaskName() const
 }
 void TaskObject::T_Pause()
 {
-	Pause();
+	PauseUpDate();
 }
 void TaskObject::UpDate()
 {
@@ -64,7 +75,15 @@ void TaskObject::Render2D()
 {
 
 }
-void TaskObject::Pause()
+void TaskObject::PauseUpDate()
 {
 
+}
+void TaskObject::SetPause(const bool flag)
+{
+	this->isPause = flag;
+}
+bool TaskObject::GetPause() const
+{
+	return this->isPause;
 }

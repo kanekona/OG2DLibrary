@@ -74,8 +74,8 @@ namespace OG {
 	//便利機能関数や数学計算
 	void MulitMatrixf(GLfloat*, GLfloat*, GLfloat*);
 	void Normalize(GLfloat*);
-	void _Rotate(float _angle, Vec2*);
+	void _Rotate(const float _angle, Vec2*);
 	void LineHitDraw(Vec2*);
-	void LineHitDraw(Vec2*, Color&);
+	void LineHitDraw(Vec2*,const Color&);
 	void LineHitDraw(Box2D*);
 }

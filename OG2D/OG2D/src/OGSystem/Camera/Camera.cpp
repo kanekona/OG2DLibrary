@@ -6,7 +6,7 @@ Camera2D::Camera2D()
 {
 
 }
-Camera2D::Camera2D(Box2D& pos)
+Camera2D::Camera2D(const Box2D& pos)
 {
 	//各値をセットする
 	this->cameraPos = pos;
@@ -17,7 +17,7 @@ Camera2D::~Camera2D()
 {
 
 }
-void Camera2D::Initialize(Box2D& pos)
+void Camera2D::Initialize(const Box2D& pos)
 {
 	//各値をセットする
 	this->cameraPos = pos;
@@ -41,22 +41,22 @@ void Camera2D::CameraUpdate() const
 	//描画縦横サイズの指定
 	glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
 }
-void Camera2D::MovePos(Vec2& est)
+void Camera2D::MovePos(const Vec2& est)
 {
 	//位置を加算する
 	this->position += est;
 }
-void Camera2D::SetPos(Vec2& est)
+void Camera2D::SetPos(const Vec2& est)
 {
 	//位置を上書きする
 	this->position = est;
 }
-void Camera2D::SetSize(Vec2& size_)
+void Camera2D::SetSize(const Vec2& size_)
 {
 	//サイズを上書きする
 	this->Scale = size_;
 }
-void Camera2D::MoveSize(Vec2& size_)
+void Camera2D::MoveSize(const Vec2& size_)
 {
 	//サイズを加算する
 	this->Scale += size_;

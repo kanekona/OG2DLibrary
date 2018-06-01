@@ -49,7 +49,7 @@ Audio::Buffer::Buffer()
 	//現在進行時間を0にする
 	this->nowTime = 0.f;
 }
-Audio::Buffer::Buffer(std::string& path_)
+Audio::Buffer::Buffer(const std::string& path_)
 {
 	std::cout << "Buffer(string)" << std::endl;
 	//バッファを１つ生成

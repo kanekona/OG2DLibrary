@@ -7,7 +7,7 @@ GameObject::GameObject() {
 	this->mass = 0.f;
 	this->Radius = { 1.0f,1.0f };
 }
-GameObject::GameObject(Objform form, Vec2 _posi, Vec2 _Sca, float _ang)
+GameObject::GameObject(const Objform& form,const Vec2& _posi,const  Vec2& _Sca,const float _ang)
 {
 	//各値をセットする
 	this->objform = form;
@@ -28,7 +28,7 @@ GameObject::~GameObject()
 {
 
 }
-void GameObject::CreateObject(Objform form, Vec2 _posi, Vec2 _Sca, float _ang) 
+void GameObject::CreateObject(const Objform& form, const Vec2& _posi, const  Vec2& _Sca, const float _ang)
 {
 	//各値をセットする
 	this->objform = form;

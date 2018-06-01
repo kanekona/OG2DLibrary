@@ -33,7 +33,7 @@ public:
 	bool isPlaying();
 	float GetTime() const;
 	void debugUpdata();
-	void createSound(std::string& path, bool loop = false);
+	void createSound(const std::string& path, bool loop = false);
 private:
 	static void queueStream(Audio::StreamWav& stream, Audio::Source &source, Audio::Buffer& buffer, std::vector<char>& sound_buffer);
 	static void streamProc(const std::string& path, const bool loop, std::shared_ptr<Audio::Source>& source, std::shared_ptr<Param>& param);

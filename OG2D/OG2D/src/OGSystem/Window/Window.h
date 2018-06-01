@@ -16,25 +16,25 @@ private:
 public:
 	Window();						//コンストラクタ
 	Window(							//情報有コンストラクタ
-		int,
-		int,
+		const int,
+		const int,
 		char*,
-		bool,
-		Vec2&);
+		const bool,
+		const Vec2&);
 	~Window();						//デストラクタ
 	bool createWindow(				//Windowを生成する
-		int,
-		int,
+		const int,
+		const int,
 		char*,
-		bool,
-		Vec2&);
-	void setIcon(std::string&);		//アイコンを設定する
+		const bool,
+		const Vec2&);
+	void setIcon(const std::string&);		//アイコンを設定する
 	void LimitsWindow();			//Windowのサイズとアスペクト比を固定する
 	void WindowIcon();				//Windowをアイコン化、アイコン化から解除する
 	void Visualization();			//Windowを可視化、可視化から解除する
 	void InMouseMode(const bool);	//マウスを表示させるかを決める
 	Vec2 GetSize() const;			//Windowのサイズを返す
 	Vec2 GetPos() const;			//Windowの位置を返す
-	void SetWindowPos(Vec2&);		//生成するWindowの位置を設定する
+	void SetWindowPos(const Vec2&);		//生成するWindowの位置を設定する
 	GLFWwindow* GetWindow() const;	//Window情報を返す
 };

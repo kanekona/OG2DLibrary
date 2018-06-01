@@ -14,11 +14,11 @@ bool TestObject::Initialize()
 	}
 	else
 	{
-		__super::Init((std::string)"testobj");
+		__super::Init("testobj");
 	}
-	this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128), 0.0f);
-	this->sampleImage.Create((std::string)"Collision.png");
-	rm->SetTextureData((std::string)"test",&sampleImage);
+	this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128));
+	this->sampleImage.Create("Collision.png");
+	rm->SetTextureData("test",&sampleImage);
 	this->SetDrawOrder(1.0f);
 	this->Radius = { 0.8f,0.5f };
 	this->isHit = false;
