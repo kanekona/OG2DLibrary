@@ -3,6 +3,7 @@
 //@:GameEngineclass									
 //--------------------------------------------------
 EngineSystem::EngineSystem()
+	:path("./data/image/")
 {
 	//Window情報がセットされなかった時のための初期設定
 	this->w_wi = 960;
@@ -70,8 +71,7 @@ void EngineSystem::SetIcon(const std::string& filepath_)
 }
 void EngineSystem::Update()
 {
-	//カメラと入力状況の更新
-	this->camera->CameraUpdate();
+	//入力状況の更新
 	this->in->upDate();
 #if(_DEBUG)
 	this->fps->Update();
@@ -109,6 +109,7 @@ void EngineSystem::Task_Render_AF()
 void EngineSystem::TaskGameUpDate()
 {
 	this->Task_UpDate();		//更新処理
+	this->camera->CameraUpdate();	//カメラ処理
 	this->Task_Render_AF();		//描画処理
 	if (this->CheckAddTask() || this->CheckKillTask())
 	{
@@ -209,11 +210,18 @@ void EngineSystem::TaskKillCheck()
 	auto id = this->taskobjects.begin();
 	while (id != this->taskobjects.end())
 	{
-		if (id->second->GetKillCount() > 0)
+		if (id->second)
 		{
-			this->taskobjects.erase(id);
-			this->TaskApplication();
-			id = this->taskobjects.begin();
+			if (id->second->GetKillCount() > 0)
+			{
+				this->taskobjects.erase(id);
+				this->TaskApplication();
+				id = this->taskobjects.begin();
+			}
+			else
+			{
+				++id;
+			}
 		}
 		else
 		{
@@ -239,7 +247,12 @@ bool EngineSystem::CheckKillTask()
 void EngineSystem::AllTaskDelete()
 {
 	//全削除
-	this->taskobjects.clear();
+	auto id = this->taskobjects.begin();
+	while (id != this->taskobjects.end())
+	{
+		this->taskobjects.erase(id);
+		id = this->taskobjects.begin();
+	}
 }
 void EngineSystem::SetWindowPos(const Vec2& pos)
 {
@@ -256,16 +269,5 @@ bool EngineSystem::GetDeleteEngine()
 	//エンジン終了を返す
 	return this->DeleteEngine;
 }
-//template <class T> std::shared_ptr<T> EngineSystem::GetTask(const std::string& taskName)
-//{
-//	for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
-//	{
-//		if ((*id).second->taskName == taskName)
-//		{
-//			return std::static_pointer_cast<T>((*id).second);
-//		}
-//	}
-//	return nullptr;
-//}
 EngineSystem* OGge;
 ResourceManager* rm;

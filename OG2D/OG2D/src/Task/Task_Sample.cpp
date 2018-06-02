@@ -5,7 +5,7 @@ bool Sample::Initialize()
 {
 	std::cout << "Sample:" << "Initialize()" << std::endl;
 	__super::Init(taskName);
-	//auto testObject = TestObject::Create(true);
+	auto testObject = TestObject::Create(true);
 	//auto testObject2 = TestObject::Create(false);
 	this->testImg.Create("back.png");
 	this->SetDrawOrder(0.0f);

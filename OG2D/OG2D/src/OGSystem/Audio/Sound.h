@@ -3,8 +3,8 @@
 class Sound
 {
 private:
-	std::shared_ptr<Audio::Buffer> buffer;
-	std::shared_ptr<Audio::Source> source;
+	std::shared_ptr<Buffer> buffer;
+	std::shared_ptr<Source> source;
 	bool isloop_;
 	const std::string filepath_;
 	float volume_;

@@ -40,7 +40,7 @@ class EngineSystem
 	bool w_sc;			//WindowMode
 	bool isPause;		//PauseCheck
 	bool Cursor_on;		//カーソル可視化
-	const std::string path = "./data/image/";	//ファイルパス
+	const std::string path;	//ファイルパス
 	std::string file;	//ファイル名
 	Vec2 w_pos;			//WindowPosition
 	std::vector<OrderCheck> Orders;	//描画順
