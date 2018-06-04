@@ -13,6 +13,7 @@ enum Objform
 };
 class GameObject
 {
+	bool isCheck;
 public:
 	Objform objform;								//オブジェクトの状態
 	Vec2 position;									//位置
@@ -40,5 +41,6 @@ public:
 	);
 	std::string objectTag;							//タグ名
 	void LineDraw();								//当たり判定をラインを引いて確認用
+	void CheckON();									//当たり判定を起動する
 private:
 };

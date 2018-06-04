@@ -35,6 +35,14 @@ int main() {
 	ogtk->_myGameInitialize();
 	if (!System->Create())
 	{
+		if (System)
+		{
+			delete System;
+		}
+		if (ogtk)
+		{
+			delete ogtk;
+		}
 		return -1;
 	}
 	ogtk->StartTaskObject();

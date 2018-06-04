@@ -6,6 +6,7 @@ GameObject::GameObject() {
 	this->objform = Objform::Non;
 	this->mass = 0.f;
 	this->Radius = { 1.0f,1.0f };
+	this->isCheck = false;
 }
 GameObject::GameObject(const Objform& form,const Vec2& _posi,const  Vec2& _Sca,const float _ang)
 {
@@ -23,6 +24,7 @@ GameObject::GameObject(const Objform& form,const Vec2& _posi,const  Vec2& _Sca,c
 		break;
 	}
 	this->angle = _ang;
+	this->CheckON();
 }
 GameObject::~GameObject()
 {
@@ -44,9 +46,14 @@ void GameObject::CreateObject(const Objform& form, const Vec2& _posi, const  Vec
 		break;
 	}
 	this->angle = _ang;
+	this->CheckON();
 }
 bool GameObject::hit(GameObject& o)
 {
+	if (!this->isCheck || !o.isCheck)
+	{
+		return false;
+	}
 	switch (this->objform)
 	{
 	case Objform::Cube:			//Ž©•ª‚ª‹éŒ`‚ÌŽž
@@ -169,4 +176,9 @@ void GameObject::LineDraw()
 	case Objform::Non:
 		break;
 	}
+}
+
+void GameObject::CheckON()
+{
+	this->isCheck = true;
 }
