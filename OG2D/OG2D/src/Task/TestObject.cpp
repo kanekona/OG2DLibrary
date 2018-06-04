@@ -59,7 +59,10 @@ void TestObject::UpDate()
 		auto t = OGge->GetTask<TestObject>("testobj");
 		if (t)
 		{
-			this->isHit = this->hit(*t);
+			if (this->IsObjectDistanceCheck(t->position, t->Scale))
+			{
+				this->isHit = this->hit(*t);
+			}
 		}
 	}
 }

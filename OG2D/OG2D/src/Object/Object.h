@@ -42,5 +42,7 @@ public:
 	std::string objectTag;							//タグ名
 	void LineDraw();								//当たり判定をラインを引いて確認用
 	void CheckON();									//当たり判定を起動する
+	bool IsObjectDistanceCheck(const Vec2& pos, const Vec2& size);	//当たり判定を行う範囲内かどうかを返します。
+	void LineDistanceDraw();
 private:
 };

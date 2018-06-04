@@ -182,3 +182,21 @@ void GameObject::CheckON()
 {
 	this->isCheck = true;
 }
+
+bool GameObject::IsObjectDistanceCheck(const Vec2& pos, const Vec2& size)
+{
+	if (this->position.x - this->Scale.x < pos.x + size.x &&
+		this->position.y - this->Scale.y < pos.y + size.y &&
+		this->position.x + (this->Scale.x * 2) > pos.x &&
+		this->position.y + (this->Scale.y * 2) > pos.y)
+	{
+		return true;
+	}
+	return false;
+}
+
+void GameObject::LineDistanceDraw()
+{
+	Box2D d(this->position.x - this->Scale.x, this->position.y - this->Scale.y, this->position.x + (this->Scale.x * 2), this->position.y + (this->Scale.y * 2));
+	OG::LineHitDraw(&d);
+}
