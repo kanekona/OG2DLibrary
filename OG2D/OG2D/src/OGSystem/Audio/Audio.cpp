@@ -4,7 +4,6 @@
 //---------------------------------
 Audio::Audio()
 {
-	std::cout << "Audio()" << std::endl;
 	//アプリケーションをデバイスに接続させる
 	//引数はデバイスの指定,NULLなら既定のデバイス
 	this->device = alcOpenDevice(nullptr);
@@ -29,7 +28,6 @@ Audio::Audio()
 }
 Audio::~Audio()
 {
-	std::cout << "~Audio()" << std::endl;
 	alcMakeContextCurrent(nullptr);
 	alcDestroyContext(this->context);
 	alcCloseDevice(this->device);
@@ -43,7 +41,6 @@ Audio::SP Audio::Create()
 //---------------------------------
 Buffer::Buffer()
 {
-	std::cout << "Buffer()" << std::endl;
 	//バッファを１つ生成
 	alGenBuffers(1, &this->id_);
 	//現在進行時間を0にする
@@ -51,7 +48,6 @@ Buffer::Buffer()
 }
 Buffer::Buffer(const std::string& path_)
 {
-	std::cout << "Buffer(string)" << std::endl;
 	//バッファを１つ生成
 	alGenBuffers(1, &this->id_);
 	//Wavファイルの読み込み
@@ -63,25 +59,21 @@ Buffer::Buffer(const std::string& path_)
 }
 Buffer::~Buffer()
 {
-	std::cout << "~Buffer()" << std::endl;
 	//バッファの削除
 	alDeleteBuffers(1, &this->id_);
 }
 float Buffer::GetTime() const
 {
-	std::cout << "GetTime()" << std::endl;
 	//進行時間を返す
 	return this->nowTime;
 }
 ALuint Buffer::GetID() const
 {
-	std::cout << "GetID()" << std::endl;
 	//バッファに登録してあるIDを返す
 	return this->id_;
 }
 void Buffer::Bind(const bool stereo, const void* data, const u_int size, const u_int rate) const
 {
-	std::cout << "Bint(bool,void*,u_int,u_int)" << std::endl;
 	//波形データをバッファにセット
 	alBufferData(this->id_, stereo ? AL_FORMAT_STEREO16 : AL_FORMAT_MONO16, data, size, rate);
 }
@@ -90,13 +82,11 @@ void Buffer::Bind(const bool stereo, const void* data, const u_int size, const u
 //---------------------------------
 Source::Source()
 {
-	std::cout << "Source()" << std::endl;
 	//ソースを１つ生成する
 	alGenSources(1, &this->id_);
 }
 Source::~Source()
 {
-	std::cout << "~Source()" << std::endl;
 	//波形データを解除する
 	this->UnBindBuffer();
 	//ソースを削除する
@@ -104,61 +94,51 @@ Source::~Source()
 }
 void Source::BindBuffer(const Buffer& burrer_)
 {
-	std::cout << "BindBuffer()" << std::endl;
 	//ソースにバッファを指定する
 	alSourcei(this->id_, AL_BUFFER, burrer_.GetID());
 }
 void Source::UnBindBuffer() const
 {
-	std::cout << "UnBindBuffer()" << std::endl;
 	//ソースのバッファを解除する
 	alSourcei(this->id_, AL_BUFFER, 0);
 }
 ALuint Source::GetID() const
 {
-	std::cout << "GetID()" << std::endl;
 	//ソースのIDを返す
 	return this->id_;
 }
 void Source::Play() const
 {
-	std::cout << "Play()" << std::endl;
 	//再生する
 	alSourcePlay(this->id_);
 }
 void Source::Stop() const
 {
-	std::cout << "Stop()" << std::endl;
 	//止める
 	alSourceStop(this->id_);
 }
 void Source::Pause() const
 {
-	std::cout << "Pause()" << std::endl;
 	//一時停止する
 	alSourcePause(this->id_);
 }
 void Source::Volume(const float volume_) const
 {
-	std::cout << "Volume(float)" << std::endl;
 	//音量の変更
 	alSourcef(this->id_, AL_GAIN, volume_);
 }
 void Source::Pitch(const float value_) const
 {
-	std::cout << "Pitch(float)" << std::endl;
 	//ピッチの変更
 	alSourcef(this->id_, AL_PITCH, value_);
 }
 void Source::Looping(const bool loop_) const
 {
-	std::cout << "Looping(bool)" << std::endl;
 	//TRUEで終了時最初の位置に戻る
 	alSourcei(this->id_, AL_LOOPING, loop_ ? AL_TRUE : AL_FALSE);
 }
 bool Source::isPlay() const
 {
-	std::cout << "isPlay()" << std::endl;
 	//現在の状態を返す
 	ALint state;
 	alGetSourcei(this->id_, AL_SOURCE_STATE, &state);
@@ -173,14 +153,12 @@ float Source::currenttime() const
 }
 void Source::queueBuffer(const Buffer& buffer_) const
 {
-	std::cout << "queueBuffer(Buffer)" << std::endl;
 	ALuint buffers = buffer_.GetID();
 	//バッファネームのキューを作成
 	alSourceQueueBuffers(this->id_, 1, &buffers);
 }
 ALuint Source::UnqueueBuffer() const
 {
-	std::cout << "UnqueueBuffer()" << std::endl;
 	ALuint buffers;
 	//キューからバッファを除去する
 	alSourceUnqueueBuffers(this->id_, 1, &buffers);
@@ -188,7 +166,6 @@ ALuint Source::UnqueueBuffer() const
 }
 int Source::processed() const
 {
-	std::cout << "processed()" << std::endl;
 	int pro_;
 	//再生済みのバッファ数を返す
 	alGetSourcei(this->id_, AL_BUFFERS_PROCESSED, &pro_);
