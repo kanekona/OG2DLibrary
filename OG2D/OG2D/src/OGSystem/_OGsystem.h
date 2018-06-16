@@ -20,10 +20,10 @@
 #include <Windows.h>
 
 // ‚¢‚­‚Â‚©‚Ì—]Œv‚ÈŒx‚ğ•\¦‚µ‚È‚¢‚æ‚¤‚É‚·‚é
-#pragma warning (disable:4244)
-#pragma warning (disable:4522)
-#pragma warning (disable:4800)
-#pragma warning (disable:4996)
+//#pragma warning (disable:4244)
+//#pragma warning (disable:4522)
+//#pragma warning (disable:4800)
+//#pragma warning (disable:4996)
 
 #pragma comment(lib, "OPENGL32.lib")
 #pragma comment(lib, "GLU32.lib")
