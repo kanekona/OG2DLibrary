@@ -88,7 +88,7 @@ namespace Shader
 	//読み込み
 	GLuint read(const std::string &file) {
 		//vertexshaderの読み込み(.vsh)
-		std::string vsh_path = file + ".vsh";
+		std::string vsh_path = "./data/shader/" + file + ".vsh";
 		std::ifstream vsh_fs(vsh_path);
 		//読み込みエラー
 		if (!vsh_fs) {
@@ -98,7 +98,7 @@ namespace Shader
 		std::string v_source((std::istreambuf_iterator<char>(vsh_fs)), std::istreambuf_iterator<char>());
 
 		//fragmentshaderの読み込み(.fsh)
-		std::string fsh_path = file + ".fsh";
+		std::string fsh_path = "./data/shader/" + file + ".fsh";
 		std::ifstream fsh_fs(fsh_path);
 		//読み込みエラー
 		if (!fsh_fs) {
@@ -126,5 +126,24 @@ namespace Shader
 	//シェーダープログラムの使用開始
 	void use(const GLuint program) {
 		glUseProgram(program);
+	}
+	void SetViewPort(float cl, float cr, float cb, float ct, float cn, float cf)
+	{
+		promaterix[0] = 2.f / (cr - cl);
+		promaterix[1] = 0.f;
+		promaterix[2] = 0.f;
+		promaterix[3] = (cr + cl) / (cr - cl) * -1;
+		promaterix[4] = 0.f;
+		promaterix[5] = 2.f / (ct - cb);
+		promaterix[6] = 0.f;
+		promaterix[7] = (ct + cb) / (ct - cb) * -1;
+		promaterix[8] = 0.f;
+		promaterix[9] = 0.f;
+		promaterix[10] = 2.f / (cf - cn);
+		promaterix[11] = (cf + cn) / (cf - cn) * -1;
+		promaterix[12] = 0.f;
+		promaterix[13] = 0.f;
+		promaterix[14] = 0.f;
+		promaterix[15] = 1.0f;
 	}
 }

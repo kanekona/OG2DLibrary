@@ -5,6 +5,8 @@
 //シェーダーのセットアップ
 
 namespace Shader {
+	static GLuint programID;
+	static GLfloat promaterix[16];
 	//コンパイル
 	GLuint compile(GLuint type, const std::string &text);
 	//準備
@@ -17,4 +19,6 @@ namespace Shader {
 	GLint uniform(const GLuint program, const std::string &name);
 	//シェーダープログラムの使用開始
 	void use(const GLuint program);
+	//ビュー行列を登録する
+	void SetViewPort(float, float, float, float, float, float);
 }
