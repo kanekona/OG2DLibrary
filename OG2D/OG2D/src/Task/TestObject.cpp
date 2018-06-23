@@ -11,12 +11,14 @@ bool TestObject::Initialize()
 	if (isMove)
 	{
 		__super::Init(taskName);
+		this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128));
 	}
 	else
 	{
 		__super::Init("testobj");
+		this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128));
 	}
-	this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128));
+	
 	this->sampleImage.Create("Collision.png");
 	rm->SetTextureData("test",&sampleImage);
 	this->SetDrawOrder(1.0f);

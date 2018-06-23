@@ -14,6 +14,24 @@ bool Sample::Initialize()
 	return true;
 }
 
+void Sample::Render(Texture* tex, std::shared_ptr<Sample::Param>& param)
+{
+	while (param->on)
+	{
+		//std::cout << param->cnt << std::endl;
+		param->fps.Update();
+		if (param->cnt > 10000)
+		{
+			param->cnt = 0;
+		}
+		param->cnt++;
+		if (tex)
+		{
+			tex->Draw(Box2D(0, 0, 960, 540), Box2D(0.f, 0.f, tex->GetTextureSize().x, tex->GetTextureSize().y));
+		}
+	}
+}
+
 void Sample::UpDate()
 {
 	auto test = OGge->GetTasks<TestObject>("TestObject");
@@ -24,6 +42,12 @@ void Sample::UpDate()
 	if (OGge->in->axis(In::AXIS_LEFT_X) != 0.f)
 	{
 		std::cout << OGge->in->axis(In::AXIS_LEFT_X) << std::endl;
+	}
+	if (OGge->in->down(In::B1))
+	{
+		this->param->mutex.lock();
+		this->param->on = false;
+		this->param->mutex.unlock();
 	}
 }
 
