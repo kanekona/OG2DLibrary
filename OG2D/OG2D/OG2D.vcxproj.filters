@@ -69,6 +69,9 @@
     <Filter Include="ソースファイル\OGSystem\System\ResourceManager">
       <UniqueIdentifier>{fe1a5c95-0871-4418-be71-97604a8462e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソースファイル\OGSystem\Icon">
+      <UniqueIdentifier>{61115c65-3883-460d-ab94-96fa462b33d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Win\WinMain.cpp">
@@ -229,5 +232,15 @@
     <ClInclude Include="src\OGSystem\System.h">
       <Filter>ソースファイル\OGSystem\System\OG</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="data\image\testicon.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\OGSystem\Icon\Resource.rc">
+      <Filter>ソースファイル\OGSystem\Icon</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
