@@ -47,6 +47,8 @@ class EngineSystem
 	bool DeleteEngine;	//Engine終了状況
 	std::vector<std::pair<DWORD, TaskObject::SP>> taskobjects;	//タスクオブジェクト達
 	std::vector<TaskObject::SP> addTaskObjects;	//登録予定タスク達
+	std::vector<std::pair<DWORD, TaskObject*>> taskobjects_;
+	std::vector<TaskObject*> addTaskObjects_;
 public:
 	Camera2D * camera;		//カメラ2D
 	Window* window;			//window
@@ -81,6 +83,8 @@ public:
 	void TaskGameUpDate();		//タスク達の更新処理
 	void SetTaskObject(			//タスクを登録
 		const TaskObject::SP&);
+	void SetTaskObject(
+		TaskObject*);
 	bool GetDeleteEngine();		//エンジン終了を返す
 	void SetDeleteEngine(const bool);	//エンジン終了登録
 	//タスク検索(最初の同名のタスクを返す)
@@ -128,6 +132,54 @@ public:
 				if ((*id)->GetTaskName() == taskName)
 				{
 					w->push_back(std::static_pointer_cast<T>((*id)));
+				}
+			}
+		}
+		return w;
+	}
+	template <class T> T* GetTask_(const std::string& taskName)
+	{
+		for (auto id = this->taskobjects_.begin(); id != this->taskobjects_.end(); ++id)
+		{
+			if (id->second)
+			{
+				if (id->second->GetTaskName() == taskName)
+				{
+					return std::static_pointer_cast<T>(id->second);
+				}
+			}
+		}
+		for (auto id = this->addTaskObjects_.begin(); id != this->addTaskObjects_.end(); ++id)
+		{
+			if (id)
+			{
+				if (id->GetTaskName() == taskName)
+				{
+					return std::static_pointer_cast<T>(id);
+				}
+			}
+		}
+	}
+	template <class T> std::vector<T*> GetTasks_(const std::string& taskName)
+	{
+		std::vector<T*> w = new std::vector<T*>;
+		for (auto id = this->taskobjects_.begin(); id != this->taskobjects_.end(); ++id)
+		{
+			if (id->second)
+			{
+				if (id->second->GetTaskName() == taskName)
+				{
+					w->push_back(std::static_pointer_cast<T>(id->second));
+				}
+			}
+		}
+		for (auto id = this->addTaskObjects_.begin(); id != this->addTaskObjects_.end(); ++id)
+		{
+			if (id)
+			{
+				if (id->GetTaskName() == taskName)
+				{
+					w->push_back(std::static_pointer_cast<T>(id));
 				}
 			}
 		}

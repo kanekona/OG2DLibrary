@@ -94,6 +94,20 @@ void EngineSystem::Task_UpDate()
 			}
 		}
 	}
+	/*for (int id = 0; id < this->taskobjects_.size(); ++id)
+	{
+		if (this->taskobjects_[id].second->GetKillCount() == 0)
+		{
+			if (!this->GetPause())
+			{
+				this->taskobjects_[id].second->T_UpDate();
+			}
+			else
+			{
+				this->taskobjects_[id].second->T_Pause();
+			}
+		}
+	}*/
 }
 void EngineSystem::Task_Render_AF()
 {
@@ -103,6 +117,13 @@ void EngineSystem::Task_Render_AF()
 		if (this->taskobjects[this->Orders[i].id].second->GetKillCount() == 0)
 		{
 			this->taskobjects[this->Orders[i].id].second->T_Render();
+		}
+	}
+	for (int id = 0; id < this->taskobjects_.size(); ++id)
+	{
+		if (this->taskobjects_[this->Orders[id].id].second->GetKillCount() == 0)
+		{
+			this->taskobjects_[this->Orders[id].id].second->T_Render();
 		}
 	}
 }
@@ -190,6 +211,10 @@ void EngineSystem::SetTaskObject(const TaskObject::SP& To)
 	//ƒ^ƒXƒN‚ð“o˜^—\’è‚É“o˜^
 	this->addTaskObjects.push_back(To);
 }
+void EngineSystem::SetTaskObject(TaskObject* To)
+{
+	this->addTaskObjects_.push_back(To);
+}
 void EngineSystem::TaskApplication()
 {
 	//“o˜^—\’è‚Ì‚à‚Ì‚ð“o˜^‚·‚é
@@ -201,6 +226,18 @@ void EngineSystem::TaskApplication()
 		{
 			this->taskobjects.push_back(d);
 		}
+	}
+	addTaskObjects.clear();
+	for (int id = 0; id < this->addTaskObjects_.size(); ++id)
+	{
+		std::pair<DWORD, TaskObject*> d;
+		d.second = this->addTaskObjects_[id];
+		if (d.second->GetNextTask())
+		{
+			this->taskobjects_.push_back(d);
+		}
+		delete this->addTaskObjects_[id];
+		this->addTaskObjects_[id] = nullptr;
 	}
 	addTaskObjects.clear();
 }
@@ -228,6 +265,27 @@ void EngineSystem::TaskKillCheck()
 			++id;
 		}
 	}
+	auto id2 = this->taskobjects_.begin();
+	while (id2 != this->taskobjects_.end())
+	{
+		if (id2->second)
+		{
+			if (id2->second->GetKillCount() > 0)
+			{
+				this->taskobjects_.erase(id2);
+				this->TaskApplication();
+				id2 = this->taskobjects_.begin();
+			}
+			else
+			{
+				++id2;
+			}
+		}
+		else
+		{
+			++id2;
+		}
+	}
 }
 bool EngineSystem::CheckAddTask()
 {
@@ -242,16 +300,33 @@ bool EngineSystem::CheckKillTask()
 			return true;
 		}
 	}
+	for (int i = 0; i < this->taskobjects_.size(); ++i)
+	{
+		if (this->taskobjects_[i].second->GetKillCount() > 0)
+		{
+			return true;
+		}
+	}
 	return false;
 }
 void EngineSystem::AllTaskDelete()
 {
 	//‘Síœ
-	auto id = this->taskobjects.begin();
-	while (id != this->taskobjects.end())
 	{
-		this->taskobjects.erase(id);
-		id = this->taskobjects.begin();
+		auto id = this->taskobjects.begin();
+		while (id != this->taskobjects.end())
+		{
+			this->taskobjects.erase(id);
+			id = this->taskobjects.begin();
+		}
+	}
+	{
+		auto id = this->taskobjects_.begin();
+		while (id != this->taskobjects_.end())
+		{
+			this->taskobjects_.erase(id);
+			id = this->taskobjects_.begin();
+		}
 	}
 }
 void EngineSystem::SetWindowPos(const Vec2& pos)
