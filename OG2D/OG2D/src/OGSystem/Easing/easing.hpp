@@ -1,3 +1,5 @@
+///Easingを扱うclass
+///各詳細はEasing表を確認
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -7,6 +9,14 @@ private:
 	float cnt;
 	bool toplay = false;
 public:
+	enum Name
+	{
+		Back, Bounce, Circ, Cubic, Elastic, Expo, Linear, Quad, Quart, Quint, Sine
+	};
+	enum Mode
+	{
+		In, Out, InOut
+	};
 	Easing() { cnt = 0; this->toplay = true; };
 	//イージング用カウンタ
 	float Time(const float duration)

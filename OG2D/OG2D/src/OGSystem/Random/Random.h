@@ -1,3 +1,5 @@
+///ランダムの数値、文字列を取得するためのclass
+///既存GameEngineを使用している場合は自動で生成、初期化される
 #pragma once
 #include <random>
 #include <iostream>

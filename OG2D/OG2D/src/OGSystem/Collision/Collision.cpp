@@ -41,32 +41,32 @@ bool CollisionBox::hitBox(const CollisionBox& b)
 			return true;
 		}
 	}
-	for (int i = 0; i < 4; ++i)
-	{
-		Vec2 mainvec = _v[(i + 1) % 4] - _v[i % 4];
-	//	for (int j = 0; j < 4; ++j)
-		{
-			/*Vec2 v3 = _ver[j % 4] - _v[i % 4];
-			Vec2 v4 = _ver[(j + 1) % 4] - _v[i % 4];
-			if ((((mainvec.x * v3.y) - (mainvec.y * v3.x))*((mainvec.x * v4.y) - (mainvec.y * v4.x))) < 0)
-			{
-				return true;
-			}*/
-			if (
-				((mainvec.x * (_ver[0].y - _v[i].y)) - (mainvec.y * (_ver[0].x - _v[i].x)))*
-				((mainvec.x * (_ver[1].y - _v[i].y)) - (mainvec.y * (_ver[1].x - _v[i].x))) < 0 ||
-				((mainvec.x * (_ver[1].y - _v[i].y)) - (mainvec.y * (_ver[1].x - _v[i].x)))*
-				((mainvec.x * (_ver[2].y - _v[i].y)) - (mainvec.y * (_ver[2].x - _v[i].x))) < 0 ||
-				((mainvec.x * (_ver[2].y - _v[i].y)) - (mainvec.y * (_ver[2].x - _v[i].x)))*
-				((mainvec.x * (_ver[3].y - _v[i].y)) - (mainvec.y * (_ver[3].x - _v[i].x))) < 0 ||
-				((mainvec.x * (_ver[3].y - _v[i].y)) - (mainvec.y * (_ver[3].x - _v[i].x)))*
-				((mainvec.x * (_ver[0].y - _v[i].y)) - (mainvec.y * (_ver[0].x - _v[i].x))) < 0
-				)
-			{
-				return true;
-			}
-		}
-	}
+	//for (int i = 0; i < 4; ++i)
+	//{
+	//	Vec2 mainvec = _v[(i + 1) % 4] - _v[i % 4];
+	////	for (int j = 0; j < 4; ++j)
+	//	{
+	//		/*Vec2 v3 = _ver[j % 4] - _v[i % 4];
+	//		Vec2 v4 = _ver[(j + 1) % 4] - _v[i % 4];
+	//		if ((((mainvec.x * v3.y) - (mainvec.y * v3.x))*((mainvec.x * v4.y) - (mainvec.y * v4.x))) < 0)
+	//		{
+	//			return true;
+	//		}*/
+	//		if (
+	//			((mainvec.x * (_ver[0].y - _v[i].y)) - (mainvec.y * (_ver[0].x - _v[i].x)))*
+	//			((mainvec.x * (_ver[1].y - _v[i].y)) - (mainvec.y * (_ver[1].x - _v[i].x))) < 0 ||
+	//			((mainvec.x * (_ver[1].y - _v[i].y)) - (mainvec.y * (_ver[1].x - _v[i].x)))*
+	//			((mainvec.x * (_ver[2].y - _v[i].y)) - (mainvec.y * (_ver[2].x - _v[i].x))) < 0 ||
+	//			((mainvec.x * (_ver[2].y - _v[i].y)) - (mainvec.y * (_ver[2].x - _v[i].x)))*
+	//			((mainvec.x * (_ver[3].y - _v[i].y)) - (mainvec.y * (_ver[3].x - _v[i].x))) < 0 ||
+	//			((mainvec.x * (_ver[3].y - _v[i].y)) - (mainvec.y * (_ver[3].x - _v[i].x)))*
+	//			((mainvec.x * (_ver[0].y - _v[i].y)) - (mainvec.y * (_ver[0].x - _v[i].x))) < 0
+	//			)
+	//		{
+	//			return true;
+	//		}
+	//	}
+	//}
 	return false;
 }
 //’·•ûŒ`~‰~

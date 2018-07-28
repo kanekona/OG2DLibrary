@@ -1,3 +1,4 @@
+///Sound‚ğŠÇ—‚·‚éManager
 #pragma once
 #include "Sound.h"
 

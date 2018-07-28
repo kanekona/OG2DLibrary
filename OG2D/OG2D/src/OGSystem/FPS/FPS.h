@@ -1,3 +1,5 @@
+///フレームレートを計算,制限(未実装)するclass
+///既存GameEngineを使用している場合はDEBUG時のみ自動で生成される
 #pragma once
 #include "OGSystem\_OGsystem.h"
 

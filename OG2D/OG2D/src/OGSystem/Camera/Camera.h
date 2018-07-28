@@ -1,3 +1,6 @@
+///GL機能を使用し2D上でのカメラを扱うclass
+///既存GameEngineを使用している場合は内部で宣言されている
+///使用しない場合は2Dの描画のために１つ生成する必要がある
 #pragma once
 #include "OGSystem\_OGsystem.h"
 class Camera2D
