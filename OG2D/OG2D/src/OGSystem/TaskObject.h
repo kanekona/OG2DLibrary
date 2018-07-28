@@ -15,6 +15,7 @@ private:
 	bool isPause;							//呼ばれる更新分岐
 public:
 	TaskObject();
+	virtual ~TaskObject();
 	bool Init(const std::string&);			//初期化処理
 	void T_UpDate();						//更新処理
 	void T_Render();						//描画処理

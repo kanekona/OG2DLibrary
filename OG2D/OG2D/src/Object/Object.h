@@ -5,13 +5,14 @@
 //|____________________________
 #include "OGSystem\OGlib.h"
 #include "OGSystem\Collision\Collision.h"
+#include "OGSystem\TaskObject.h"
 enum Objform
 {
 	Non,											//–³
 	Ball,											//‰~
 	Cube,											//‹éŒ`
 };
-class GameObject
+class GameObject : public TaskObject
 {
 	bool isCheck;
 public:

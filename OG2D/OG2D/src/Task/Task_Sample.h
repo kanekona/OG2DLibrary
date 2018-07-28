@@ -8,19 +8,12 @@
 
 class Sample : public TaskObject
 {
-private:
-	Texture testImg;
-
 public:
-	
-	std::string taskName = "Sample";
 	virtual ~Sample();
-	typedef std::shared_ptr<Sample> SP;
-	static Sample::SP Create(bool);
+	static Sample* Create(bool);
 	Sample();
 	bool Initialize();
-	void UpDate();
-	void Render2D();
-	void Pause();
+	void UpDate() override;
+	void Render2D() override;
 	bool Finalize();
 };

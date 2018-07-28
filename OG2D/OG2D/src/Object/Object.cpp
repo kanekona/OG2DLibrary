@@ -28,7 +28,6 @@ GameObject::GameObject(const Objform& form,const Vec2& _posi,const  Vec2& _Sca,c
 }
 GameObject::~GameObject()
 {
-
 }
 void GameObject::CreateObject(const Objform& form, const Vec2& _posi, const  Vec2& _Sca, const float _ang)
 {

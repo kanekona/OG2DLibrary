@@ -27,9 +27,7 @@ OGSystem* System;
 //------------------
 int main() {
 	//ƒƒ‚ƒŠƒŠ[ƒNŒŸ’m
-#if(_DEBUG)
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-#endif
 	System = new OGSystem();
 	ogtk = new OGTK();
 	ogtk->_myGameInitialize();

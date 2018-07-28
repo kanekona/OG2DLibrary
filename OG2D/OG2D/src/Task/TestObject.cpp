@@ -29,10 +29,6 @@ bool TestObject::Initialize()
 }
 void TestObject::UpDate()
 {
-	if (OGge->in->key.down(In::Z))
-	{
-		this->Kill();
-	}
 	if (this->isMove)
 	{
 		if (OGge->in->key.on(In::Q))
@@ -59,7 +55,7 @@ void TestObject::UpDate()
 		{
 			this->position.x += 1.0f;
 		}
-		auto t = OGge->GetTask<TestObject>("testobj");
+		auto t = OGge->GetTask_<TestObject>("testobj");
 		if (t)
 		{
 			if (this->IsObjectDistanceCheck(t->position, t->Scale))
@@ -72,6 +68,7 @@ void TestObject::UpDate()
 
 bool TestObject::TestCheck()
 {
+	std::cout << "TestCheck()" << std::endl;
 	return true;
 }
 
@@ -92,16 +89,6 @@ void TestObject::Render2D()
 	this->LineDraw();
 }
 
-bool TestObject::Finalize()
-{
-	std::cout << "TestObject:" << "Finalize()" << std::endl;
-	if (this->GetNextTask() && !OGge->GetDeleteEngine())
-	{
-		
-	}
-	return true;
-}
-
 TestObject::TestObject()
 {
 	std::cout << "TestObject:" << "()" << std::endl;
@@ -110,16 +97,13 @@ TestObject::TestObject()
 TestObject::~TestObject()
 {
 	std::cout << "TestObject:" << "~()" << std::endl;
-	this->Finalize();
 }
 
-TestObject::SP TestObject::Create(bool is_move_,bool flag_)
+TestObject* TestObject::Create(bool is_move_,bool flag_)
 {
-	std::cout << "TestObject:" << "Create()" << std::endl;
-	TestObject::SP to = TestObject::SP(new TestObject(is_move_));
+	TestObject* to = new TestObject(is_move_);
 	if (to)
 	{
-		to->me = to;
 		if (flag_)
 		{
 			OGge->SetTaskObject(to);

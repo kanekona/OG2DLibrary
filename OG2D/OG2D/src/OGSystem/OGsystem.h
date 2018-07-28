@@ -145,20 +145,21 @@ public:
 			{
 				if (id->second->GetTaskName() == taskName)
 				{
-					return std::static_pointer_cast<T>(id->second);
+					return (T*)id->second;
 				}
 			}
 		}
 		for (auto id = this->addTaskObjects_.begin(); id != this->addTaskObjects_.end(); ++id)
 		{
-			if (id)
+			if (*id)
 			{
-				if (id->GetTaskName() == taskName)
+				if ((*id)->GetTaskName() == taskName)
 				{
-					return std::static_pointer_cast<T>(id);
+					return (T*)(*id);
 				}
 			}
 		}
+		return nullptr;
 	}
 	template <class T> std::vector<T*> GetTasks_(const std::string& taskName)
 	{
@@ -169,7 +170,7 @@ public:
 			{
 				if (id->second->GetTaskName() == taskName)
 				{
-					w->push_back(std::static_pointer_cast<T>(id->second));
+					//w->push_back(std::static_pointer_cast<T>(id->second));
 				}
 			}
 		}
@@ -179,7 +180,7 @@ public:
 			{
 				if (id->GetTaskName() == taskName)
 				{
-					w->push_back(std::static_pointer_cast<T>(id));
+					//w->push_back(std::static_pointer_cast<T>(id));
 				}
 			}
 		}

@@ -94,7 +94,7 @@ void EngineSystem::Task_UpDate()
 			}
 		}
 	}
-	/*for (int id = 0; id < this->taskobjects_.size(); ++id)
+	for (int id = 0; id < this->taskobjects_.size(); ++id)
 	{
 		if (this->taskobjects_[id].second->GetKillCount() == 0)
 		{
@@ -107,7 +107,7 @@ void EngineSystem::Task_UpDate()
 				this->taskobjects_[id].second->T_Pause();
 			}
 		}
-	}*/
+	}
 }
 void EngineSystem::Task_Render_AF()
 {
@@ -143,17 +143,17 @@ void EngineSystem::ConfigDrawOrder()
 {
 	//•`‰æ‡‚Ìİ’è
 	//“o˜^ƒ^ƒXƒN•ª‚Ì•`‰æ‡‚ğ“ü‚ê‚Ä‚¨‚­class‚ğì‚Á‚Ä‚¨‚­
-	this->Orders.resize(this->taskobjects.size());
+	this->Orders.resize(this->taskobjects_.size());
 	//‰Šúó‘Ô‚ğƒRƒs[‚·‚é
-	for (int i = 0; i < this->taskobjects.size(); ++i)
+	for (int i = 0; i < this->taskobjects_.size(); ++i)
 	{
 		this->Orders[i].id = i;
-		this->Orders[i].order_s = this->taskobjects[i].second->GetDrawOrder();
+		this->Orders[i].order_s = this->taskobjects_[i].second->GetDrawOrder();
 	}
 	//•`‰æ‡‚É‡‚í‚¹‚Äid‚Æorder‚ğ•À‚Ñ‘Ö‚¦‚é
-	for (int i = 0; i < this->taskobjects.size(); ++i)
+	for (int i = 0; i < this->taskobjects_.size(); ++i)
 	{
-		for (int j = i; j < this->taskobjects.size(); ++j)
+		for (int j = i; j < this->taskobjects_.size(); ++j)
 		{
 			if (this->Orders[i].order_s > this->Orders[j].order_s)
 			{
@@ -236,10 +236,8 @@ void EngineSystem::TaskApplication()
 		{
 			this->taskobjects_.push_back(d);
 		}
-		delete this->addTaskObjects_[id];
-		this->addTaskObjects_[id] = nullptr;
 	}
-	addTaskObjects.clear();
+	addTaskObjects_.clear();
 }
 void EngineSystem::TaskKillCheck()
 {
@@ -272,6 +270,7 @@ void EngineSystem::TaskKillCheck()
 		{
 			if (id2->second->GetKillCount() > 0)
 			{
+				delete id2->second;
 				this->taskobjects_.erase(id2);
 				this->TaskApplication();
 				id2 = this->taskobjects_.begin();
@@ -289,7 +288,7 @@ void EngineSystem::TaskKillCheck()
 }
 bool EngineSystem::CheckAddTask()
 {
-	return this->addTaskObjects.size() > 0;
+	return this->addTaskObjects_.size() > 0;
 }
 bool EngineSystem::CheckKillTask()
 {
@@ -324,6 +323,7 @@ void EngineSystem::AllTaskDelete()
 		auto id = this->taskobjects_.begin();
 		while (id != this->taskobjects_.end())
 		{
+			delete id->second;
 			this->taskobjects_.erase(id);
 			id = this->taskobjects_.begin();
 		}

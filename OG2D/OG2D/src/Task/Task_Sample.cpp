@@ -3,34 +3,21 @@
 #include "TestObject.h"
 bool Sample::Initialize()
 {
-	std::cout << "Sample:" << "Initialize()" << std::endl;
-	__super::Init(taskName);
+	__super::Init("Sample");
 	auto testObject = TestObject::Create(true);
-	auto testObject2 = TestObject::Create(false);
-	this->testImg.Create("back.png");
-	this->SetDrawOrder(0.0f);
 	__super::SetDrawOrder(0.0f);
 	return true;
 }
 
 void Sample::UpDate()
 {
-	auto test = OGge->GetTasks<TestObject>("TestObject");
-	if (OGge->in->key.down(In::SPACE))
+	auto test = OGge->GetTask_<TestObject>("TestObject");
+	if (test)
 	{
-		this->Kill();
-	}
-	if (OGge->in->axis(In::AXIS_LEFT_X) != 0.f)
-	{
-		std::cout << OGge->in->axis(In::AXIS_LEFT_X) << std::endl;
-	}
-}
-
-void Sample::Pause()
-{
-	if (OGge->in->key.down(In::Z))
-	{
-		OGge->SetPause(false);
+		if (OGge->in->down(In::B1))
+		{
+			test->TestCheck();
+		}
 	}
 }
 
@@ -41,33 +28,27 @@ void Sample::Render2D()
 
 bool Sample::Finalize()
 {
-	std::cout << "Sample:" << "Finalize()" << std::endl;
-	this->testImg.Finalize();
 	if (this->GetNextTask() && !OGge->GetDeleteEngine())
 	{
-		auto nextTask = Sample2::Create(true);
 	}
 	return true;
 }
 
 Sample::Sample()
 {
-	std::cout << "Sample:" << "TaskObject()" << std::endl;
 }
 
 Sample::~Sample()
 {
-	std::cout << "Sample:" << "~TaskObject()" << std::endl;
-	this->Finalize();
+	std::cout << "~Sample()" << std::endl;
+ 	this->Finalize();
 }
 
-Sample::SP Sample::Create(bool flag_)
+Sample* Sample::Create(bool flag_)
 {
-	std::cout << "Sample:" << "Create()" << std::endl;
-	Sample::SP to = Sample::SP(new Sample());
+	Sample* to = new Sample();
 	if (to)
 	{
-		to->me = to;
 		if (flag_)
 		{
 			OGge->SetTaskObject(to);

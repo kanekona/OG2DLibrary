@@ -12,8 +12,7 @@ public:
 	bool CheckOn();
 	std::string taskName = "Sample2";
 	virtual ~Sample2();
-	typedef std::shared_ptr<Sample2> SP;
-	static Sample2::SP Create(bool);
+	static Sample2* Create(bool);
 	Sample2();
 	bool Initialize();
 	void UpDate();

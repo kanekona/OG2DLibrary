@@ -7,6 +7,9 @@ TaskObject::TaskObject()
 	this->order = 0.0f;
 	this->isPause = false;
 }
+TaskObject::~TaskObject()
+{
+}
 bool TaskObject::Init(const std::string& name_)
 {
 	this->taskName = name_;

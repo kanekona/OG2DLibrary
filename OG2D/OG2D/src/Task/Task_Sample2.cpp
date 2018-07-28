@@ -48,13 +48,11 @@ Sample2::~Sample2()
 	this->Finalize();
 }
 
-Sample2::SP Sample2::Create(bool flag_)
+Sample2* Sample2::Create(bool flag_)
 {
-	std::cout << "Sample2:" << "Create()" << std::endl;
-	Sample2::SP to = Sample2::SP(new Sample2());
+	Sample2* to = new Sample2();
 	if (to)
 	{
-		to->me = to;
 		if (flag_)
 		{
 			OGge->SetTaskObject(to);
