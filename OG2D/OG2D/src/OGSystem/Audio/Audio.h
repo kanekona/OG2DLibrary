@@ -1,3 +1,4 @@
+///音楽に必要なもの、デバイスを設定するためのclass
 #pragma once
 #include "OGSystem\_OGsystem.h"
 

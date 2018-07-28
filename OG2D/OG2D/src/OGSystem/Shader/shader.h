@@ -1,3 +1,4 @@
+///未実装
 #pragma once
 //必要ファイルのインクルード
 #include "OGSystem\_OGsystem.h"

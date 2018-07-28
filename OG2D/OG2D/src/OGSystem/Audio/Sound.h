@@ -1,3 +1,5 @@
+///サウンドを読み込み、再生を行うclass
+///一括読み込みをしている
 #pragma once
 #include "Audio.h"
 class Sound

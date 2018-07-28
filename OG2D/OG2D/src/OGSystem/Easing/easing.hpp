@@ -1,3 +1,5 @@
+///Easingを扱うclass
+///各詳細はEasing表を確認
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>

@@ -1,3 +1,4 @@
+///Box2D,Circle‚ğg—p‚µ“–‚½‚è”»’è‚ğs‚¤class
 #pragma once
 #include "OGSystem\_OGsystem.h"
 

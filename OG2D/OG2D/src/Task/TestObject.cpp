@@ -19,8 +19,9 @@ bool TestObject::Initialize()
 		this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128));
 	}
 	
-	this->sampleImage.Create("Collision.png");
-	rm->SetTextureData("test",&sampleImage);
+	//this->sampleImage.Create("Collision.png");
+	//rm->SetTextureData("test",&sampleImage);
+	rm->CreateTexture("test", "Collision.png");
 	this->SetDrawOrder(1.0f);
 	this->Radius = { 0.8f,0.5f };
 	this->isHit = false;
@@ -79,14 +80,14 @@ void TestObject::Render2D()
 	//std::cout << "TestObject:" << "Render2D()" << std::endl;
 	Box2D draw(this->position, this->Scale);
 	draw.OffsetSize();
-	this->sampleImage.Rotate(this->angle);
+	rm->GetTextureData("test")->Rotate(this->angle);
 	if (this->isHit)
 	{
-		this->sampleImage.Draw(draw, Box2D(0, 128, 128, 256), Color{ 1.f,1.f,1.f,0.3f });
+		rm->GetTextureData("test")->Draw(draw, Box2D(0, 128, 128, 256), Color{ 1.f,1.f,1.f,0.3f });
 	}
 	else
 	{
-		this->sampleImage.Draw(draw, Box2D(0, 0, 128, 128), Color{ 1.f,1.f,1.f,0.3f });
+		rm->GetTextureData("test")->Draw(draw, Box2D(0, 0, 128, 128), Color{ 1.f,1.f,1.f,0.3f });
 	}
 	this->LineDraw();
 }
@@ -94,7 +95,6 @@ void TestObject::Render2D()
 bool TestObject::Finalize()
 {
 	std::cout << "TestObject:" << "Finalize()" << std::endl;
-	this->sampleImage.Finalize();
 	if (this->GetNextTask() && !OGge->GetDeleteEngine())
 	{
 		

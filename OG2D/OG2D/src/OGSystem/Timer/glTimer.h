@@ -1,3 +1,4 @@
+///ŽÀŽžŠÔ‚ð“±‚­‚½‚ß‚Ìclass
 #pragma once
 
 #include "OGSystem\_OGsystem.h"

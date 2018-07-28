@@ -16,7 +16,7 @@ public:
 	void UpDate();
 	void Render2D();
 	bool Finalize();
-	Texture sampleImage;
+	//Texture sampleImage;
 	bool isMove;
 	bool isHit;
 };
