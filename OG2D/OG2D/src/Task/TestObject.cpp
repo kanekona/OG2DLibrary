@@ -55,7 +55,7 @@ void TestObject::UpDate()
 		{
 			this->position.x += 1.0f;
 		}
-		auto t = OGge->GetTask_<TestObject>("testobj");
+		auto t = OGge->GetTask<TestObject>("testobj");
 		if (t)
 		{
 			if (this->IsObjectDistanceCheck(t->position, t->Scale))

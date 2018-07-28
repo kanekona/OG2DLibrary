@@ -80,31 +80,17 @@ void EngineSystem::Update()
 void EngineSystem::Task_UpDate()
 {
 	//“o˜^ƒ^ƒXƒN‚ÌXVˆ—‚ğŒÄ‚Ô
-	for (int id = 0; id < this->taskobjects.size();++id)
+	for (int id = 0; id < this->taskObjects.size(); ++id)
 	{
-		if (this->taskobjects[id].second->GetKillCount() == 0) 
+		if (this->taskObjects[id].second->GetKillCount() == 0)
 		{
 			if (!this->GetPause())
 			{
-				this->taskobjects[id].second->T_UpDate();
+				this->taskObjects[id].second->T_UpDate();
 			}
 			else
 			{
-				this->taskobjects[id].second->T_Pause();
-			}
-		}
-	}
-	for (int id = 0; id < this->taskobjects_.size(); ++id)
-	{
-		if (this->taskobjects_[id].second->GetKillCount() == 0)
-		{
-			if (!this->GetPause())
-			{
-				this->taskobjects_[id].second->T_UpDate();
-			}
-			else
-			{
-				this->taskobjects_[id].second->T_Pause();
+				this->taskObjects[id].second->T_Pause();
 			}
 		}
 	}
@@ -112,18 +98,11 @@ void EngineSystem::Task_UpDate()
 void EngineSystem::Task_Render_AF()
 {
 	//•`‰æ‡‚ÉDraw2D‚ğÀs‚·‚é
-	for (int i = 0; i < this->taskobjects.size(); ++i)
+	for (int id = 0; id < this->taskObjects.size(); ++id)
 	{
-		if (this->taskobjects[this->Orders[i].id].second->GetKillCount() == 0)
+		if (this->taskObjects[this->Orders[id].id].second->GetKillCount() == 0)
 		{
-			this->taskobjects[this->Orders[i].id].second->T_Render();
-		}
-	}
-	for (int id = 0; id < this->taskobjects_.size(); ++id)
-	{
-		if (this->taskobjects_[this->Orders[id].id].second->GetKillCount() == 0)
-		{
-			this->taskobjects_[this->Orders[id].id].second->T_Render();
+			this->taskObjects[this->Orders[id].id].second->T_Render();
 		}
 	}
 }
@@ -143,17 +122,17 @@ void EngineSystem::ConfigDrawOrder()
 {
 	//•`‰æ‡‚Ìİ’è
 	//“o˜^ƒ^ƒXƒN•ª‚Ì•`‰æ‡‚ğ“ü‚ê‚Ä‚¨‚­class‚ğì‚Á‚Ä‚¨‚­
-	this->Orders.resize(this->taskobjects_.size());
+	this->Orders.resize(this->taskObjects.size());
 	//‰Šúó‘Ô‚ğƒRƒs[‚·‚é
-	for (int i = 0; i < this->taskobjects_.size(); ++i)
+	for (int i = 0; i < this->taskObjects.size(); ++i)
 	{
 		this->Orders[i].id = i;
-		this->Orders[i].order_s = this->taskobjects_[i].second->GetDrawOrder();
+		this->Orders[i].order_s = this->taskObjects[i].second->GetDrawOrder();
 	}
 	//•`‰æ‡‚É‡‚í‚¹‚Äid‚Æorder‚ğ•À‚Ñ‘Ö‚¦‚é
-	for (int i = 0; i < this->taskobjects_.size(); ++i)
+	for (int i = 0; i < this->taskObjects.size(); ++i)
 	{
-		for (int j = i; j < this->taskobjects_.size(); ++j)
+		for (int j = i; j < this->taskObjects.size(); ++j)
 		{
 			if (this->Orders[i].order_s > this->Orders[j].order_s)
 			{
@@ -206,74 +185,38 @@ void EngineSystem::ChengeTask()
 	this->SetPause(false);
 	//this->soundManager->AllDelete();
 }
-void EngineSystem::SetTaskObject(const TaskObject::SP& To)
-{
-	//ƒ^ƒXƒN‚ğ“o˜^—\’è‚É“o˜^
-	this->addTaskObjects.push_back(To);
-}
 void EngineSystem::SetTaskObject(TaskObject* To)
 {
-	this->addTaskObjects_.push_back(To);
+	this->addTaskObjects.push_back(To);
 }
 void EngineSystem::TaskApplication()
 {
 	//“o˜^—\’è‚Ì‚à‚Ì‚ğ“o˜^‚·‚é
-	for (int i = 0; i < this->addTaskObjects.size(); ++i)
+	for (int id = 0; id < this->addTaskObjects.size(); ++id)
 	{
-		std::pair<DWORD, TaskObject::SP> d;
-		d.second = this->addTaskObjects[i];
+		std::pair<DWORD, TaskObject*> d;
+		d.second = this->addTaskObjects[id];
 		if (d.second->GetNextTask())
 		{
-			this->taskobjects.push_back(d);
+			this->taskObjects.push_back(d);
 		}
 	}
 	addTaskObjects.clear();
-	for (int id = 0; id < this->addTaskObjects_.size(); ++id)
-	{
-		std::pair<DWORD, TaskObject*> d;
-		d.second = this->addTaskObjects_[id];
-		if (d.second->GetNextTask())
-		{
-			this->taskobjects_.push_back(d);
-		}
-	}
-	addTaskObjects_.clear();
 }
 void EngineSystem::TaskKillCheck()
 {
 	//íœ—\’è‚Ìƒ^ƒXƒN‚ğíœ‚·‚é
-	auto id = this->taskobjects.begin();
-	while (id != this->taskobjects.end())
-	{
-		if (id->second)
-		{
-			if (id->second->GetKillCount() > 0)
-			{
-				this->taskobjects.erase(id);
-				this->TaskApplication();
-				id = this->taskobjects.begin();
-			}
-			else
-			{
-				++id;
-			}
-		}
-		else
-		{
-			++id;
-		}
-	}
-	auto id2 = this->taskobjects_.begin();
-	while (id2 != this->taskobjects_.end())
+	auto id2 = this->taskObjects.begin();
+	while (id2 != this->taskObjects.end())
 	{
 		if (id2->second)
 		{
 			if (id2->second->GetKillCount() > 0)
 			{
 				delete id2->second;
-				this->taskobjects_.erase(id2);
+				this->taskObjects.erase(id2);
 				this->TaskApplication();
-				id2 = this->taskobjects_.begin();
+				id2 = this->taskObjects.begin();
 			}
 			else
 			{
@@ -288,20 +231,13 @@ void EngineSystem::TaskKillCheck()
 }
 bool EngineSystem::CheckAddTask()
 {
-	return this->addTaskObjects_.size() > 0;
+	return this->addTaskObjects.size() > 0;
 }
 bool EngineSystem::CheckKillTask()
 {
-	for (int i = 0; i < this->taskobjects.size(); ++i)
+	for (int i = 0; i < this->taskObjects.size(); ++i)
 	{
-		if (taskobjects[i].second->GetKillCount() > 0)
-		{
-			return true;
-		}
-	}
-	for (int i = 0; i < this->taskobjects_.size(); ++i)
-	{
-		if (this->taskobjects_[i].second->GetKillCount() > 0)
+		if (this->taskObjects[i].second->GetKillCount() > 0)
 		{
 			return true;
 		}
@@ -312,20 +248,12 @@ void EngineSystem::AllTaskDelete()
 {
 	//‘Síœ
 	{
-		auto id = this->taskobjects.begin();
-		while (id != this->taskobjects.end())
-		{
-			this->taskobjects.erase(id);
-			id = this->taskobjects.begin();
-		}
-	}
-	{
-		auto id = this->taskobjects_.begin();
-		while (id != this->taskobjects_.end())
+		auto id = this->taskObjects.begin();
+		while (id != this->taskObjects.end())
 		{
 			delete id->second;
-			this->taskobjects_.erase(id);
-			id = this->taskobjects_.begin();
+			this->taskObjects.erase(id);
+			id = this->taskObjects.begin();
 		}
 	}
 }

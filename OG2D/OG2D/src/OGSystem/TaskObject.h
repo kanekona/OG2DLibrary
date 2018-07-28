@@ -3,10 +3,6 @@
 
 class TaskObject
 {
-public:
-	typedef std::shared_ptr<TaskObject> SP;	//スマートポインタ
-	typedef std::weak_ptr<TaskObject> WP;	//サブオーバー
-	WP me;									//自分の情報
 private:
 	bool NextTask;							//終了時に次のタスクを生成できるか
 	int KillCount;							//削除するかどうかの判断用

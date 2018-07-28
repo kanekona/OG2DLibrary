@@ -45,10 +45,8 @@ class EngineSystem
 	Vec2 w_pos;			//WindowPosition
 	std::vector<OrderCheck> Orders;	//描画順
 	bool DeleteEngine;	//Engine終了状況
-	std::vector<std::pair<DWORD, TaskObject::SP>> taskobjects;	//タスクオブジェクト達
-	std::vector<TaskObject::SP> addTaskObjects;	//登録予定タスク達
-	std::vector<std::pair<DWORD, TaskObject*>> taskobjects_;
-	std::vector<TaskObject*> addTaskObjects_;
+	std::vector<std::pair<DWORD, TaskObject*>> taskObjects;
+	std::vector<TaskObject*> addTaskObjects;
 public:
 	Camera2D * camera;		//カメラ2D
 	Window* window;			//window
@@ -81,65 +79,14 @@ public:
 	bool GetEnd() const;		//アプリケーション終了を返す
 	void ChengeTask();			//タスク変更時処理
 	void TaskGameUpDate();		//タスク達の更新処理
-	void SetTaskObject(			//タスクを登録
-		const TaskObject::SP&);
 	void SetTaskObject(
 		TaskObject*);
 	bool GetDeleteEngine();		//エンジン終了を返す
 	void SetDeleteEngine(const bool);	//エンジン終了登録
 	//タスク検索(最初の同名のタスクを返す)
-	template <class T> std::shared_ptr<T> GetTask(const std::string& taskName)
+	template <class T> T* GetTask(const std::string& taskName)
 	{
-		for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
-		{
-			if ((*id).second)
-			{
-				if ((*id).second->GetTaskName() == taskName)
-				{
-					return std::static_pointer_cast<T>((*id).second);
-				}
-			}
-		}
-		for (auto id = this->addTaskObjects.begin(); id != this->addTaskObjects.end(); ++id)
-		{
-			if ((*id))
-			{
-				if ((*id)->GetTaskName() == taskName)
-				{
-					return std::static_pointer_cast<T>(*id);
-				}
-			}
-		}
-		return nullptr;
-	}
-	template <class T> std::shared_ptr<std::vector<std::shared_ptr<T>>> GetTasks(const std::string& taskName)
-	{
-		std::shared_ptr<std::vector<std::shared_ptr<T>>> w = std::shared_ptr<std::vector<std::shared_ptr<T>>>(new std::vector<std::shared_ptr<T>> ());
-		for (auto id = this->taskobjects.begin(); id != this->taskobjects.end(); ++id)
-		{
-			if ((*id).second)
-			{
-				if ((*id).second->GetTaskName() == taskName)
-				{
-					w->push_back(std::static_pointer_cast<T>((*id).second));
-				}
-			}
-		}
-		for (auto id = this->addTaskObjects.begin(); id != this->addTaskObjects.end(); ++id)
-		{
-			if ((*id))
-			{
-				if ((*id)->GetTaskName() == taskName)
-				{
-					w->push_back(std::static_pointer_cast<T>((*id)));
-				}
-			}
-		}
-		return w;
-	}
-	template <class T> T* GetTask_(const std::string& taskName)
-	{
-		for (auto id = this->taskobjects_.begin(); id != this->taskobjects_.end(); ++id)
+		for (auto id = this->taskObjects.begin(); id != this->taskObjects.end(); ++id)
 		{
 			if (id->second)
 			{
@@ -149,7 +96,7 @@ public:
 				}
 			}
 		}
-		for (auto id = this->addTaskObjects_.begin(); id != this->addTaskObjects_.end(); ++id)
+		for (auto id = this->addTaskObjects.begin(); id != this->addTaskObjects.end(); ++id)
 		{
 			if (*id)
 			{
@@ -161,26 +108,26 @@ public:
 		}
 		return nullptr;
 	}
-	template <class T> std::vector<T*> GetTasks_(const std::string& taskName)
+	template <class T> std::vector<T*> GetTasks(const std::string& taskName)
 	{
-		std::vector<T*> w = new std::vector<T*>;
-		for (auto id = this->taskobjects_.begin(); id != this->taskobjects_.end(); ++id)
+		std::vector<T*> w;
+		for (auto id = this->taskObjects.begin(); id != this->taskObjects.end(); ++id)
 		{
 			if (id->second)
 			{
 				if (id->second->GetTaskName() == taskName)
 				{
-					//w->push_back(std::static_pointer_cast<T>(id->second));
+					w.push_back((T*)id->second);
 				}
 			}
 		}
-		for (auto id = this->addTaskObjects_.begin(); id != this->addTaskObjects_.end(); ++id)
+		for (auto id = this->addTaskObjects.begin(); id != this->addTaskObjects.end(); ++id)
 		{
-			if (id)
+			if (*id)
 			{
-				if (id->GetTaskName() == taskName)
+				if ((*id)->GetTaskName() == taskName)
 				{
-					//w->push_back(std::static_pointer_cast<T>(id));
+					w.push_back((T*)(*id));
 				}
 			}
 		}
