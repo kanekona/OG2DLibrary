@@ -127,23 +127,27 @@ namespace Shader
 	void use(const GLuint program) {
 		glUseProgram(program);
 	}
-	void SetViewPort(float cl, float cr, float cb, float ct, float cn, float cf)
+	void SetModelView(float cl, float cr, float cb, float ct, float cn, float cf)
 	{
-		promaterix[0] = 2.f / (cr - cl);
-		promaterix[1] = 0.f;
-		promaterix[2] = 0.f;
-		promaterix[3] = (cr + cl) / (cr - cl) * -1;
-		promaterix[4] = 0.f;
-		promaterix[5] = 2.f / (ct - cb);
-		promaterix[6] = 0.f;
-		promaterix[7] = (ct + cb) / (ct - cb) * -1;
-		promaterix[8] = 0.f;
-		promaterix[9] = 0.f;
-		promaterix[10] = 2.f / (cf - cn);
-		promaterix[11] = (cf + cn) / (cf - cn) * -1;
-		promaterix[12] = 0.f;
-		promaterix[13] = 0.f;
-		promaterix[14] = 0.f;
-		promaterix[15] = 1.0f;
+		modelmaterix[0] = 2.f / (cr - cl);
+		modelmaterix[1] = 0.f;
+		modelmaterix[2] = 0.f;
+		modelmaterix[3] = (cr + cl) / (cr - cl) * -1;
+		modelmaterix[4] = 0.f;
+		modelmaterix[5] = 2.f / (ct - cb);
+		modelmaterix[6] = 0.f;
+		modelmaterix[7] = (ct + cb) / (ct - cb) * -1;
+		modelmaterix[8] = 0.f;
+		modelmaterix[9] = 0.f;
+		modelmaterix[10] = 2.f / (cf - cn);
+		modelmaterix[11] = (cf + cn) / (cf - cn) * -1;
+		modelmaterix[12] = 0.f;
+		modelmaterix[13] = 0.f;
+		modelmaterix[14] = 0.f;
+		modelmaterix[15] = 1.0f;
+	}
+	void SetProjectionView(float x, float y, float w, float h)
+	{
+
 	}
 }
