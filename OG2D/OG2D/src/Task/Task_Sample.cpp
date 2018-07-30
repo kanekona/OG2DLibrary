@@ -5,18 +5,13 @@ bool Sample::Initialize()
 {
 	__super::Init("Sample");
 	auto testObject = TestObject::Create(true);
-	TestObject::Create(true);
+	TestObject::Create(false);
 	__super::SetDrawOrder(0.0f);
 	return true;
 }
 
 void Sample::UpDate()
 {
-	auto test = OGge->GetTasks<TestObject>("TestObject");
-	for (auto id = test.begin(); id != test.end(); ++id)
-	{
-		(*id)->TestCheck();
-	}
 }
 
 void Sample::Render2D()

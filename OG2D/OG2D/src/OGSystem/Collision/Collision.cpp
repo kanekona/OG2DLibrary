@@ -41,32 +41,35 @@ bool CollisionBox::hitBox(const CollisionBox& b)
 			return true;
 		}
 	}
-	//for (int i = 0; i < 4; ++i)
-	//{
-	//	Vec2 mainvec = _v[(i + 1) % 4] - _v[i % 4];
-	////	for (int j = 0; j < 4; ++j)
-	//	{
-	//		/*Vec2 v3 = _ver[j % 4] - _v[i % 4];
-	//		Vec2 v4 = _ver[(j + 1) % 4] - _v[i % 4];
-	//		if ((((mainvec.x * v3.y) - (mainvec.y * v3.x))*((mainvec.x * v4.y) - (mainvec.y * v4.x))) < 0)
-	//		{
-	//			return true;
-	//		}*/
-	//		if (
-	//			((mainvec.x * (_ver[0].y - _v[i].y)) - (mainvec.y * (_ver[0].x - _v[i].x)))*
-	//			((mainvec.x * (_ver[1].y - _v[i].y)) - (mainvec.y * (_ver[1].x - _v[i].x))) < 0 ||
-	//			((mainvec.x * (_ver[1].y - _v[i].y)) - (mainvec.y * (_ver[1].x - _v[i].x)))*
-	//			((mainvec.x * (_ver[2].y - _v[i].y)) - (mainvec.y * (_ver[2].x - _v[i].x))) < 0 ||
-	//			((mainvec.x * (_ver[2].y - _v[i].y)) - (mainvec.y * (_ver[2].x - _v[i].x)))*
-	//			((mainvec.x * (_ver[3].y - _v[i].y)) - (mainvec.y * (_ver[3].x - _v[i].x))) < 0 ||
-	//			((mainvec.x * (_ver[3].y - _v[i].y)) - (mainvec.y * (_ver[3].x - _v[i].x)))*
-	//			((mainvec.x * (_ver[0].y - _v[i].y)) - (mainvec.y * (_ver[0].x - _v[i].x))) < 0
-	//			)
-	//		{
-	//			return true;
-	//		}
-	//	}
-	//}
+	{
+		for (int i = 0; i < 4; ++i)
+		{
+			//オブジェクトAの終点-始点の方向ベクトル
+			Vec2 mainvec = _v[(i + 1) % 4] - _v[i % 4];
+			for (int j = 0; j < 4; ++j)
+			{
+				//オブジェクトBの終点-始点の方向ベクトル
+				Vec2 subvec = _ver[(j + 1) % 4] - _ver[j % 4];
+				Vec2 v = _ver[j % 4] - _v[i % 4];
+				//外積計算
+				float crs = OG::cross(mainvec, subvec);
+				if (crs == 0.0f)
+				{
+					//平行状態
+					continue;
+				}
+				float crs_v1 = OG::cross(v, mainvec);
+				float crs_v2 = OG::cross(v, subvec);
+				float t1 = crs_v2 / crs;
+				float t2 = crs_v1 / crs;
+				if (t1 > 0.f && t1 < 1.f && t2 > 0.f && t2 < 1.f)
+				{
+					//交差していない
+					return true;
+				}
+			}
+		}
+	}
 	return false;
 }
 //長方形×円

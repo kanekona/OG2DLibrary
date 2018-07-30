@@ -220,13 +220,13 @@ float OG::inner(const int _x1, const int _y1, const int _x2, const int _y2) {
 	return (float)((_x1 * _x2) + (_y1*_y2));
 }
 float OG::cross(const Vec2& _v1, const Vec2& _v2) {
-	return ((_v1.x * _v2.x) - (_v1.y*_v2.y));
+	return ((_v1.x * _v2.y) - (_v1.y*_v2.x));
 }
 float OG::cross(const float _x1, const float _y1, const float _x2, const float _y2) {
-	return ((_x1 * _x2) - (_y1*_y2));
+	return ((_x1 * _y2) - (_y1*_x2));
 }
 float OG::cross(const int _x1, const int _y1, const int _x2, const int _y2) {
-	return (float)((_x1 * _x2) - (_y1*_y2));
+	return (float)((_x1 * _y2) - (_y1*_x2));
 }
 float OG::doubleinner(const Vec2& _v) {
 	return inner(_v, _v);
