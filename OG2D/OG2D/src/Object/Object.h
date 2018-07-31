@@ -23,7 +23,7 @@ public:
 	float angle;									//回転度
 	CollisionBox collisionCube;						//矩形当たり判定
 	CollisionCircle collisionBall;					//円当たり判定
-	bool Gravity;									//重力の有無
+	bool isGravity;									//重力の有無
 	float mass;										//質量
 	bool hit(GameObject& o);						//GameObject同士の当たり判定
 	bool CubeHit(GameObject& o);					//簡易版回転なし判定
@@ -45,6 +45,8 @@ public:
 	void LineDraw();								//当たり判定をラインを引いて確認用
 	void CheckON();									//当たり判定を起動する
 	bool IsObjectDistanceCheck(const Vec2& pos, const Vec2& size);	//当たり判定を行う範囲内かどうかを返します。
-	void LineDistanceDraw();
+	void LineDistanceDraw();						//大雑把な判定を表示する
+	virtual void Move();							//初期設定移動処理(未実装)
+	virtual void Friction();						//初期設定重力処理(未実装)
 private:
 };

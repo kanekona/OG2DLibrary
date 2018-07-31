@@ -1,7 +1,7 @@
 #include "Object.h"
 GameObject::GameObject() {
 	//Še•Ï”‚Ì‰Šú‰»
-	this->Gravity = false;
+	this->isGravity = false;
 	this->angle = 0.f;
 	this->objform = Objform::Non;
 	this->mass = 0.f;

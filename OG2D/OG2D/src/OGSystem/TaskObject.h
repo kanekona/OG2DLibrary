@@ -12,6 +12,7 @@ private:
 	float order;							//•`‰æ‡”Ô
 	bool isPause;							//ŒÄ‚Î‚ê‚éXV•ªŠò
 public:
+	TaskObject* Child;
 	TaskObject();
 	virtual ~TaskObject();
 	bool Init(const std::string&);			//‰Šú‰»ˆ—
