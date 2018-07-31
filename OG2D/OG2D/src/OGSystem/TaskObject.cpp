@@ -90,3 +90,18 @@ bool TaskObject::GetPause() const
 {
 	return this->isPause;
 }
+void TaskObject::Stop(const bool flag)
+{
+	if (flag)
+	{
+		this->KillCount = -1;
+	}
+	else
+	{
+		this->KillCount = 0;
+	}
+}
+bool TaskObject::GetIsStop() const
+{
+	return this->KillCount == 0 ? true : false;
+}

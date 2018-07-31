@@ -75,6 +75,7 @@ public:
 	void SetIcon(const std::string&);	//アイコン使用画像設定
 	void SetPause(const bool);	//ポーズ設定
 	bool GetPause() const;		//ポーズを返す
+	void AllStop(const bool = true);
 	void GameEnd();				//アプリケーション終了登録
 	bool GetEnd() const;		//アプリケーション終了を返す
 	void ChengeTask();			//タスク変更時処理

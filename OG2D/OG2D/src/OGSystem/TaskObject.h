@@ -1,6 +1,8 @@
 #pragma once
 #include "_OGsystem.h"
-
+///KillCount 0 : 通常更新
+///			 1~: 終了予定
+///			 -1: 更新停止
 class TaskObject
 {
 private:
@@ -28,5 +30,7 @@ public:
 	std::string GetTaskName() const;		//タスク名を返す
 	bool GetPause() const;
 	void SetPause(const bool);
+	void Stop(const bool = true);
+	bool GetIsStop() const;
 private:
 };

@@ -100,7 +100,7 @@ void EngineSystem::Task_Render_AF()
 	//•`‰æ‡‚ÉDraw2D‚ğÀs‚·‚é
 	for (int id = 0; id < this->taskObjects.size(); ++id)
 	{
-		if (this->taskObjects[this->Orders[id].id].second->GetKillCount() == 0)
+		if (this->taskObjects[this->Orders[id].id].second->GetKillCount() <= 0)
 		{
 			this->taskObjects[this->Orders[id].id].second->T_Render();
 		}
@@ -280,6 +280,17 @@ void EngineSystem::ShowNameAddedObject()
 		std::cout << (*id).second->GetTaskName() << ":";
 	}
 	std::cout << std::endl;
+}
+void EngineSystem::AllStop(const bool flag)
+{
+	for (auto id = taskObjects.begin(); id != taskObjects.end(); ++id)
+	{
+		id->second->Stop(flag);
+	}
+	for (auto id = addTaskObjects.begin(); id != addTaskObjects.end(); ++id)
+	{
+		(*id)->Stop(flag);
+	}	
 }
 EngineSystem* OGge;
 ResourceManager* rm;
