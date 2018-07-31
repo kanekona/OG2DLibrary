@@ -45,7 +45,7 @@ class EngineSystem
 	Vec2 w_pos;			//WindowPosition
 	std::vector<OrderCheck> Orders;	//描画順
 	bool DeleteEngine;	//Engine終了状況
-	std::vector<std::pair<DWORD, TaskObject*>> taskObjects;
+	std::vector<std::pair<unsigned short, TaskObject*>> taskObjects;
 	std::vector<TaskObject*> addTaskObjects;
 public:
 	Camera2D * camera;		//カメラ2D
@@ -83,6 +83,7 @@ public:
 		TaskObject*);
 	bool GetDeleteEngine();		//エンジン終了を返す
 	void SetDeleteEngine(const bool);	//エンジン終了登録
+	void ShowNameAddedObject();		//登録されているTaskの名を表示する
 	//タスク検索(最初の同名のタスクを返す)
 	template <class T> T* GetTask(const std::string& taskName)
 	{

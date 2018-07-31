@@ -194,7 +194,8 @@ void EngineSystem::TaskApplication()
 	//“o˜^—\’è‚Ì‚à‚Ì‚ð“o˜^‚·‚é
 	for (int id = 0; id < this->addTaskObjects.size(); ++id)
 	{
-		std::pair<DWORD, TaskObject*> d;
+		std::pair<unsigned short, TaskObject*> d;
+		d.first = 0;
 		d.second = this->addTaskObjects[id];
 		if (d.second->GetNextTask())
 		{
@@ -271,6 +272,14 @@ bool EngineSystem::GetDeleteEngine()
 {
 	//ƒGƒ“ƒWƒ“I—¹‚ð•Ô‚·
 	return this->DeleteEngine;
+}
+void EngineSystem::ShowNameAddedObject()
+{
+	for (auto id = this->taskObjects.begin(); id != this->taskObjects.end(); ++id)
+	{
+		std::cout << (*id).second->GetTaskName() << ":";
+	}
+	std::cout << std::endl;
 }
 EngineSystem* OGge;
 ResourceManager* rm;

@@ -41,30 +41,32 @@ bool CollisionBox::hitBox(const CollisionBox& b)
 			return true;
 		}
 	}
-	for (int i = 0; i < 4; ++i)
 	{
-		//オブジェクトAの終点-始点の方向ベクトル
-		Vec2 mainvec = _v[(i + 1) % 4] - _v[i % 4];
-		for (int j = 0; j < 4; ++j)
+		for (int i = 0; i < 4; ++i)
 		{
-			//オブジェクトBの終点-始点の方向ベクトル
-			Vec2 subvec = _ver[(j + 1) % 4] - _ver[j % 4];
-			Vec2 v = _ver[j % 4] - _v[i % 4];
-			//外積計算
-			float crs = OG::cross(mainvec, subvec);
-			if (crs == 0.0f)
+			//オブジェクトAの終点-始点の方向ベクトル
+			Vec2 mainvec = _v[(i + 1) % 4] - _v[i % 4];
+			for (int j = 0; j < 4; ++j)
 			{
-				//平行状態
-				continue;
-			}
-			float crs_v1 = OG::cross(v, mainvec);
-			float crs_v2 = OG::cross(v, subvec);
-			float t1 = crs_v2 / crs;
-			float t2 = crs_v1 / crs;
-			if (t1 > 0.f && t1 < 1.f && t2 > 0.f && t2 < 1.f)
-			{
-				//交差している時
-				return true;
+				//オブジェクトBの終点-始点の方向ベクトル
+				Vec2 subvec = _ver[(j + 1) % 4] - _ver[j % 4];
+				Vec2 v = _ver[j % 4] - _v[i % 4];
+				//外積計算
+				float crs = OG::cross(mainvec, subvec);
+				if (crs == 0.0f)
+				{
+					//平行状態
+					continue;
+				}
+				float crs_v1 = OG::cross(v, mainvec);
+				float crs_v2 = OG::cross(v, subvec);
+				float t1 = crs_v2 / crs;
+				float t2 = crs_v1 / crs;
+				if (t1 > 0.f && t1 < 1.f && t2 > 0.f && t2 < 1.f)
+				{
+					//交差してる
+					return true;
+				}
 			}
 		}
 	}

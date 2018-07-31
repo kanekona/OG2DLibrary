@@ -17,6 +17,7 @@ bool TestObject::Initialize()
 	{
 		__super::Init("testobj");
 		this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128));
+		this->angle = 32;
 	}
 	
 	//this->sampleImage.Create("Collision.png");
