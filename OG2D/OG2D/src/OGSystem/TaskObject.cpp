@@ -33,6 +33,10 @@ void TaskObject::T_Render()
 void TaskObject::Kill(const bool on)
 {
 	this->NextTask = on;
+	if (this->KillCount < 0)
+	{
+		this->KillCount++;
+	}
 	this->KillCount++;
 }
 int TaskObject::GetKillCount()
@@ -92,6 +96,10 @@ bool TaskObject::GetPause() const
 }
 void TaskObject::Stop(const bool flag)
 {
+	if (this->KillCount > 0)
+	{
+		return;
+	}
 	if (flag)
 	{
 		this->KillCount = -1;

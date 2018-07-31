@@ -285,11 +285,17 @@ void EngineSystem::AllStop(const bool flag)
 {
 	for (auto id = taskObjects.begin(); id != taskObjects.end(); ++id)
 	{
-		id->second->Stop(flag);
+		if (id->second)
+		{
+			id->second->Stop(flag);
+		}
 	}
 	for (auto id = addTaskObjects.begin(); id != addTaskObjects.end(); ++id)
 	{
-		(*id)->Stop(flag);
+		if ((*id))
+		{
+			(*id)->Stop(flag);
+		}
 	}	
 }
 EngineSystem* OGge;
