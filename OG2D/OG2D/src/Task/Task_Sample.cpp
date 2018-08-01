@@ -5,7 +5,6 @@ bool Sample::Initialize()
 {
 	__super::Init("Sample");
 	auto testObject = TestObject::Create(true);
-	testObject->Stop();
 	TestObject::Create(false);
 	__super::SetDrawOrder(0.0f);
 	return true;

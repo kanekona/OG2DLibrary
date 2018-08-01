@@ -11,13 +11,13 @@ bool TestObject::Initialize()
 	if (isMove)
 	{
 		__super::Init(taskName);
-		this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128));
+		this->CreateObject(Cube, Vec2(263, 458), Vec2(64, 64));
 	}
 	else
 	{
 		__super::Init("testobj");
-		this->CreateObject(Cube, Vec2(200, 200), Vec2(128, 128));
-		this->angle = 32;
+		this->CreateObject(Cube, Vec2(1344, 512), Vec2(128, 64));
+		this->angle = 0;
 	}
 	
 	//this->sampleImage.Create("Collision.png");

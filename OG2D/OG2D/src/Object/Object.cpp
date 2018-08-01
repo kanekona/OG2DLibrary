@@ -230,3 +230,13 @@ void GameObject::LineDistanceDraw()
 	Box2D d(this->position.x - this->Scale.x, this->position.y - this->Scale.y, this->position.x + (this->Scale.x * 2), this->position.y + (this->Scale.y * 2));
 	OG::LineHitDraw(&d);
 }
+
+void GameObject::Move()
+{
+
+}
+
+void GameObject::Friction()
+{
+
+}
