@@ -94,12 +94,18 @@ ResourceManager::~ResourceManager()
 {
 	for (auto& d : this->soundData)
 	{
-		delete d.second;
+		if (d.second)
+		{
+			delete d.second;
+		}
 	}
 	for (auto& d : this->textureData)
 	{
-		d.second->Finalize();
-		delete d.second;
+		if (d.second)
+		{
+			d.second->Finalize();
+			delete d.second;
+		}
 	}
 	this->soundData.clear();
 	this->textureData.clear();
@@ -111,7 +117,11 @@ bool ResourceManager::DeleteTexture(const std::string& name)
 	{
 		if ((*id).first == name)
 		{
-			(*id).second->Finalize();
+			if ((*id).second)
+			{
+				(*id).second->Finalize();
+				delete (*id).second;
+			}
 			this->textureData.erase(id);
 			return true;
 		}
@@ -125,6 +135,10 @@ bool ResourceManager::DeleteSound(const std::string& name)
 	{
 		if ((*id).first == name)
 		{
+			if ((*id).second)
+			{
+				delete (*id).second;
+			}
 			this->soundData.erase(id);
 			return true;
 		}

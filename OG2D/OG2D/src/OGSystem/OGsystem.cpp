@@ -47,7 +47,6 @@ bool EngineSystem::Initialize()
 	this->audiodevice = new Audio();
 	//各値の初期化
 	DebugFunction = false;
-	this->isPause = false;
 	this->end = false;
 	return true;
 }
@@ -84,14 +83,7 @@ void EngineSystem::Task_UpDate()
 	{
 		if (this->taskObjects[id].second->GetKillCount() == 0)
 		{
-			if (!this->GetPause())
-			{
-				this->taskObjects[id].second->T_UpDate();
-			}
-			else
-			{
-				this->taskObjects[id].second->T_Pause();
-			}
+			this->taskObjects[id].second->T_UpDate();
 		}
 	}
 }
@@ -102,14 +94,14 @@ void EngineSystem::Task_Render_AF()
 	{
 		if (this->taskObjects[this->Orders[id].id].second->GetKillCount() <= 0)
 		{
-			this->taskObjects[this->Orders[id].id].second->T_Render();
+			this->taskObjects[this->Orders[id].id].second->Render2D();
 		}
 	}
 }
 void EngineSystem::TaskGameUpDate()
 {
 	this->Task_UpDate();		//更新処理
-	this->camera->CameraUpdate();	//カメラ処理
+	this->camera->UpDate();	//カメラ処理
 	this->Task_Render_AF();		//描画処理
 	if (this->CheckAddTask() || this->CheckKillTask())
 	{
@@ -157,16 +149,6 @@ EngineSystem::~EngineSystem()
 	delete this->window;
 	delete this->camera;
 }
-void EngineSystem::SetPause(const bool ispause_)
-{
-	//ポーズ設定
-	this->isPause = ispause_;
-}
-bool EngineSystem::GetPause() const
-{
-	//ポーズ状況を返す
-	return this->isPause;
-}
 void EngineSystem::GameEnd()
 {
 	//アプリケーションの終了予定設定
@@ -182,7 +164,6 @@ void EngineSystem::ChengeTask()
 	//タスクを変更する際に元に戻したい処理
 	this->camera->SetPos(Vec2(0.f, 0.f));
 	this->camera->SetSize(this->window->GetSize());
-	this->SetPause(false);
 	//this->soundManager->AllDelete();
 }
 void EngineSystem::SetTaskObject(TaskObject* To)
@@ -255,6 +236,23 @@ void EngineSystem::AllTaskDelete()
 			delete id->second;
 			this->taskObjects.erase(id);
 			id = this->taskObjects.begin();
+		}
+	}
+}
+void EngineSystem::AllPause(const bool flag)
+{
+	for (auto id = taskObjects.begin(); id != taskObjects.end(); ++id)
+	{
+		if (id->second)
+		{
+			id->second->SetPause(flag);
+		}
+	}
+	for (auto id = addTaskObjects.begin(); id != addTaskObjects.end(); ++id)
+	{
+		if ((*id))
+		{
+			(*id)->SetPause(flag);
 		}
 	}
 }

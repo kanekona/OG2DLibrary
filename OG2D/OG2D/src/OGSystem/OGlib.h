@@ -110,7 +110,9 @@ public:
 	Color operator-(const Color&);
 	Color operator*(const Color&);
 };
-
+/**
+*namespace OG
+*/
 namespace OG
 {
 	float ToRadian(const  float  degree_);

@@ -18,7 +18,9 @@
 #include "Random\Random.h"
 #include "ResourceManager\ResourceManager.h"
 #include "TaskObject.h"
-
+/**
+*@brief	:描画順を管理するclass
+*/
 class OrderCheck
 {
 public:
@@ -30,62 +32,160 @@ public:
 	int id;
 	float order_s;
 };
-
+/**
+*@brief	:メインシステム処理
+*/
 class EngineSystem
 {
-	bool end;			//終了状況
-	int w_wi;			//WindowSize
-	int w_he;			//WindowSize
-	char* w_na;			//WindowName
-	bool w_sc;			//WindowMode
-	bool isPause;		//PauseCheck
-	bool Cursor_on;		//カーソル可視化
-	const std::string path;	//ファイルパス
-	std::string file;	//ファイル名
-	Vec2 w_pos;			//WindowPosition
-	std::vector<OrderCheck> Orders;	//描画順
-	bool DeleteEngine;	//Engine終了状況
+	//! 終了状況
+	bool end;
+	//! WindowSize_W
+	int w_wi;
+	//! WindowSize_H
+	int w_he;
+	//! WindowName
+	char* w_na;
+	//! WindowMode
+	bool w_sc;
+	//! カーソル可視化
+	bool Cursor_on;
+	//! ファイルパス
+	const std::string path;
+	//! ファイル名
+	std::string file;
+	//! WindowPosition
+	Vec2 w_pos;	
+	//! 描画順
+	std::vector<OrderCheck> Orders;
+	//! Engine終了状況
+	bool DeleteEngine;
+	//! 登録タスク
 	std::vector<std::pair<unsigned short, TaskObject*>> taskObjects;
+	//! 登録予定タスク
 	std::vector<TaskObject*> addTaskObjects;
 public:
-	Camera2D * camera;		//カメラ2D
-	Window* window;			//window
-	FPS* fps;				//フレームレート
-	Audio* audiodevice;		//デバイス管理
-	SoundManager* soundManager;	//サウンド管理
-	Input* in;				//入力管理
-	bool DebugFunction;			//デバッグ機能
-	EngineSystem();			//コンストラクタ
-	EngineSystem(			//コンストラクタ
-		const int,
-		const int,
-		char*,
-		const bool = false);
-	~EngineSystem();		//デストラクタ
-	
-	bool Initialize();		//初期化処理
-	void Update();			//更新処理
-	void SetWindow(			//Window情報登録
-		const int,
-		const int,
-		char*,
-		const bool = false);
-	void SetWindowPos(const Vec2&);	//Window生成位置設定
-	void SetCursorOn(const bool);	//カーソル可視化有無
-	void SetIcon(const std::string&);	//アイコン使用画像設定
-	void SetPause(const bool);	//ポーズ設定
-	bool GetPause() const;		//ポーズを返す
-	void AllStop(const bool = true);
-	void GameEnd();				//アプリケーション終了登録
-	bool GetEnd() const;		//アプリケーション終了を返す
-	void ChengeTask();			//タスク変更時処理
-	void TaskGameUpDate();		//タスク達の更新処理
+	//! カメラ2D
+	Camera2D * camera;
+	//! window
+	Window* window;
+	//! フレームレート
+	FPS* fps;
+	//! デバイス管理
+	Audio* audiodevice;
+	//! サウンド管理
+	SoundManager* soundManager;
+	//! 入力管理
+	Input* in;
+	//! デバッグ機能
+	bool DebugFunction;
+	/**
+	*@brief	:constructor
+	*/
+	EngineSystem();
+	/**
+	*@brief	:constructor
+	*@param	:int x WindowSizeX
+	*@param	:int y WindowSizeY
+	*@param	:char* name WindowName
+	*@param	:bool flag ScreenMode
+	*/
+	EngineSystem(
+		const int x,
+		const int y,
+		char* name,
+		const bool flag = false);
+	/**
+	*@brief	:destructor
+	*/
+	~EngineSystem();
+	/**
+	*@brief	:初期化処理
+	*@return:成功でtrue
+	*/
+	bool Initialize();
+	/**
+	*@brief	:System更新処理
+	*/
+	void Update();
+	/**
+	*@brief	:Window情報登録
+	*@param	:int x WindowSizeX
+	*@param	:int y WindowSizeY
+	*@param	:char* name WindowName
+	*@param	:bool flag ScreenMode
+	*/
+	void SetWindow(
+		const int x,
+		const int y,
+		char* name,
+		const bool flag = false);
+	/**
+	*@brief	:Window生成位置登録
+	*@param	:Vec2 pos 位置情報
+	*/
+	void SetWindowPos(const Vec2& pos);
+	/**
+	*@brief	:カーソル可視化設定
+	*@param	:bool flag 可視化設定
+	*/
+	void SetCursorOn(const bool flag);
+	/**
+	*@brief	:アイコン画像設定
+	*@param	:string path ファイルパスファイルパス
+	*/
+	void SetIcon(const std::string& path);
+	/**
+	*@brief	:全タスクの停止設定
+	*@param	:bool flag 停止設定
+	*/
+	void AllStop(const bool flag = true);
+	/**
+	*@brief	:全タスクのポーズ設定
+	*@param	:bool flag ポーズ設定
+	*/
+	void AllPause(const bool flag = true);
+	/**
+	*@brief	:アプリケーション終了
+	*/
+	void GameEnd();
+	/**
+	*@brief	:終了設定を返す
+	*@return:bool 終了設定
+	*/
+	bool GetEnd() const;
+	/**
+	*@brief	:タスク変更時処理
+	*/
+	void ChengeTask();
+	/**
+	*@brief	:タスク達の更新処理
+	*/
+	void TaskGameUpDate();
+	/**
+	*@brief	:タスクを登録する
+	*@param	:TaskObject* task タスク
+	*/
 	void SetTaskObject(
-		TaskObject*);
-	bool GetDeleteEngine();		//エンジン終了を返す
-	void SetDeleteEngine(const bool);	//エンジン終了登録
-	void ShowNameAddedObject();		//登録されているTaskの名を表示する
-	//タスク検索(最初の同名のタスクを返す)
+		TaskObject* task);
+	/**
+	*@brief	:エンジン終了を返す
+	*@return:bool エンジン終了設定
+	*/
+	bool GetDeleteEngine();
+	/**
+	*@brief	:エンジン終了を登録
+	*@param	:bool falg 終了設定
+	*/
+	void SetDeleteEngine(const bool flag);
+	/**
+	*@brief	:登録されているタスクを表示する
+	*/
+	void ShowNameAddedObject();
+	/**
+	*@brief	:タスク検索(最初の同名のタスクを返す)
+	*@param	:string taskName タスク名
+	*@return:指定単体タスクclass
+	*/
 	template <class T> T* GetTask(const std::string& taskName)
 	{
 		for (auto id = this->taskObjects.begin(); id != this->taskObjects.end(); ++id)
@@ -110,6 +210,11 @@ public:
 		}
 		return nullptr;
 	}
+	/**
+	*@brief	:タスク検索(同名すべてを返す)
+	*@param	:string taskName タスク名
+	*@return:指定複数タスクclass
+	*/
 	template <class T> std::vector<T*> GetTasks(const std::string& taskName)
 	{
 		std::vector<T*> w;
@@ -136,14 +241,40 @@ public:
 		return w;
 	}
 private:
-	void TaskApplication();	//タスク登録予定を登録する
-	void ConfigDrawOrder();	//描画順を設定する
-	bool CheckAddTask();	//登録予定のタスクの有無
-	bool CheckKillTask();	//削除予定のタスクの有無
-	void Task_UpDate();			//タスク更新処理
-	void Task_Render_AF();		//タスク描画処理
-	void TaskKillCheck();		//削除予定のタスクを削除
-	void AllTaskDelete();		//登録タスク全削除
+	/**
+	*@brief	:登録予定タスクを登録する
+	*/
+	void TaskApplication();
+	/**
+	*@brief	:描画順を設定する
+	*/
+	void ConfigDrawOrder();
+	/**
+	*@brief	:登録予定タスクの有無
+	*@return:登録予定タスクが存在すればtrue
+	*/
+	bool CheckAddTask();
+	/**
+	*@brief	:削除予定タスクの有無
+	*@return:削除予定タスクが存在すればtrue
+	*/
+	bool CheckKillTask();
+	/**
+	*@brief	:タスク更新処理
+	*/
+	void Task_UpDate();
+	/**
+	*@brief	:タスク描画処理
+	*/
+	void Task_Render_AF();
+	/**
+	*@brief	:削除予定タスクを削除する
+	*/
+	void TaskKillCheck();
+	/**
+	*@brief	:登録タスク全削除
+	*/
+	void AllTaskDelete();
 };
 
 extern EngineSystem* OGge;

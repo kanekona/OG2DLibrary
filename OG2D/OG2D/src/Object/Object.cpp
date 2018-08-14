@@ -24,7 +24,7 @@ GameObject::GameObject(const Objform& form,const Vec2& _posi,const  Vec2& _Sca,c
 		break;
 	}
 	this->angle = _ang;
-	this->CheckON();
+	this->HitCheck();
 }
 GameObject::~GameObject()
 {
@@ -45,7 +45,7 @@ void GameObject::CreateObject(const Objform& form, const Vec2& _posi, const  Vec
 		break;
 	}
 	this->angle = _ang;
-	this->CheckON();
+	this->HitCheck();
 }
 bool GameObject::hit(GameObject& o)
 {
@@ -196,7 +196,7 @@ void GameObject::LineDraw()
 		{ this->collisionCube.hitBase.x,this->collisionCube.hitBase.h - 1 }
 		};
 		//その値を回転を適用させた値に変更する
-		OG::_Rotate(this->collisionCube.angle, _v);
+		OG::_Rotate(this->collisionCube.Rotate(), _v);
 		//４つの頂点を線で結ぶ
 		OG::LineHitDraw(_v);
 		break;
@@ -208,9 +208,9 @@ void GameObject::LineDraw()
 	}
 }
 
-void GameObject::CheckON()
+void GameObject::HitCheck(bool flag)
 {
-	this->isCheck = true;
+	this->isCheck = flag;
 }
 
 bool GameObject::IsObjectDistanceCheck(const Vec2& pos, const Vec2& size)

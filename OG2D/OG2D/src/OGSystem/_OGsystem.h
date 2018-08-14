@@ -19,7 +19,7 @@
 #pragma comment(lib, "OPENGL32.lib")
 #pragma comment(lib, "GLU32.lib")
 #pragma comment(lib, "Win64/OpenAL32.lib")
-//#pragma comment(lib, "freetype.lib")
+#pragma comment(lib, "freetype.lib")
 
 #if defined(_MSC_VER)
 // Windows:外部ライブラリのリンク指定
@@ -60,9 +60,11 @@
 typedef unsigned char u_char;
 typedef unsigned int u_int;
 typedef unsigned long u_long;
-
+/**
+*namespace OG
+*便利機能関数や数学計算
+*/
 namespace OG {
-	//便利機能関数や数学計算
 	void MulitMatrixf(GLfloat*, GLfloat*, GLfloat*);
 	void Normalize(GLfloat*);
 	void _Rotate(const float _angle, Vec2*);

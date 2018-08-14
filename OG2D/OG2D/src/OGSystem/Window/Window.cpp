@@ -2,26 +2,26 @@
 #include "stb_image.h"
 Window::Window()
 {
-	this->_widht = 640;
-	this->_height = 480;
-	this->_Screen = false;
-	this->_Name = "NoName";
+	this->widht = 640;
+	this->height = 480;
+	this->screen = false;
+	this->name = "NoName";
 	this->isIcon = false;
 	this->isVisualization = false;
 }
 Window::Window(const int wi, const int he, char* name, const bool screen,const Vec2& pos)
-	:_widht(wi)
-	, _height(he)
-	, _Name(name)
-	, _Screen(screen)
+	:widht(wi)
+	, height(he)
+	, name(name)
+	, screen(screen)
 	, position(pos)
 {
-	if (_Screen) {
-		window = glfwCreateWindow(_widht, _height, _Name, glfwGetPrimaryMonitor(), NULL);
+	if (screen) {
+		window = glfwCreateWindow(widht, height, name, glfwGetPrimaryMonitor(), NULL);
 	}
 	else
 	{
-		window = glfwCreateWindow(_widht, _height, _Name, NULL, NULL);
+		window = glfwCreateWindow(widht, height, name, NULL, NULL);
 	}
 	if (!window) {
 		glfwTerminate();
@@ -36,17 +36,17 @@ Window::~Window()
 
 bool Window::createWindow(const int wi, const int he, char* name, const bool screen,const Vec2& pos)
 {
-	this->_widht = wi;
-	this->_height = he;
-	this->_Name = name;
-	this->_Screen = screen;
+	this->widht = wi;
+	this->height = he;
+	this->name = name;
+	this->screen = screen;
 	this->position = pos;
-	if (this->_Screen) {
-		this->window = glfwCreateWindow(this->_widht, this->_height, this->_Name, glfwGetPrimaryMonitor(), NULL);
+	if (this->screen) {
+		this->window = glfwCreateWindow(this->widht, this->height, this->name, glfwGetPrimaryMonitor(), NULL);
 	}
 	else
 	{
-		this->window = glfwCreateWindow(this->_widht, this->_height, this->_Name, NULL, NULL);
+		this->window = glfwCreateWindow(this->widht, this->height, this->name, NULL, NULL);
 	}
 	if (!this->window) {
 		glfwTerminate();
@@ -67,7 +67,7 @@ void Window::setIcon(const std::string& path_)
 void Window::LimitsWindow()
 {
 	//Windowのサイズを固定化させる
-	glfwSetWindowSizeLimits(this->window, this->_widht, this->_height, this->_widht, this->_height);
+	glfwSetWindowSizeLimits(this->window, this->widht, this->height, this->widht, this->height);
 	//windowのアスペクト比を固定させる
 	glfwSetWindowAspectRatio(this->window, 16, 9);
 	//windowのサイズを変更する(固定化されている場合変更はできない)

@@ -27,10 +27,6 @@ void TaskObject::T_UpDate()
 		PauseUpDate();
 	}
 }
-void TaskObject::T_Render()
-{
-	Render2D();
-}
 void TaskObject::Kill(const bool on)
 {
 	this->NextTask = on;
@@ -40,11 +36,11 @@ void TaskObject::Kill(const bool on)
 	}
 	this->KillCount++;
 }
-int TaskObject::GetKillCount()
+int TaskObject::GetKillCount() const
 {
 	return this->KillCount;
 }
-bool TaskObject::GetNextTask()
+bool TaskObject::GetNextTask() const
 {
 	return this->NextTask;
 }
@@ -70,10 +66,6 @@ float TaskObject::GetDrawOrder() const
 std::string TaskObject::GetTaskName() const
 {
 	return this->taskName;
-}
-void TaskObject::T_Pause()
-{
-	PauseUpDate();
 }
 void TaskObject::UpDate()
 {

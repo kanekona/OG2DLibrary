@@ -24,7 +24,7 @@ void Camera2D::Initialize(const Box2D& pos)
 	this->position = {0,0 };
 	this->Scale = { pos.w,pos.h };
 }
-void Camera2D::CameraUpdate() const
+void Camera2D::UpDate() const
 {
 	//行列をプロジェクションモードに変更
 	glMatrixMode(GL_PROJECTION);
