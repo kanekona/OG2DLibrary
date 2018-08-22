@@ -26,7 +26,8 @@ bool Input::GamePad::isPresent() const
 	return (glfwJoystickPresent(this->id_) == GLFW_TRUE) ? true : false;
 }
 Input::GamePad::GamePad(const int id) :
-	id_(id)
+	id_(id),
+	name(glfwGetJoystickName(id_))
 {
 	//GamePadが存在するかどうか、ボタン数スティック数はいくつかの計測とその分の要素の確保
 	glfwGetJoystickButtons(id_, &button_num);
@@ -68,6 +69,7 @@ std::vector<Input::GamePad> Input::initGamePad()
 		if (glfwJoystickPresent(id) == GLFW_TRUE)
 		{
 			gamepad_.emplace_back(id);
+			
 		}
 	}
 	return gamepad_;
@@ -91,6 +93,60 @@ bool Input::GamePad::down(const int index) const
 bool Input::GamePad::up(const int index) const
 {
 	return button_up[index];
+}
+bool Input::GamePad::EitherDown() const
+{
+	for (auto id = this->button_down.begin(); id != this->button_down.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	for (auto id = this->axis_button_down.begin(); id != this->axis_button_down.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool Input::GamePad::EitherOn() const
+{
+	for (auto id = this->button_on.begin(); id != this->button_on.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	for (auto id = this->axis_button_on.begin(); id != this->axis_button_on.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool Input::GamePad::EitherUp() const
+{
+	for (auto id = this->button_up.begin(); id != this->button_up.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	for (auto id = this->axis_button_up.begin(); id != this->axis_button_up.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 float Input::GamePad::axis(const int index) const
 {
@@ -153,6 +209,10 @@ void Input::GamePad::upDate()
 			axis_button_on[i] = buttons[i];
 		}
 	}
+}
+const char* Input::GamePad::GetName() const
+{
+	return this->name;
 }
 void ResetGamePad(std::vector<Input::GamePad>& gamepad_)
 {
@@ -237,6 +297,39 @@ bool Input::KeyBoard::up(const int index) const
 {
 	return button_up[index];
 }
+bool Input::KeyBoard::EitherDown() const
+{
+	for (auto id = this->button_down.begin(); id != this->button_down.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool Input::KeyBoard::EitherOn() const
+{
+	for (auto id = this->button_on.begin(); id != this->button_on.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool Input::KeyBoard::EitherUp() const
+{
+	for (auto id = this->button_up.begin(); id != this->button_up.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 void Input::KeyBoard::upDate()
 {
 	for (int i = 0; i < 256; ++i)
@@ -297,6 +390,39 @@ bool Input::Mouse::down(const int index) const
 bool Input::Mouse::up(const int index) const
 {
 	return button_up[index];
+}
+bool Input::Mouse::EitherDown() const
+{
+	for (auto id = this->button_down.begin(); id != this->button_down.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool Input::Mouse::EitherOn() const
+{
+	for (auto id = this->button_on.begin(); id != this->button_on.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool Input::Mouse::EitherUp() const
+{
+	for (auto id = this->button_up.begin(); id != this->button_up.end(); ++id)
+	{
+		if (*id)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 void Input::Mouse::upDate()
 {
@@ -454,6 +580,39 @@ bool Input::up(const int index, const int padNum) const
 	}
 	return this->key.up(this->inputdata[index].key) || this->pad[padNum].axis_up(this->inputdata[index].button);
 	//return this->key.up(this->inputdata[index].key) || index < 14 ? this->pad[padNum].up(this->inputdata[index].button) : this->pad[padNum].axis_up(this->inputdata[index].button);
+}
+bool Input::EitherDown() const
+{
+	for (auto id = this->pad.begin(); id != this->pad.end(); ++id)
+	{
+		if (id->EitherDown())
+		{
+			return true;
+		}
+	}
+	return this->key.EitherDown() || this->mouse.EitherDown();
+}
+bool Input::EitherOn() const
+{
+	for (auto id = this->pad.begin(); id != this->pad.end(); ++id)
+	{
+		if (id->EitherOn())
+		{
+			return true;
+		}
+	}
+	return this->key.EitherOn() || this->mouse.EitherOn();
+}
+bool Input::EitherUp() const
+{
+	for (auto id = this->pad.begin(); id != this->pad.end(); ++id)
+	{
+		if (id->EitherUp())
+		{
+			return true;
+		}
+	}
+	return this->key.EitherUp() || this->mouse.EitherUp();
 }
 float Input::axis(const int index, const int padNum) const
 {

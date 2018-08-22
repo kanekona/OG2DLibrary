@@ -12,6 +12,18 @@ bool Sample::Initialize()
 
 void Sample::UpDate()
 {
+	if (OGge->in->EitherDown())
+	{
+		std::cout << "down\n";
+	}
+	if (OGge->in->EitherOn())
+	{
+		std::cout << "on\n";
+	}
+	if (OGge->in->EitherUp())
+	{
+		std::cout << "up\n";
+	}
 }
 
 void Sample::Render2D()
