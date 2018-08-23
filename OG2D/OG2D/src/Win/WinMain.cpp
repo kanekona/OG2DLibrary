@@ -10,8 +10,6 @@
 #define _OX_EPSILON_ 0.0000001f
 #include "OGSystem\OGTask.h"
 #include "OGSystem\System.h"
-//#include "ft2build.h"
-//#include FT_FREETYPE_H
 //ƒƒ‚ƒŠƒŠ[ƒNŒŸ’m
 #if (_DEBUG)
 #define _CRTDBG_MAP_ALLOC
