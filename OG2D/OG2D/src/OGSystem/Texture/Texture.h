@@ -33,7 +33,7 @@ public:
 	void Draw(
 		const Box2D& draw, 
 		const Box2D& src,
-		const Color color = { 1.0f,1.0f,1.0f,1.0f });
+		const Color& color = { 1.0f,1.0f,1.0f,1.0f });
 	/**
 	*@brief	:‰ğ•úˆ—
 	*@return:‰ğ•ú¬Œ÷true
