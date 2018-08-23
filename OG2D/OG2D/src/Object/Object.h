@@ -98,7 +98,7 @@ public:
 	/**
 	*@brief	:当たり判定に線を引く
 	*/
-	void LineDraw();								//当たり判定をラインを引いて確認用
+	void LineDraw();
 	/**
 	*@brief	:当たり判定を付ける
 	*@param	:bool flag 当たり判定を行う設定
@@ -110,7 +110,7 @@ public:
 	*@param	:Vec2 size 相手の大きさ
 	*@return:bool 判定内であればtrue
 	*/
-	bool IsObjectDistanceCheck(const Vec2& pos, const Vec2& size);	//当たり判定を行う範囲内かどうかを返します。
+	bool IsObjectDistanceCheck(const Vec2& pos, const Vec2& size);
 	/**
 	*@brief	:大きな判定範囲を表示する
 	*/

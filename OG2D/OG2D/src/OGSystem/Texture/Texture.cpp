@@ -77,7 +77,7 @@ Texture::Texture(const std::string& path)
 	this->_materix[3] = { 0,height };
 	this->angle = 0.f;
 }
-void Texture::Draw(const Box2D& draw, const Box2D& src,const Color color_) {
+void Texture::Draw(const Box2D& draw, const Box2D& src,const Color& color_) {
 	//ç¿ïW
 	GLfloat vtx[] = {
 		draw.x,draw.h,

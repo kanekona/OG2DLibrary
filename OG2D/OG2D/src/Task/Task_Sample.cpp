@@ -17,9 +17,9 @@ void Sample::UpDate()
 void Sample::Render2D()
 {
 	std::vector<int> __y;
-	for (int i = 0; i < 12; ++i)
+	for (int i = 0; i < 13; ++i)
 	{
-		__y.push_back(i * 32 + i * 2);
+		__y.push_back(i * 32);
 	}
 	this->texfont.Draw("asdfghjkl", Vec2(0, __y[0]), 32);
 	this->texfont.Draw("ASDFGHJKL", Vec2(0, __y[1]), 32);
@@ -33,6 +33,8 @@ void Sample::Render2D()
 	this->texfont.Draw("‚â‚ä‚æ", Vec2(0, __y[9]), 32);
 	this->texfont.Draw("ƒƒƒ…ƒ‡ƒbƒ”", Vec2(0, __y[10]), 32);
 	this->texfont.Draw("‚í‚î‚ï‚ð‚ñ", Vec2(0, __y[11]), 32);
+	this->texfont.Draw("1a2b3456 789 0", Vec2(0, __y[12]), 32);
+	OGge->camera->SetPos(Vec2(0, 0));
 }
 
 bool Sample::Finalize()

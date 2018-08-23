@@ -1,8 +1,12 @@
 #pragma once
-//#include "OGSystem\_OGSystem.h"
 #include "OGSystem\Texture\Texture.h"
 /**
-*@brief	:フォントの描画class
+*フォントの描画class
+*現在対応しているもの
+*アルファベット
+*ひらがな
+*カタカナ
+*数字
 */
 class Font
 {
@@ -10,6 +14,8 @@ class Font
 	unsigned int texSize;
 	//! 画像の文字の大きさ
 	const Vec2 TexFontSize;
+	//! 画像の数字の大きさ
+	const Vec2 TexNumberSize;
 	//! 指定文字と画像位置情報
 	std::unordered_map<std::string, Box2D> func;
 	//! 描画する文字列
@@ -43,6 +49,12 @@ public:
 	*@param	:string text 描画文字列
 	*@param	:Vec2 pos 描画位置
 	*@param :int fontSize 描画文字サイズ
+	*@param	:Color color 色指定
 	*/
-	void Draw(const std::string& text, const Vec2& pos, const int fontSize);
+	void Draw(const std::string& text, const Vec2& pos, const int fontSize, const Color& color = { 1,1,1,1 });
+	/**
+	*@brief	:登録画像の変更
+	*@param	:string path ファイルパス
+	*/
+	void SetTexture(const std::string& path);
 };

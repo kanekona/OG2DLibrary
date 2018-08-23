@@ -1,16 +1,18 @@
 #include "TextureFont.h"
 
 Font::Font()
-	:TexFontSize(Vec2(70.f,71.f))
+	:TexFontSize(Vec2(70.f,71.f)),TexNumberSize(Vec2(40,71))
 {
-	this->fontTex = new Texture("A2.png");
+	this->fontTex = nullptr;
+	this->SetTexture("A2.png");
 	this->CreateCharacter();
 }
 Font::~Font()
 {
 	delete this->fontTex;
+	this->fontTex = nullptr;
 }
-void Font::Draw(const std::string& text,const Vec2& pos,const int fontSize)
+void Font::Draw(const std::string& text,const Vec2& pos,const int fontSize,const Color& color)
 {
 	//保持データを初期化
 	this->texSize = 0;
@@ -23,14 +25,13 @@ void Font::Draw(const std::string& text,const Vec2& pos,const int fontSize)
 		{
 		case 2: //2byte
 			//描画位置指定
-			this->draw = Box2D(pos.x + (fontSize * this->texSize), pos.y,
-				(float)fontSize, (float)fontSize);
+			this->draw = Box2D(pos.x + (fontSize * this->texSize), pos.y,(float)fontSize, (float)fontSize);
 			//フォントデータを取得
 			this->src = this->CharacterCheck(this->drawText.substr(0, 2));
 			if (this->src)
 			{
 				this->draw.OffsetSize();
-				this->fontTex->Draw(this->draw, *this->src);
+				this->fontTex->Draw(this->draw, *this->src, color);
 			}
 			//描画を終えた文字列を消す
 			this->drawText.erase(0, 2);
@@ -43,7 +44,7 @@ void Font::Draw(const std::string& text,const Vec2& pos,const int fontSize)
 			if (this->src)
 			{
 				this->draw.OffsetSize();
-				this->fontTex->Draw(this->draw, *this->src);
+				this->fontTex->Draw(this->draw, *this->src, color);
 			}
 			//描画を終えた文字列を消す
 			this->drawText.erase(0, 1);
@@ -64,6 +65,14 @@ Box2D* Font::CharacterCheck(const std::string& c)
 	//見つからなかった場合nullptr
 	//※現在仮、読み込みに失敗したら?を返すようにする
 	return nullptr;
+}
+void Font::SetTexture(const std::string& path)
+{
+	if (this->fontTex)
+	{
+		delete this->fontTex;
+	}
+	this->fontTex = new Texture(path);
 }
 void Font::CreateCharacter()
 {
@@ -320,4 +329,15 @@ void Font::CreateCharacter()
 	this->func.insert(std::make_pair("ョ", Box2D(this->TexFontSize.x * 2, this->TexFontSize.y * 35, this->TexFontSize.x * 3, this->TexFontSize.y * 36)));
 	this->func.insert(std::make_pair("ッ", Box2D(this->TexFontSize.x * 3, this->TexFontSize.y * 35, this->TexFontSize.x * 4, this->TexFontSize.y * 36)));
 	this->func.insert(std::make_pair("ヴ", Box2D(this->TexFontSize.x * 4, this->TexFontSize.y * 35, this->TexFontSize.x * 5, this->TexFontSize.y * 36)));
+
+	this->func.insert(std::make_pair("1", Box2D(this->TexNumberSize.x * 0, this->TexNumberSize.y * 36, this->TexNumberSize.x * 1, this->TexNumberSize.y * 37)));
+	this->func.insert(std::make_pair("2", Box2D(this->TexNumberSize.x * 1, this->TexNumberSize.y * 36, this->TexNumberSize.x * 2, this->TexNumberSize.y * 37)));
+	this->func.insert(std::make_pair("3", Box2D(this->TexNumberSize.x * 2, this->TexNumberSize.y * 36, this->TexNumberSize.x * 3, this->TexNumberSize.y * 37)));
+	this->func.insert(std::make_pair("4", Box2D(this->TexNumberSize.x * 3, this->TexNumberSize.y * 36, this->TexNumberSize.x * 4, this->TexNumberSize.y * 37)));
+	this->func.insert(std::make_pair("5", Box2D(this->TexNumberSize.x * 4, this->TexNumberSize.y * 36, this->TexNumberSize.x * 5, this->TexNumberSize.y * 37))); 
+	this->func.insert(std::make_pair("6", Box2D(this->TexNumberSize.x * 5, this->TexNumberSize.y * 36, this->TexNumberSize.x * 6, this->TexNumberSize.y * 37)));
+	this->func.insert(std::make_pair("7", Box2D(this->TexNumberSize.x * 6, this->TexNumberSize.y * 36, this->TexNumberSize.x * 7, this->TexNumberSize.y * 37)));
+	this->func.insert(std::make_pair("8", Box2D(this->TexNumberSize.x * 7, this->TexNumberSize.y * 36, this->TexNumberSize.x * 8, this->TexNumberSize.y * 37)));
+	this->func.insert(std::make_pair("9", Box2D(this->TexNumberSize.x * 8, this->TexNumberSize.y * 36, this->TexNumberSize.x * 9, this->TexNumberSize.y * 37)));
+	this->func.insert(std::make_pair("0", Box2D(this->TexNumberSize.x * 9, this->TexNumberSize.y * 36, this->TexNumberSize.x * 10, this->TexNumberSize.y * 37)));
 }
