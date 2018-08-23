@@ -19,6 +19,16 @@ public:
 	*@brief	:更新処理
 	*/
 	void Update();
+	/**
+	*@bried	:フレームレート指定*
+	*@param	:int rate frame rate
+	*/
+	void SetFrameRate(const int rate);
+	/**
+	*@brief	:フレームチェック
+	*@return:秒間フレームに達しているならtrue
+	*/
+	bool FrameCheck();
 private:
 	//! 全フレームタイム
 	float lastTime;		
@@ -26,4 +36,8 @@ private:
 	int count;	
 	//! fps値
 	GLfloat fps;
+	//! frame rate
+	int framerate;
+	//! oneframetime
+	float oneFrameTime;
 };
