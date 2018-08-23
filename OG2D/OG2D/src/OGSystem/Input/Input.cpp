@@ -32,7 +32,12 @@ Input::GamePad::GamePad(const int id) :
 	//GamePadが存在するかどうか、ボタン数スティック数はいくつかの計測とその分の要素の確保
 	glfwGetJoystickButtons(id_, &button_num);
 	glfwGetJoystickAxes(id_, &axis_num);
-	std::cout << "GamePadID: " << id_ << " button:" << button_num << " axis:" << axis_num << std::endl;
+	std::cout <<
+		"GamePadID: " << id_ << 
+		" button:" << button_num << 
+		" axis:" << axis_num << 
+		" name:" << name <<
+	std::endl;
 	button_on.resize(button_num);
 	std::fill(std::begin(button_on), std::end(button_on), 0);
 	button_down.resize(button_num);
@@ -202,6 +207,13 @@ void Input::GamePad::upDate()
 		buttons[RSTICK_RIGHT] = axis_value[AXIS_RIGHT_X] >= axis_threshold;
 		buttons[RSTICK_UP] = axis_value[AXIS_RIGHT_Y] >= axis_threshold;
 		buttons[RSTICK_DOWN] = axis_value[AXIS_RIGHT_Y] <= -axis_threshold;
+
+		//押し込み入力の値のずれを修正
+		axis_value[AXIS_R2] = (axis_value[AXIS_R2] + 1.0f) / 2.0f;
+		axis_value[AXIS_L2] = (axis_value[AXIS_L2] + 1.0f) / 2.0f;
+		buttons[BUTTON_R2] = axis_value[AXIS_R2] >= axis_threshold;
+		buttons[BUTTON_L2] = axis_value[AXIS_L2] >= axis_threshold;
+
 		for (int i = 0; i < STICK_NUM; ++i)
 		{
 			axis_button_down[i] = !axis_button_on[i] && buttons[i];
@@ -497,6 +509,9 @@ void Input::Inputinit(GLFWwindow *w)
 		this->inputdata[RD].button = Input::GamePad::AXISBUTTON::RSTICK_DOWN;
 		this->inputdata[RL].button = Input::GamePad::AXISBUTTON::RSTICK_LEFT;
 		this->inputdata[RR].button = Input::GamePad::AXISBUTTON::RSTICK_RIGHT;
+
+		this->inputdata[L2].button = Input::GamePad::AXISBUTTON::BUTTON_L2;
+		this->inputdata[R2].button = Input::GamePad::AXISBUTTON::BUTTON_R2;
 	}
 	//キーボードとの紐づけ
 	{
@@ -528,6 +543,9 @@ void Input::Inputinit(GLFWwindow *w)
 		this->inputdata[RD].key = Input::KeyBoard::Key::K;
 		this->inputdata[RL].key = Input::KeyBoard::Key::J;
 		this->inputdata[RR].key = Input::KeyBoard::Key::L;
+
+		this->inputdata[L2].key = Input::KeyBoard::Key::O;
+		this->inputdata[R2].key = Input::KeyBoard::Key::U;
 	}
 }
 void Input::upDate()
@@ -659,6 +677,17 @@ float Input::axis(const int index, const int padNum) const
 			ang -= 1.0f;
 		}
 		break;
+	case In::AXIS::AXIS_L2:
+		if (this->key.on(KeyBoard::O))
+		{
+			ang += 1.0f;
+		}
+		break;
+	case In::AXIS::AXIS_R2:
+		if (this->key.on(KeyBoard::U))
+		{
+			ang += 1.0f;
+		}
 	default:
 		break;
 	}
