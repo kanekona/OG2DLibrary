@@ -17,6 +17,7 @@
 #include "Audio\StreamingSound.h"
 #include "Random\Random.h"
 #include "ResourceManager\ResourceManager.h"
+#include "Font\TextureFont.h"
 #include "TaskObject.h"
 /**
 *@brief	:•`‰æ‡‚ğŠÇ—‚·‚éclass

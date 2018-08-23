@@ -122,3 +122,27 @@ void OG::BackColor(const float& red, const float& green, const float& blue, cons
 {
 	glClearColor((GLclampf)red, (GLclampf)green, (GLclampf)blue, (GLclampf)alpha);
 }
+int OG::mbclen(const char* c)
+{
+	if ((*c & 0xc0) == 0x80)
+	{
+		return 2;
+	}
+	else if ((*c & 0x80) == 0)
+	{
+		return 1;
+	}
+	return 0;
+}
+void OG::cout(const Box2D& b)
+{
+	std::cout << "x " << b.x << ":y " << b.y << ":w " << b.w << ":h " << b.h << "\n";
+}
+void OG::cout(const Vec2& v)
+{
+	std::cout << "x " << v.x << ":y " << v.y << "\n";
+}
+void OG::cout(const Color& c)
+{
+	std::cout << "red " << c.red << ":green " << c.green << ":blue " << c.blue << ":alpha " << c.alpha << "\n";
+}

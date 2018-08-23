@@ -296,5 +296,7 @@ void EngineSystem::AllStop(const bool flag)
 		}
 	}	
 }
+//! 内部システムエンジン
 EngineSystem* OGge;
+//! リソース管理システム
 ResourceManager* rm;

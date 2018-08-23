@@ -152,6 +152,9 @@
     <ClCompile Include="src\OGSystem\System.cpp">
       <Filter>ソースファイル\OGSystem\System\OG</Filter>
     </ClCompile>
+    <ClCompile Include="src\OGSystem\Font\TextureFont.cpp">
+      <Filter>ソースファイル\OGSystem\System\Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Object\Object.h">
@@ -231,6 +234,9 @@
     </ClInclude>
     <ClInclude Include="src\OGSystem\System.h">
       <Filter>ソースファイル\OGSystem\System\OG</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\Font\TextureFont.h">
+      <Filter>ソースファイル\OGSystem\System\Font</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

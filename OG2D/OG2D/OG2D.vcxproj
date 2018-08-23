@@ -164,6 +164,7 @@
     <ClCompile Include="src\OGSystem\Camera\Camera.cpp" />
     <ClCompile Include="src\OGSystem\Collision\Collision.cpp" />
     <ClCompile Include="src\OGSystem\Font\Font.cpp" />
+    <ClCompile Include="src\OGSystem\Font\TextureFont.cpp" />
     <ClCompile Include="src\OGSystem\FPS\FPS.cpp" />
     <ClCompile Include="src\OGSystem\Input\Input.cpp" />
     <ClCompile Include="src\OGSystem\OGlib.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="src\OGSystem\Collision\Collision.h" />
     <ClInclude Include="src\OGSystem\Easing\Easing.hpp" />
     <ClInclude Include="src\OGSystem\Font\Font.h" />
+    <ClInclude Include="src\OGSystem\Font\TextureFont.h" />
     <ClInclude Include="src\OGSystem\FPS\FPS.h" />
     <ClInclude Include="src\OGSystem\Input\Input.h" />
     <ClInclude Include="src\OGSystem\OGlib.h" />

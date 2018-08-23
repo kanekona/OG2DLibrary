@@ -94,6 +94,7 @@ public:
 	void operator+=(const Box2D& b);
 	void operator-=(const Box2D& b);
 	void operator*=(const Box2D& b);
+	void cout();
 };
 class Color
 {

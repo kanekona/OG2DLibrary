@@ -9,6 +9,7 @@
 class Sample : public TaskObject
 {
 public:
+	Font texfont;
 	virtual ~Sample();
 	static Sample* Create(bool);
 	Sample();
