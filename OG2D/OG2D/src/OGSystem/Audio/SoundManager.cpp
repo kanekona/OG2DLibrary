@@ -41,7 +41,7 @@ SoundManager::~SoundManager()
 }
 void SoundManager::Application()
 {
-	for (int i = 0; i < this->sounddata.size(); ++i)
+	for (unsigned int i = 0; i < this->sounddata.size(); ++i)
 	{
 		this->sounddata[i]->volume(sounddata[i]->getVolume() * this->GetMaxVolume());
 	}
