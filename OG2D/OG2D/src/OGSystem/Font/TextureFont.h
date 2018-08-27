@@ -11,11 +11,13 @@
 class Font
 {
 	//! Œ»İ•¶š”
-	unsigned int texSize;
+	float texSize;
 	//! ‰æ‘œ‚Ì•¶š‚Ì‘å‚«‚³
 	const Vec2 TexFontSize;
 	//! ‰æ‘œ‚Ì”š‚Ì‘å‚«‚³
 	const Vec2 TexNumberSize;
+	//! ‰æ‘œ‚Ì”¼Šp•¶š‚Ì‘å‚«‚³
+	const Vec2 TexHalfFontSize;
 	//! w’è•¶š‚Æ‰æ‘œˆÊ’uî•ñ
 	std::unordered_map<std::string, Box2D> func;
 	//! •`‰æ‚·‚é•¶š—ñ

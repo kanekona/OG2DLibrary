@@ -12,29 +12,27 @@ bool Sample::Initialize()
 
 void Sample::UpDate()
 {
+	OGge->camera->MovePos(Vec2(OGge->in->axis(In::AXIS_LEFT_X), OGge->in->axis(In::AXIS_LEFT_Y) * -1));
 }
 
 void Sample::Render2D()
 {
 	std::vector<int> __y;
-	for (int i = 0; i < 13; ++i)
+	for (int i = 0; i < 14; ++i)
 	{
-		__y.push_back(i * 32);
+		__y.push_back(i * 64);
 	}
-	this->texfont.Draw("asdfghjkl", Vec2(0, __y[0]), 32);
-	this->texfont.Draw("ASDFGHJKL", Vec2(0, __y[1]), 32);
-	this->texfont.Draw("‚ ‚¢‚¤‚¦‚¨", Vec2(0, __y[2]), 32);
-	this->texfont.Draw("‚©‚«‚­‚¯‚±", Vec2(0, __y[3]), 32);
-	this->texfont.Draw("‚³‚µ‚·‚¹‚»", Vec2(0, __y[4]), 32);
-	this->texfont.Draw("‚½‚¿‚Â‚Ä‚Æ", Vec2(0, __y[5]), 32);
-	this->texfont.Draw("‚È‚É‚Ê‚Ë‚Ì", Vec2(0, __y[6]), 32);
-	this->texfont.Draw("‚Í‚Ð‚Ó‚Ö‚Ù", Vec2(0, __y[7]), 32);
-	this->texfont.Draw("‚Ü‚Ý‚Þ‚ß‚à", Vec2(0, __y[8]), 32);
-	this->texfont.Draw("‚â‚ä‚æ", Vec2(0, __y[9]), 32);
-	this->texfont.Draw("ƒƒƒ…ƒ‡ƒbƒ”", Vec2(0, __y[10]), 32);
-	this->texfont.Draw("‚í‚î‚ï‚ð‚ñ", Vec2(0, __y[11]), 32);
-	this->texfont.Draw("1a2b3456 789 0", Vec2(0, __y[12]), 32);
-	OGge->camera->SetPos(Vec2(0, 0));
+	this->texfont.Draw("‚‚‚‚ƒ‚˜‚™‚š", Vec2(0, __y[0]), 64);
+	this->texfont.Draw("‚`‚a‚b‚w‚x‚y", Vec2(0, __y[1]), 64);
+	this->texfont.Draw("‚ ‚¢‚¤‚¦‚¨", Vec2(0, __y[2]), 64);
+	this->texfont.Draw("‚á‚ã‚å‚Á", Vec2(0, __y[3]), 64);
+	this->texfont.Draw("ƒAƒCƒEƒGƒI", Vec2(0, __y[4]), 64);
+	this->texfont.Draw("‚í‚î‚ï‚ð‚ñ", Vec2(0, __y[5]), 64);
+	this->texfont.Draw("ƒƒƒ…ƒ‡ƒbƒ”", Vec2(0, __y[6]), 64);
+	this->texfont.Draw("abcxyz", Vec2(0, __y[7]), 64);
+	this->texfont.Draw("ABCXYZ", Vec2(0, __y[8]), 64);
+	this->texfont.Draw("012789", Vec2(0, __y[9]), 64);
+	this->texfont.Draw("‚O‚P‚Q‚V‚W‚X", Vec2(0, __y[10]), 64);
 }
 
 bool Sample::Finalize()

@@ -232,11 +232,11 @@
     <ClInclude Include="src\OGSystem\ResourceManager\ResourceManager.h">
       <Filter>ソースファイル\OGSystem\System\ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\System.h">
-      <Filter>ソースファイル\OGSystem\System\OG</Filter>
-    </ClInclude>
     <ClInclude Include="src\OGSystem\Font\TextureFont.h">
       <Filter>ソースファイル\OGSystem\System\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\System.h">
+      <Filter>ソースファイル\OGSystem\System\OG</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
