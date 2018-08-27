@@ -1,4 +1,4 @@
-OG2D	Versionα
+OG2D	Version0.95 
 使用外部ライブラリ等
 
 stb_image
