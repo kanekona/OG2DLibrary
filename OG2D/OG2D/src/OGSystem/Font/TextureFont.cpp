@@ -358,7 +358,7 @@ void Font::CreateCharacter()
 		this->func.insert(std::make_pair("‚O", Box2D(this->TexFontSize.x * 9, this->TexFontSize.y * 37, this->TexFontSize.x * 10, this->TexFontSize.y * 38)));
 	}
 	//–¢Š®¬
-	this->func.insert(std::make_pair("a", Box2D(this->TexHalfFontSize.x * 0, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 1, this->TexHalfFontSize.y * 39)));
+	this->func.insert(std::make_pair("a", Box2D(0.f, this->TexHalfFontSize.y * 38, 34.f, this->TexHalfFontSize.y * 39)));
 	this->func.insert(std::make_pair("b", Box2D(this->TexHalfFontSize.x * 1, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 2, this->TexHalfFontSize.y * 39)));
 	this->func.insert(std::make_pair("c", Box2D(this->TexHalfFontSize.x * 2, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 3, this->TexHalfFontSize.y * 39)));
 	this->func.insert(std::make_pair("d", Box2D(this->TexHalfFontSize.x * 3, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 4, this->TexHalfFontSize.y * 39)));
