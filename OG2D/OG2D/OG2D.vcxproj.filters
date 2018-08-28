@@ -227,10 +227,18 @@
     <ClInclude Include="src\Task\TestObject.h">
       <Filter>ソース ファイル\Task</Filter>
     </ClInclude>
+    <ClInclude Include="src\OGSystem\randmais.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\OGSystem\Icon\Resource.rc">
       <Filter>ソース ファイル\OGSystem\System\Icon</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="data\image\testicon.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

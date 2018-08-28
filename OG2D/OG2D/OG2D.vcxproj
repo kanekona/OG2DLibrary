@@ -168,6 +168,7 @@
     <ClInclude Include="src\OGSystem\OGlib.h" />
     <ClInclude Include="src\OGSystem\OGsystem.h" />
     <ClInclude Include="src\OGSystem\OGTask.h" />
+    <ClInclude Include="src\OGSystem\randmais.h" />
     <ClInclude Include="src\OGSystem\Random\Random.h" />
     <ClInclude Include="src\OGSystem\ResourceManager\ResourceManager.h" />
     <ClInclude Include="src\OGSystem\System.h" />
@@ -182,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\OGSystem\Icon\Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="data\image\testicon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

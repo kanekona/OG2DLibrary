@@ -29,10 +29,11 @@ void Sample::Render2D()
 	this->texfont.Draw("ƒAƒCƒEƒGƒI", Vec2(0, __y[4]), 64);
 	this->texfont.Draw("‚í‚î‚ï‚ð‚ñ", Vec2(0, __y[5]), 64);
 	this->texfont.Draw("ƒƒƒ…ƒ‡ƒbƒ”", Vec2(0, __y[6]), 64);
-	this->texfont.Draw("abcxyz", Vec2(0, __y[7]), 64);
-	this->texfont.Draw("ABCXYZ", Vec2(0, __y[8]), 64);
-	this->texfont.Draw("012789", Vec2(0, __y[9]), 64);
-	this->texfont.Draw("‚O‚P‚Q‚V‚W‚X", Vec2(0, __y[10]), 64);
+	this->texfont.Draw("a b c d e f g h i j k l n", Vec2(0, __y[7]), 64);
+	this->texfont.Draw("m o p q r s t u v w x y z", Vec2(0, __y[8]), 64);
+	this->texfont.Draw("ABCXYZ", Vec2(0, __y[9]), 64);
+	this->texfont.Draw("012789", Vec2(0, __y[10]), 64);
+	this->texfont.Draw("‚O‚P‚Q‚V‚W‚X", Vec2(0, __y[11]), 64);
 }
 
 bool Sample::Finalize()

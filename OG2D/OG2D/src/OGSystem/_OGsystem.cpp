@@ -164,3 +164,49 @@ void OG::cout(const Color& c)
 {
 	std::cout << "red " << c.red << ":green " << c.green << ":blue " << c.blue << ":alpha " << c.alpha << "\n";
 }
+bool OG::Data_Cipher(const std::string& in_path, const std::string& out_path)
+{
+	char c;
+	std::ifstream ifs(in_path, std::ios::in | std::ios::binary);
+	if (!ifs) {
+		return false;
+	}
+
+	std::ofstream ofs(out_path, std::ios::in | std::ios::binary);
+
+	int i = 0;
+
+	while (ifs.get(c)) {
+		if (c != '\n')
+		{
+			c = c ^ randomCipher[i];//データcの内容を暗号化
+		}
+		ofs << c;
+		++i;
+		if (i >= 40) {
+			i = 0;
+		}
+	}
+	ifs.close();
+	ofs.close();
+	return true;
+}
+std::string OG::Data_Composite(std::ifstream& ifs)
+{
+	std::istreambuf_iterator<char> it(ifs);
+	std::istreambuf_iterator<char> last;
+	std::string str(it, last);
+	int j = 0;
+	for (int i = 0; i < str.size(); ++i)
+	{
+		if (str[i] != '\n')
+		{
+			str[i] = str[i] ^ randomCipher[j];
+		}
+		++j;
+		if (j >= 40) {
+			j = 0;
+		}
+	}
+	return str;
+}
