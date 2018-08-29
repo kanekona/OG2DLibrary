@@ -84,4 +84,5 @@ namespace OG {
 	bool Data_Cipher(const std::string& in_path, const std::string& out_path);
 	std::string Data_Composite(std::ifstream& ifs);
 	void OutDebugData(const std::string& out_path, const std::string& text);
+	void DataClear(const std::string& path);
 }

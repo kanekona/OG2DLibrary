@@ -214,5 +214,20 @@ void OG::OutDebugData(const std::string& out_path, const std::string& text)
 {
 	std::string path = "./data/debug/" + out_path;
 	std::ofstream ofs(path, std::ios::app | std::ios::binary);
+	if (!ofs)
+	{
+		std::cout << "ファイルが存在しない/生成に失敗しました\n";
+		return;
+	}
 	ofs << text;
+}
+void OG::DataClear(const std::string& path)
+{
+	std::ofstream ofs(path, std::ios::trunc);
+	if (!ofs)
+	{
+		std::cout << "ファイルは存在しません\n";
+		return;
+	}
+	ofs.close();
 }
