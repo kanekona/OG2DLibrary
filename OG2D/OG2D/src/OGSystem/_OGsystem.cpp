@@ -210,3 +210,9 @@ std::string OG::Data_Composite(std::ifstream& ifs)
 	}
 	return str;
 }
+void OG::OutDebugData(const std::string& out_path, const std::string& text)
+{
+	std::string path = "./data/debug/" + out_path;
+	std::ofstream ofs(path, std::ios::app | std::ios::binary);
+	ofs << text;
+}
