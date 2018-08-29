@@ -188,26 +188,26 @@ void EngineSystem::TaskApplication()
 void EngineSystem::TaskKillCheck()
 {
 	//íœ—\’è‚Ìƒ^ƒXƒN‚ğíœ‚·‚é
-	auto id2 = this->taskObjects.begin();
-	while (id2 != this->taskObjects.end())
+	auto id = this->taskObjects.begin();
+	while (id != this->taskObjects.end())
 	{
-		if (id2->second)
+		if (id->second)
 		{
-			if (id2->second->GetKillCount() > 0)
+			if (id->second->GetKillCount() > 0)
 			{
-				delete id2->second;
-				this->taskObjects.erase(id2);
+				delete id->second;
+				this->taskObjects.erase(id);
 				this->TaskApplication();
-				id2 = this->taskObjects.begin();
+				id = this->taskObjects.begin();
 			}
 			else
 			{
-				++id2;
+				++id;
 			}
 		}
 		else
 		{
-			++id2;
+			++id;
 		}
 	}
 }

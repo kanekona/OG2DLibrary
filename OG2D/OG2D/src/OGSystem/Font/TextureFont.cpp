@@ -366,9 +366,9 @@ void Font::CreateCharacter()
 	this->func.insert(std::make_pair("f", Box2D(179.f, this->TexHalfFontSize.y * 38, 207.f, this->TexHalfFontSize.y * 39)));
 	this->func.insert(std::make_pair("g", Box2D(204.f, this->TexHalfFontSize.y * 38 + 20.f, 239.f, this->TexHalfFontSize.y * 39 + 20.f)));
 	this->func.insert(std::make_pair("h", Box2D(238.f, this->TexHalfFontSize.y * 38, 280.f, this->TexHalfFontSize.y * 39)));
-	this->func.insert(std::make_pair("i", Box2D(this->TexHalfFontSize.x * 8, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 9, this->TexHalfFontSize.y * 39)));
-	this->func.insert(std::make_pair("j", Box2D(this->TexHalfFontSize.x * 9, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 10, this->TexHalfFontSize.y * 39)));
-	this->func.insert(std::make_pair("k", Box2D(this->TexHalfFontSize.x * 10, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 11, this->TexHalfFontSize.y * 39)));
+	this->func.insert(std::make_pair("i", Box2D(280.f, this->TexHalfFontSize.y * 38, 302.f, this->TexHalfFontSize.y * 39)));
+	this->func.insert(std::make_pair("j", Box2D(300.f, this->TexHalfFontSize.y * 38, 320.f, this->TexHalfFontSize.y * 39 + 20.f)));
+	this->func.insert(std::make_pair("k", Box2D(320.f, this->TexHalfFontSize.y * 38, 364.f, this->TexHalfFontSize.y * 39)));
 	this->func.insert(std::make_pair("l", Box2D(this->TexHalfFontSize.x * 11, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 12, this->TexHalfFontSize.y * 39)));
 	this->func.insert(std::make_pair("m", Box2D(this->TexHalfFontSize.x * 12, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 13, this->TexHalfFontSize.y * 39)));
 	this->func.insert(std::make_pair("n", Box2D(this->TexHalfFontSize.x * 13, this->TexHalfFontSize.y * 38, this->TexHalfFontSize.x * 14, this->TexHalfFontSize.y * 39)));

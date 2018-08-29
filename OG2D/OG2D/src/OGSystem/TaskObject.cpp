@@ -6,10 +6,13 @@ TaskObject::TaskObject()
 	this->NextTask = true;
 	this->order = 0.0f;
 	this->isPause = false;
-	this->Child = nullptr;
 }
 TaskObject::~TaskObject()
 {
+	for (auto& id : this->Child)
+	{
+		delete id;
+	}
 }
 bool TaskObject::Init(const std::string& name_)
 {

@@ -21,7 +21,7 @@ private:
 	bool isPause;
 public:
 	//! 子オブジェクトの情報
-	TaskObject* Child;
+	std::vector<TaskObject*> Child;
 	/**
 	*@brief	:constructor
 	*/
