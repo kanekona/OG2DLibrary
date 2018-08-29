@@ -18,6 +18,19 @@ bool Texture::Create(const std::string& path)
 	std::string filepath = FileName + path;
 	//画像データを読み込む
 	unsigned char *data = stbi_load(filepath.c_str(), &width, &height, &comp, 0);
+	try
+	{
+		if (data == NULL)
+		{
+			throw data;
+		}
+	}
+	catch (...)
+	{
+		std::cout << "Texture Create Error!" << path << "\n";
+		OG::OutDebugData("TextureErrorPath.txt", path + "\n");
+		return false;
+	}
 	//データ形式を選ぶ
 	GLint type = (comp == 3) ? GL_RGB : GL_RGBA;
 	//画像データをOpenGLへ送る
@@ -55,8 +68,21 @@ Texture::Texture(const std::string& path)
 	int height;
 	int comp;
 	std::string filepath = FileName + path;
-	//画像データを読み込む
 	unsigned char *data = stbi_load(filepath.c_str(), &width, &height, &comp, 0);
+	//画像データを読み込む
+	try
+	{
+		if (data == NULL)
+		{
+			throw data;
+		}
+	}
+	catch(...)
+	{
+		std::cout << "Texture Create Error!" << path << "\n";
+		OG::OutDebugData("TextureErrorPath.txt", path + "\n");
+		return;
+	}
 	//データ形式を選ぶ
 	GLint type = (comp == 3) ? GL_RGB : GL_RGBA;
 	//画像データをOpenGLへ送る
