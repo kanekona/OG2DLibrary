@@ -32,7 +32,7 @@ bool Sample2::Finalize()
 	std::cout << "Sample2:" << "Finalize()" << std::endl;
 	if (this->GetNextTask() && !OGge->GetDeleteEngine())
 	{
-		auto nextTask = Sample::Create(true);
+		Sample::Create(true);
 	}
 	return true;
 }

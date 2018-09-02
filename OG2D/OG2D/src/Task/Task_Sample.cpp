@@ -4,9 +4,10 @@
 bool Sample::Initialize()
 {
 	__super::Init("Sample");
-	auto testObject = TestObject::Create(true);
+	TestObject::Create(true);
 	TestObject::Create(false);
 	__super::SetDrawOrder(0.0f);
+	Texture("error.png");
 	return true;
 }
 

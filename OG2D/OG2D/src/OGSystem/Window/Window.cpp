@@ -4,16 +4,16 @@ Window::Window()
 {
 	this->widht = 640;
 	this->height = 480;
-	this->screen = false;
-	this->name = "NoName";
+	this->_screen = false;
+	this->_name = "NoName";
 	this->isIcon = false;
 	this->isVisualization = false;
 }
 Window::Window(const int wi, const int he, char* name, const bool screen,const Vec2& pos)
 	:widht(wi)
 	, height(he)
-	, name(name)
-	, screen(screen)
+	, _name(name)
+	, _screen(screen)
 	, position(pos)
 {
 	if (screen) {
@@ -38,15 +38,15 @@ bool Window::createWindow(const int wi, const int he, char* name, const bool scr
 {
 	this->widht = wi;
 	this->height = he;
-	this->name = name;
-	this->screen = screen;
+	this->_name = name;
+	this->_screen = screen;
 	this->position = pos;
-	if (this->screen) {
-		this->window = glfwCreateWindow(this->widht, this->height, this->name, glfwGetPrimaryMonitor(), NULL);
+	if (this->_screen) {
+		this->window = glfwCreateWindow(this->widht, this->height, this->_name, glfwGetPrimaryMonitor(), NULL);
 	}
 	else
 	{
-		this->window = glfwCreateWindow(this->widht, this->height, this->name, NULL, NULL);
+		this->window = glfwCreateWindow(this->widht, this->height, this->_name, NULL, NULL);
 	}
 	if (!this->window) {
 		glfwTerminate();

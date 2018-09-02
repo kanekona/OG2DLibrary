@@ -8,5 +8,5 @@ void OGTK::_myGameInitialize()
 void OGTK::StartTaskObject()
 {
 	//ƒ^ƒXƒN‚Ì‰Šú‰»
-	auto TopTask = Sample::Create(true);
+	Sample::Create(true);
 }

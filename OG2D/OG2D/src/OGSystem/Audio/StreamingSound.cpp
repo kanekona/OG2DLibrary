@@ -28,7 +28,6 @@ void StreamingSound::streamProc(const std::string& path, const bool loop, std::s
 		std::cout << stream.GetlastSize() << std::endl;
 		param->mutex.lock();
 		bool stopped = param->stopped;
-		bool back = param->backStartPos;
 		param->backStartPos = false;
 		param->mutex.unlock();
 		if (stopped) { break; }

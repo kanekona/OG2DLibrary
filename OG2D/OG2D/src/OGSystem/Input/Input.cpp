@@ -189,11 +189,11 @@ void Input::GamePad::upDate()
 			button_on[i] = buttons_[i];
 		}
 	}
-	int axis_num;
+	int axisNumber;
 	//GamePad‚ÌJoyStick‚Ìó‘Ô‚ðŽæ“¾
-	const auto* axes = glfwGetJoystickAxes(id_, &axis_num);
-	if (axis_num > 0) {
-		for (int i = 0; i < axis_num; ++i) {
+	const auto* axes = glfwGetJoystickAxes(id_, &axisNumber);
+	if (axisNumber > 0) {
+		for (int i = 0; i < axisNumber; ++i) {
 			axis_value[i] = axes[i];
 		}
 		u_char buttons[STICK_NUM];
@@ -350,7 +350,7 @@ void Input::KeyBoard::upDate()
 		int state = glfwGetKey(this->nowWindow, this->KeyData[i]);
 		button_down[i] = !button_on[i] && state;
 		button_up[i] = button_on[i] && !state;
-		button_on[i] = state;
+		button_on[i] = (u_char)state;
 	}
 }
 void ResetKeyBoard(Input::KeyBoard& keyboard)
@@ -444,7 +444,7 @@ void Input::Mouse::upDate()
 		int state = glfwGetMouseButton(this->nowWindow, this->MouseData[i]);
 		button_down[i] = !button_on[i] && state;
 		button_up[i] = button_on[i] && !state;
-		button_on[i] = state;
+		button_on[i] = (u_char)state;
 	}
 }
 Vec2 Input::Mouse::GetPos() const

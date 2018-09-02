@@ -18,9 +18,9 @@ class Window {
 	//! 高さ
 	int height;
 	//! Windowの名
-	char* name;
+	char* _name;
 	//! フルスク設定
-	bool screen;
+	bool _screen;
 	//! Windowの位置
 	Vec2 position;
 	//! Window情報

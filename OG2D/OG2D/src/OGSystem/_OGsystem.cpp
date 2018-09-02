@@ -179,7 +179,7 @@ bool OG::Data_Cipher(const std::string& in_path, const std::string& out_path)
 	while (ifs.get(c)) {
 		if (c != '\n')
 		{
-			c = c ^ randomCipher[i];//データcの内容を暗号化
+			c = (char)(c ^ randomCipher[i]);//データcの内容を暗号化
 		}
 		ofs << c;
 		++i;
@@ -201,7 +201,7 @@ std::string OG::Data_Composite(std::ifstream& ifs)
 	{
 		if (str[i] != '\n')
 		{
-			str[i] = str[i] ^ randomCipher[j];
+			str[i] = (char)(str[i] ^ randomCipher[j]);
 		}
 		++j;
 		if (j >= 40) {

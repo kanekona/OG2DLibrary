@@ -16,6 +16,15 @@
 #define GLFW_INCLUDE_GLU
 #define GLM_FORCE_SWIZZLE
 
+//GLMåxçê
+#pragma warning (disable : 4201)
+//type_traitsåxçê
+#pragma warning (disable : 4239)
+//xutilityåxçê
+#pragma warning (disable : 4244)
+//stb_imageåxçê
+#pragma warning (disable : 4100)
+
 #pragma comment(lib, "OPENGL32.lib")
 #pragma comment(lib, "GLU32.lib")
 #pragma comment(lib, "Win64/OpenAL32.lib")

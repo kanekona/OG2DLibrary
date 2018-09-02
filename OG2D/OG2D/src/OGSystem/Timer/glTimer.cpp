@@ -42,7 +42,6 @@ void Time::Pause()
 		if (this->isPlay)
 		{
 			//ˆêŽž’âŽ~
-			float a = (float)glfwGetTime();
 			this->nowTime = (float)glfwGetTime() - this->initTime;
 			this->saveTime = this->nowTime;
 			this->isPlay = false;
