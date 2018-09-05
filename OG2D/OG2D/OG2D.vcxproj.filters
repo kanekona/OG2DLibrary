@@ -73,6 +73,9 @@
     <Filter Include="ソース ファイル\OGSystem\System\Win">
       <UniqueIdentifier>{bc949d3f-a629-4825-98e0-804c4711083c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\OGSystem\System\Thread">
+      <UniqueIdentifier>{89a60442-853f-49b1-96b6-49e0f7607376}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Win\WinMain.cpp">
@@ -149,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="src\Task\TestObject.cpp">
       <Filter>ソース ファイル\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGSystem\Thread\DataThread.cpp">
+      <Filter>ソース ファイル\OGSystem\System\Thread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="src\OGSystem\randmais.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\Thread\DataThread.h">
+      <Filter>ソース ファイル\OGSystem\System\Thread</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -19,9 +19,6 @@ bool TestObject::Initialize()
 		this->CreateObject(Cube, Vec2(1344, 512), Vec2(128, 64));
 		this->angle = 0;
 	}
-	
-	//this->sampleImage.Create("Collision.png");
-	//rm->SetTextureData("test",&sampleImage);
 	rm->CreateTexture("test", "Collision.png");
 	this->SetDrawOrder(1.0f);
 	this->Radius = { 0.8f,0.5f };

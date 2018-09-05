@@ -9,6 +9,7 @@ FPS::FPS()
 	this->lastTime = (float)glfwGetTime();
 	this->framerate = 60;
 	this->oneFrameTime = (float)glfwGetTime();
+	OG::DataClear("fpsrate.og");
 }
 void FPS::Update() 
 {
@@ -17,7 +18,7 @@ void FPS::Update()
 		this->fps = this->count / ((float)glfwGetTime() - this->lastTime);
 #if(_DEBUG)
 		std::cout << this->fps << std::endl;		//デバッグ時のみfpsを出力
-		OG::OutDebugData("fpsrate.bin", std::to_string(this->fps) + "\n");
+		OG::OutDebugData("fpsrate.og", std::to_string(this->fps) + "\n");
 #endif
 		this->count = 0;
 		this->lastTime = (float)glfwGetTime();

@@ -29,6 +29,9 @@ int main() {
 	System = new OGSystem();
 	ogtk = new OGTK();
 	ogtk->_myGameInitialize();
+	Time* timer = new Time();
+	timer->Start();
+	OG::DataClear("Time.og");
 	if (!System->Create())
 	{
 		if (System)
@@ -42,10 +45,11 @@ int main() {
 		return -1;
 	}
 	ogtk->StartTaskObject();
-	delete ogtk;
 	while (System->LibConfirmation()) 
 	{
-		
+		OG::OutDebugData("TIme.og", std::to_string(timer->GetTime()) + "\n");
 	}
+	delete ogtk;
 	delete System;
+	delete timer;
 }

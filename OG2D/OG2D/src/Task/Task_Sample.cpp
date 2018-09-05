@@ -7,7 +7,6 @@ bool Sample::Initialize()
 	TestObject::Create(true);
 	TestObject::Create(false);
 	__super::SetDrawOrder(0.0f);
-	Texture("error.png");
 	return true;
 }
 
@@ -51,7 +50,6 @@ Sample::Sample()
 
 Sample::~Sample()
 {
-	std::cout << "~Sample()" << std::endl;
  	this->Finalize();
 }
 

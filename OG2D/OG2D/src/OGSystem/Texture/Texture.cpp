@@ -28,7 +28,7 @@ bool Texture::Create(const std::string& path)
 	catch (...)
 	{
 		std::cout << "Texture Create Error!" << path << "\n";
-		OG::OutDebugData("TextureErrorPath.txt", path + "\n");
+		OG::OutDebugData("TextureErrorPath.og", path + "\n");
 		return false;
 	}
 	//データ形式を選ぶ
@@ -80,7 +80,7 @@ Texture::Texture(const std::string& path)
 	catch(...)
 	{
 		std::cout << "Texture Create Error!" << path << "\n";
-		OG::OutDebugData("TextureErrorPath.txt", path + "\n");
+		OG::OutDebugData("TextureErrorPath.og", path + "\n");
 		return;
 	}
 	//データ形式を選ぶ

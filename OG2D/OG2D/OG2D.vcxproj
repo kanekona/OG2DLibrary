@@ -145,6 +145,7 @@
     <ClCompile Include="src\OGSystem\System.cpp" />
     <ClCompile Include="src\OGSystem\TaskObject.cpp" />
     <ClCompile Include="src\OGSystem\Texture\Texture.cpp" />
+    <ClCompile Include="src\OGSystem\Thread\DataThread.cpp" />
     <ClCompile Include="src\OGSystem\Timer\glTimer.cpp" />
     <ClCompile Include="src\OGSystem\Window\Window.cpp" />
     <ClCompile Include="src\OGSystem\_OGsystem.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="src\OGSystem\System.h" />
     <ClInclude Include="src\OGSystem\TaskObject.h" />
     <ClInclude Include="src\OGSystem\Texture\Texture.h" />
+    <ClInclude Include="src\OGSystem\Thread\DataThread.h" />
     <ClInclude Include="src\OGSystem\Timer\glTimer.h" />
     <ClInclude Include="src\OGSystem\Window\Window.h" />
     <ClInclude Include="src\OGSystem\_OGsystem.h" />
