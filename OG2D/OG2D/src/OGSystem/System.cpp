@@ -22,13 +22,14 @@ bool OGSystem::Create()
 	}
 	//ゲームエンジンの初期化
 	OGge->Initialize();
+	OGge->fps->SetFrameRate(60);
 	//使用OpenGLのVersion指定
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 	//使用するウィンドウを設定する
 	glfwMakeContextCurrent(OGge->window->GetWindow());
 	//同期(ダブルバッファの入れ替えタイミングの指定)
-	glfwSwapInterval(2);
+	glfwSwapInterval(1);
 #if defined(_MSC_VER)
 	//GLEW初期化
 	if (glewInit() != GLEW_OK) {
@@ -62,7 +63,7 @@ bool OGSystem::Create()
 
 bool OGSystem::LibConfirmation()
 {
-	//if (OGge->fps->FrameCheck())
+	if (OGge->fps->FrameCheck())
 	{
 		//ダブルバッファ
 		glfwSwapBuffers(OGge->window->GetWindow());
