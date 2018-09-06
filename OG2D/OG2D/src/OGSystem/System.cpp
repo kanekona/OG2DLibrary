@@ -28,7 +28,7 @@ bool OGSystem::Create()
 	//使用するウィンドウを設定する
 	glfwMakeContextCurrent(OGge->window->GetWindow());
 	//同期(ダブルバッファの入れ替えタイミングの指定)
-	glfwSwapInterval(1);
+	glfwSwapInterval(2);
 #if defined(_MSC_VER)
 	//GLEW初期化
 	if (glewInit() != GLEW_OK) {
@@ -62,29 +62,33 @@ bool OGSystem::Create()
 
 bool OGSystem::LibConfirmation()
 {
-	//ダブルバッファ
-	glfwSwapBuffers(OGge->window->GetWindow());
-	//ウィンドウ、マウス、キーボードの入力の状態をアップデートする
-	glfwPollEvents();
-	//GameEngineの更新処理
-	OGge->Update();
-	//捜査対象の行列をモデルビュー行列に変更
-	glMatrixMode(GL_MODELVIEW);
-	//バッファをクリアして値を設定する
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//有効になっている場合、計算されたフラグメントカラー値をカラーバッファの値とブレンドします。
-	glEnable(GL_BLEND);
-	//ピクセル演算を指定する
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//更新処理
-	if (OGge->in->key.down(In::ESCAPE) || OGge->GetEnd())
+	//if (OGge->fps->FrameCheck())
 	{
-		OGge->SetDeleteEngine(true);
-		//ウィンドウの破棄
-		glfwDestroyWindow(OGge->window->GetWindow());
-		return false;
+		//ダブルバッファ
+		glfwSwapBuffers(OGge->window->GetWindow());
+		// glfwSwapBuffers(OGge->window->GetWindow());
+		//ウィンドウ、マウス、キーボードの入力の状態をアップデートする
+		glfwPollEvents();
+		//GameEngineの更新処理
+		OGge->Update();
+		//捜査対象の行列をモデルビュー行列に変更
+		glMatrixMode(GL_MODELVIEW);
+		//バッファをクリアして値を設定する
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		//有効になっている場合、計算されたフラグメントカラー値をカラーバッファの値とブレンドします。
+		glEnable(GL_BLEND);
+		//ピクセル演算を指定する
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//更新処理
+		if (OGge->in->key.down(In::ESCAPE) || OGge->GetEnd())
+		{
+			OGge->SetDeleteEngine(true);
+			//ウィンドウの破棄
+			glfwDestroyWindow(OGge->window->GetWindow());
+			return false;
+		}
+		//各タスクの更新処理
+		OGge->TaskGameUpDate();
 	}
-	//各タスクの更新処理
-	OGge->TaskGameUpDate();
 	return !glfwWindowShouldClose(OGge->window->GetWindow());
 }
