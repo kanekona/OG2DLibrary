@@ -17,6 +17,12 @@ void Sample::UpDate()
 
 void Sample::Render2D()
 {
+
+	Box2D draw(0, 0, 160, 90);
+	Box2D src(Vec2(0, 0), rm->GetTextureData("back")->GetTextureSize());
+	rm->GetTextureData("back")->Draw(draw, src);
+
+
 	std::vector<int> __y;
 	for (int i = 0; i < 14; ++i)
 	{
@@ -31,9 +37,6 @@ void Sample::Render2D()
 	this->texfont.Draw("ƒƒƒ…ƒ‡ƒbƒ”", Vec2(0, __y[6]), 64);
 	this->texfont.Draw("a b c d e f g h i j k l n", Vec2(0, __y[7]), 64);
 	this->texfont.Draw("m o p q r s t u v w x y z", Vec2(0, __y[8]), 64);
-	this->texfont.Draw("ABCXYZ", Vec2(0, __y[9]), 64);
-	this->texfont.Draw("012789", Vec2(0, __y[10]), 64);
-	this->texfont.Draw("‚O‚P‚Q‚V‚W‚X", Vec2(0, __y[11]), 64);
 }
 
 bool Sample::Finalize()

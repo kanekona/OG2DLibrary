@@ -19,7 +19,7 @@ bool TestObject::Initialize()
 		this->CreateObject(Cube, Vec2(1344, 512), Vec2(128, 64));
 		this->angle = 0;
 	}
-	rm->CreateTexture("test", "Collision.png");
+	//rm->CreateTexture("test", "Collision.png");
 	this->SetDrawOrder(1.0f);
 	this->Radius = { 0.8f,0.5f };
 	this->isHit = false;
@@ -75,14 +75,14 @@ void TestObject::Render2D()
 	//std::cout << "TestObject:" << "Render2D()" << std::endl;
 	Box2D draw(this->position, this->Scale);
 	draw.OffsetSize();
-	rm->GetTextureData("test")->Rotate(this->angle);
+	rm->GetTextureData("collision")->Rotate(this->angle);
 	if (this->isHit)
 	{
-		rm->GetTextureData("test")->Draw(draw, Box2D(0, 128, 128, 256), Color{ 1.f,1.f,1.f,0.3f });
+		rm->GetTextureData("collision")->Draw(draw, Box2D(0, 128, 128, 256), Color{ 1.f,1.f,1.f,0.3f });
 	}
 	else
 	{
-		rm->GetTextureData("test")->Draw(draw, Box2D(0, 0, 128, 128), Color{ 1.f,1.f,1.f,0.3f });
+		rm->GetTextureData("collision")->Draw(draw, Box2D(0, 0, 128, 128), Color{ 1.f,1.f,1.f,0.3f });
 	}
 	this->LineDraw();
 }

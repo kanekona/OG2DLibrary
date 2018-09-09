@@ -22,7 +22,6 @@ bool OGSystem::Create()
 	}
 	//ゲームエンジンの初期化
 	OGge->Initialize();
-	OGge->fps->SetFrameRate(60);
 	//使用OpenGLのVersion指定
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);

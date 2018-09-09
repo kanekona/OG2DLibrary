@@ -9,7 +9,8 @@ Sound::Sound()
 };
 Sound::Sound(const std::string& path_, const bool loop) :
 	buffer(std::make_shared<Buffer>(filepath_ + path_)),
-	source(std::make_shared<Source>())
+	source(std::make_shared<Source>()),
+	filepath_("./data/bgm/")
 {
 	this->source->BindBuffer(*this->buffer);
 	this->looping(loop);

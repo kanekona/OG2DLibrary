@@ -76,6 +76,12 @@
     <Filter Include="ソース ファイル\OGSystem\System\Thread">
       <UniqueIdentifier>{89a60442-853f-49b1-96b6-49e0f7607376}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Event">
+      <UniqueIdentifier>{2d8ea88a-5ca6-410d-935a-17bb96fee5df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Event\ResourceLoad">
+      <UniqueIdentifier>{8890182f-815b-4506-a6b3-3ce8addd73ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Win\WinMain.cpp">
@@ -155,6 +161,12 @@
     </ClCompile>
     <ClCompile Include="src\OGSystem\Thread\DataThread.cpp">
       <Filter>ソース ファイル\OGSystem\System\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Event\Event.cpp">
+      <Filter>ソース ファイル\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Event\ResourceLoad\ResourceLoad.cpp">
+      <Filter>ソース ファイル\Event\ResourceLoad</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +250,12 @@
     </ClInclude>
     <ClInclude Include="src\OGSystem\Thread\DataThread.h">
       <Filter>ソース ファイル\OGSystem\System\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\Event.h">
+      <Filter>ソース ファイル\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Event\ResourceLoad\ResourceLoad.h">
+      <Filter>ソース ファイル\Event\ResourceLoad</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

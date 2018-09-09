@@ -31,7 +31,7 @@ int main() {
 	ogtk->_myGameInitialize();
 	Time* timer = new Time();
 	timer->Start();
-	OG::DataClear("Time.og");
+	OG::DataClear("./data/debug/Time.og");
 	if (!System->Create())
 	{
 		if (System)

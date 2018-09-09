@@ -9,7 +9,7 @@ FPS::FPS()
 	this->lastTime = (float)glfwGetTime();
 	this->framerate = 60;
 	this->oneFrameTime = (float)glfwGetTime();
-	OG::DataClear("fpsrate.og");
+	OG::DataClear("./data/debug/fpsrate.og");
 }
 void FPS::Update() 
 {
