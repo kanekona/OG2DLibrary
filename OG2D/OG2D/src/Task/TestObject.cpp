@@ -16,8 +16,8 @@ bool TestObject::Initialize()
 	else
 	{
 		__super::Init("testobj");
-		this->CreateObject(Cube, Vec2(1344, 512), Vec2(128, 64));
-		this->angle = 0;
+		this->CreateObject(Cube, Vec2(200, 200), Vec2(64, 512));
+		this->angle = 90;
 	}
 	//rm->CreateTexture("test", "Collision.png");
 	this->SetDrawOrder(1.0f);
@@ -84,6 +84,7 @@ void TestObject::Render2D()
 	{
 		rm->GetTextureData("collision")->Draw(draw, Box2D(0, 0, 128, 128), Color{ 1.f,1.f,1.f,0.3f });
 	}
+	this->LineDistanceDraw();
 	this->LineDraw();
 }
 
