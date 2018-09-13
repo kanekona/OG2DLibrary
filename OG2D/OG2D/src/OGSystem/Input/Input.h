@@ -537,6 +537,11 @@ public:
 		*@return:1つ以上入力されているとtrue
 		*/
 		bool EitherUp() const;
+		/**
+		*@brief	:!テスト実装!マウスのホイール値を返す
+		*@return:Vec2 ホイールの値
+		*/
+		Vec2 GetScroll() const;
 		//! マウスの有無
 		bool isPresent;
 		//! buttonのonを格納する変数
@@ -552,6 +557,17 @@ public:
 		Vec2 position;
 		//! Windowの情報を格納する
 		GLFWwindow* nowWindow;
+		//! ホイール値
+		Vec2 _scroll;		
+		//! ホイール獲得のコールバックで得た値をいれておく
+		static Vec2 scroll;
+		/**
+		*@brief	:マウスのホイール状態を獲得する
+		*@param	:GLFWWindow* w window情報
+		*@param	:double x x座標のホイール値
+		*@param :double y y座標のホイール値
+		*/
+		static void scroll_callback(GLFWwindow* w, double x, double y);
 	};
 	/**
 	*@brief	:ゲームパッドとキーボードを区別する

@@ -390,6 +390,11 @@ Input::Mouse Input::initMouse()
 void Input::Mouse::SetWindow(GLFWwindow* w)
 {
 	this->nowWindow = w;
+	glfwSetScrollCallback(this->nowWindow, Input::Mouse::scroll_callback);
+}
+void Input::Mouse::scroll_callback(GLFWwindow* w, double x, double y)
+{
+	Input::Mouse::scroll = { (float)x,(float)y };
 }
 bool Input::Mouse::on(const int index) const
 {
@@ -446,6 +451,12 @@ void Input::Mouse::upDate()
 		button_up[i] = button_on[i] && !state;
 		button_on[i] = (u_char)state;
 	}
+	this->_scroll = Input::Mouse::scroll;
+	Input::Mouse::scroll = { 0,0 };
+}
+Vec2 Input::Mouse::GetScroll() const
+{
+	return this->_scroll;
 }
 Vec2 Input::Mouse::GetPos() const
 {
@@ -713,3 +724,4 @@ void Input::registAxis(const float regist)
 		id->registAxisButton(regist);
 	}
 }
+Vec2 Input::Mouse::scroll;

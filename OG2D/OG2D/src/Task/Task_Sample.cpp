@@ -13,6 +13,7 @@ bool Sample::Initialize()
 void Sample::UpDate()
 {
 	OGge->camera->MovePos(Vec2(OGge->in->axis(In::AXIS_LEFT_X), OGge->in->axis(In::AXIS_LEFT_Y) * -1));
+	OGge->camera->MovePos(OGge->in->mouse.GetScroll());
 }
 
 void Sample::Render2D()
