@@ -21,12 +21,6 @@ bool OGSystem::Create()
 		return false;
 	}
 
-	//------------------//
-	//フルスク設定用のWindowを生成するならここかな
-	//------------------//
-	Window screenConfigWindow(640, 480, "フルスクリーンで起動しますか？", false, Vec2(640, 480));
-	Texture button("button.png");
-
 	//ゲームエンジンの初期化
 	OGge->Initialize();
 	//使用OpenGLのVersion指定

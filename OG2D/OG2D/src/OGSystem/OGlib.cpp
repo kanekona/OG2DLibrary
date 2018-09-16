@@ -253,3 +253,53 @@ float OG::get_distance(const float x, const float y, const float x1, const float
 	distance = sqrt((x - tx)*(x - tx) + (y - ty)*(y - ty));
 	return distance;
 }
+bool OG::innerJudge(const Vec2* line, const Vec2* point) 
+{
+	for (int i = 0; i < 4; ++i) {
+		for (int j = 0; j < 4; ++j)
+		{
+			if (((
+				((line + ((j + 1) % 4))->x - (line + j)->x)*
+				((point + i)->y - (line + j)->y)) - 
+				(((point + i)->x - (line + j)->x) * 
+				((line + ((j + 1) % 4))->y - (line + j)->y))) 
+				< 0)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+bool OG::crossJudge(const Vec2* line1, const Vec2* line2)
+{
+	//for (int i = 0; i < 4; ++i)
+	//{
+	//	//オブジェクトAの終点-始点の方向ベクトル
+	//	Vec2 mainvec = line1[(i + 1) % 4] - line1[i % 4];
+	//	Vec2 mainvec(((line1 + ((i + 1) % 4)) - (line1 + (i % 4))));
+	//	for (int j = 0; j < 4; ++j)
+	//	{
+	//		//オブジェクトBの終点-始点の方向ベクトル
+	//		Vec2 subvec = line2[(j + 1) % 4] - line2[j % 4];
+	//		Vec2 v = line2[j % 4] - line1[i % 4];
+	//		//外積計算
+	//		float crs = OG::cross(mainvec, subvec);
+	//		if (crs == 0.0f)
+	//		{
+	//			//平行状態
+	//			continue;
+	//		}
+	//		float crs_v1 = OG::cross(v, mainvec);
+	//		float crs_v2 = OG::cross(v, subvec);
+	//		float t1 = crs_v2 / crs;
+	//		float t2 = crs_v1 / crs;
+	//		if (t1 > 0.f && t1 < 1.f && t2 > 0.f && t2 < 1.f)
+	//		{
+	//			//交差してる
+	//			return true;
+	//		}
+	//	}
+	//}
+	return false;
+}

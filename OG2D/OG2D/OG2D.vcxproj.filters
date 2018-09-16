@@ -82,6 +82,9 @@
     <Filter Include="ソース ファイル\Event\ResourceLoad">
       <UniqueIdentifier>{8890182f-815b-4506-a6b3-3ce8addd73ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\OGSystem\System\Button">
+      <UniqueIdentifier>{d5bc8251-9275-4b88-9cf1-38030ecf8fc6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Win\WinMain.cpp">
@@ -167,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="src\Event\ResourceLoad\ResourceLoad.cpp">
       <Filter>ソース ファイル\Event\ResourceLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGSystem\Button\Button.cpp">
+      <Filter>ソース ファイル\OGSystem\System\Button</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="src\Event\ResourceLoad\ResourceLoad.h">
       <Filter>ソース ファイル\Event\ResourceLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\Button\Button.h">
+      <Filter>ソース ファイル\OGSystem\System\Button</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

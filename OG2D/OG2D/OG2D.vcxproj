@@ -134,6 +134,7 @@
     <ClCompile Include="src\OGSystem\Audio\Sound.cpp" />
     <ClCompile Include="src\OGSystem\Audio\SoundManager.cpp" />
     <ClCompile Include="src\OGSystem\Audio\StreamingSound.cpp" />
+    <ClCompile Include="src\OGSystem\Button\Button.cpp" />
     <ClCompile Include="src\OGSystem\Camera\Camera.cpp" />
     <ClCompile Include="src\OGSystem\Collision\Collision.cpp" />
     <ClCompile Include="src\OGSystem\Font\TextureFont.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="src\OGSystem\Audio\Sound.h" />
     <ClInclude Include="src\OGSystem\Audio\SoundManager.h" />
     <ClInclude Include="src\OGSystem\Audio\StreamingSound.h" />
+    <ClInclude Include="src\OGSystem\Button\Button.h" />
     <ClInclude Include="src\OGSystem\Camera\Camera.h" />
     <ClInclude Include="src\OGSystem\Collision\Collision.h" />
     <ClInclude Include="src\OGSystem\Easing\easing.hpp" />

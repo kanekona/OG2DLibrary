@@ -1,8 +1,31 @@
 #include "Collision.h"
 //--------------------------------------------------
-//@:Collisionclass									
+//@:CollisionBase
 //--------------------------------------------------
-//長方形×長方形
+CollisionBase::CollisionBase(const unsigned short vertex)
+	:VERTEX_NUM(vertex)
+{
+}
+bool CollisionBase::hitBox(const CollisionBox& b)
+{
+	return false;
+}
+bool CollisionBase::hitCircle(const CollisionCircle& b)
+{
+	return false;
+}
+bool CollisionBase::hitPointer(const CollisionPointer& b)
+{
+	return false;
+}
+//--------------------------------------------------
+//@:CollisionBox
+//--------------------------------------------------
+CollisionBox::CollisionBox()
+	:CollisionBase(4)
+{
+}
+//矩形×矩形
 bool CollisionBox::hitBox(const CollisionBox& b)
 {
 	//頂点情報のセット
@@ -23,56 +46,64 @@ bool CollisionBox::hitBox(const CollisionBox& b)
 	OG::_Rotate(b.angle, _ver);
 	//どちらかの範囲内に相手の頂点が存在する場合TRUEを返す
 	for (int i = 0; i < 4; ++i) {
-		if ((((_v[1].x - _v[0].x)*(_ver[i].y - _v[0].y)) - ((_ver[i].x - _v[0].x)*(_v[1].y - _v[0].y))) >= 0 &&
-			(((_v[2].x - _v[1].x)*(_ver[i].y - _v[1].y)) - ((_ver[i].x - _v[1].x)*(_v[2].y - _v[1].y))) >= 0 &&
-			(((_v[3].x - _v[2].x)*(_ver[i].y - _v[2].y)) - ((_ver[i].x - _v[2].x)*(_v[3].y - _v[2].y))) >= 0 &&
-			(((_v[0].x - _v[3].x)*(_ver[i].y - _v[3].y)) - ((_ver[i].x - _v[3].x)*(_v[0].y - _v[3].y))) >= 0)
+		for (int j = 0; j < 4; ++j)
 		{
-			return true;
+			bool flag = true;
+			if ((((_v[(j + 1) % 4].x - _v[j].x)*(_ver[i].y - _v[j].y)) - ((_ver[i].x - _v[j].x)*(_v[(j + 1) % 4].y - _v[j].y))) < 0)
+			{
+				flag = false;
+			}
+			if (flag)
+			{
+				return true;
+			}
 		}
 	}
 	//相手オブジェクト目線でも同じく処理を行う
 	for (int i = 0; i < 4; ++i) {
-		if ((((_ver[1].x - _ver[0].x)*(_v[i].y - _ver[0].y)) - ((_v[i].x - _ver[0].x)*(_ver[1].y - _ver[0].y))) >= 0 &&
-			(((_ver[2].x - _ver[1].x)*(_v[i].y - _ver[1].y)) - ((_v[i].x - _ver[1].x)*(_ver[2].y - _ver[1].y))) >= 0 &&
-			(((_ver[3].x - _ver[2].x)*(_v[i].y - _ver[2].y)) - ((_v[i].x - _ver[2].x)*(_ver[3].y - _ver[2].y))) >= 0 &&
-			(((_ver[0].x - _ver[3].x)*(_v[i].y - _ver[3].y)) - ((_v[i].x - _ver[3].x)*(_ver[0].y - _ver[3].y))) >= 0)
+		for (int j = 0; j < 4; ++j)
 		{
-			return true;
+			bool flag = true;
+			if ((((_ver[(j + 1) % 4].x - _ver[j].x)*(_v[i].y - _ver[j].y)) - ((_v[i].x - _ver[j].x)*(_ver[(j + 1)% 4].y - _ver[j].y))) < 0)
+			{
+				flag = false;
+			}
+			if (flag)
+			{
+				return true;
+			}
 		}
 	}
+	for (int i = 0; i < 4; ++i)
 	{
-		for (int i = 0; i < 4; ++i)
+		//オブジェクトAの終点-始点の方向ベクトル
+		Vec2 mainvec = _v[(i + 1) % 4] - _v[i % 4];
+		for (int j = 0; j < 4; ++j)
 		{
-			//オブジェクトAの終点-始点の方向ベクトル
-			Vec2 mainvec = _v[(i + 1) % 4] - _v[i % 4];
-			for (int j = 0; j < 4; ++j)
+			//オブジェクトBの終点-始点の方向ベクトル
+			Vec2 subvec = _ver[(j + 1) % 4] - _ver[j % 4];
+			Vec2 v = _ver[j % 4] - _v[i % 4];
+			//外積計算
+			float crs = OG::cross(mainvec, subvec);
+			if (crs == 0.0f)
 			{
-				//オブジェクトBの終点-始点の方向ベクトル
-				Vec2 subvec = _ver[(j + 1) % 4] - _ver[j % 4];
-				Vec2 v = _ver[j % 4] - _v[i % 4];
-				//外積計算
-				float crs = OG::cross(mainvec, subvec);
-				if (crs == 0.0f)
-				{
-					//平行状態
-					continue;
-				}
-				float crs_v1 = OG::cross(v, mainvec);
-				float crs_v2 = OG::cross(v, subvec);
-				float t1 = crs_v2 / crs;
-				float t2 = crs_v1 / crs;
-				if (t1 > 0.f && t1 < 1.f && t2 > 0.f && t2 < 1.f)
-				{
-					//交差してる
-					return true;
-				}
+				//平行状態
+				continue;
+			}
+			float crs_v1 = OG::cross(v, mainvec);
+			float crs_v2 = OG::cross(v, subvec);
+			float t1 = crs_v2 / crs;
+			float t2 = crs_v1 / crs;
+			if (t1 > 0.f && t1 < 1.f && t2 > 0.f && t2 < 1.f)
+			{
+				//交差してる
+				return true;
 			}
 		}
 	}
 	return false;
 }
-//長方形×円
+//矩形×円
 bool CollisionBox::hitCircle(const CollisionCircle& b)
 {
 	//頂点情報のセット
@@ -95,6 +126,7 @@ bool CollisionBox::hitCircle(const CollisionCircle& b)
 	{
 		return true;
 	}
+	
 	//円の中に線分が存在する場合TRUEを返す
 	for (int i = 0; i<4; i++) {
 		if (OG::get_distance(_ver[0].x, _ver[0].y, _v[i].x, _v[i].y, _v[(i + 1) % 4].x, _v[(i + 1) % 4].y)<b.hitBase.r)
@@ -102,7 +134,35 @@ bool CollisionBox::hitCircle(const CollisionCircle& b)
 	}
 	return false;
 }
-//円×長方形
+//点と矩形
+bool CollisionBox::hitPointer(const CollisionPointer& b)
+{
+	Vec2 _v[4] = {
+		{ hitBase.x,hitBase.y },
+	{ hitBase.w - 1,hitBase.y },
+	{ hitBase.w - 1,hitBase.h },
+	{ hitBase.x,hitBase.h }
+	};
+	OG::_Rotate(angle, _v);
+	return false;
+}
+
+void CollisionBox::Rotate(const float _angle) {
+	//回転の値を格納
+	this->angle = _angle;
+}
+float CollisionBox::Rotate() const
+{
+	return this->angle;
+}
+//--------------------------------------------------
+//@:CollisionCircle
+//--------------------------------------------------
+CollisionCircle::CollisionCircle()
+	:CollisionBase(1)
+{
+}
+//円×矩形
 bool CollisionCircle::hitBox(const CollisionBox& b)
 {
 	//頂点情報のセット
@@ -146,11 +206,10 @@ bool CollisionCircle::hitCircle(const CollisionCircle& b)
 	}
 	return false;
 }
-void CollisionBox::Rotate(const float _angle) {
-	//回転の値を格納
-	this->angle = _angle;
-}
-float CollisionBox::Rotate() const
+//--------------------------------------------------
+//@:CollisionPointer
+//--------------------------------------------------
+CollisionPointer::CollisionPointer()
+	:CollisionBase(1)
 {
-	return this->angle;
 }
