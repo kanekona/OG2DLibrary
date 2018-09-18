@@ -84,6 +84,7 @@ namespace OG {
 	void LineHitDraw(Vec2*,const Color&);
 	void LineHitDraw(Box2D*);
 	void LineHitDraw(Box2D*, const Color&);
+	void LineOval(int x, int y, float ovalx, float ovaly);
 	void BackColor(const Color& color);
 	void BackColor(const float&red, const float&green, const float&blue, const float&alpha);
 	int mbclen(const char* c);

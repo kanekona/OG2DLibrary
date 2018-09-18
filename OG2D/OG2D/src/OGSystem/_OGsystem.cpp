@@ -72,6 +72,8 @@ namespace OG {
 	{
 		glColor4f(color.red, color.green, color.blue, color.alpha);
 		glBegin(GL_LINES);
+		//
+		glLineWidth(3.0);  // ü‚ÌƒTƒCƒY
 		glVertex2f((_b)->x, (_b)->y);
 		glVertex2f((_b)->w, (_b)->y);
 
@@ -85,6 +87,25 @@ namespace OG {
 		glVertex2f((_b)->x, (_b)->y);
 		glEnd();
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	}
+	void LineOval(int x, int y, float ovalx, float ovaly)
+	{
+		for (float th1 = 0.0; th1 <= 360.0; th1 = th1 + 1.0)
+		{
+			float th2 = th1 + 10.0;
+			float th1_rad = th1 / 180.0 * PI;
+			float th2_rad = th2 / 180.0 * PI;
+
+			float x1 = cos(th1_rad)*(ovalx );
+			float y1 = sin(th1_rad)*(ovaly );
+			float x2 = cos(th2_rad)*(ovalx );
+			float y2 = sin(th2_rad)*(ovaly );
+
+			glBegin(GL_LINES);
+			glVertex2f(x1 + x, y1 + y);
+			glVertex2f(x2 + x, y2 + y);
+			glEnd();
+		}
 	}
 	void _Rotate(const float _ang, Vec2* _b)
 	{
