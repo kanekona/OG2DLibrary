@@ -22,6 +22,10 @@ bool CollisionBase::hitCapsule(const CollisionCapsule& b)
 {
 	return false;
 }
+bool CollisionBase::hitLine(const CollisionLine& b)
+{
+	return false;
+}
 //--------------------------------------------------
 //@:CollisionBox
 //--------------------------------------------------
@@ -275,6 +279,26 @@ bool CollisionPointer::hitCircle(const CollisionCircle& b)
 bool CollisionPointer::hitPointer(const CollisionPointer& b)
 {
 	return this->hitBase == b.hitBase;
+}
+bool CollisionPointer::hitLine(const CollisionLine& b)
+{
+	float line_1 = sqrt(
+		(b.hitBase[1].x - b.hitBase[0].x)*(b.hitBase[1].x - b.hitBase[0].x) +
+		(b.hitBase[1].y - b.hitBase[0].y)*(b.hitBase[1].y - b.hitBase[0].y)
+	);
+	float line_2 = sqrt(
+		(hitBase.x - b.hitBase[0].x)*(hitBase.x - b.hitBase[0].x) +
+		(hitBase.y - b.hitBase[0].y)*(hitBase.y - b.hitBase[0].y)
+	);
+	if (
+		((b.hitBase[1].x - b.hitBase[0].x)*(hitBase.x - b.hitBase[0].x) +
+		(b.hitBase[1].y - b.hitBase[0].y)*(hitBase.x - b.hitBase[0].y)) == line_1 * line_2 &&
+		line_1 >= line_2
+		)
+	{
+		return true;
+	}
+	return false;
 }
 //--------------------------------------------------
 //@:CollisionCapsule

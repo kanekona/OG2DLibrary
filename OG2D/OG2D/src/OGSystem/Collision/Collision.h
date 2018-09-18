@@ -20,6 +20,10 @@ class CollisionCircle;
 */
 class CollisionPointer;
 /**
+*@brief	:線判定
+*/
+class CollisionLine;
+/**
 *@brief	:カプセル判定
 */
 class CollisionCapsule;
@@ -50,6 +54,12 @@ class CollisionBase
 	*@return:bool 当たっていればtrue
 	*/
 	virtual bool hitCapsule(const CollisionCapsule& b);
+	/**
+	*@brief	:線との判定
+	*@param	:CollisionLine b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool hitLine(const CollisionLine& b);
 public:
 	/**
 	*@brief	:constructor
@@ -156,6 +166,21 @@ public:
 	*@return:bool 当たっていればtrue
 	*/
 	bool hitCircle(const CollisionCircle& b) override;
+	/**
+	*@brief	:線との判定
+	*@param	:CollisionLine b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	bool hitLine(const CollisionLine& b) override;
+};
+class CollisionLine : public CollisionBase
+{
+public:
+	Vec2 hitBase[2];
+	/**
+	*@brief	:constructor
+	*/
+	explicit CollisionLine();
 };
 class CollisionCapsule : public CollisionBase
 {
