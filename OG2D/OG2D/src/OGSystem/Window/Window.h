@@ -18,7 +18,7 @@ class Window {
 	//! 高さ
 	int height;
 	//! Windowの名
-	char* _name;
+	const char* _name;
 	//! フルスク設定
 	bool _screen;
 	//! Windowの位置
@@ -41,7 +41,7 @@ public:
 	Window(
 		const int x,
 		const int y,
-		char* name,
+		const char* name,
 		const bool flag,
 		const Vec2& pos);
 	/**

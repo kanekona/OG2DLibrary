@@ -9,7 +9,7 @@ Window::Window()
 	this->isIcon = false;
 	this->isVisualization = false;
 }
-Window::Window(const int wi, const int he, char* name, const bool screen,const Vec2& pos)
+Window::Window(const int wi, const int he, const char* name, const bool screen,const Vec2& pos)
 	:widht(wi)
 	, height(he)
 	, _name(name)

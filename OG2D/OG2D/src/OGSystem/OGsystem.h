@@ -45,7 +45,7 @@ class EngineSystem
 	//! WindowSize_H
 	int w_he;
 	//! WindowName
-	char* w_na;
+	const char* w_na;
 	//! WindowMode
 	bool w_sc;
 	//! カーソル可視化
@@ -93,7 +93,7 @@ public:
 	EngineSystem(
 		const int x,
 		const int y,
-		char* name,
+		const char* name,
 		const bool flag = false);
 	/**
 	*@brief	:destructor
@@ -118,7 +118,7 @@ public:
 	void SetWindow(
 		const int x,
 		const int y,
-		char* name,
+		const char* name,
 		const bool flag = false);
 	/**
 	*@brief	:Window生成位置登録

@@ -122,7 +122,7 @@ void StreamingSound::play()
 {
 	if (!this->isplay_) {
 	//実行スレッドの生成
-	std::thread thread(streamProc, this->filepath_, this->loop_, source_, param_);
+	std::thread thread(streamProc, this->filepath_, this->loop_, std::ref(source_), std::ref(param_));
 	//スレッドの管理を手放す
 	thread.detach();
 	this->param_->mutex.lock();

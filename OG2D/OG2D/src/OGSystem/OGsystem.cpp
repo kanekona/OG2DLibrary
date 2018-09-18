@@ -15,7 +15,7 @@ EngineSystem::EngineSystem()
 	this->w_pos = { 1920 - this->w_wi, 50 };
 	this->DeleteEngine = false;
 }
-EngineSystem::EngineSystem(const int widht,const int height, char* name, const bool screen)
+EngineSystem::EngineSystem(const int widht,const int height, const char* name, const bool screen)
 {
 	this->w_he = widht;
 	this->w_he = height;
@@ -50,7 +50,7 @@ bool EngineSystem::Initialize()
 	this->end = false;
 	return true;
 }
-void EngineSystem::SetWindow(const int width, const int height, char* name, const bool screen)
+void EngineSystem::SetWindow(const int width, const int height, const char* name, const bool screen)
 {
 	//Windowî•ñ‚ð“o˜^‚·‚é
 	this->w_wi = width;
