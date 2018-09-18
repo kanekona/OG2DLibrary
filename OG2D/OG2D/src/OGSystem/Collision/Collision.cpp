@@ -18,6 +18,10 @@ bool CollisionBase::hitPointer(const CollisionPointer& b)
 {
 	return false;
 }
+bool CollisionBase::hitCapsule(const CollisionCapsule& b)
+{
+	return false;
+}
 //--------------------------------------------------
 //@:CollisionBox
 //--------------------------------------------------
@@ -46,32 +50,22 @@ bool CollisionBox::hitBox(const CollisionBox& b)
 	OG::_Rotate(b.angle, _ver);
 	//どちらかの範囲内に相手の頂点が存在する場合TRUEを返す
 	for (int i = 0; i < 4; ++i) {
-		for (int j = 0; j < 4; ++j)
+		if ((((_v[1].x - _v[0].x)*(_ver[i].y - _v[0].y)) - ((_ver[i].x - _v[0].x)*(_v[1].y - _v[0].y))) >= 0 &&
+			(((_v[2].x - _v[1].x)*(_ver[i].y - _v[1].y)) - ((_ver[i].x - _v[1].x)*(_v[2].y - _v[1].y))) >= 0 &&
+			(((_v[3].x - _v[2].x)*(_ver[i].y - _v[2].y)) - ((_ver[i].x - _v[2].x)*(_v[3].y - _v[2].y))) >= 0 &&
+			(((_v[0].x - _v[3].x)*(_ver[i].y - _v[3].y)) - ((_ver[i].x - _v[3].x)*(_v[0].y - _v[3].y))) >= 0)
 		{
-			bool flag = true;
-			if ((((_v[(j + 1) % 4].x - _v[j].x)*(_ver[i].y - _v[j].y)) - ((_ver[i].x - _v[j].x)*(_v[(j + 1) % 4].y - _v[j].y))) < 0)
-			{
-				flag = false;
-			}
-			if (flag)
-			{
-				return true;
-			}
+			return true;
 		}
 	}
 	//相手オブジェクト目線でも同じく処理を行う
 	for (int i = 0; i < 4; ++i) {
-		for (int j = 0; j < 4; ++j)
+		if ((((_ver[1].x - _ver[0].x)*(_v[i].y - _ver[0].y)) - ((_v[i].x - _ver[0].x)*(_ver[1].y - _ver[0].y))) >= 0 &&
+			(((_ver[2].x - _ver[1].x)*(_v[i].y - _ver[1].y)) - ((_v[i].x - _ver[1].x)*(_ver[2].y - _ver[1].y))) >= 0 &&
+			(((_ver[3].x - _ver[2].x)*(_v[i].y - _ver[2].y)) - ((_v[i].x - _ver[2].x)*(_ver[3].y - _ver[2].y))) >= 0 &&
+			(((_ver[0].x - _ver[3].x)*(_v[i].y - _ver[3].y)) - ((_v[i].x - _ver[3].x)*(_ver[0].y - _ver[3].y))) >= 0)
 		{
-			bool flag = true;
-			if ((((_ver[(j + 1) % 4].x - _ver[j].x)*(_v[i].y - _ver[j].y)) - ((_v[i].x - _ver[j].x)*(_ver[(j + 1)% 4].y - _ver[j].y))) < 0)
-			{
-				flag = false;
-			}
-			if (flag)
-			{
-				return true;
-			}
+			return true;
 		}
 	}
 	for (int i = 0; i < 4; ++i)
@@ -119,10 +113,10 @@ bool CollisionBox::hitCircle(const CollisionCircle& b)
 	//Box型の回転の適用
 	OG::_Rotate(angle, _v);
 	//円の中に頂点が存在する場合TRUEを返す
-	if ((((_v[1].x - _v[0].x)*(_ver[0].y - _v[0].y)) - ((_ver[0].x - _v[0].x)*(_v[1].y - _v[0].y))) <= b.hitBase.r*b.hitBase.r &&
-		(((_v[2].x - _v[1].x)*(_ver[0].y - _v[1].y)) - ((_ver[0].x - _v[1].x)*(_v[2].y - _v[1].y))) <= b.hitBase.r*b.hitBase.r &&
-		(((_v[3].x - _v[2].x)*(_ver[0].y - _v[2].y)) - ((_ver[0].x - _v[2].x)*(_v[3].y - _v[2].y))) <= b.hitBase.r*b.hitBase.r &&
-		(((_v[0].x - _v[3].x)*(_ver[0].y - _v[3].y)) - ((_ver[0].x - _v[3].x)*(_v[0].y - _v[3].y))) <= b.hitBase.r*b.hitBase.r)
+	if ((((_v[1].x - _v[0].x)*(_ver[0].y - _v[0].y)) - ((_ver[0].x - _v[0].x)*(_v[1].y - _v[0].y))) >= b.hitBase.r*b.hitBase.r &&
+		(((_v[2].x - _v[1].x)*(_ver[0].y - _v[1].y)) - ((_ver[0].x - _v[1].x)*(_v[2].y - _v[1].y))) >= b.hitBase.r*b.hitBase.r &&
+		(((_v[3].x - _v[2].x)*(_ver[0].y - _v[2].y)) - ((_ver[0].x - _v[2].x)*(_v[3].y - _v[2].y))) >= b.hitBase.r*b.hitBase.r &&
+		(((_v[0].x - _v[3].x)*(_ver[0].y - _v[3].y)) - ((_ver[0].x - _v[3].x)*(_v[0].y - _v[3].y))) >= b.hitBase.r*b.hitBase.r)
 	{
 		return true;
 	}
@@ -144,7 +138,18 @@ bool CollisionBox::hitPointer(const CollisionPointer& b)
 	{ hitBase.x,hitBase.h }
 	};
 	OG::_Rotate(angle, _v);
-	return false;
+	for (int i = 0; i < 4; ++i)
+	{
+		if ((((_v[(i + 1) % 4].x - _v[i].x)*
+			(b.hitBase.y - _v[i].y)) -
+			((b.hitBase.x - _v[i].x)*
+			(_v[(i + 1) % 4].y - _v[i].y)))
+			< 0)
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 void CollisionBox::Rotate(const float _angle) {
@@ -178,10 +183,10 @@ bool CollisionCircle::hitBox(const CollisionBox& b)
 	//Box型の回転の適用
 	OG::_Rotate(b.Rotate(), _v);
 	//円の中に頂点が存在する場合TRUEを返す
-	if ((((_v[1].x - _v[0].x)*(_ver[0].y - _v[0].y)) - ((_ver[0].x - _v[0].x)*(_v[1].y - _v[0].y))) <= hitBase.r*hitBase.r &&
-		(((_v[2].x - _v[1].x)*(_ver[0].y - _v[1].y)) - ((_ver[0].x - _v[1].x)*(_v[2].y - _v[1].y))) <= hitBase.r*hitBase.r &&
-		(((_v[3].x - _v[2].x)*(_ver[0].y - _v[2].y)) - ((_ver[0].x - _v[2].x)*(_v[3].y - _v[2].y))) <= hitBase.r*hitBase.r &&
-		(((_v[0].x - _v[3].x)*(_ver[0].y - _v[3].y)) - ((_ver[0].x - _v[3].x)*(_v[0].y - _v[3].y))) <= hitBase.r*hitBase.r)
+	if ((((_v[1].x - _v[0].x)*(_ver[0].y - _v[0].y)) - ((_ver[0].x - _v[0].x)*(_v[1].y - _v[0].y))) >= hitBase.r*hitBase.r &&
+		(((_v[2].x - _v[1].x)*(_ver[0].y - _v[1].y)) - ((_ver[0].x - _v[1].x)*(_v[2].y - _v[1].y))) >= hitBase.r*hitBase.r &&
+		(((_v[3].x - _v[2].x)*(_ver[0].y - _v[2].y)) - ((_ver[0].x - _v[2].x)*(_v[3].y - _v[2].y))) >= hitBase.r*hitBase.r &&
+		(((_v[0].x - _v[3].x)*(_ver[0].y - _v[3].y)) - ((_ver[0].x - _v[3].x)*(_v[0].y - _v[3].y))) >= hitBase.r*hitBase.r)
 	{
 		return true;
 	}
@@ -206,10 +211,92 @@ bool CollisionCircle::hitCircle(const CollisionCircle& b)
 	}
 	return false;
 }
+bool CollisionCircle::hitPointer(const CollisionPointer& b)
+{
+	//頂点情報のセット
+	Vec2 _ver[1] = {
+		{ hitBase.center_x,hitBase.center_y }
+	};
+	Vec2 _v[1] = {
+		{ b.hitBase.x,b.hitBase.y },
+	};
+	//円の中に頂点が存在する場合TRUEを返す
+	if (((_ver[0].x - _v[0].x) * (_ver[0].x - _v[0].x)) + ((_ver[0].y - _v[0].y) * (_ver[0].y - _v[0].y)) <= this->hitBase.r * this->hitBase.r)
+	{
+		return true;
+	}
+	return false;
+}
 //--------------------------------------------------
 //@:CollisionPointer
 //--------------------------------------------------
 CollisionPointer::CollisionPointer()
 	:CollisionBase(1)
 {
+}
+bool CollisionPointer::hitBox(const CollisionBox& b)
+{
+	Vec2 _v[4] = {
+	{ b.hitBase.x,b.hitBase.y },
+	{ b.hitBase.w - 1,b.hitBase.y },
+	{ b.hitBase.w - 1,b.hitBase.h },
+	{ b.hitBase.x,b.hitBase.h }
+	};
+	OG::_Rotate(b.Rotate(), _v);
+	for (int i = 0; i < 4; ++i)
+	{
+		if ((((_v[(i + 1) % 4].x - _v[i].x)*
+			(hitBase.y - _v[i].y)) -
+			((hitBase.x - _v[i].x)*
+			(_v[(i + 1) % 4].y - _v[i].y)))
+			< 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+bool CollisionPointer::hitCircle(const CollisionCircle& b)
+{
+	//頂点情報のセット
+	Vec2 _ver[1] = {
+		{ b.hitBase.center_x,b.hitBase.center_y }
+	};
+	Vec2 _v[1] = {
+		{ hitBase.x,hitBase.y },
+	};
+	//円の中に頂点が存在する場合TRUEを返す
+	if (((_ver[0].x - _v[0].x) * (_ver[0].x - _v[0].x)) + ((_ver[0].y - _v[0].y) * (_ver[0].y - _v[0].y)) <= b.hitBase.r * b.hitBase.r)
+	{
+		return true;
+	}
+	return false;
+}
+bool CollisionPointer::hitPointer(const CollisionPointer& b)
+{
+	return this->hitBase == b.hitBase;
+}
+//--------------------------------------------------
+//@:CollisionCapsule
+//--------------------------------------------------
+CollisionCapsule::CollisionCapsule()
+	:CollisionBase(6)
+{
+
+}
+bool CollisionCapsule::hitCapsule(const CollisionCapsule& b)
+{
+	return false;
+}
+bool CollisionCapsule::hitBox(const CollisionBox& b)
+{
+	return false;
+}
+bool CollisionCapsule::hitCircle(const CollisionCircle& b)
+{
+	return false;
+}
+bool CollisionCapsule::hitPointer(const CollisionPointer& b)
+{
+	return false;
 }
