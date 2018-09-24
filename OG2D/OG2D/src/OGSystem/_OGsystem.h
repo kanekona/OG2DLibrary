@@ -84,7 +84,13 @@ namespace OG {
 	void LineHitDraw(Vec2*,const Color&);
 	void LineHitDraw(Box2D*);
 	void LineHitDraw(Box2D*, const Color&);
-	void LineOval(int x, int y, float ovalx, float ovaly);
+	void LineBoxDraw(const Box2D* box, const Color& color = { 1,1,1,1 }, const float linewidth = 1.0f);
+	void LineBoxDraw(const Box2D* box, const float linewidth = 1.0f, const Color& color = { 1,1,1,1 });
+	void LineBoxDraw(const Vec2* vec, const Color& color = { 1,1,1,1 }, const float linewidth = 1.0f);
+	void LineBoxDraw(const Vec2* vec, const float linewidth = 1.0f, const Color& color = { 1,1,1,1 });
+	void LineDraw(Vec2* vec, const Color& color = { 1,1,1,1 }, const float linewidth = 1.0f);
+	void LineDraw(Vec2* vec, const float linewidth = 1.0f, const Color& color = { 1,1,1,1 });
+	void LineOvalDraw(const int x, const int y, const float ovalx, const float ovaly, const float linewidth = 1.0f);
 	void BackColor(const Color& color);
 	void BackColor(const float&red, const float&green, const float&blue, const float&alpha);
 	int mbclen(const char* c);

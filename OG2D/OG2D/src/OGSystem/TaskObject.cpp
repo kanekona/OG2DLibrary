@@ -19,15 +19,15 @@ bool TaskObject::Init(const std::string& name_)
 	this->taskName = name_;
 	return true;
 }
-void TaskObject::T_UpDate()
+void TaskObject::T_Update()
 {
 	if (!this->isPause)
 	{
-		UpDate();
+		Update();
 	}
 	else
 	{
-		PauseUpDate();
+		PauseUpdate();
 	}
 }
 void TaskObject::Kill(const bool on)
@@ -70,7 +70,7 @@ std::string TaskObject::GetTaskName() const
 {
 	return this->taskName;
 }
-void TaskObject::UpDate()
+void TaskObject::Update()
 {
 
 }
@@ -78,7 +78,7 @@ void TaskObject::Render2D()
 {
 
 }
-void TaskObject::PauseUpDate()
+void TaskObject::PauseUpdate()
 {
 
 }

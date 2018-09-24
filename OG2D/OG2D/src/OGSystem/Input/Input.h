@@ -329,7 +329,7 @@ public:
 		/**
 		*@brief	:入力状況の更新
 		*/
-		void upDate();
+		void Update();
 		/**
 		*@brief	:各値の初期化
 		*/
@@ -445,7 +445,7 @@ public:
 		/**
 		*@brief	:入力状況の更新
 		*/
-		void upDate();
+		void Update();
 		/**
 		*@brief	:反映させるWindowを登録する
 		*@param :GLFWWindow* w Windowのポインタ
@@ -493,7 +493,7 @@ public:
 		/**
 		*@brief	:入力状況の更新
 		*/
-		void upDate();
+		void Update();
 		/**
 		*@brief	:反映させるWindowを登録する
 		*@param	:GLFWWindow* w Windowのポインタ
@@ -631,7 +631,7 @@ public:
 	/**
 	*@brief	:入力状況の更新
 	*/
-	void upDate();
+	void Update();
 	/**
 	*@brief	:全てのdown入力のうち１つでも判定があるか調べる
 	*@return:1つ以上入力されているとtrue

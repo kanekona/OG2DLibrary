@@ -2,14 +2,14 @@
 
 GameObject::GameObject()
 {
-
+	this->angle = 0.f;
 }
 GameObject::~GameObject()
 {
 
 }
 
-
+//
 //GameObject::GameObject() {
 //	//各変数の初期化
 //	this->isGravity = false;
@@ -100,9 +100,9 @@ GameObject::~GameObject()
 //		{
 //			//位置とサイズから当たり判定を生成する
 //			o.collisionBall.hitBase = {
-//				o.Scale.x,
 //				o.position.x,
-//				o.position.y };
+//				o.position.y,
+//				o.Scale.x / 2.f };
 //			//Collision内の判定を使用してその結果を返す
 //			return this->collisionCube.hitCircle(o.collisionBall);
 //			break;
@@ -114,9 +114,9 @@ GameObject::~GameObject()
 //	{
 //		//位置とサイズから当たり判定を生成する
 //		this->collisionBall.hitBase = {
-//			this->Scale.x,
 //			this->position.x,
-//			this->position.y };
+//			this->position.y,
+//			this->Scale.x / 2.f };
 //		switch (o.objform)
 //		{
 //		case Objform::Cube:		//相手が矩形の時
@@ -138,9 +138,9 @@ GameObject::~GameObject()
 //		{
 //			//位置とサイズから当たり判定を生成する
 //			o.collisionBall.hitBase = {
-//				o.Scale.x,
 //				o.position.x,
-//				o.position.y };
+//				o.position.y,
+//				o.Scale.x / 2.f };
 //			//Collision内の判定を使用してその結果を返す
 //			return this->collisionBall.hitCircle(o.collisionBall);
 //			break;

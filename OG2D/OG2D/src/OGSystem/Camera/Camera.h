@@ -32,7 +32,7 @@ public:
 	/**
 	*@brief	:更新処理
 	*/
-	void UpDate() const;
+	void Update() const;
 	/**
 	*@brief	:位置を移動させる
 	*@param :Vec2 move 移動値

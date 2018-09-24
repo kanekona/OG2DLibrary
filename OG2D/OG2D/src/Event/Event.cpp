@@ -31,6 +31,7 @@ bool EventTask::Load(const Event& eventType, const std::string& path)
 		ResourceLoad* rl = new ResourceLoad(this->ifs);
 		delete rl;
 	}
+	break;
 		break;
 	}
 	return true;

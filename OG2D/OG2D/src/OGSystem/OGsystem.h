@@ -161,7 +161,7 @@ public:
 	/**
 	*@brief	:タスク達の更新処理
 	*/
-	void TaskGameUpDate();
+	void TaskGameUpdate();
 	/**
 	*@brief	:タスクを登録する
 	*@param	:TaskObject* task タスク
@@ -263,7 +263,7 @@ private:
 	/**
 	*@brief	:タスク更新処理
 	*/
-	void Task_UpDate();
+	void Task_Update();
 	/**
 	*@brief	:タスク描画処理
 	*/

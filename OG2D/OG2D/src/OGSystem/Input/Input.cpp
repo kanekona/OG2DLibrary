@@ -174,7 +174,7 @@ bool Input::GamePad::registAxisButton(const float axis_threshold_)
 	axis_threshold = axis_threshold_;
 	return true;
 }
-void Input::GamePad::upDate()
+void Input::GamePad::Update()
 {
 	//Œ»İ‚Ì“ü—Íó‹µ‚Æ1‰ñ‘O‚Ì“ü—Íó‹µ‚©‚çtrue‚©false‚ğ‚¢‚ê‚é
 	int button_num_;
@@ -342,7 +342,7 @@ bool Input::KeyBoard::EitherUp() const
 	}
 	return false;
 }
-void Input::KeyBoard::upDate()
+void Input::KeyBoard::Update()
 {
 	for (int i = 0; i < 256; ++i)
 	{
@@ -441,7 +441,7 @@ bool Input::Mouse::EitherUp() const
 	}
 	return false;
 }
-void Input::Mouse::upDate()
+void Input::Mouse::Update()
 {
 	for (int i = 0; i < 256; ++i)
 	{
@@ -559,14 +559,14 @@ void Input::Inputinit(GLFWwindow *w)
 		this->inputdata[R2].key = Input::KeyBoard::Key::U;
 	}
 }
-void Input::upDate()
+void Input::Update()
 {
 	for (int i = 0; i < this->pad.size(); ++i)
 	{
-		this->pad[i].upDate();
+		this->pad[i].Update();
 	}
-	this->key.upDate();
-	this->mouse.upDate();
+	this->key.Update();
+	this->mouse.Update();
 }
 bool Input::down(const int index, const int padNum) const
 {

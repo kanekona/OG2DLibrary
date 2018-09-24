@@ -34,10 +34,7 @@ bool EngineSystem::Initialize()
 	//カメラ2Dの生成
 	this->camera = new Camera2D(Box2D(0, 0, w_wi, w_he));
 	//fpsの設定
-	//※デバッグ時のみ使用する
-#if(_DEBUG)
 	this->fps = new FPS();
-#endif
 	//入力関連の初期化
 	this->in = new Input();
 	this->in->Inputinit(this->window->GetWindow());
@@ -71,19 +68,19 @@ void EngineSystem::SetIcon(const std::string& filepath_)
 void EngineSystem::Update()
 {
 	//入力状況の更新
-	this->in->upDate();
+	this->in->Update();
 #if(_DEBUG)
 	this->fps->Update();
 #endif
 }
-void EngineSystem::Task_UpDate()
+void EngineSystem::Task_Update()
 {
 	//登録タスクの更新処理を呼ぶ
 	for (int id = 0; id < this->taskObjects.size(); ++id)
 	{
 		if (this->taskObjects[id].second->GetKillCount() == 0)
 		{
-			this->taskObjects[id].second->T_UpDate();
+			this->taskObjects[id].second->T_Update();
 		}
 	}
 }
@@ -98,10 +95,10 @@ void EngineSystem::Task_Render_AF()
 		}
 	}
 }
-void EngineSystem::TaskGameUpDate()
+void EngineSystem::TaskGameUpdate()
 {
-	this->Task_UpDate();		//更新処理
-	this->camera->UpDate();	//カメラ処理
+	this->Task_Update();		//更新処理
+	this->camera->Update();	//カメラ処理
 	this->Task_Render_AF();		//描画処理
 	if (this->CheckAddTask() || this->CheckKillTask())
 	{
@@ -142,9 +139,7 @@ EngineSystem::~EngineSystem()
 	//生成したclassをdeleteする
 	delete this->audiodevice;
 	delete this->soundManager;
-#if(_DEBUG)
 	delete this->fps;
-#endif
 	delete this->in;
 	delete this->window;
 	delete this->camera;

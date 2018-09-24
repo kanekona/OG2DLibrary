@@ -16,7 +16,7 @@ class Button : public TaskObject
 	/**
 	*@brief	:XVˆ—
 	*/
-	void UpDate() override;
+	void Update() override;
 	/**
 	*@brief	:•`‰æˆ—
 	*/

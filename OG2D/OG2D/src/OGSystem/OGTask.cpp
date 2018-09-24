@@ -13,4 +13,5 @@ void OGTK::StartTaskObject()
 	EventTask ev;
 	ev.Load(Event::RESOURCE_LOAD, "./data/event/sampleLoad.og");
 	//ƒ^ƒXƒN‚Ì‰Šú‰»
+	Sample::Create();
 }

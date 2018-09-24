@@ -11,8 +11,6 @@ class EventTask
 public:
 	/**
 	*@brief	:constructor
-	*@param	:Event eventType 生成するEventの種類
-	*@param	:string path 読み込むEventファイルのパス
 	*/
 	explicit EventTask();
 	/**

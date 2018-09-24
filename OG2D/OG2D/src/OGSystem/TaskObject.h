@@ -39,11 +39,11 @@ public:
 	/**
 	*@brief	:更新処理
 	*/
-	void T_UpDate();
+	void T_Update();
 	/**
 	*@brief	:更新処理
 	*/
-	virtual void UpDate();
+	virtual void Update();
 	/**
 	*@brief	:描画処理
 	*/
@@ -51,7 +51,7 @@ public:
 	/**
 	*@brief	:ポーズ処理
 	*/
-	virtual void PauseUpDate();
+	virtual void PauseUpdate();
 	/**
 	*@brief	:削除命令
 	*@param :bool flag 次タスクの生成を行うかの設定

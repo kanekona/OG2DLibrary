@@ -89,7 +89,7 @@ bool OGSystem::LibConfirmation()
 			return false;
 		}
 		//各タスクの更新処理
-		OGge->TaskGameUpDate();
+		OGge->TaskGameUpdate();
 	}
 	return !glfwWindowShouldClose(OGge->window->GetWindow());
 }

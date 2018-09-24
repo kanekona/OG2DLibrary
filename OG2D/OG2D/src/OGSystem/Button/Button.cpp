@@ -13,7 +13,7 @@ GameObject* Button::GetObject() const
 {
 	return this->collision;
 }
-void Button::UpDate()
+void Button::Update()
 {
 	
 }

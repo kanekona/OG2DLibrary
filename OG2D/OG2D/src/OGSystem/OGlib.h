@@ -87,6 +87,7 @@ public:
 	Box2D(const Vec2& p, const Vec2& s);
 	void Offset(const float x_, const float y_);
 	void Offset(const int x_, const int y_);
+	void Offset();
 	void OffsetSize();
 	Box2D operator+(const Box2D& b);
 	Box2D operator-(const Box2D& b);
