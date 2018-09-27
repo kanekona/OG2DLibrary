@@ -4,7 +4,8 @@
 #pragma once
 #include "OGSystem\_OGsystem.h"
 
-class Window {
+class Window : private NonCopyable
+{
 	//! アイコン情報
 	GLFWimage image[1];	
 	//! アイコン画像のID

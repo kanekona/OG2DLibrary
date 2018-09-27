@@ -11,6 +11,11 @@ class Mat4x4;
 class Box3D;
 class Box2D;
 class Color;
+/**
+*コピーを禁止するclass
+*このclassを継承したclassはコピーコンストラクタと代入演算を禁止されます
+*/
+class NonCopyable;
 
 class Circle
 {
@@ -110,6 +115,14 @@ public:
 	Color operator+(const Color&);
 	Color operator-(const Color&);
 	Color operator*(const Color&);
+};
+class NonCopyable
+{
+	void operator=(const NonCopyable& non);
+	NonCopyable(const NonCopyable& non);
+protected:
+	NonCopyable();
+	~NonCopyable();
 };
 /**
 *namespace OG

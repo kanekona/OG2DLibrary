@@ -6,7 +6,7 @@
 /**
 *TaskObject
 */
-class TaskObject
+class TaskObject : private NonCopyable
 {
 private:
 	//! 終了時に次のタスクを生成できるか

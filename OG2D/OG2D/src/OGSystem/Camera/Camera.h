@@ -8,7 +8,7 @@
 /**
 *@brief	:ƒJƒƒ‰2D
 */
-class Camera2D
+class Camera2D : private NonCopyable
 {
 public:
 	/**

@@ -22,7 +22,7 @@
 /**
 *@brief	:描画順を管理するclass
 */
-class OrderCheck
+class OrderCheck : private NonCopyable
 {
 public:
 	OrderCheck()
@@ -36,7 +36,7 @@ public:
 /**
 *@brief	:メインシステム処理
 */
-class EngineSystem
+class EngineSystem : private NonCopyable
 {
 	//! 終了状況
 	bool end;

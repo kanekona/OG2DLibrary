@@ -4,7 +4,7 @@
 #pragma once
 #include "OGSystem\_OGsystem.h"
 
-class Time
+class Time : private NonCopyable
 {
 public:
 	/**

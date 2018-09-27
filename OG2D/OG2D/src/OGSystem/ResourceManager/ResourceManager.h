@@ -7,7 +7,7 @@
 #include "OGSystem\Audio\Sound.h"
 #include "OGSystem\Texture\Texture.h"
 
-class ResourceManager
+class ResourceManager : private NonCopyable
 {
 	//std::vector<S_Data> soundData;
 	//! サウンドデータ

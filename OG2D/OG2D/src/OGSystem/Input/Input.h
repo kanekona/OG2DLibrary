@@ -150,7 +150,7 @@ namespace Mouse
 		BUTTON_8,
 	};
 }
-class Input
+class Input : private NonCopyable
 {
 public:
 	/**

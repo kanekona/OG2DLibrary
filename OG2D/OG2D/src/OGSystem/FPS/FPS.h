@@ -5,7 +5,8 @@
 #pragma once
 #include "OGSystem\_OGsystem.h"
 
-class FPS {
+class FPS : private NonCopyable 
+{
 public:
 	/**
 	*@brief	:constructor

@@ -6,7 +6,7 @@
 #include "OGsystem.h"
 ///#include "_OGsystem.h"
 
-class OGSystem
+class OGSystem : private NonCopyable
 {
 public:
 	OGSystem();
