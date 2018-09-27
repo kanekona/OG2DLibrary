@@ -106,12 +106,14 @@ namespace OG
 	{
 		return new T;
 	}
-	template <class T> void Destroy(T* t)
+	template <class T> bool Destroy(T* t)
 	{
 		if (t)
 		{
 			delete t;
 			t = nullptr;
+			return true;
 		}
+		return false;
 	}
 }
