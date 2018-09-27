@@ -76,7 +76,8 @@ typedef unsigned long u_long;
 *namespace OG
 *便利機能関数や数学計算
 */
-namespace OG {
+namespace OG 
+{
 	void MulitMatrixf(GLfloat*, GLfloat*, GLfloat*);
 	void Normalize(GLfloat*);
 	void _Rotate(const float _angle, Vec2*);
@@ -101,4 +102,16 @@ namespace OG {
 	std::string Data_Composite(std::ifstream& ifs);
 	void OutDebugData(const std::string& out_path, const std::string& text);
 	void DataClear(const std::string& path);
+	template <class T> T* Create()
+	{
+		return new T;
+	}
+	template <class T> void Destroy(T* t)
+	{
+		if (t)
+		{
+			delete t;
+			t = nullptr;
+		}
+	}
 }
