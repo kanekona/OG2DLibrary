@@ -30,37 +30,49 @@ class CollisionCapsule;
 
 class CollisionBase
 {
+public:
+	/**
+	*@brief	:当たり判定の元
+	*@param :CollisionBase b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool Hit(const CollisionBase& b);
 	/**
 	*@brief	:矩形との判定
 	*@param :CollisionBox b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool hitBox(const CollisionBox& b);
+	virtual bool Hit(const CollisionBox& b);
 	/**
 	*@brief	:円との判定
 	*@param :CollisionCircle b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool hitCircle(const CollisionCircle& b);
+	virtual bool Hit(const CollisionCircle& b);
 	/**
 	*@brief	:点との判定
 	*@param :CollisionCircle b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool hitPointer(const CollisionPointer& b);
+	virtual bool Hit(const CollisionPointer& b);
 	/**
 	*@brief	:カプセルとの判定
 	*@param	:CollisionCapsule b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool hitCapsule(const CollisionCapsule& b);
+	virtual bool Hit(const CollisionCapsule& b);
 	/**
 	*@brief	:線との判定
 	*@param	:CollisionLine b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool hitLine(const CollisionLine& b);
-public:
+	virtual bool Hit(const CollisionLine& b);
+	/**
+	*@brief	:当たり判定を生成する
+	*@param	:Vec2 pos Position
+	*@param	:Vec2 scale Scale
+	*/
+	virtual void CreateHitBase(const Vec2& pos, const Vec2& scale);
 	/**
 	*@brief	:constructor
 	*@param	:unsigned short vertex 頂点数
@@ -86,19 +98,19 @@ public:
 	*@param :CollisionBox b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitBox(const CollisionBox& b) override;
+	bool Hit(const CollisionBox& b) override;
 	/**
 	*@brief	:円との判定
 	*@param :CollisionCircle b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitCircle(const CollisionCircle& b) override;
+	bool Hit(const CollisionCircle& b) override;
 	/**
 	*@brief	:点との判定
 	*@param :CollisionCircle b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitPointer(const CollisionPointer& b) override;
+	bool Hit(const CollisionPointer& b) override;
 	/**
 	*@brief	:回転値を変更する
 	*@param :float _angle 回転値
@@ -124,19 +136,19 @@ public:
 	*@param :CollisionBox b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitBox(const CollisionBox& b) override;
+	bool Hit(const CollisionBox& b) override;
 	/**
 	*@brief	:円との判定
 	*@param :CollisionCircle b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitCircle(const CollisionCircle& b) override;
+	bool Hit(const CollisionCircle& b) override;
 	/**
 	*@brief	:点との判定
 	*@param :CollisionCircle b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitPointer(const CollisionPointer& b) override;
+	bool Hit(const CollisionPointer& b) override;
 private:
 };
 class CollisionPointer : public CollisionBase
@@ -153,25 +165,25 @@ public:
 	*@param	:CollisionBox b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitBox(const CollisionBox& b) override;
+	bool Hit(const CollisionBox& b) override;
 	/**
 	*@brief	:円との判定
 	*@param	:CollisionBox b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitPointer(const CollisionPointer& b) override;
+	bool Hit(const CollisionPointer& b) override;
 	/**
 	*@brief	:点との判定
 	*@param	:CollisionBox b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitCircle(const CollisionCircle& b) override;
+	bool Hit(const CollisionCircle& b) override;
 	/**
 	*@brief	:線との判定
 	*@param	:CollisionLine b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	bool hitLine(const CollisionLine& b) override;
+	bool Hit(const CollisionLine& b) override;
 };
 class CollisionLine : public CollisionBase
 {
@@ -190,8 +202,8 @@ public:
 	*@brief	:constructor
 	*/
 	explicit CollisionCapsule();
-	bool hitCapsule(const CollisionCapsule& b) override;
-	bool hitBox(const CollisionBox& b) override;
-	bool hitCircle(const CollisionCircle& b) override;
-	bool hitPointer(const CollisionPointer& b) override;
+	bool Hit(const CollisionCapsule& b) override;
+	bool Hit(const CollisionBox& b) override;
+	bool Hit(const CollisionCircle& b) override;
+	bool Hit(const CollisionPointer& b) override;
 };

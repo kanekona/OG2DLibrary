@@ -6,25 +6,33 @@ CollisionBase::CollisionBase(const unsigned short vertex)
 	:VERTEX_NUM(vertex)
 {
 }
-bool CollisionBase::hitBox(const CollisionBox& b)
+bool CollisionBase::Hit(const CollisionBase& b)
 {
 	return false;
 }
-bool CollisionBase::hitCircle(const CollisionCircle& b)
+bool CollisionBase::Hit(const CollisionBox& b)
 {
 	return false;
 }
-bool CollisionBase::hitPointer(const CollisionPointer& b)
+bool CollisionBase::Hit(const CollisionCircle& b)
 {
 	return false;
 }
-bool CollisionBase::hitCapsule(const CollisionCapsule& b)
+bool CollisionBase::Hit(const CollisionPointer& b)
 {
 	return false;
 }
-bool CollisionBase::hitLine(const CollisionLine& b)
+bool CollisionBase::Hit(const CollisionCapsule& b)
 {
 	return false;
+}
+bool CollisionBase::Hit(const CollisionLine& b)
+{
+	return false;
+}
+void CollisionBase::CreateHitBase(const Vec2& pos, const Vec2& scale)
+{
+
 }
 //--------------------------------------------------
 //@:CollisionBox
@@ -34,7 +42,7 @@ CollisionBox::CollisionBox()
 {
 }
 //矩形×矩形
-bool CollisionBox::hitBox(const CollisionBox& b)
+bool CollisionBox::Hit(const CollisionBox& b)
 {
 	//頂点情報のセット
 	Vec2 _ver[4] = {
@@ -102,7 +110,7 @@ bool CollisionBox::hitBox(const CollisionBox& b)
 	return false;
 }
 //矩形×円
-bool CollisionBox::hitCircle(const CollisionCircle& b)
+bool CollisionBox::Hit(const CollisionCircle& b)
 {
 	//頂点情報のセット
 	Vec2 _ver[1] = {
@@ -133,7 +141,7 @@ bool CollisionBox::hitCircle(const CollisionCircle& b)
 	return false;
 }
 //点と矩形
-bool CollisionBox::hitPointer(const CollisionPointer& b)
+bool CollisionBox::Hit(const CollisionPointer& b)
 {
 	Vec2 _v[4] = {
 		{ hitBase.x,hitBase.y },
@@ -172,7 +180,7 @@ CollisionCircle::CollisionCircle()
 {
 }
 //円×矩形
-bool CollisionCircle::hitBox(const CollisionBox& b)
+bool CollisionCircle::Hit(const CollisionBox& b)
 {
 	//頂点情報のセット
 	Vec2 _ver[1] = {
@@ -202,7 +210,7 @@ bool CollisionCircle::hitBox(const CollisionBox& b)
 	return false;
 }
 //円×円
-bool CollisionCircle::hitCircle(const CollisionCircle& b)
+bool CollisionCircle::Hit(const CollisionCircle& b)
 {
 	//円の範囲内に相手の円の範囲が存在する場合TRUEを返す
 	if (((b.hitBase.center_x - this->hitBase.center_x)*
@@ -215,7 +223,7 @@ bool CollisionCircle::hitCircle(const CollisionCircle& b)
 	}
 	return false;
 }
-bool CollisionCircle::hitPointer(const CollisionPointer& b)
+bool CollisionCircle::Hit(const CollisionPointer& b)
 {
 	//頂点情報のセット
 	Vec2 _ver[1] = {
@@ -238,7 +246,7 @@ CollisionPointer::CollisionPointer()
 	:CollisionBase(1)
 {
 }
-bool CollisionPointer::hitBox(const CollisionBox& b)
+bool CollisionPointer::Hit(const CollisionBox& b)
 {
 	Vec2 _v[4] = {
 	{ b.hitBase.x,b.hitBase.y },
@@ -260,7 +268,7 @@ bool CollisionPointer::hitBox(const CollisionBox& b)
 	}
 	return true;
 }
-bool CollisionPointer::hitCircle(const CollisionCircle& b)
+bool CollisionPointer::Hit(const CollisionCircle& b)
 {
 	//頂点情報のセット
 	Vec2 _ver[1] = {
@@ -276,11 +284,11 @@ bool CollisionPointer::hitCircle(const CollisionCircle& b)
 	}
 	return false;
 }
-bool CollisionPointer::hitPointer(const CollisionPointer& b)
+bool CollisionPointer::Hit(const CollisionPointer& b)
 {
 	return this->hitBase == b.hitBase;
 }
-bool CollisionPointer::hitLine(const CollisionLine& b)
+bool CollisionPointer::Hit(const CollisionLine& b)
 {
 	float line_1 = sqrt(
 		(b.hitBase[1].x - b.hitBase[0].x)*(b.hitBase[1].x - b.hitBase[0].x) +
@@ -308,19 +316,19 @@ CollisionCapsule::CollisionCapsule()
 {
 
 }
-bool CollisionCapsule::hitCapsule(const CollisionCapsule& b)
+bool CollisionCapsule::Hit(const CollisionCapsule& b)
 {
 	return false;
 }
-bool CollisionCapsule::hitBox(const CollisionBox& b)
+bool CollisionCapsule::Hit(const CollisionBox& b)
 {
 	return false;
 }
-bool CollisionCapsule::hitCircle(const CollisionCircle& b)
+bool CollisionCapsule::Hit(const CollisionCircle& b)
 {
 	return false;
 }
-bool CollisionCapsule::hitPointer(const CollisionPointer& b)
+bool CollisionCapsule::Hit(const CollisionPointer& b)
 {
 	return false;
 }
