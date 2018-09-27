@@ -17,17 +17,14 @@
 #include <crtdbg.h>
 #define new ::new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #endif
-
-OGTK* ogtk;
-OGSystem* System;
 //------------------
 //メイン
 //------------------
 int main() {
 	//メモリリーク検知
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	System = new OGSystem();
-	ogtk = new OGTK();
+	OGSystem* System = new OGSystem();
+	OGTK* ogtk = new OGTK();
 	ogtk->_myGameInitialize();
 	Time* timer = new Time();
 	timer->Start();
@@ -40,6 +37,10 @@ int main() {
 		if (ogtk)
 		{
 			delete ogtk;
+		}
+		if (timer)
+		{
+			delete timer;
 		}
 		return -1;
 	}
