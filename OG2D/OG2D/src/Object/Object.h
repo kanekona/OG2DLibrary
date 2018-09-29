@@ -42,27 +42,29 @@ enum Mode
 class GameObject :private NonCopyable
 {
 	//! Position
-	Vec2 position;
+	Vec2 _position;
 	//! Scale
-	Vec2 scale;
+	Vec2 _scale;
+	//! DistanceScale
+	Vec2 _distanceScale;
 	//! Radius
-	Vec2 radius;
+	Vec2 _radius;
 	//! Angle
-	float angle;
+	float _angle;
 	//! CollisionData
-	CollisionBase* collision;
+	CollisionBase* _collision;
 	//! ObjectTag
-	std::string tag;
+	std::string _tag;
 	//! Mass
-	float mass;
+	float _mass;
 	//! DistanceCollision
-	CollisionCircle* distanceCollision;
+	CollisionCircle* _distanceCollision;
 	//! isCollisionCheck
-	bool isCollision;
+	bool enableCollision;
 	//! Mode
-	Mode mode;
+	Mode _mode;
 	//! ObjectForm
-	Objform form;
+	Objform _form;
 	/**
 	*@brief	:データ型の値のリセット
 	*/
