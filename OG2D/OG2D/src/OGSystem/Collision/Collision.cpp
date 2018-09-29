@@ -6,33 +6,36 @@ CollisionBase::CollisionBase(const unsigned short vertex)
 	:VERTEX_NUM(vertex)
 {
 }
-bool CollisionBase::Hit(const CollisionBase& b)
+bool CollisionBase::Hit(CollisionBase& b)
 {
 	return false;
 }
-bool CollisionBase::Hit(const CollisionBox& b)
+bool CollisionBase::Hit(CollisionBox& b)
 {
 	return false;
 }
-bool CollisionBase::Hit(const CollisionCircle& b)
+bool CollisionBase::Hit(CollisionCircle& b)
 {
 	return false;
 }
-bool CollisionBase::Hit(const CollisionPointer& b)
+bool CollisionBase::Hit(CollisionPointer& b)
 {
 	return false;
 }
-bool CollisionBase::Hit(const CollisionCapsule& b)
+bool CollisionBase::Hit(CollisionCapsule& b)
 {
 	return false;
 }
-bool CollisionBase::Hit(const CollisionLine& b)
+bool CollisionBase::Hit(CollisionLine& b)
 {
 	return false;
 }
-void CollisionBase::CreateHitBase(const Vec2& pos, const Vec2& scale)
+void CollisionBase::CreateHitBase(Vec2* pos, Vec2* scale, Vec2* radius, float* angle)
 {
-
+	this->_pos = pos;
+	this->_scale = scale;
+	this->_radius = radius;
+	this->_rotate = angle;
 }
 //--------------------------------------------------
 //@:CollisionBox
@@ -42,8 +45,10 @@ CollisionBox::CollisionBox()
 {
 }
 //‹éŒ`~‹éŒ`
-bool CollisionBox::Hit(const CollisionBox& b)
+bool CollisionBox::Hit(CollisionBox& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	//’¸“_î•ñ‚ÌƒZƒbƒg
 	Vec2 _ver[4] = {
 		{ b.hitBase.x,b.hitBase.y },
@@ -110,8 +115,10 @@ bool CollisionBox::Hit(const CollisionBox& b)
 	return false;
 }
 //‹éŒ`~‰~
-bool CollisionBox::Hit(const CollisionCircle& b)
+bool CollisionBox::Hit(CollisionCircle& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	//’¸“_î•ñ‚ÌƒZƒbƒg
 	Vec2 _ver[1] = {
 		{ b.hitBase.center_x,b.hitBase.center_y }
@@ -141,8 +148,10 @@ bool CollisionBox::Hit(const CollisionCircle& b)
 	return false;
 }
 //“_‚Æ‹éŒ`
-bool CollisionBox::Hit(const CollisionPointer& b)
+bool CollisionBox::Hit(CollisionPointer& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	Vec2 _v[4] = {
 		{ hitBase.x,hitBase.y },
 	{ hitBase.w - 1,hitBase.y },
@@ -163,7 +172,17 @@ bool CollisionBox::Hit(const CollisionPointer& b)
 	}
 	return true;
 }
-
+void CollisionBox::CreateCollision()
+{
+	Vec2 scaleSize = { this->_scale->x * this->_radius->x,this->_scale->y * this->_radius->y };
+	this->hitBase = {
+		this->_pos->x - (scaleSize.x / 2.f),
+		this->_pos->y - (scaleSize.y / 2.f),
+		this->_pos->x + (scaleSize.x / 2.f),
+		this->_pos->y + (scaleSize.y / 2.f)
+	};
+	this->Rotate(*this->_rotate);
+}
 void CollisionBox::Rotate(const float _angle) {
 	//‰ñ“]‚Ì’l‚ðŠi”[
 	this->angle = _angle;
@@ -180,8 +199,10 @@ CollisionCircle::CollisionCircle()
 {
 }
 //‰~~‹éŒ`
-bool CollisionCircle::Hit(const CollisionBox& b)
+bool CollisionCircle::Hit(CollisionBox& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	//’¸“_î•ñ‚ÌƒZƒbƒg
 	Vec2 _ver[1] = {
 		{ hitBase.center_x,hitBase.center_y }
@@ -210,8 +231,10 @@ bool CollisionCircle::Hit(const CollisionBox& b)
 	return false;
 }
 //‰~~‰~
-bool CollisionCircle::Hit(const CollisionCircle& b)
+bool CollisionCircle::Hit(CollisionCircle& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	//‰~‚Ì”ÍˆÍ“à‚É‘ŠŽè‚Ì‰~‚Ì”ÍˆÍ‚ª‘¶Ý‚·‚éê‡TRUE‚ð•Ô‚·
 	if (((b.hitBase.center_x - this->hitBase.center_x)*
 		(b.hitBase.center_x - this->hitBase.center_x)) +
@@ -223,8 +246,10 @@ bool CollisionCircle::Hit(const CollisionCircle& b)
 	}
 	return false;
 }
-bool CollisionCircle::Hit(const CollisionPointer& b)
+bool CollisionCircle::Hit(CollisionPointer& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	//’¸“_î•ñ‚ÌƒZƒbƒg
 	Vec2 _ver[1] = {
 		{ hitBase.center_x,hitBase.center_y }
@@ -239,6 +264,14 @@ bool CollisionCircle::Hit(const CollisionPointer& b)
 	}
 	return false;
 }
+void CollisionCircle::CreateCollision()
+{
+	this->hitBase = {
+		this->_pos->x,
+		this->_pos->y,
+		this->_scale->x / 2.f
+	};
+}
 //--------------------------------------------------
 //@:CollisionPointer
 //--------------------------------------------------
@@ -246,8 +279,10 @@ CollisionPointer::CollisionPointer()
 	:CollisionBase(1)
 {
 }
-bool CollisionPointer::Hit(const CollisionBox& b)
+bool CollisionPointer::Hit(CollisionBox& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	Vec2 _v[4] = {
 	{ b.hitBase.x,b.hitBase.y },
 	{ b.hitBase.w - 1,b.hitBase.y },
@@ -268,8 +303,10 @@ bool CollisionPointer::Hit(const CollisionBox& b)
 	}
 	return true;
 }
-bool CollisionPointer::Hit(const CollisionCircle& b)
+bool CollisionPointer::Hit(CollisionCircle& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	//’¸“_î•ñ‚ÌƒZƒbƒg
 	Vec2 _ver[1] = {
 		{ b.hitBase.center_x,b.hitBase.center_y }
@@ -284,12 +321,16 @@ bool CollisionPointer::Hit(const CollisionCircle& b)
 	}
 	return false;
 }
-bool CollisionPointer::Hit(const CollisionPointer& b)
+bool CollisionPointer::Hit(CollisionPointer& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	return this->hitBase == b.hitBase;
 }
-bool CollisionPointer::Hit(const CollisionLine& b)
+bool CollisionPointer::Hit(CollisionLine& b)
 {
+	this->CreateCollision();
+	b.CreateCollision();
 	float line_1 = sqrt(
 		(b.hitBase[1].x - b.hitBase[0].x)*(b.hitBase[1].x - b.hitBase[0].x) +
 		(b.hitBase[1].y - b.hitBase[0].y)*(b.hitBase[1].y - b.hitBase[0].y)
@@ -308,7 +349,10 @@ bool CollisionPointer::Hit(const CollisionLine& b)
 	}
 	return false;
 }
-
+void CollisionPointer::CreateCollision()
+{
+	this->hitBase = *this->_pos;
+}
 //--------------------------------------------------
 //@:CollisionLine
 //--------------------------------------------------
@@ -316,6 +360,11 @@ CollisionLine::CollisionLine()
 	:CollisionBase(2)
 {
 
+}
+void CollisionLine::CreateCollision()
+{
+	this->hitBase[0] = *this->_pos;
+	this->hitBase[1] = *this->_scale;
 }
 //--------------------------------------------------
 //@:CollisionCapsule
@@ -325,19 +374,19 @@ CollisionCapsule::CollisionCapsule()
 {
 
 }
-bool CollisionCapsule::Hit(const CollisionCapsule& b)
+bool CollisionCapsule::Hit(CollisionCapsule& b)
 {
 	return false;
 }
-bool CollisionCapsule::Hit(const CollisionBox& b)
+bool CollisionCapsule::Hit(CollisionBox& b)
 {
 	return false;
 }
-bool CollisionCapsule::Hit(const CollisionCircle& b)
+bool CollisionCapsule::Hit(CollisionCircle& b)
 {
 	return false;
 }
-bool CollisionCapsule::Hit(const CollisionPointer& b)
+bool CollisionCapsule::Hit(CollisionPointer& b)
 {
 	return false;
 }
