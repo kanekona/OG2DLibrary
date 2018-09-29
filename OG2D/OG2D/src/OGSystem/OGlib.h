@@ -118,11 +118,23 @@ public:
 };
 class NonCopyable
 {
-	void operator=(const NonCopyable& non);
-	NonCopyable(const NonCopyable& non);
+	void operator=(const NonCopyable& non)
+	{
+
+	}
+	NonCopyable(const NonCopyable& non)
+	{
+
+	}
 protected:
-	NonCopyable();
-	~NonCopyable();
+	NonCopyable()
+	{
+
+	}
+	~NonCopyable()
+	{
+
+	}
 };
 /**
 *namespace OG
@@ -142,5 +154,5 @@ namespace OG
 	float doubleinner(const int, const int);
 	float get_distance(const float, const float, const float, const float, const float, const float);
 	bool innerJudge(const Vec2* line, const Vec2* point);
-	bool crossJudge(const Vec2* line1, const Vec2* line2);
+	//bool crossJudge(const Vec2* line1, const Vec2* line2);
 }

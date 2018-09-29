@@ -308,6 +308,15 @@ bool CollisionPointer::Hit(const CollisionLine& b)
 	}
 	return false;
 }
+
+//--------------------------------------------------
+//@:CollisionLine
+//--------------------------------------------------
+CollisionLine::CollisionLine()
+	:CollisionBase(2)
+{
+
+}
 //--------------------------------------------------
 //@:CollisionCapsule
 //--------------------------------------------------

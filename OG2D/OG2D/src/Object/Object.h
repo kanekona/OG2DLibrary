@@ -39,7 +39,7 @@ enum Mode
 	//! 削除
 	KILL,
 };
-class GameObject
+class GameObject :private NonCopyable
 {
 	//! Position
 	Vec2 position;
@@ -59,12 +59,19 @@ class GameObject
 	CollisionCircle* distanceCollision;
 	//! isCollisionCheck
 	bool isCollision;
-	//! objectID
-	const unsigned const int id;
 	//! Mode
 	Mode mode;
 	//! ObjectForm
 	Objform form;
+	/**
+	*@brief	:データ型の値のリセット
+	*/
+	void ResetData();
+	/**
+	*@brief	:Collisionの生成
+	*現在のform状況に応じてCollisionを生成する
+	*/
+	void CreateCollision();
 public:
 	/**
 	*@brief	:constructor
@@ -83,11 +90,25 @@ public:
 		const std::string& tag,
 		const Vec2& pos,
 		const Vec2& scale,
-		const float& angle = 0.0f);
+		const float angle = 0.0f);
 	/**
 	*@brief	:destructor
 	*/
 	virtual ~GameObject();
+	/**
+	*@brief	:オブジェクト初期化
+	*@param	:Objform form オブジェクトの状態
+	*@param	:string tag オブジェクトタグ名
+	*@param	:Vec2 pos 位置
+	*@param	:Vec2 scale 拡縮
+	*@param :float angle 回転値
+	*/
+	void Init(
+		const Objform& form,
+		const std::string& tag,
+		const Vec2& pos,
+		const Vec2& scale,
+		const float angle = 0.0f);
 	/**
 	*@brief	:当たり判定
 	*@param	:GameObjet* object 相手のオブジェクト
@@ -104,6 +125,10 @@ public:
 	*@brief	:更新処理
 	*/
 	virtual void Update();
+	/**
+	*@brief	:停止処理
+	*/
+	virtual void Pause();
 	/**
 	*@brief	:描画処理
 	*/
@@ -227,11 +252,6 @@ public:
 	*/
 	float GetMass() const;
 	/**
-	*@brief	:個別idを返す
-	*@return:unsigned int id
-	*/
-	unsigned int GetID() const;
-	/**
 	*@brief	:オブジェクトを削除する
 	*/
 	void Kill();
@@ -239,17 +259,17 @@ public:
 	*@brief	:Pause設定
 	*@param	:bool flag trueでPause化
 	*/
-	void Pause(const bool flag = true);
+	void SetPause(const bool flag = true);
 	/**
 	*@brief	:停止設定
 	*@param	:bool flag trueで停止
 	*/
-	void Stop(const bool flag = true);
+	void SetStop(const bool flag = true);
 	/**
 	*@brief	:全機能停止
 	*@param	:bool flag trueで全停止
 	*/
-	void A_Stop(const bool flag = true);
+	void SetAllStop(const bool flag = true);
 	/**
 	*@brief	:現状の状態を返す
 	*@return:Mode 状態

@@ -80,6 +80,12 @@ public:
 	explicit CollisionBase(const unsigned short vertex);
 	//! í∏ì_êî
 	const unsigned short VERTEX_NUM;
+	//! Position
+	Vec2* pos;
+	//! Scale
+	Vec2* scale;
+	//! Radius
+	Vec2* radius;
 };
 
 class CollisionBox : public CollisionBase

@@ -2,11 +2,265 @@
 
 GameObject::GameObject()
 {
+	//判定未生成コンストラクタ処理
+	this->ResetData();
 	this->angle = 0.f;
+	this->collision = nullptr;
+	this->distanceCollision = nullptr;
+	this->form = Objform::Non;
 }
 GameObject::~GameObject()
 {
+	//解放処理
+	OG::Destroy<CollisionBase>(this->collision);
+	OG::Destroy<CollisionCircle>(this->distanceCollision);
+}
 
+GameObject::GameObject(
+	const Objform& form,
+	const std::string& tag,
+	const Vec2& pos,
+	const Vec2& scale,
+	const float angle)
+{
+	this->Init(form, tag, pos, scale, angle);
+}
+
+void GameObject::ResetData()
+{
+	this->mass = 0.f;
+	this->isCollision = true;
+	this->mode = Mode::NORMAL;
+}
+
+void GameObject::Init(
+	const Objform& form,
+	const std::string& tag,
+	const Vec2& pos,
+	const Vec2& scale,
+	const float angle)
+{
+	this->ResetData();
+	this->form = form;
+	this->tag = tag;
+	this->position = pos;
+	this->scale = scale;
+	this->angle = angle;
+	this->CreateCollision();
+}
+
+void GameObject::CreateCollision()
+{
+	OG::Destroy<CollisionBase>(this->collision);
+	switch (this->form)
+	{
+	case Objform::Ball:
+		this->collision = new CollisionCircle;
+		break;
+	case Objform::Cube:
+		this->collision = new CollisionBox;
+		break;
+	case Objform::Line:
+		this->collision = new CollisionLine;
+		break;
+	case Objform::Pointer:
+		this->collision = new CollisionPointer;
+		break;
+	}
+}
+
+bool GameObject::Hit(GameObject* object)
+{
+	return this->collision->Hit(*object->collision);
+}
+bool GameObject::Hit(CollisionBase* object)
+{
+	return this->collision->Hit(*object);
+}
+bool GameObject::IsObjectDistanceCheck(GameObject* object)
+{
+	return this->distanceCollision->Hit(*object->distanceCollision);
+}
+bool GameObject::IsObjectDistanceCheck(CollisionCircle* object)
+{
+	return this->distanceCollision->Hit(*object);
+}
+void GameObject::LineDraw(const float lineWidth)
+{
+
+}
+void GameObject::LineDistanceDraw(const float lineWidth)
+{
+
+}
+void GameObject::Update()
+{
+	
+}
+void GameObject::Render2D()
+{
+
+}
+void GameObject::Pause()
+{
+
+}
+void GameObject::UpdateManager()
+{
+	switch (this->mode)
+	{
+	case Mode::NORMAL:
+		this->Update();
+		break;
+	case Mode::PAUSE:
+		this->Pause();
+		break;
+	default:
+		break;
+	}
+}
+void GameObject::RenderManager()
+{
+	switch (this->mode)
+	{
+	case Mode::NORMAL:
+	case Mode::PAUSE:
+	case Mode::STOP:
+		this->Render2D();
+		break;
+	default:
+		break;
+	}
+}
+void GameObject::CollisionConfig(const bool flag)
+{
+	this->isCollision = flag;
+}
+bool GameObject::IsCollision() const
+{
+	return this->isCollision;
+}
+void GameObject::SetPosition(const Vec2& pos)
+{
+	this->position = pos;
+}
+void GameObject::SetPosition(const float x, const float y)
+{
+	this->position = { x,y };
+}
+Vec2 GameObject::GetPosition() const
+{
+	return this->position;
+}
+void GameObject::SetScale(const Vec2& scale)
+{
+	this->scale = scale;
+}
+void GameObject::SetScale(const float x, const float y)
+{
+	this->scale = { x,y };
+}
+Vec2 GameObject::GetScale() const
+{
+	return this->scale;
+}
+void GameObject::SetRotate(const float angle)
+{
+	this->angle = angle;
+}
+float GameObject::GetRotate() const
+{
+	return this->angle;
+}
+void GameObject::SetRadius(const Vec2& radius)
+{
+	this->radius = radius;
+}
+void GameObject::SetRadius(const float x, const float y)
+{
+	this->radius = { x,y };
+}
+Vec2 GameObject::GetRadius() const
+{
+	return this->radius;
+}
+void GameObject::SetTag(const std::string& tag)
+{
+	this->tag = tag;
+}
+std::string GameObject::GetTag() const
+{
+	return this->tag;
+}
+void GameObject::SetMass(const float mass)
+{
+	this->mass = mass;
+}
+float GameObject::GetMass() const
+{
+	return this->mass;
+}
+void GameObject::Kill()
+{
+	this->mode = Mode::KILL;
+}
+void GameObject::SetPause(const bool flag)
+{
+	//削除状態は最優先のためその場合は省く
+	if (this->ModeCheck(Mode::KILL))
+	{
+		return;
+	}
+	if (flag)
+	{
+		this->mode = Mode::PAUSE;
+	}
+	else
+	{	
+		this->mode = Mode::NORMAL;
+	}
+}
+void GameObject::SetStop(const bool flag)
+{
+	if (this->ModeCheck(Mode::KILL))
+	{
+		return;
+	}
+	if (flag)
+	{
+		this->mode = Mode::STOP;
+	}
+	else
+	{
+		this->mode = Mode::NORMAL;
+	}
+}
+void GameObject::SetAllStop(const bool flag)
+{
+	if (this->ModeCheck(Mode::KILL))
+	{
+		return;
+	}
+	if (flag)
+	{
+		this->mode = Mode::ALLSTOP;
+	}
+	else
+	{
+		this->mode = Mode::NORMAL;
+	}
+}
+Mode GameObject::GetMode() const
+{
+	return this->mode;
+}
+bool GameObject::ModeCheck(const Mode& mode) const
+{
+	return this->mode == mode ? true : false;
+}
+Objform GameObject::Getform() const
+{
+	return this->form;
 }
 
 //

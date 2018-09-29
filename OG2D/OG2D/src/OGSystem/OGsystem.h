@@ -22,7 +22,7 @@
 /**
 *@brief	:•`‰æ‡‚ğŠÇ—‚·‚éclass
 */
-class OrderCheck : private NonCopyable
+class OrderCheck
 {
 public:
 	OrderCheck()
