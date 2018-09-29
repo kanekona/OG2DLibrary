@@ -118,11 +118,11 @@ public:
 };
 class NonCopyable
 {
-	void operator=(const NonCopyable& non)
+	void operator=(const NonCopyable&)
 	{
 
 	}
-	NonCopyable(const NonCopyable& non)
+	NonCopyable(const NonCopyable&)
 	{
 
 	}
