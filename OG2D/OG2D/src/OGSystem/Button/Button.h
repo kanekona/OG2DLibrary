@@ -1,7 +1,7 @@
 #pragma once
 #include "OGSystem\OGsystem.h"
 #include "Object\Object.h"
-class Button : public TaskObject
+class Button : public SceneTask
 {
 	//! Button‚Ì“–‚½‚è”»’è
 	GameObject* collision;

@@ -33,6 +33,36 @@ public:
 	int id;
 	float order_s;
 };
+class Scene
+{
+	//! 現在タスク
+	SceneTask* nowScene;
+	//! 次のタスク
+	SceneTask* nextScene;
+public:
+	/**
+	*@brief	:constructor
+	*/
+	explicit Scene();
+	/**
+	*@brief	:destructor
+	*/
+	virtual ~Scene();
+	/**
+	*@brief	:タスクを登録する
+	*@param	:現在に登録したいタスク
+	*/
+	void SetNowTask(const SceneTask* task);
+	/**
+	*@brief	:タスクを登録する
+	*@param	:次に登録したいタスク
+	*/
+	void SetNextTask(const SceneTask* task);
+	/**
+	*@brief	:タスクを移行する
+	*/
+	void SceneMigration();
+};
 /**
 *@brief	:メインシステム処理
 */
@@ -61,9 +91,11 @@ class EngineSystem : private NonCopyable
 	//! Engine終了状況
 	bool DeleteEngine;
 	//! 登録タスク
-	std::vector<std::pair<unsigned short, TaskObject*>> taskObjects;
+	std::vector<std::pair<unsigned short, SceneTask*>> taskObjects;
 	//! 登録予定タスク
-	std::vector<TaskObject*> addTaskObjects;
+	std::vector<SceneTask*> addTaskObjects;
+	//! 現在タスク
+	SceneTask* taskObject;
 public:
 	//! カメラ2D
 	Camera2D * camera;
@@ -167,7 +199,7 @@ public:
 	*@param	:TaskObject* task タスク
 	*/
 	void SetTaskObject(
-		TaskObject* task);
+		SceneTask* task);
 	/**
 	*@brief	:エンジン終了を返す
 	*@return:bool エンジン終了設定

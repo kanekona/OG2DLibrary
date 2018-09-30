@@ -6,7 +6,7 @@ Window::Window()
 	this->height = 480;
 	this->_screen = false;
 	this->_name = "NoName";
-	this->isIcon = false;
+	this->enableIcon = false;
 	this->isVisualization = false;
 }
 Window::Window(const int wi, const int he, const char* name, const bool screen,const Vec2& pos)
@@ -75,17 +75,17 @@ void Window::LimitsWindow()
 }
 void Window::WindowIcon()
 {
-	if (this->isIcon)
+	if (this->enableIcon)
 	{
 		//Icon‰»‚³‚ê‚½window‚ðŒ³‚É–ß‚·
 		glfwRestoreWindow(this->window);
-		this->isIcon = false;
+		this->enableIcon = false;
 	}
 	else
 	{
 		//window‚ðIcon‰»‚³‚¹‚é
 		glfwIconifyWindow(this->window);
-		this->isIcon = true;
+		this->enableIcon = true;
 	}
 }
 

@@ -4,32 +4,43 @@
 ///			 1~: 終了予定
 ///			 -1: 更新停止
 /**
+*enum Mode
+*状態の設定
+*/
+enum Mode
+{
+	//! 通常処理
+	NORMAL,
+	//! ポーズ用処理
+	PAUSE,
+	//! 更新停止
+	STOP,
+	//! 削除
+	KILL,
+};
+/**
 *TaskObject
 */
-class TaskObject : private NonCopyable
+class SceneTask : private NonCopyable
 {
 private:
 	//! 終了時に次のタスクを生成できるか
 	bool NextTask;
-	//! 削除するかどうかの判断用
-	int KillCount;
 	//! タスクに名をつける
 	std::string taskName;
-	//! 描画順番
-	float order;
-	//! 呼ばれる更新分岐
-	bool isPause;
+	//! 状態管理
+	Mode _mode;
+	//! 終了時にGameObjectを破棄するか
+	bool enableDestroyGameObjectWhenExitng;
 public:
-	//! 子オブジェクトの情報
-	std::vector<TaskObject*> Child;
 	/**
 	*@brief	:constructor
 	*/
-	TaskObject();
+	explicit SceneTask();
 	/**
 	*@brief	:destructor
 	*/
-	virtual ~TaskObject();
+	virtual ~SceneTask();
 	/**
 	*@brief	:初期化処理
 	*@param	:string name タスク名
@@ -39,72 +50,59 @@ public:
 	/**
 	*@brief	:更新処理
 	*/
-	void T_Update();
+	void UpdateManager();
 	/**
 	*@brief	:更新処理
 	*/
 	virtual void Update();
 	/**
-	*@brief	:描画処理
-	*/
-	virtual void Render2D();
-	/**
 	*@brief	:ポーズ処理
 	*/
-	virtual void PauseUpdate();
+	virtual void Pause();
 	/**
 	*@brief	:削除命令
 	*@param :bool flag 次タスクの生成を行うかの設定
 	*/
 	void Kill(const bool flag = true);
 	/**
-	*@brief	:削除状況を返す
-	*@return:int 削除カウント
-	*/
-	int GetKillCount() const;
-	/**
 	*@brief	:次タスクの生成の許可を返す
 	*@return:bool 生成許可
 	*/
 	bool GetNextTask() const;
-	/**
-	*@brief	:キルカウントをリセットする
-	*/
-	void ResetKillCount();
-	/**
-	*@brief	:描画順を指定する
-	*@param	:float order 描画順
-	*/
-	void SetDrawOrder(const float order);
-	/**
-	*@brief	:描画順を返す
-	*@return:描画順
-	*/
-	float GetDrawOrder() const;
 	/**
 	*@brief	:登録されているタスク名を返す
 	*@return:string タスク名
 	*/
 	std::string GetTaskName() const;
 	/**
-	*@brief	:ポーズ中かを返す
-	*@return:bool タスクの状態
-	*/
-	bool GetPause() const;
-	/**
 	*@brief	:ポーズ設定を行う
 	*@param	:bool flag ポーズ設定
 	*/
-	void SetPause(const bool flag);
+	void SetPause(const bool flag = true);
 	/**
 	*@brief	:停止処理を行う
 	*@param	:bool flag 停止処理設定
 	*/
-	void Stop(const bool flag = true);
+	void SetStop(const bool flag = true);
 	/**
-	*@brief	:停止処理設定を返す
-	*@return:bool 停止設定
+	*@brief	:現状の状態を返す
+	*@return:Mode 状態
 	*/
-	bool GetIsStop() const;
-private:
+	Mode GetMode() const;
+	/**
+	*@brief	:モード確認
+	*@parma	:Mode mode 比較対象
+	*@return:bool 比較対象と同じならtrue
+	*/
+	bool ModeCheck(const Mode& mode) const;
+	/**
+	*@brief	:終了時にGameObjectを削除させる設定
+	*@param	:bool flag trueなら削除させる
+	*/
+	void EnableGameObjectDestroy(const bool flag);
+	/**
+	*@brief	:終了時にGameObjectを削除させる設定を取得
+	*@return:bool trueなら削除させる
+	*/
+	bool GetGameObjectDestroy() const;
 };

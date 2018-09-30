@@ -24,7 +24,7 @@ enum Objform
 };
 /**
 *enum Mode
-*オブジェクトの状態の設定
+*状態の設定
 */
 enum Mode
 {
@@ -65,6 +65,9 @@ class GameObject :private NonCopyable
 	Mode _mode;
 	//! ObjectForm
 	Objform _form;
+	//! 描画順
+	/*?unsigned intのバイト数必要かどうか疑問ではある*/
+	unsigned int _order;
 	/**
 	*@brief	:データ型の値のリセット
 	*/
@@ -258,6 +261,10 @@ public:
 	*/
 	void Kill();
 	/**
+	*@brief	:削除命令をキャンセルする
+	*/
+	void CancelKill();
+	/**
 	*@brief	:Pause設定
 	*@param	:bool flag trueでPause化
 	*/
@@ -288,6 +295,16 @@ public:
 	*@return:Objform 現在のform
 	*/
 	Objform Getform() const;
+	/**
+	*@brief	:描画順指定
+	*@param :unsigned int order 描画順値
+	*高い方が前に描画される
+	*/
+	void SetDrawOrder(const unsigned int order);
+	/**
+	*@brief	:描画順を取得
+	*/
+	unsigned int GetDrawOrder() const;
 };
 
 /**

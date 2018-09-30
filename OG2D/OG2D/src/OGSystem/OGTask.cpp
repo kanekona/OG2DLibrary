@@ -15,3 +15,8 @@ void OGTK::StartTaskObject()
 	//ƒ^ƒXƒN‚Ì‰Šú‰»
 	//Sample::Create();
 }
+
+OGTK::~OGTK()
+{
+
+}

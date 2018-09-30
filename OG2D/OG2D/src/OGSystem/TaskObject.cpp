@@ -1,111 +1,88 @@
 #include "TaskObject.h"
-TaskObject::TaskObject()
+SceneTask::SceneTask()
 {
 	this->taskName = "";
-	this->KillCount = 0;
 	this->NextTask = true;
-	this->order = 0.0f;
-	this->isPause = false;
+	this->enableDestroyGameObjectWhenExitng = false;
 }
-TaskObject::~TaskObject()
+SceneTask::~SceneTask()
 {
-	for (auto& id : this->Child)
-	{
-		delete id;
-	}
 }
-bool TaskObject::Init(const std::string& name_)
+bool SceneTask::Init(const std::string& name_)
 {
 	this->taskName = name_;
 	return true;
 }
-void TaskObject::T_Update()
+void SceneTask::UpdateManager()
 {
-	if (!this->isPause)
+	switch (this->_mode)
 	{
-		Update();
-	}
-	else
-	{
-		PauseUpdate();
+	case Mode::NORMAL:
+		this->Update();
+		break;
+	case Mode::PAUSE:
+		this->Pause();
+		break;
+	default:
+		break;
 	}
 }
-void TaskObject::Kill(const bool on)
+void SceneTask::Kill(const bool on)
 {
 	this->NextTask = on;
-	if (this->KillCount < 0)
-	{
-		this->KillCount++;
-	}
-	this->KillCount++;
+	this->_mode = Mode::KILL;
 }
-int TaskObject::GetKillCount() const
-{
-	return this->KillCount;
-}
-bool TaskObject::GetNextTask() const
+bool SceneTask::GetNextTask() const
 {
 	return this->NextTask;
 }
-void TaskObject::ResetKillCount()
-{
-	this->KillCount = 0;
-}
-void TaskObject::SetDrawOrder(const float order_)
-{
-	if (order_ >= 0.0f)
-	{
-		this->order = order_;
-	}
-	else
-	{
-		this->order = 0.0f;
-	}
-}
-float TaskObject::GetDrawOrder() const
-{
-	return this->order;
-}
-std::string TaskObject::GetTaskName() const
+std::string SceneTask::GetTaskName() const
 {
 	return this->taskName;
 }
-void TaskObject::Update()
+void SceneTask::Update()
 {
 
 }
-void TaskObject::Render2D()
+void SceneTask::Pause()
 {
 
 }
-void TaskObject::PauseUpdate()
+void SceneTask::SetPause(const bool flag)
 {
-
-}
-void TaskObject::SetPause(const bool flag)
-{
-	this->isPause = flag;
-}
-bool TaskObject::GetPause() const
-{
-	return this->isPause;
-}
-void TaskObject::Stop(const bool flag)
-{
-	if (this->KillCount > 0)
+	if (this->ModeCheck(Mode::KILL))
 	{
 		return;
 	}
 	if (flag)
-	{
-		this->KillCount = -1;
-	}
+		this->_mode = Mode::PAUSE;
 	else
-	{
-		this->KillCount = 0;
-	}
+		this->_mode = Mode::NORMAL;
 }
-bool TaskObject::GetIsStop() const
+void SceneTask::SetStop(const bool flag)
 {
-	return this->KillCount == 0 ? true : false;
+	if (this->ModeCheck(Mode::KILL))
+	{
+		return;
+	}
+	if (flag)
+		this->_mode = Mode::STOP;
+	else
+		this->_mode = Mode::NORMAL;
+}
+Mode SceneTask::GetMode() const
+{
+	return this->_mode;
+}
+bool SceneTask::ModeCheck(const Mode& mode) const
+{
+	return this->_mode == mode ? true : false;
+}
+void SceneTask::EnableGameObjectDestroy(const bool flag)
+{
+	this->enableDestroyGameObjectWhenExitng = flag;
+}
+bool SceneTask::GetGameObjectDestroy() const
+{
+	return this->enableDestroyGameObjectWhenExitng;
 }

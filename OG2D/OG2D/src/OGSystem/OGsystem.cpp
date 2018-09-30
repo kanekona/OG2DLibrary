@@ -80,7 +80,7 @@ void EngineSystem::Task_Update()
 	{
 		if (this->taskObjects[id].second->GetKillCount() == 0)
 		{
-			this->taskObjects[id].second->T_Update();
+			this->taskObjects[id].second->UpdateManager();
 		}
 	}
 }
@@ -161,7 +161,7 @@ void EngineSystem::ChengeTask()
 	this->camera->SetSize(this->window->GetSize());
 	//this->soundManager->AllDelete();
 }
-void EngineSystem::SetTaskObject(TaskObject* To)
+void EngineSystem::SetTaskObject(SceneTask* To)
 {
 	this->addTaskObjects.push_back(To);
 }
@@ -170,7 +170,7 @@ void EngineSystem::TaskApplication()
 	//“o˜^—\’è‚Ì‚à‚Ì‚ð“o˜^‚·‚é
 	for (int id = 0; id < this->addTaskObjects.size(); ++id)
 	{
-		std::pair<unsigned short, TaskObject*> d;
+		std::pair<unsigned short, SceneTask*> d;
 		d.first = 0;
 		d.second = this->addTaskObjects[id];
 		if (d.second->GetNextTask())
@@ -280,14 +280,14 @@ void EngineSystem::AllStop(const bool flag)
 	{
 		if (id->second)
 		{
-			id->second->Stop(flag);
+			id->second->SetStop(flag);
 		}
 	}
 	for (auto id = addTaskObjects.begin(); id != addTaskObjects.end(); ++id)
 	{
 		if ((*id))
 		{
-			(*id)->Stop(flag);
+			(*id)->SetStop(flag);
 		}
 	}	
 }

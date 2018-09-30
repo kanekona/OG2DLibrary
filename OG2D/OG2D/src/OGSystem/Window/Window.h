@@ -11,7 +11,7 @@ class Window : private NonCopyable
 	//! アイコン画像のID
 	GLuint id_;
 	//! ウィンドウのアイコン化状況
-	bool isIcon;
+	bool enableIcon;
 	//! 可視化状況
 	bool isVisualization;
 	//! 幅

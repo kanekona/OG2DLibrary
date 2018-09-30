@@ -215,6 +215,10 @@ void GameObject::Kill()
 {
 	this->_mode = Mode::KILL;
 }
+void GameObject::CancelKill()
+{
+	this->_mode = Mode::NORMAL;
+}
 void GameObject::SetPause(const bool flag)
 {
 	//íœó‘Ô‚ÍÅ—Dæ‚Ì‚½‚ß‚»‚Ìê‡‚ÍÈ‚­
@@ -272,6 +276,14 @@ bool GameObject::ModeCheck(const Mode& mode) const
 Objform GameObject::Getform() const
 {
 	return this->_form;
+}
+void GameObject::SetDrawOrder(const unsigned int order)
+{
+	this->_order = order;
+}
+unsigned int GameObject::GetDrawOrder() const
+{
+	return this->_order;
 }
 
 //

@@ -18,4 +18,8 @@ public:
 	*@brief	:開始時に生成したいタスクを指定する関数
 	*/
 	void StartTaskObject();
+	/**
+	*@brief	:destructor
+	*/
+	virtual ~OGTK();
 };
