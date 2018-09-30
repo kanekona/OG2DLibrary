@@ -6,11 +6,14 @@
 //--------------------------------------------------
 bool Texture::Create(const std::string& path)
 {
-	//GLuint id;
-	//テクスチャを1つだけ生成する
-	glGenTextures(1, &this->_TexId);
+	if (!this->_TexId)
+	{
+		this->_TexId = new GLuint;
+		//テクスチャを1つだけ生成する
+		this->CreateID(1);
+	}
 	//テクスチャをバインドする
-	glBindTexture(GL_TEXTURE_2D, this->_TexId);
+	this->Bind(*this->_TexId);
 	//画像を読み込む
 	int width;
 	int height;
@@ -18,17 +21,12 @@ bool Texture::Create(const std::string& path)
 	std::string filepath = FileName + path;
 	//画像データを読み込む
 	unsigned char *data = stbi_load(filepath.c_str(), &width, &height, &comp, 0);
-	try
-	{
-		if (data == NULL)
-		{
-			throw data;
-		}
-	}
-	catch (...)
+	if (data == NULL)
 	{
 		std::cout << "Texture Create Error!" << path << "\n";
 		OG::OutDebugData("TextureErrorPath.og", path + "\n");
+		this->Finalize();
+		OG::Destroy<GLuint>(this->_TexId);
 		return false;
 	}
 	//データ形式を選ぶ
@@ -55,14 +53,15 @@ bool Texture::Create(const std::string& path)
 Texture::Texture()
 	:FileName("./data/image/")
 {
-
+	this->_TexId = nullptr;
 }
 Texture::Texture(const std::string& path)
 	:FileName("./data/image/")
 {
-	glGenTextures(1, &this->_TexId);
+	this->_TexId = new GLuint;
+	this->CreateID(1);
 	//テクスチャをバインドする
-	glBindTexture(GL_TEXTURE_2D, this->_TexId);
+	this->Bind(*this->_TexId);
 	//画像を読み込む
 	int width;
 	int height;
@@ -70,17 +69,12 @@ Texture::Texture(const std::string& path)
 	std::string filepath = FileName + path;
 	unsigned char *data = stbi_load(filepath.c_str(), &width, &height, &comp, 0);
 	//画像データを読み込む
-	try
-	{
-		if (data == NULL)
-		{
-			throw data;
-		}
-	}
-	catch(...)
+	if (data == NULL)
 	{
 		std::cout << "Texture Create Error!" << path << "\n";
 		OG::OutDebugData("TextureErrorPath.og", path + "\n");
+		this->Finalize();
+		OG::Destroy<GLuint>(this->_TexId);
 		return;
 	}
 	//データ形式を選ぶ
@@ -124,7 +118,7 @@ void Texture::Draw(const Box2D& draw, const Box2D& src,const Color& color_) {
 	glAlphaFunc(GL_GREATER, (GLclampf)0.0);
 	glTexCoordPointer(2, GL_FLOAT, 0, texuv);
 	//OpenGLに登録されているテクスチャを紐づけ
-	glBindTexture(GL_TEXTURE_2D, this->_TexId);
+	glBindTexture(GL_TEXTURE_2D, *this->_TexId);
 	glColor4f(color_.red, color_.green, color_.blue, color_.alpha);
 	//描画
 	//glMatrixMode(GL_TEXTURE);
@@ -142,8 +136,12 @@ void Texture::Draw(const Box2D& draw, const Box2D& src,const Color& color_) {
 }
 bool Texture::Finalize()
 {
-	glBindTexture(GL_TEXTURE_2D, 0);
-	glDeleteTextures(1, &this->_TexId);
+	this->Bind(0);
+	if (this->_TexId)
+	{
+		this->DeleteID(1);
+		OG::Destroy<GLuint>(this->_TexId);
+	}
 	return true;
 }
 void Texture::Rotate(const float radian)
@@ -201,20 +199,25 @@ Vec2 Texture::GetTextureSize() const
 }
 Texture::~Texture()
 {
-	//glDeleteTextures(1, &this->_TexId);
+	this->Bind(0);
+	if (this->_TexId)
+	{
+		this->DeleteID(1);
+		OG::Destroy<GLuint>(this->_TexId);
+	}
 }
 GLuint Texture::GetID() const
 {
-	return this->_TexId;
+	return *this->_TexId;
 }
 GLuint Texture::CreateID(const GLsizei& size)
 {
-	glGenTextures(size, &this->_TexId);
-	return this->_TexId;
+	glGenTextures(size, this->_TexId);
+	return *this->_TexId;
 }
 void Texture::DeleteID(const GLsizei& size)
 {
-	glDeleteTextures(size, &this->_TexId);
+	glDeleteTextures(size, this->_TexId);
 }
 void Texture::Bind(const GLuint& id)
 {

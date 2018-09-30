@@ -35,11 +35,6 @@ public:
 		const Box2D& src,
 		const Color& color = { 1.0f,1.0f,1.0f,1.0f });
 	/**
-	*@brief	:解放処理
-	*@return:解放成功true
-	*/
-	bool Finalize();
-	/**
 	*@brief	:回転の適用
 	*@param	:float angle 回転値
 	*/
@@ -73,7 +68,7 @@ public:
 	void Bind(const GLuint& id);
 private:
 	//! テクスチャのID
-	GLuint _TexId;
+	GLuint* _TexId;
 	//! 画像サイズ
 	Vec2 TextureSize;
 	//! 頂点情報
@@ -89,4 +84,9 @@ private:
 				GLfloat* materix);
 	//! 回転値
 	float angle;
+	/**
+	*@brief	:解放処理
+	*@return:解放成功true
+	*/
+	bool Finalize();
 };

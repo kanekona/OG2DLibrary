@@ -103,7 +103,6 @@ ResourceManager::~ResourceManager()
 	{
 		if (d.second)
 		{
-			d.second->Finalize();
 			delete d.second;
 		}
 	}
@@ -119,7 +118,6 @@ bool ResourceManager::DeleteTexture(const std::string& name)
 		{
 			if ((*id).second)
 			{
-				(*id).second->Finalize();
 				delete (*id).second;
 			}
 			this->textureData.erase(id);
