@@ -116,4 +116,14 @@ namespace OG
 		}
 		return false;
 	}
+	template <class T> bool Destroy(const T* t)
+	{
+		if (t)
+		{
+			delete t;
+			t = nullptr;
+			return true;
+		}
+		return false;
+	}
 }

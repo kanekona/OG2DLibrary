@@ -36,9 +36,9 @@ public:
 class Scene
 {
 	//! 現在タスク
-	SceneTask* nowScene;
+	const SceneTask* nowScene;
 	//! 次のタスク
-	SceneTask* nextScene;
+	const SceneTask* nextScene;
 public:
 	/**
 	*@brief	:constructor

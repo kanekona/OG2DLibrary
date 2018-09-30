@@ -1,5 +1,30 @@
 #include "OGsystem.h"
 //--------------------------------------------------
+//@:Scene
+//--------------------------------------------------
+Scene::Scene()
+{
+	this->nowScene = nullptr;
+	this->nextScene = nullptr;
+}
+Scene::~Scene()
+{
+
+}
+void Scene::SetNowTask(const SceneTask* task)
+{
+	this->nowScene = task;
+}
+void Scene::SetNextTask(const SceneTask* task)
+{
+	this->nextScene = task;
+}
+void Scene::SceneMigration()
+{
+	this->nowScene = this->nextScene;
+	this->nextScene = nullptr;
+}
+//--------------------------------------------------
 //@:GameEngineclass									
 //--------------------------------------------------
 EngineSystem::EngineSystem()
