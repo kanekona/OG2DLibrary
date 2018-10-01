@@ -26,19 +26,22 @@ enum Objform
 *enum Mode
 *状態の設定
 */
-enum Mode
+namespace GO
 {
-	//! 通常処理
-	NORMAL,
-	//! ポーズ用処理
-	PAUSE,
-	//! 更新停止
-	STOP,
-	//! 描画更新共に停止
-	ALLSTOP,
-	//! 削除
-	KILL,
-};
+	enum Mode
+	{
+		//! 通常処理
+		NORMAL,
+		//! ポーズ用処理
+		PAUSE,
+		//! 更新停止
+		STOP,
+		//! 描画更新共に停止
+		ALLSTOP,
+		//! 削除
+		KILL,
+	};
+}
 class GameObject :private NonCopyable
 {
 	//! Position
@@ -62,7 +65,7 @@ class GameObject :private NonCopyable
 	//! isCollisionCheck
 	bool enableCollision;
 	//! Mode
-	Mode _mode;
+	GO::Mode _mode;
 	//! ObjectForm
 	Objform _form;
 	//! 描画順
@@ -283,13 +286,13 @@ public:
 	*@brief	:現状の状態を返す
 	*@return:Mode 状態
 	*/
-	Mode GetMode() const;
+	GO::Mode GetMode() const;
 	/**
 	*@brief	:モード確認
 	*@parma	:Mode mode 比較対象
 	*@return:bool 比較対象と同じならtrue
 	*/
-	bool ModeCheck(const Mode& mode) const;
+	bool ModeCheck(const GO::Mode& mode) const;
 	/**
 	*@brief	:現在のformを返す
 	*@return:Objform 現在のform

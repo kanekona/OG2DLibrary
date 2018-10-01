@@ -32,7 +32,7 @@ void GameObject::ResetData()
 	//自動設定される値のリセット処理
 	this->_mass = 0.f;
 	this->enableCollision = true;
-	this->_mode = Mode::NORMAL;
+	this->_mode = GO::Mode::NORMAL;
 }
 
 void GameObject::Init(
@@ -120,10 +120,10 @@ void GameObject::UpdateManager()
 {
 	switch (this->_mode)
 	{
-	case Mode::NORMAL:
+	case GO::Mode::NORMAL:
 		this->Update();
 		break;
-	case Mode::PAUSE:
+	case GO::Mode::PAUSE:
 		this->Pause();
 		break;
 	default:
@@ -134,9 +134,9 @@ void GameObject::RenderManager()
 {
 	switch (this->_mode)
 	{
-	case Mode::NORMAL:
-	case Mode::PAUSE:
-	case Mode::STOP:
+	case GO::Mode::NORMAL:
+	case GO::Mode::PAUSE:
+	case GO::Mode::STOP:
 		this->Render2D();
 		break;
 	default:
@@ -213,63 +213,63 @@ float GameObject::GetMass() const
 }
 void GameObject::Kill()
 {
-	this->_mode = Mode::KILL;
+	this->_mode = GO::Mode::KILL;
 }
 void GameObject::CancelKill()
 {
-	this->_mode = Mode::NORMAL;
+	this->_mode = GO::Mode::NORMAL;
 }
 void GameObject::SetPause(const bool flag)
 {
 	//削除状態は最優先のためその場合は省く
-	if (this->ModeCheck(Mode::KILL))
+	if (this->ModeCheck(GO::Mode::KILL))
 	{
 		return;
 	}
 	if (flag)
 	{
-		this->_mode = Mode::PAUSE;
+		this->_mode = GO::Mode::PAUSE;
 	}
 	else
 	{	
-		this->_mode = Mode::NORMAL;
+		this->_mode = GO::Mode::NORMAL;
 	}
 }
 void GameObject::SetStop(const bool flag)
 {
-	if (this->ModeCheck(Mode::KILL))
+	if (this->ModeCheck(GO::Mode::KILL))
 	{
 		return;
 	}
 	if (flag)
 	{
-		this->_mode = Mode::STOP;
+		this->_mode = GO::Mode::STOP;
 	}
 	else
 	{
-		this->_mode = Mode::NORMAL;
+		this->_mode = GO::Mode::NORMAL;
 	}
 }
 void GameObject::SetAllStop(const bool flag)
 {
-	if (this->ModeCheck(Mode::KILL))
+	if (this->ModeCheck(GO::Mode::KILL))
 	{
 		return;
 	}
 	if (flag)
 	{
-		this->_mode = Mode::ALLSTOP;
+		this->_mode = GO::Mode::ALLSTOP;
 	}
 	else
 	{
-		this->_mode = Mode::NORMAL;
+		this->_mode = GO::Mode::NORMAL;
 	}
 }
-Mode GameObject::GetMode() const
+GO::Mode GameObject::GetMode() const
 {
 	return this->_mode;
 }
-bool GameObject::ModeCheck(const Mode& mode) const
+bool GameObject::ModeCheck(const GO::Mode& mode) const
 {
 	return this->_mode == mode ? true : false;
 }

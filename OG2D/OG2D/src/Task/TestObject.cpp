@@ -1,29 +1,32 @@
-//#include "TestObject.h"
-//
-//TestObject::TestObject()
-//{
-//	this->isInput = false;
-//	this->isHit = false;
-//}
-//TestObject::~TestObject()
-//{
-//
-//}
-//void TestObject::Update()
-//{
-//	
-//}
-//void TestObject::Render2D()
-//{
-//
-//}
-//TestObject* TestObject::Create()
-//{
-//	TestObject* to = new TestObject();
-//	if (to)
-//	{
-//		//OGge->SetTaskObject(to);
-//		return to;
-//	}
-//	return nullptr;
-//}
+#include "TestObject.h"
+
+TestObject::TestObject()
+{
+	std::cout << "TestObject()\n";
+	this->draw = new Box2D;
+	this->src = new Box2D;
+}
+TestObject::~TestObject()
+{
+	std::cout << "~TestObject()\n";
+	delete this->draw;
+	delete this->src;
+}
+void TestObject::Update()
+{
+	
+}
+void TestObject::Render2D()
+{
+
+}
+TestObject* TestObject::Create()
+{
+	std::cout << "TestObject::Create\n";
+	TestObject* to = new TestObject();
+	if (to)
+	{
+		return to;
+	}
+	return nullptr;
+}

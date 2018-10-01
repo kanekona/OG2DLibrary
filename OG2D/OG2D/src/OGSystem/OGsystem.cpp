@@ -1,28 +1,40 @@
 #include "OGsystem.h"
 //--------------------------------------------------
-//@:Scene
+//@:SceneManager
 //--------------------------------------------------
-Scene::Scene()
+SceneManager::SceneManager()
 {
 	this->nowScene = nullptr;
 	this->nextScene = nullptr;
 }
-Scene::~Scene()
+SceneManager::~SceneManager()
 {
-
+	OG::Destroy<SceneTask>(this->nowScene);
+	OG::Destroy<SceneTask>(this->nextScene);
 }
-void Scene::SetNowTask(const SceneTask* task)
+void SceneManager::SetNowTask(SceneTask* task)
 {
+	OG::Destroy<SceneTask>(this->nowScene);
 	this->nowScene = task;
 }
-void Scene::SetNextTask(const SceneTask* task)
+void SceneManager::SetNextTask(SceneTask* task)
 {
+	OG::Destroy<SceneTask>(this->nextScene);
 	this->nextScene = task;
 }
-void Scene::SceneMigration()
+void SceneManager::SceneMigration()
 {
+	OG::Destroy<SceneTask>(this->nowScene);
 	this->nowScene = this->nextScene;
 	this->nextScene = nullptr;
+}
+SceneTask* SceneManager::GetNowTask() const
+{
+	return this->nowScene;
+}
+SceneTask* SceneManager::GetNextTask() const
+{
+	return this->nextScene;
 }
 //--------------------------------------------------
 //@:GameEngineclass									
@@ -67,6 +79,8 @@ bool EngineSystem::Initialize()
 	this->soundManager = new SoundManager();
 	//オーディオデバイスの初期化と設定
 	this->audiodevice = new Audio();
+	//シーン管理を生成
+	this->_sceneManager = new SceneManager();
 	//各値の初期化
 	DebugFunction = false;
 	this->end = false;
@@ -100,24 +114,23 @@ void EngineSystem::Update()
 }
 void EngineSystem::Task_Update()
 {
-	//登録タスクの更新処理を呼ぶ
-	for (int id = 0; id < this->taskObjects.size(); ++id)
+	//SceneManagerのUpdateを呼ぶ
+	if (this->_sceneManager->GetNowTask())
 	{
-		if (this->taskObjects[id].second->GetKillCount() == 0)
-		{
-			this->taskObjects[id].second->UpdateManager();
-		}
+		this->_sceneManager->GetNowTask()->UpdateManager();
+	}
+	//GameObjectsのUpdateを呼ぶ
+	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
+	{
+		(*id)->UpdateManager();
 	}
 }
 void EngineSystem::Task_Render_AF()
 {
-	//描画順にDraw2Dを実行する
-	for (int id = 0; id < this->taskObjects.size(); ++id)
+	//GameObjectsのRenderを呼ぶ
+	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
 	{
-		if (this->taskObjects[this->Orders[id].id].second->GetKillCount() <= 0)
-		{
-			this->taskObjects[this->Orders[id].id].second->Render2D();
-		}
+		(*id)->RenderManager();
 	}
 }
 void EngineSystem::TaskGameUpdate()
@@ -125,6 +138,31 @@ void EngineSystem::TaskGameUpdate()
 	this->Task_Update();		//更新処理
 	this->camera->Update();	//カメラ処理
 	this->Task_Render_AF();		//描画処理
+	this->SceneStateCheck();		//シーンの状態管理
+	this->GameObjectsStateCheck();	//ゲームオブジェクトの状態確認
+}
+void EngineSystem::SceneStateCheck()
+{
+	if (this->_sceneManager->GetNowTask())
+	{
+		if (this->_sceneManager->GetNowTask()->ModeCheck(Scene::KILL))
+		{
+			//オブジェクトの削除を指定されているならば
+			if (this->_sceneManager->GetNowTask()->GetGameObjectDestroy())
+			{
+				this->AllObjectKill();
+			}
+			this->_sceneManager->SceneMigration();
+			if (!this->_sceneManager->GetNowTask())
+			{
+				this->GameEnd();
+			}
+		}
+	}
+}
+void EngineSystem::GameObjectsStateCheck()
+{
+	//GameObjectの登録
 	if (this->CheckAddTask() || this->CheckKillTask())
 	{
 		this->TaskApplication();	//登録予定のタスクを登録する
@@ -136,17 +174,17 @@ void EngineSystem::ConfigDrawOrder()
 {
 	//描画順の設定
 	//登録タスク分の描画順を入れておくclassを作っておく
-	this->Orders.resize(this->taskObjects.size());
+	this->Orders.resize(this->nowGameObjects.size());
 	//初期状態をコピーする
-	for (int i = 0; i < this->taskObjects.size(); ++i)
+	for (int i = 0; i < this->nowGameObjects.size(); ++i)
 	{
 		this->Orders[i].id = i;
-		this->Orders[i].order_s = this->taskObjects[i].second->GetDrawOrder();
+		this->Orders[i].order_s = this->nowGameObjects[i]->GetDrawOrder();
 	}
 	//描画順に合わせてidとorderを並び替える
-	for (int i = 0; i < this->taskObjects.size(); ++i)
+	for (int i = 0; i < this->nowGameObjects.size(); ++i)
 	{
-		for (int j = i; j < this->taskObjects.size(); ++j)
+		for (int j = i; j < this->nowGameObjects.size(); ++j)
 		{
 			if (this->Orders[i].order_s > this->Orders[j].order_s)
 			{
@@ -160,6 +198,7 @@ void EngineSystem::ConfigDrawOrder()
 EngineSystem::~EngineSystem()
 {
 	//登録しているタスクをすべて破棄する
+	delete this->_sceneManager;
 	this->AllTaskDelete();
 	//生成したclassをdeleteする
 	delete this->audiodevice;
@@ -186,39 +225,44 @@ void EngineSystem::ChengeTask()
 	this->camera->SetSize(this->window->GetSize());
 	//this->soundManager->AllDelete();
 }
-void EngineSystem::SetTaskObject(SceneTask* To)
+void EngineSystem::SetTask(SceneTask* to)
 {
-	this->addTaskObjects.push_back(To);
+	//this->addTaskObjects.push_back(To);
+	this->_sceneManager->SetNextTask(to);
+}
+void EngineSystem::SetStartTask(SceneTask* to)
+{
+	this->_sceneManager->SetNowTask(to);
+}
+void EngineSystem::SetGameObject(GameObject* object)
+{
+	this->addGameObjects.push_back(object);
 }
 void EngineSystem::TaskApplication()
 {
 	//登録予定のものを登録する
-	for (int id = 0; id < this->addTaskObjects.size(); ++id)
+	for (int id = 0; id < this->addGameObjects.size(); ++id)
 	{
-		std::pair<unsigned short, SceneTask*> d;
-		d.first = 0;
-		d.second = this->addTaskObjects[id];
-		if (d.second->GetNextTask())
-		{
-			this->taskObjects.push_back(d);
-		}
+		GameObject* d;
+		d = this->addGameObjects[id];
+		this->nowGameObjects.push_back(d);
 	}
-	addTaskObjects.clear();
+	addGameObjects.clear();
 }
 void EngineSystem::TaskKillCheck()
 {
 	//削除予定のタスクを削除する
-	auto id = this->taskObjects.begin();
-	while (id != this->taskObjects.end())
+	auto id = this->nowGameObjects.begin();
+	while (id != this->nowGameObjects.end())
 	{
-		if (id->second)
+		if (*id)
 		{
-			if (id->second->GetKillCount() > 0)
+			if ((*id)->ModeCheck(GO::Mode::KILL))
 			{
-				delete id->second;
-				this->taskObjects.erase(id);
+				delete *id;
+				this->nowGameObjects.erase(id);
 				this->TaskApplication();
-				id = this->taskObjects.begin();
+				id = this->nowGameObjects.begin();
 			}
 			else
 			{
@@ -233,13 +277,13 @@ void EngineSystem::TaskKillCheck()
 }
 bool EngineSystem::CheckAddTask()
 {
-	return this->addTaskObjects.size() > 0;
+	return this->addGameObjects.size() > 0;
 }
 bool EngineSystem::CheckKillTask()
 {
-	for (int i = 0; i < this->taskObjects.size(); ++i)
+	for (int i = 0; i < this->nowGameObjects.size(); ++i)
 	{
-		if (this->taskObjects[i].second->GetKillCount() > 0)
+		if (this->nowGameObjects[i]->ModeCheck(GO::Mode::KILL))
 		{
 			return true;
 		}
@@ -250,25 +294,34 @@ void EngineSystem::AllTaskDelete()
 {
 	//全削除
 	{
-		auto id = this->taskObjects.begin();
-		while (id != this->taskObjects.end())
+		auto id = this->nowGameObjects.begin();
+		while (id != this->nowGameObjects.end())
 		{
-			delete id->second;
-			this->taskObjects.erase(id);
-			id = this->taskObjects.begin();
+			delete *id;
+			this->nowGameObjects.erase(id);
+			id = this->nowGameObjects.begin();
+		}
+	}
+	{
+		auto id = this->addGameObjects.begin();
+		while (id != this->addGameObjects.end())
+		{
+			delete *id;
+			this->addGameObjects.erase(id);
+			id = this->addGameObjects.begin();
 		}
 	}
 }
 void EngineSystem::AllPause(const bool flag)
 {
-	for (auto id = taskObjects.begin(); id != taskObjects.end(); ++id)
+	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
 	{
-		if (id->second)
+		if (*id)
 		{
-			id->second->SetPause(flag);
+			(*id)->SetPause(flag);
 		}
 	}
-	for (auto id = addTaskObjects.begin(); id != addTaskObjects.end(); ++id)
+	for (auto id = this->addGameObjects.begin(); id != this->addGameObjects.end(); ++id)
 	{
 		if ((*id))
 		{
@@ -293,28 +346,38 @@ bool EngineSystem::GetDeleteEngine()
 }
 void EngineSystem::ShowNameAddedObject()
 {
-	for (auto id = this->taskObjects.begin(); id != this->taskObjects.end(); ++id)
+	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
 	{
-		std::cout << (*id).second->GetTaskName() << ":";
+		std::cout << (*id)->GetTag() << ":";
 	}
 	std::cout << std::endl;
 }
 void EngineSystem::AllStop(const bool flag)
 {
-	for (auto id = taskObjects.begin(); id != taskObjects.end(); ++id)
+	for (auto id = nowGameObjects.begin(); id != nowGameObjects.end(); ++id)
 	{
-		if (id->second)
+		if (*id)
 		{
-			id->second->SetStop(flag);
+			(*id)->SetStop(flag);
 		}
 	}
-	for (auto id = addTaskObjects.begin(); id != addTaskObjects.end(); ++id)
+	for (auto id = addGameObjects.begin(); id != addGameObjects.end(); ++id)
 	{
 		if ((*id))
 		{
 			(*id)->SetStop(flag);
 		}
-	}	
+	}
+}
+void EngineSystem::AllObjectKill()
+{
+	for (auto id = nowGameObjects.begin(); id != nowGameObjects.end(); ++id)
+	{
+		if (*id)
+		{
+			(*id)->Kill();
+		}
+	}
 }
 //! 内部システムエンジン
 EngineSystem* OGge;

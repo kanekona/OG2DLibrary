@@ -7,17 +7,20 @@
 *enum Mode
 *状態の設定
 */
-enum Mode
+namespace Scene
 {
-	//! 通常処理
-	NORMAL,
-	//! ポーズ用処理
-	PAUSE,
-	//! 更新停止
-	STOP,
-	//! 削除
-	KILL,
-};
+	enum Mode
+	{
+		//! 通常処理
+		NORMAL,
+		//! ポーズ用処理
+		PAUSE,
+		//! 更新停止
+		STOP,
+		//! 削除
+		KILL,
+	};
+}
 /**
 *TaskObject
 */
@@ -29,7 +32,7 @@ private:
 	//! タスクに名をつける
 	std::string taskName;
 	//! 状態管理
-	Mode _mode;
+	Scene::Mode _mode;
 	//! 終了時にGameObjectを破棄するか
 	bool enableDestroyGameObjectWhenExitng;
 public:
@@ -88,13 +91,13 @@ public:
 	*@brief	:現状の状態を返す
 	*@return:Mode 状態
 	*/
-	Mode GetMode() const;
+	Scene::Mode GetMode() const;
 	/**
 	*@brief	:モード確認
 	*@parma	:Mode mode 比較対象
 	*@return:bool 比較対象と同じならtrue
 	*/
-	bool ModeCheck(const Mode& mode) const;
+	bool ModeCheck(const Scene::Mode& mode) const;
 	/**
 	*@brief	:終了時にGameObjectを削除させる設定
 	*@param	:bool flag trueなら削除させる

@@ -19,6 +19,7 @@
 #include "ResourceManager\ResourceManager.h"
 #include "Font\TextureFont.h"
 #include "TaskObject.h"
+#include "Object\Object.h"
 /**
 *@brief	:描画順を管理するclass
 */
@@ -33,35 +34,45 @@ public:
 	int id;
 	float order_s;
 };
-class Scene
+class SceneManager
 {
 	//! 現在タスク
-	const SceneTask* nowScene;
+	SceneTask* nowScene;
 	//! 次のタスク
-	const SceneTask* nextScene;
+	SceneTask* nextScene;
 public:
 	/**
 	*@brief	:constructor
 	*/
-	explicit Scene();
+	explicit SceneManager();
 	/**
 	*@brief	:destructor
 	*/
-	virtual ~Scene();
+	virtual ~SceneManager();
 	/**
 	*@brief	:タスクを登録する
 	*@param	:現在に登録したいタスク
 	*/
-	void SetNowTask(const SceneTask* task);
+	void SetNowTask(SceneTask* task);
 	/**
 	*@brief	:タスクを登録する
 	*@param	:次に登録したいタスク
 	*/
-	void SetNextTask(const SceneTask* task);
+	void SetNextTask(SceneTask* task);
 	/**
 	*@brief	:タスクを移行する
 	*/
 	void SceneMigration();
+	/**
+	*@brief	:現在タスクを取得
+	*@return:SceneTask* 現在のタスク
+	*/
+	SceneTask* GetNowTask() const;
+	/**
+	*@brief	:次タスクを取得
+	*@return:SceneTask* 次のタスク
+	*/
+	SceneTask* GetNextTask() const;
 };
 /**
 *@brief	:メインシステム処理
@@ -90,12 +101,12 @@ class EngineSystem : private NonCopyable
 	std::vector<OrderCheck> Orders;
 	//! Engine終了状況
 	bool DeleteEngine;
-	//! 登録タスク
-	std::vector<std::pair<unsigned short, SceneTask*>> taskObjects;
-	//! 登録予定タスク
-	std::vector<SceneTask*> addTaskObjects;
-	//! 現在タスク
-	SceneTask* taskObject;
+	//! 登録済みGameObject
+	std::vector<GameObject*> nowGameObjects;
+	//! 登録予定GameObject
+	std::vector<GameObject*> addGameObjects;
+	//! タスク管理
+	SceneManager* _sceneManager;
 public:
 	//! カメラ2D
 	Camera2D * camera;
@@ -114,7 +125,7 @@ public:
 	/**
 	*@brief	:constructor
 	*/
-	EngineSystem();
+	explicit EngineSystem();
 	/**
 	*@brief	:constructor
 	*@param	:int x WindowSizeX
@@ -122,7 +133,7 @@ public:
 	*@param	:char* name WindowName
 	*@param	:bool flag ScreenMode
 	*/
-	EngineSystem(
+	explicit EngineSystem(
 		const int x,
 		const int y,
 		const char* name,
@@ -130,7 +141,7 @@ public:
 	/**
 	*@brief	:destructor
 	*/
-	~EngineSystem();
+	virtual ~EngineSystem();
 	/**
 	*@brief	:初期化処理
 	*@return:成功でtrue
@@ -178,6 +189,10 @@ public:
 	*/
 	void AllPause(const bool flag = true);
 	/**
+	*@brief	:全オブジェクトの削除命令
+	*/
+	void AllObjectKill();
+	/**
 	*@brief	:アプリケーション終了
 	*/
 	void GameEnd();
@@ -196,9 +211,21 @@ public:
 	void TaskGameUpdate();
 	/**
 	*@brief	:タスクを登録する
-	*@param	:TaskObject* task タスク
+	*@param	:SceneTask* task タスク
 	*/
-	void SetTaskObject(
+	void SetTask(
+		SceneTask* task);
+	/**
+	*@brief	:タスクを登録する
+	*@param	:GameObject* object GameObject
+	*/
+	void SetGameObject(
+		GameObject* object);
+	/**
+	*@brief	:開始タスクを登録する
+	*@param	:SceneTask* task タスク
+	*/
+	void SetStartTask(
 		SceneTask* task);
 	/**
 	*@brief	:エンジン終了を返す
@@ -215,17 +242,17 @@ public:
 	*/
 	void ShowNameAddedObject();
 	/**
-	*@brief	:タスク検索(最初の同名のタスクを返す)
-	*@param	:string taskName タスク名
+	*@brief	:オブジェクト検索(最初の同名のオブジェクトを返す)
+	*@param	:string objectName オブジェクト名
 	*@return:指定単体タスクclass
 	*/
-	template <class T> T* GetTask(const std::string& taskName)
+	template <class T> T* GetTask(const std::string& objectName)
 	{
 		for (auto id = this->taskObjects.begin(); id != this->taskObjects.end(); ++id)
 		{
 			if (id->second)
 			{
-				if (id->second->GetTaskName() == taskName)
+				if (id->second->GetTaskName() == objectName)
 				{
 					return (T*)id->second;
 				}
@@ -235,7 +262,7 @@ public:
 		{
 			if (*id)
 			{
-				if ((*id)->GetTaskName() == taskName)
+				if ((*id)->GetTaskName() == objectName)
 				{
 					return (T*)(*id);
 				}
@@ -244,18 +271,18 @@ public:
 		return nullptr;
 	}
 	/**
-	*@brief	:タスク検索(同名すべてを返す)
-	*@param	:string taskName タスク名
+	*@brief	:オブジェクト検索(同名すべてを返す)
+	*@param	:string objectName オブジェクト名
 	*@return:指定複数タスクclass
 	*/
-	template <class T> std::vector<T*> GetTasks(const std::string& taskName)
+	template <class T> std::vector<T*> GetTasks(const std::string& objectName)
 	{
 		std::vector<T*> w;
 		for (auto id = this->taskObjects.begin(); id != this->taskObjects.end(); ++id)
 		{
 			if (id->second)
 			{
-				if (id->second->GetTaskName() == taskName)
+				if (id->second->GetTaskName() == objectName)
 				{
 					w.push_back((T*)id->second);
 				}
@@ -265,7 +292,7 @@ public:
 		{
 			if (*id)
 			{
-				if ((*id)->GetTaskName() == taskName)
+				if ((*id)->GetTaskName() == objectName)
 				{
 					w.push_back((T*)(*id));
 				}
@@ -308,6 +335,14 @@ private:
 	*@brief	:登録タスク全削除
 	*/
 	void AllTaskDelete();
+	/**
+	*@brief	:Sceneの状態チェック
+	*/
+	void SceneStateCheck();
+	/**
+	*@brief	:GameObjectsの状態チェック
+	*/
+	void GameObjectsStateCheck();
 };
 
 extern EngineSystem* OGge;
