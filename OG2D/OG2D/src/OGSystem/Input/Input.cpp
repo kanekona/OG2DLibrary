@@ -380,11 +380,17 @@ Input::Mouse::Mouse()
 	std::fill(std::begin(button_up), std::end(button_up), 0);
 
 	this->isPresent = true;
+	this->collision = new CollisionPointer;
+	this->collision->CreateHitBase(&this->position, nullptr, nullptr, nullptr);
 }
-Input::Mouse Input::initMouse()
+Input::Mouse::~Mouse()
 {
-	Mouse mouse_;
-	mouse_.isPresent = true;
+	delete this->collision;
+}
+Input::Mouse* Input::initMouse()
+{
+	Mouse* mouse_ = new Input::Mouse;
+	mouse_->isPresent = true;
 	return mouse_;
 }
 void Input::Mouse::SetWindow(GLFWwindow* w)
@@ -453,26 +459,35 @@ void Input::Mouse::Update()
 	}
 	this->_scroll = Input::Mouse::scroll;
 	Input::Mouse::scroll = { 0,0 };
+
+	glfwGetCursorPos(this->nowWindow, &this->pos_x, &this->pos_y);
+	this->position = { (float)pos_x,(float)pos_y };
 }
 Vec2 Input::Mouse::GetScroll() const
 {
 	return this->_scroll;
 }
-Vec2 Input::Mouse::GetPos() const
+Vec2 Input::Mouse::GetPos()
 {
-	double x, y;
-	glfwGetCursorPos(this->nowWindow, &x, &y);
-	return Vec2((float)x, (float)y);
+	return this->position;
 }
-void ResetMouse(Input::Mouse& mouse)
+CollisionPointer* Input::Mouse::GetCollision() const
 {
-	std::fill(std::begin(mouse.button_on), std::end(mouse.button_on), 0);
-	std::fill(std::begin(mouse.button_down), std::end(mouse.button_down), 0);
-	std::fill(std::begin(mouse.button_up), std::end(mouse.button_up), 0);
+	return this->collision;
+}
+void Input::Mouse::ResetMouse()
+{
+	std::fill(std::begin(this->button_on), std::end(this->button_on), 0);
+	std::fill(std::begin(this->button_down), std::end(this->button_down), 0);
+	std::fill(std::begin(this->button_up), std::end(this->button_up), 0);
 }
 //--------------------------------------------------
 //@:Inputclass									
 //--------------------------------------------------
+Input::~Input()
+{
+	OG::Destroy<Mouse>(this->mouse);
+}
 void Input::Inputinit(GLFWwindow *w)
 {
 	//キーボードの初期化
@@ -480,7 +495,7 @@ void Input::Inputinit(GLFWwindow *w)
 	this->key.SetWindow(w);
 	//マウスの初期化
 	this->mouse = this->initMouse();
-	this->mouse.SetWindow(w);
+	this->mouse->SetWindow(w);
 	//ゲームパッドの初期化
 	this->pad = this->initGamePad();
 	//ゲームパッドが１つ以上存在している場合
@@ -566,7 +581,7 @@ void Input::Update()
 		this->pad[i].Update();
 	}
 	this->key.Update();
-	this->mouse.Update();
+	this->mouse->Update();
 }
 bool Input::down(const int index, const int padNum) const
 {
@@ -619,7 +634,7 @@ bool Input::EitherDown() const
 			return true;
 		}
 	}
-	return this->key.EitherDown() || this->mouse.EitherDown();
+	return this->key.EitherDown() || this->mouse->EitherDown();
 }
 bool Input::EitherOn() const
 {
@@ -630,7 +645,7 @@ bool Input::EitherOn() const
 			return true;
 		}
 	}
-	return this->key.EitherOn() || this->mouse.EitherOn();
+	return this->key.EitherOn() || this->mouse->EitherOn();
 }
 bool Input::EitherUp() const
 {
@@ -641,7 +656,7 @@ bool Input::EitherUp() const
 			return true;
 		}
 	}
-	return this->key.EitherUp() || this->mouse.EitherUp();
+	return this->key.EitherUp() || this->mouse->EitherUp();
 }
 float Input::axis(const int index, const int padNum) const
 {
@@ -715,7 +730,7 @@ void Input::ResetInputData()
 {
 	ResetGamePad(this->pad);
 	ResetKeyBoard(this->key);
-	ResetMouse(this->mouse);
+	this->mouse->ResetMouse();
 }
 void Input::registAxis(const float regist)
 {

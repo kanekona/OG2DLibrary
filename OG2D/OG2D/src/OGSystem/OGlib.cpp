@@ -170,6 +170,11 @@ void Box2D::Offset()
 	this->x -= this->w / 2;
 	this->y -= this->h / 2;
 }
+void Box2D::OffsetCenterSize()
+{
+	this->Offset();
+	this->OffsetSize();
+}
 //Box2D Box2D::operator+(const Box2D& b) { return Box2D(x += b.x, y += b.y, w += b.w, h += b.h); }
 Box2D Box2D::operator+(const Box2D& b) { this->x += b.x, this->y += b.y, this->w += b.w, this->h += b.h; return *this; }
 //Box2D Box2D::operator-(const Box2D& b) { return Box2D(x -= b.x, y -= b.y, w -= b.w, h -= b.h); }

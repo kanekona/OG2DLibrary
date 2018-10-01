@@ -94,6 +94,7 @@ public:
 	void Offset(const int x_, const int y_);
 	void Offset();
 	void OffsetSize();
+	void OffsetCenterSize();
 	Box2D operator+(const Box2D& b);
 	Box2D operator-(const Box2D& b);
 	Box2D operator*(const Box2D& b);

@@ -1,5 +1,4 @@
 #include "OGSystem\OGsystem.h"
-
 class Sample : public SceneTask
 {
 	Sample();

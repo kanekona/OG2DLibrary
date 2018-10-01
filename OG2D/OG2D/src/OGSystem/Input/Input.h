@@ -4,6 +4,7 @@
 */
 #pragma once
 #include "OGSystem\_OGsystem.h"
+#include "OGSystem\Collision\Collision.h"
 /**
 *namespace In
 *簡易引数用
@@ -491,6 +492,10 @@ public:
 		*/
 		explicit Mouse();
 		/**
+		*@brief	:destructor
+		*/
+		virtual ~Mouse();
+		/**
 		*@brief	:入力状況の更新
 		*/
 		void Update();
@@ -503,7 +508,7 @@ public:
 		*@brief	:Windowからのマウスの位置を返す
 		*@return:Vec2 マウスの位置
 		*/
-		Vec2 GetPos() const;
+		Vec2 GetPos();
 		/**
 		*@brief	:押している判定を返す
 		*@param :int index 判定を行いたい入力番号
@@ -542,14 +547,16 @@ public:
 		*@return:Vec2 ホイールの値
 		*/
 		Vec2 GetScroll() const;
+		/**
+		*@brief	:マウスの入力状況をリセットする
+		*/
+		void ResetMouse();
+		/**
+		*@brief	:マウスの判定を取得する
+		*/
+		CollisionPointer* GetCollision() const;
 		//! マウスの有無
 		bool isPresent;
-		//! buttonのonを格納する変数
-		std::vector<u_char> button_on;
-		//! buttonのdownを格納する変数
-		std::vector<u_char> button_down;
-		//! buttonのupを格納する変数
-		std::vector<u_char> button_up;
 	private:
 		//! MauseButtonデータ
 		int MouseData[8];
@@ -558,7 +565,17 @@ public:
 		//! Windowの情報を格納する
 		GLFWwindow* nowWindow;
 		//! ホイール値
-		Vec2 _scroll;		
+		Vec2 _scroll;
+		//! マウスの判定
+		CollisionPointer* collision;
+		//! buttonのonを格納する変数
+		std::vector<u_char> button_on;
+		//! buttonのdownを格納する変数
+		std::vector<u_char> button_down;
+		//! buttonのupを格納する変数
+		std::vector<u_char> button_up;
+		//! Mouse位置取得時に使用するdouble型
+		double pos_x, pos_y;
 		//! ホイール獲得のコールバックで得た値をいれておく
 		static Vec2 scroll;
 		/**
@@ -585,7 +602,7 @@ public:
 	//! キーボード
 	KeyBoard key;
 	//! マウス
-	Mouse mouse;
+	Mouse* mouse;
 	//変数
 	//! ゲームパッドの存在有無
 	bool Pad_Connection;
@@ -647,6 +664,10 @@ public:
 	*@return:1つ以上入力されているとtrue
 	*/
 	bool EitherUp() const;
+	/**
+	*@brief	:destructor
+	*/
+	virtual ~Input();
 private:
 	/**
 	*@brief	:入力状態をリセット
@@ -659,7 +680,7 @@ private:
 	//! キーボード初期化
 	KeyBoard initkeyBoard();
 	//! マウス初期化
-	Mouse initMouse();
+	Mouse* initMouse();
 	//! in分のデータ
 	InputData inputdata[24];
 };

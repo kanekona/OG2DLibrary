@@ -3,10 +3,16 @@
 #include "Object\Object.h"
 class Button : public GameObject
 {
-	//! Buttonの当たり判定
-	GameObject* collision;
 	//! 現在の判定状況
 	bool hitFlag;
+	//! 画像データ
+	Texture* image;
+	//! 描画位置
+	Box2D* draw;
+	//! 描画画像位置
+	Box2D* src;
+	//! 画像カラー
+	Color* image_color;
 	/**
 	*@brief	:constructor
 	*@param	:Vec2 pos 生成位置
@@ -27,8 +33,10 @@ public:
 	*/
 	virtual ~Button();
 	/**
-	*@beief	:Object情報を返す
-	*@return:GameObject* Buttonの判定
+	*@brief	:Button生成
+	*@param	:const Vec2& pos 位置
+	*@param :const Vec2& size 大きさ
+	*@return:Button* 生成したButton
 	*/
-	GameObject* GetObject() const;
+	static Button* Create(const Vec2& pos, const Vec2& size);
 };

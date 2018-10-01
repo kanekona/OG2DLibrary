@@ -14,6 +14,7 @@ void OGTK::StartTaskObject()
 	ev.Load(Event::RESOURCE_LOAD, "./data/event/sampleLoad.og");
 	//ƒ^ƒXƒN‚Ì‰Šú‰»
 	OGge->SetStartTask(Sample::Create());
+	OG::BackColor(1, 1, 1, 1);
 }
 
 OGTK::~OGTK()
