@@ -34,6 +34,7 @@ void Button::Render2D()
 		*this->image_color = { 0.4f,0.4f,0.4f,1.0f };
 	}
 	this->image->Draw(*this->draw, *this->src, *this->image_color);
+	this->LineDistanceDraw();
 }
 Button* Button::Create(const Vec2& pos, const Vec2& size)
 {

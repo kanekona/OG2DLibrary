@@ -6,7 +6,7 @@ Sample::Sample()
 {
 	std::cout << "Sample()\n";
 	OGge->SetGameObject(TestObject::Create());
-	OGge->SetGameObject(Button::Create(Vec2(100, 100), Vec2(256, 128)));
+	OGge->SetGameObject(Button::Create(Vec2(400, 400), Vec2(256, 128)));
 }
 Sample::~Sample()
 {

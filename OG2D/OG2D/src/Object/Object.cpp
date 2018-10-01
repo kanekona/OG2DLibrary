@@ -102,7 +102,7 @@ void GameObject::LineDraw(const float lineWidth)
 }
 void GameObject::LineDistanceDraw(const float lineWidth)
 {
-
+	OG::LineOvalDraw(this->_position.x, this->_position.y, this->_distanceScale.x, this->_distanceScale.y);
 }
 void GameObject::Update()
 {
