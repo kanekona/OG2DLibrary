@@ -52,5 +52,4 @@ int main() {
 	delete ogtk;
 	delete System;
 	delete timer;
-	system("pause");
 }

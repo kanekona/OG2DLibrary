@@ -12,7 +12,7 @@ GameObject::GameObject()
 GameObject::~GameObject()
 {
 	//‰ğ•úˆ—
-	OG::Destroy<CollisionBase>(this->_collision);
+	OG::Destroy<Collision>(this->_collision);
 	OG::Destroy<CollisionCircle>(this->_distanceCollision);
 }
 
@@ -56,25 +56,28 @@ void GameObject::Init(
 void GameObject::CreateCollision()
 {
 	//“–‚½‚è”»’è‚ğ¶¬
-	OG::Destroy<CollisionBase>(this->_collision);
+	OG::Destroy<Collision>(this->_collision);
 	switch (this->_form)
 	{
 	case Objform::Ball:
-		this->_collision = new CollisionCircle;
+	{
+		this->_collision = new Collision(CT::CollisionType::CIRCLE, &this->_position, &this->_scale, &this->_radius, &this->_angle);
+		auto test = CollisionTest<CollisionCircle>();
+		this->base = test.GetCollision();
+	}
 		break;
 	case Objform::Cube:
-		this->_collision = new CollisionBox;
+		this->_collision = new Collision(CT::CollisionType::BOX, &this->_position, &this->_scale, &this->_radius, &this->_angle);
 		break;
 	case Objform::Line:
-		this->_collision = new CollisionLine;
+		this->_collision = new Collision(CT::CollisionType::LINE, &this->_position, &this->_scale, &this->_radius, &this->_angle);
 		break;
 	case Objform::Pointer:
-		this->_collision = new CollisionPointer;
+		this->_collision = new Collision(CT::CollisionType::POINTER, &this->_position, &this->_scale, &this->_radius, &this->_angle);
 		break;
 	default:
 		break;
 	}
-	this->_collision->CreateHitBase(&this->_position, &this->_scale, &this->_radius, &this->_angle);
 	OG::Destroy<CollisionCircle>(this->_distanceCollision);
 	this->_distanceCollision = new CollisionCircle();
 	this->_distanceCollision->CreateHitBase(&this->_position, &this->_distanceScale, &this->_radius, &this->_angle);
@@ -82,11 +85,11 @@ void GameObject::CreateCollision()
 
 bool GameObject::Hit(GameObject* object)
 {
-	return this->_collision->Hit(*object->_collision);
+	return this->_collision->GetCollision()->Hit(*object->_collision->GetCollision());
 }
 bool GameObject::Hit(CollisionBase* object)
 {
-	return this->_collision->Hit(*object);
+	return this->_collision->GetCollision()->Hit(*object);
 }
 bool GameObject::IsObjectDistanceCheck(GameObject* object)
 {

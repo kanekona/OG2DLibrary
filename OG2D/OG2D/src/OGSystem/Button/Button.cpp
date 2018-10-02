@@ -29,7 +29,7 @@ void Button::Render2D()
 	{
 		*this->image_color = { 0.7f,0.7f,0.7f,1.0f };
 	}
-	if (OGge->in->mouse->on(Mouse::LEFT) && this->hitFlag)
+	if (OGge->in->mouse->on(Mouse::LEFT))
 	{
 		*this->image_color = { 0.4f,0.4f,0.4f,1.0f };
 	}

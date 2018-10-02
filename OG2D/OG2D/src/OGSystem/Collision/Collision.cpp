@@ -390,3 +390,73 @@ bool CollisionCapsule::Hit(CollisionPointer& b)
 {
 	return false;
 }
+//--------------------------------------------------
+//@:Collision
+//--------------------------------------------------
+Collision::Collision(CT::CollisionType type, Vec2* pos, Vec2* scale, Vec2* radius, float* angle)
+{
+	this->_type = type;
+	this->ResetCollision();
+	this->CreateCollision(pos, scale, radius, angle);
+}
+Collision::~Collision()
+{
+	this->ResetCollision();
+}
+void Collision::CreateCollision(Vec2* pos, Vec2* scale, Vec2* radius, float* angle)
+{
+	switch (this->_type)
+	{
+	case CT::CollisionType::BOX:
+		this->box = new CollisionBox;
+		this->box->CreateHitBase(pos, scale, radius, angle);
+		break;
+	case CT::CollisionType::CIRCLE:
+		this->circle = new CollisionCircle;
+		this->circle->CreateHitBase(pos, scale, radius, angle);
+		break;
+	case CT::CollisionType::LINE:
+		this->line = new CollisionLine;
+		this->line->CreateHitBase(pos, scale, radius, angle);
+		break;
+	case CT::CollisionType::POINTER:
+		this->pointer = new CollisionPointer;
+		this->pointer->CreateHitBase(pos, scale, radius, angle);
+		break;
+	case CT::CollisionType::CAPSULE:
+		this->capsule = new CollisionCapsule;
+		this->capsule->CreateHitBase(pos, scale, radius, angle);
+		break;
+	default:
+		break;
+	}
+}
+void Collision::ResetCollision()
+{
+	OG::Destroy<CollisionBox>(this->box);
+	OG::Destroy<CollisionCircle>(this->circle);
+	OG::Destroy<CollisionLine>(this->line);
+	OG::Destroy<CollisionPointer>(this->pointer);
+	OG::Destroy<CollisionCapsule>(this->capsule);
+}
+CollisionBase* Collision::GetCollision() const
+{
+	switch (this->_type)
+	{
+	case CT::CollisionType::BOX:
+		return this->box;
+	case CT::CollisionType::CIRCLE:
+		return this->circle;
+	case CT::CollisionType::LINE:
+		return this->line;
+	case CT::CollisionType::POINTER:
+		return this->pointer;
+	case CT::CollisionType::CAPSULE:
+		return this->capsule;
+	}
+	return nullptr;
+}
+bool Collision::Hit(Collision* collision)
+{
+	return false;
+}
