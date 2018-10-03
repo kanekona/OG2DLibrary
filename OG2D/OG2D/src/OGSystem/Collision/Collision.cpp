@@ -5,6 +5,10 @@
 CollisionBase::CollisionBase(const unsigned short vertex)
 	:VERTEX_NUM(vertex)
 {
+	OG::Destroy<Vec2>(this->_pos);
+	OG::Destroy<Vec2>(this->_scale);
+	OG::Destroy<Vec2>(this->_radius);
+	OG::Destroy<float>(this->_rotate);
 }
 void CollisionBase::CreateHitBase(Vec2* pos, Vec2* scale, Vec2* radius, float* angle)
 {
@@ -123,7 +127,7 @@ bool CollisionBox::GetHit(CollisionCircle* b)
 	}
 	return false;
 }
-//“_‚Æ‹éŒ`
+//‹éŒ`~“_
 bool CollisionBox::GetHit(CollisionPointer* b)
 {
 	this->CreateCollision();
@@ -148,13 +152,19 @@ bool CollisionBox::GetHit(CollisionPointer* b)
 	}
 	return true;
 }
-//‹éŒ`‚Æü
+//‹éŒ`~ü
 bool CollisionBox::GetHit(CollisionLine* b)
 {
 	this->CreateCollision();
 	b->CreateCollision();
 	return false;
 }
+//‹éŒ`~ƒJƒvƒZƒ‹
+bool CollisionBox::GetHit(CollisionCapsule* b)
+{
+	return false;
+}
+//”»’è¶¬
 void CollisionBox::CreateCollision()
 {
 	Vec2 scaleSize = { this->_scale->x * this->_radius->x,this->_scale->y * this->_radius->y };
@@ -166,14 +176,17 @@ void CollisionBox::CreateCollision()
 	};
 	this->Rotate(*this->_rotate);
 }
+//‰ñ“]“K—p
 void CollisionBox::Rotate(const float _angle) {
 	//‰ñ“]‚Ì’l‚ðŠi”[
 	this->angle = _angle;
 }
+//‰ñ“]Žæ“¾
 float CollisionBox::Rotate() const
 {
 	return this->angle;
 }
+//”»’è
 bool CollisionBox::Hit(CollisionBase* collision)
 {
 	return collision->GetHit(this);
@@ -233,7 +246,7 @@ bool CollisionCircle::GetHit(CollisionCircle* b)
 	}
 	return false;
 }
-//‰~~ü
+//‰~~“_
 bool CollisionCircle::GetHit(CollisionPointer* b)
 {
 	this->CreateCollision();
@@ -252,6 +265,17 @@ bool CollisionCircle::GetHit(CollisionPointer* b)
 	}
 	return false;
 }
+//‰~~ü
+bool CollisionCircle::GetHit(CollisionLine* b)
+{
+	return false;
+}
+//‰~~ƒJƒvƒZƒ‹
+bool CollisionCircle::GetHit(CollisionCapsule* b)
+{
+	return false;
+}
+//”»’è¶¬
 void CollisionCircle::CreateCollision()
 {
 	this->hitBase = {
@@ -260,6 +284,11 @@ void CollisionCircle::CreateCollision()
 		this->_scale->x / 2.f
 	};
 }
+//”»’è
+bool CollisionCircle::Hit(CollisionBase* collision)
+{
+	return collision->GetHit(this);
+}
 //--------------------------------------------------
 //@:CollisionPointer
 //--------------------------------------------------
@@ -267,6 +296,7 @@ CollisionPointer::CollisionPointer()
 	:CollisionBase(1)
 {
 }
+//“_~‹éŒ`
 bool CollisionPointer::GetHit(CollisionBox* b)
 {
 	this->CreateCollision();
@@ -291,6 +321,7 @@ bool CollisionPointer::GetHit(CollisionBox* b)
 	}
 	return true;
 }
+//“_~‰~
 bool CollisionPointer::GetHit(CollisionCircle* b)
 {
 	this->CreateCollision();
@@ -309,12 +340,14 @@ bool CollisionPointer::GetHit(CollisionCircle* b)
 	}
 	return false;
 }
+//“_~“_
 bool CollisionPointer::GetHit(CollisionPointer* b)
 {
 	this->CreateCollision();
 	b->CreateCollision();
 	return this->hitBase == b->hitBase;
 }
+//“_~ü
 bool CollisionPointer::GetHit(CollisionLine* b)
 {
 	this->CreateCollision();
@@ -337,9 +370,20 @@ bool CollisionPointer::GetHit(CollisionLine* b)
 	}
 	return false;
 }
+//“_~ƒJƒvƒZƒ‹
+bool CollisionPointer::GetHit(CollisionCapsule* b)
+{
+	return false;
+}
+//”»’è¶¬
 void CollisionPointer::CreateCollision()
 {
 	this->hitBase = *this->_pos;
+}
+//”»’è
+bool CollisionPointer::Hit(CollisionBase* collision)
+{
+	return collision->GetHit(this);
 }
 //--------------------------------------------------
 //@:CollisionLine
@@ -349,10 +393,41 @@ CollisionLine::CollisionLine()
 {
 
 }
+//ü~‹éŒ`
+bool CollisionLine::GetHit(CollisionBox* b)
+{
+	return false;
+}
+//ü~‰~
+bool CollisionLine::GetHit(CollisionCircle* b)
+{
+	return false;
+}
+//ü~ü
+bool CollisionLine::GetHit(CollisionLine* b)
+{
+	return false;
+}
+//ü~“_
+bool CollisionLine::GetHit(CollisionPointer* b)
+{
+	return false;
+}
+//ü~ƒJƒvƒZƒ‹
+bool CollisionLine::GetHit(CollisionCapsule* b)
+{
+	return false;
+}
+//”»’è¶¬
 void CollisionLine::CreateCollision()
 {
 	this->hitBase[0] = *this->_pos;
 	this->hitBase[1] = *this->_scale;
+}
+//”»’è
+bool CollisionLine::Hit(CollisionBase* collision)
+{
+	return collision->GetHit(this);
 }
 //--------------------------------------------------
 //@:CollisionCapsule
@@ -362,19 +437,33 @@ CollisionCapsule::CollisionCapsule()
 {
 
 }
+//ƒJƒvƒZƒ‹~ƒJƒvƒZƒ‹
 bool CollisionCapsule::GetHit(CollisionCapsule* b)
 {
 	return false;
 }
+//ƒJƒvƒZƒ‹~‹éŒ`
 bool CollisionCapsule::GetHit(CollisionBox* b)
 {
 	return false;
 }
+//ƒJƒvƒZƒ‹~‰~
 bool CollisionCapsule::GetHit(CollisionCircle* b)
 {
 	return false;
 }
+//ƒJƒvƒZƒ‹~“_
 bool CollisionCapsule::GetHit(CollisionPointer* b)
 {
 	return false;
+}
+//ƒJƒvƒZƒ‹~ü
+bool CollisionCapsule::GetHit(CollisionLine* b)
+{
+	return false;
+}
+//”»’è
+bool CollisionCapsule::Hit(CollisionBase* collision)
+{
+	return collision->Hit(this);
 }

@@ -55,9 +55,7 @@ class GameObject :private NonCopyable
 	//! Angle
 	float _angle;
 	//! CollisionData
-	//CollisionBase* _collision;
-	Collision* _collision;
-	//CollisionBase* base;
+	CollisionBase* _collision;
 	//! ObjectTag
 	std::string _tag;
 	//! Mass
