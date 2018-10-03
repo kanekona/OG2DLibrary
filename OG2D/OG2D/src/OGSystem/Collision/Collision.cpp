@@ -6,30 +6,6 @@ CollisionBase::CollisionBase(const unsigned short vertex)
 	:VERTEX_NUM(vertex)
 {
 }
-bool CollisionBase::Hit(CollisionBase& b)
-{
-	return false;
-}
-bool CollisionBase::Hit(CollisionBox& b)
-{
-	return false;
-}
-bool CollisionBase::Hit(CollisionCircle& b)
-{
-	return false;
-}
-bool CollisionBase::Hit(CollisionPointer& b)
-{
-	return false;
-}
-bool CollisionBase::Hit(CollisionCapsule& b)
-{
-	return false;
-}
-bool CollisionBase::Hit(CollisionLine& b)
-{
-	return false;
-}
 void CollisionBase::CreateHitBase(Vec2* pos, Vec2* scale, Vec2* radius, float* angle)
 {
 	this->_pos = pos;
@@ -45,16 +21,16 @@ CollisionBox::CollisionBox()
 {
 }
 //矩形×矩形
-bool CollisionBox::Hit(CollisionBox& b)
+bool CollisionBox::GetHit(CollisionBox* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
+	b->CreateCollision();
 	//頂点情報のセット
 	Vec2 _ver[4] = {
-		{ b.hitBase.x,b.hitBase.y },
-	{ b.hitBase.w - 1,b.hitBase.y },
-	{ b.hitBase.w - 1,b.hitBase.h },
-	{ b.hitBase.x,b.hitBase.h }
+		{ b->hitBase.x,b->hitBase.y },
+	{ b->hitBase.w - 1,b->hitBase.y },
+	{ b->hitBase.w - 1,b->hitBase.h },
+	{ b->hitBase.x,b->hitBase.h }
 	};
 	Vec2 _v[4] = {
 		{ hitBase.x,hitBase.y },
@@ -64,7 +40,7 @@ bool CollisionBox::Hit(CollisionBox& b)
 	};
 	//回転の適用
 	OG::_Rotate(angle, _v);
-	OG::_Rotate(b.angle, _ver);
+	OG::_Rotate(b->angle, _ver);
 	//どちらかの範囲内に相手の頂点が存在する場合TRUEを返す
 	for (int i = 0; i < 4; ++i) {
 		if ((((_v[1].x - _v[0].x)*(_ver[i].y - _v[0].y)) - ((_ver[i].x - _v[0].x)*(_v[1].y - _v[0].y))) >= 0 &&
@@ -115,13 +91,13 @@ bool CollisionBox::Hit(CollisionBox& b)
 	return false;
 }
 //矩形×円
-bool CollisionBox::Hit(CollisionCircle& b)
+bool CollisionBox::GetHit(CollisionCircle* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
+	b->CreateCollision();
 	//頂点情報のセット
 	Vec2 _ver[1] = {
-		{ b.hitBase.center_x,b.hitBase.center_y }
+		{ b->hitBase.center_x,b->hitBase.center_y }
 	};
 	Vec2 _v[4] = {
 		{ hitBase.x,hitBase.y },
@@ -132,26 +108,26 @@ bool CollisionBox::Hit(CollisionCircle& b)
 	//Box型の回転の適用
 	OG::_Rotate(angle, _v);
 	//円の中に頂点が存在する場合TRUEを返す
-	if ((((_v[1].x - _v[0].x)*(_ver[0].y - _v[0].y)) - ((_ver[0].x - _v[0].x)*(_v[1].y - _v[0].y))) >= b.hitBase.r*b.hitBase.r &&
-		(((_v[2].x - _v[1].x)*(_ver[0].y - _v[1].y)) - ((_ver[0].x - _v[1].x)*(_v[2].y - _v[1].y))) >= b.hitBase.r*b.hitBase.r &&
-		(((_v[3].x - _v[2].x)*(_ver[0].y - _v[2].y)) - ((_ver[0].x - _v[2].x)*(_v[3].y - _v[2].y))) >= b.hitBase.r*b.hitBase.r &&
-		(((_v[0].x - _v[3].x)*(_ver[0].y - _v[3].y)) - ((_ver[0].x - _v[3].x)*(_v[0].y - _v[3].y))) >= b.hitBase.r*b.hitBase.r)
+	if ((((_v[1].x - _v[0].x)*(_ver[0].y - _v[0].y)) - ((_ver[0].x - _v[0].x)*(_v[1].y - _v[0].y))) >= b->hitBase.r*b->hitBase.r &&
+		(((_v[2].x - _v[1].x)*(_ver[0].y - _v[1].y)) - ((_ver[0].x - _v[1].x)*(_v[2].y - _v[1].y))) >= b->hitBase.r*b->hitBase.r &&
+		(((_v[3].x - _v[2].x)*(_ver[0].y - _v[2].y)) - ((_ver[0].x - _v[2].x)*(_v[3].y - _v[2].y))) >= b->hitBase.r*b->hitBase.r &&
+		(((_v[0].x - _v[3].x)*(_ver[0].y - _v[3].y)) - ((_ver[0].x - _v[3].x)*(_v[0].y - _v[3].y))) >= b->hitBase.r*b->hitBase.r)
 	{
 		return true;
 	}
 	
 	//円の中に線分が存在する場合TRUEを返す
 	for (int i = 0; i<4; i++) {
-		if (OG::get_distance(_ver[0].x, _ver[0].y, _v[i].x, _v[i].y, _v[(i + 1) % 4].x, _v[(i + 1) % 4].y)<b.hitBase.r)
+		if (OG::get_distance(_ver[0].x, _ver[0].y, _v[i].x, _v[i].y, _v[(i + 1) % 4].x, _v[(i + 1) % 4].y)<b->hitBase.r)
 			return true;
 	}
 	return false;
 }
 //点と矩形
-bool CollisionBox::Hit(CollisionPointer& b)
+bool CollisionBox::GetHit(CollisionPointer* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
+	b->CreateCollision();
 	Vec2 _v[4] = {
 		{ hitBase.x,hitBase.y },
 	{ hitBase.w - 1,hitBase.y },
@@ -162,8 +138,8 @@ bool CollisionBox::Hit(CollisionPointer& b)
 	for (int i = 0; i < 4; ++i)
 	{
 		if ((((_v[(i + 1) % 4].x - _v[i].x)*
-			(b.hitBase.y - _v[i].y)) -
-			((b.hitBase.x - _v[i].x)*
+			(b->hitBase.y - _v[i].y)) -
+			((b->hitBase.x - _v[i].x)*
 			(_v[(i + 1) % 4].y - _v[i].y)))
 			< 0)
 		{
@@ -171,6 +147,13 @@ bool CollisionBox::Hit(CollisionPointer& b)
 		}
 	}
 	return true;
+}
+//矩形と線
+bool CollisionBox::GetHit(CollisionLine* b)
+{
+	this->CreateCollision();
+	b->CreateCollision();
+	return false;
 }
 void CollisionBox::CreateCollision()
 {
@@ -191,6 +174,10 @@ float CollisionBox::Rotate() const
 {
 	return this->angle;
 }
+bool CollisionBox::Hit(CollisionBase* collision)
+{
+	return collision->GetHit(this);
+}
 //--------------------------------------------------
 //@:CollisionCircle
 //--------------------------------------------------
@@ -199,22 +186,22 @@ CollisionCircle::CollisionCircle()
 {
 }
 //円×矩形
-bool CollisionCircle::Hit(CollisionBox& b)
+bool CollisionCircle::GetHit(CollisionBox* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
+	b->CreateCollision();
 	//頂点情報のセット
 	Vec2 _ver[1] = {
 		{ hitBase.center_x,hitBase.center_y }
 	};
 	Vec2 _v[4] = {
-		{ b.hitBase.x,b.hitBase.y },
-	{ b.hitBase.w - 1,b.hitBase.y },
-	{ b.hitBase.w - 1,b.hitBase.h },
-	{ b.hitBase.x,b.hitBase.h }
+		{ b->hitBase.x,b->hitBase.y },
+	{ b->hitBase.w - 1,b->hitBase.y },
+	{ b->hitBase.w - 1,b->hitBase.h },
+	{ b->hitBase.x,b->hitBase.h }
 	};
 	//Box型の回転の適用
-	OG::_Rotate(b.Rotate(), _v);
+	OG::_Rotate(b->Rotate(), _v);
 	//円の中に頂点が存在する場合TRUEを返す
 	if ((((_v[1].x - _v[0].x)*(_ver[0].y - _v[0].y)) - ((_ver[0].x - _v[0].x)*(_v[1].y - _v[0].y))) >= hitBase.r*hitBase.r &&
 		(((_v[2].x - _v[1].x)*(_ver[0].y - _v[1].y)) - ((_ver[0].x - _v[1].x)*(_v[2].y - _v[1].y))) >= hitBase.r*hitBase.r &&
@@ -231,31 +218,32 @@ bool CollisionCircle::Hit(CollisionBox& b)
 	return false;
 }
 //円×円
-bool CollisionCircle::Hit(CollisionCircle& b)
+bool CollisionCircle::GetHit(CollisionCircle* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
+	b->CreateCollision();
 	//円の範囲内に相手の円の範囲が存在する場合TRUEを返す
-	if (((b.hitBase.center_x - this->hitBase.center_x)*
-		(b.hitBase.center_x - this->hitBase.center_x)) +
-		((b.hitBase.center_y - this->hitBase.center_y)*
-		(b.hitBase.center_y - this->hitBase.center_y)) <=
-			(b.hitBase.r + this->hitBase.r)*(b.hitBase.r + this->hitBase.r))
+	if (((b->hitBase.center_x - this->hitBase.center_x)*
+		(b->hitBase.center_x - this->hitBase.center_x)) +
+		((b->hitBase.center_y - this->hitBase.center_y)*
+		(b->hitBase.center_y - this->hitBase.center_y)) <=
+			(b->hitBase.r + this->hitBase.r)*(b->hitBase.r + this->hitBase.r))
 	{
 		return true;
 	}
 	return false;
 }
-bool CollisionCircle::Hit(CollisionPointer& b)
+//円×線
+bool CollisionCircle::GetHit(CollisionPointer* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
+	b->CreateCollision();
 	//頂点情報のセット
 	Vec2 _ver[1] = {
 		{ hitBase.center_x,hitBase.center_y }
 	};
 	Vec2 _v[1] = {
-		{ b.hitBase.x,b.hitBase.y },
+		{ b->hitBase.x,b->hitBase.y },
 	};
 	//円の中に頂点が存在する場合TRUEを返す
 	if (((_ver[0].x - _v[0].x) * (_ver[0].x - _v[0].x)) + ((_ver[0].y - _v[0].y) * (_ver[0].y - _v[0].y)) <= this->hitBase.r * this->hitBase.r)
@@ -279,17 +267,17 @@ CollisionPointer::CollisionPointer()
 	:CollisionBase(1)
 {
 }
-bool CollisionPointer::Hit(CollisionBox& b)
+bool CollisionPointer::GetHit(CollisionBox* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
+	b->CreateCollision();
 	Vec2 _v[4] = {
-	{ b.hitBase.x,b.hitBase.y },
-	{ b.hitBase.w - 1,b.hitBase.y },
-	{ b.hitBase.w - 1,b.hitBase.h },
-	{ b.hitBase.x,b.hitBase.h }
+	{ b->hitBase.x,b->hitBase.y },
+	{ b->hitBase.w - 1,b->hitBase.y },
+	{ b->hitBase.w - 1,b->hitBase.h },
+	{ b->hitBase.x,b->hitBase.h }
 	};
-	OG::_Rotate(b.Rotate(), _v);
+	OG::_Rotate(b->Rotate(), _v);
 	for (int i = 0; i < 4; ++i)
 	{
 		if ((((_v[(i + 1) % 4].x - _v[i].x)*
@@ -303,45 +291,45 @@ bool CollisionPointer::Hit(CollisionBox& b)
 	}
 	return true;
 }
-bool CollisionPointer::Hit(CollisionCircle& b)
+bool CollisionPointer::GetHit(CollisionCircle* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
+	b->CreateCollision();
 	//頂点情報のセット
 	Vec2 _ver[1] = {
-		{ b.hitBase.center_x,b.hitBase.center_y }
+		{ b->hitBase.center_x,b->hitBase.center_y }
 	};
 	Vec2 _v[1] = {
 		{ hitBase.x,hitBase.y },
 	};
 	//円の中に頂点が存在する場合TRUEを返す
-	if (((_ver[0].x - _v[0].x) * (_ver[0].x - _v[0].x)) + ((_ver[0].y - _v[0].y) * (_ver[0].y - _v[0].y)) <= b.hitBase.r * b.hitBase.r)
+	if (((_ver[0].x - _v[0].x) * (_ver[0].x - _v[0].x)) + ((_ver[0].y - _v[0].y) * (_ver[0].y - _v[0].y)) <= b->hitBase.r * b->hitBase.r)
 	{
 		return true;
 	}
 	return false;
 }
-bool CollisionPointer::Hit(CollisionPointer& b)
+bool CollisionPointer::GetHit(CollisionPointer* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
-	return this->hitBase == b.hitBase;
+	b->CreateCollision();
+	return this->hitBase == b->hitBase;
 }
-bool CollisionPointer::Hit(CollisionLine& b)
+bool CollisionPointer::GetHit(CollisionLine* b)
 {
 	this->CreateCollision();
-	b.CreateCollision();
+	b->CreateCollision();
 	float line_1 = sqrt(
-		(b.hitBase[1].x - b.hitBase[0].x)*(b.hitBase[1].x - b.hitBase[0].x) +
-		(b.hitBase[1].y - b.hitBase[0].y)*(b.hitBase[1].y - b.hitBase[0].y)
+		(b->hitBase[1].x - b->hitBase[0].x)*(b->hitBase[1].x - b->hitBase[0].x) +
+		(b->hitBase[1].y - b->hitBase[0].y)*(b->hitBase[1].y - b->hitBase[0].y)
 	);
 	float line_2 = sqrt(
-		(hitBase.x - b.hitBase[0].x)*(hitBase.x - b.hitBase[0].x) +
-		(hitBase.y - b.hitBase[0].y)*(hitBase.y - b.hitBase[0].y)
+		(hitBase.x - b->hitBase[0].x)*(hitBase.x - b->hitBase[0].x) +
+		(hitBase.y - b->hitBase[0].y)*(hitBase.y - b->hitBase[0].y)
 	);
 	if (
-		((b.hitBase[1].x - b.hitBase[0].x)*(hitBase.x - b.hitBase[0].x) +
-		(b.hitBase[1].y - b.hitBase[0].y)*(hitBase.x - b.hitBase[0].y)) == line_1 * line_2 &&
+		((b->hitBase[1].x - b->hitBase[0].x)*(hitBase.x - b->hitBase[0].x) +
+		(b->hitBase[1].y - b->hitBase[0].y)*(hitBase.x - b->hitBase[0].y)) == line_1 * line_2 &&
 		line_1 >= line_2
 		)
 	{
@@ -374,89 +362,19 @@ CollisionCapsule::CollisionCapsule()
 {
 
 }
-bool CollisionCapsule::Hit(CollisionCapsule& b)
+bool CollisionCapsule::GetHit(CollisionCapsule* b)
 {
 	return false;
 }
-bool CollisionCapsule::Hit(CollisionBox& b)
+bool CollisionCapsule::GetHit(CollisionBox* b)
 {
 	return false;
 }
-bool CollisionCapsule::Hit(CollisionCircle& b)
+bool CollisionCapsule::GetHit(CollisionCircle* b)
 {
 	return false;
 }
-bool CollisionCapsule::Hit(CollisionPointer& b)
-{
-	return false;
-}
-//--------------------------------------------------
-//@:Collision
-//--------------------------------------------------
-Collision::Collision(CT::CollisionType type, Vec2* pos, Vec2* scale, Vec2* radius, float* angle)
-{
-	this->_type = type;
-	this->ResetCollision();
-	this->CreateCollision(pos, scale, radius, angle);
-}
-Collision::~Collision()
-{
-	this->ResetCollision();
-}
-void Collision::CreateCollision(Vec2* pos, Vec2* scale, Vec2* radius, float* angle)
-{
-	switch (this->_type)
-	{
-	case CT::CollisionType::BOX:
-		this->box = new CollisionBox;
-		this->box->CreateHitBase(pos, scale, radius, angle);
-		break;
-	case CT::CollisionType::CIRCLE:
-		this->circle = new CollisionCircle;
-		this->circle->CreateHitBase(pos, scale, radius, angle);
-		break;
-	case CT::CollisionType::LINE:
-		this->line = new CollisionLine;
-		this->line->CreateHitBase(pos, scale, radius, angle);
-		break;
-	case CT::CollisionType::POINTER:
-		this->pointer = new CollisionPointer;
-		this->pointer->CreateHitBase(pos, scale, radius, angle);
-		break;
-	case CT::CollisionType::CAPSULE:
-		this->capsule = new CollisionCapsule;
-		this->capsule->CreateHitBase(pos, scale, radius, angle);
-		break;
-	default:
-		break;
-	}
-}
-void Collision::ResetCollision()
-{
-	OG::Destroy<CollisionBox>(this->box);
-	OG::Destroy<CollisionCircle>(this->circle);
-	OG::Destroy<CollisionLine>(this->line);
-	OG::Destroy<CollisionPointer>(this->pointer);
-	OG::Destroy<CollisionCapsule>(this->capsule);
-}
-CollisionBase* Collision::GetCollision() const
-{
-	switch (this->_type)
-	{
-	case CT::CollisionType::BOX:
-		return this->box;
-	case CT::CollisionType::CIRCLE:
-		return this->circle;
-	case CT::CollisionType::LINE:
-		return this->line;
-	case CT::CollisionType::POINTER:
-		return this->pointer;
-	case CT::CollisionType::CAPSULE:
-		return this->capsule;
-	}
-	return nullptr;
-}
-bool Collision::Hit(Collision* collision)
+bool CollisionCapsule::GetHit(CollisionPointer* b)
 {
 	return false;
 }

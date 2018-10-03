@@ -53,42 +53,6 @@ class CollisionBase
 {
 public:
 	/**
-	*@brief	:当たり判定の元
-	*@param :CollisionBase b 相手のオブジェクト
-	*@return:bool 当たっていればtrue
-	*/
-	virtual bool Hit(CollisionBase& b);
-	/**
-	*@brief	:矩形との判定
-	*@param :CollisionBox b 相手のオブジェクト
-	*@return:bool 当たっていればtrue
-	*/
-	virtual bool Hit(CollisionBox& b);
-	/**
-	*@brief	:円との判定
-	*@param :CollisionCircle b 相手のオブジェクト
-	*@return:bool 当たっていればtrue
-	*/
-	virtual bool Hit(CollisionCircle& b);
-	/**
-	*@brief	:点との判定
-	*@param :CollisionCircle b 相手のオブジェクト
-	*@return:bool 当たっていればtrue
-	*/
-	virtual bool Hit(CollisionPointer& b);
-	/**
-	*@brief	:カプセルとの判定
-	*@param	:CollisionCapsule b 相手のオブジェクト
-	*@return:bool 当たっていればtrue
-	*/
-	virtual bool Hit(CollisionCapsule& b);
-	/**
-	*@brief	:線との判定
-	*@param	:CollisionLine b 相手のオブジェクト
-	*@return:bool 当たっていればtrue
-	*/
-	virtual bool Hit(CollisionLine& b);
-	/**
 	*@brief	:当たり判定を生成する
 	*@param	:Vec2* pos Position
 	*@param	:Vec2* scale Scale
@@ -101,6 +65,12 @@ public:
 	*@param	:unsigned short vertex 頂点数
 	*/
 	explicit CollisionBase(const unsigned short vertex);
+	/**
+	*@brief	:当たり判定を返す
+	*@param	:CollisionBase* collision 判定相手
+	*@return:bool true hit
+	*/
+	virtual bool Hit(CollisionBase* collision) = 0;
 	//! 頂点数
 	const unsigned short VERTEX_NUM;
 	//! Position
@@ -111,9 +81,39 @@ public:
 	Vec2* _radius;
 	//! Angle
 	float* _rotate;
+	/**
+	*@brief	:矩形との判定
+	*@param :CollisionBox b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool GetHit(CollisionBox* b) = 0;
+	/**
+	*@brief	:円との判定
+	*@param :CollisionCircle b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool GetHit(CollisionCircle*b) = 0;
+	/**
+	*@brief	:点との判定
+	*@param :CollisionPointer b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool GetHit(CollisionPointer* b) = 0;
+	/**
+	*@brief	:カプセルとの判定
+	*@param	:CollisionCapsule b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool GetHit(CollisionCapsule* b) = 0;
+	/**
+	*@brief	:線との判定
+	*@param	:CollisionLine b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool GetHit(CollisionLine* b) = 0;
 };
 
-class CollisionBox : public CollisionBase
+class CollisionBox : CollisionBase
 {
 	//! 回転値
 	float angle;
@@ -124,24 +124,6 @@ public:
 	explicit CollisionBox();
 	//!	当たり判定
 	Box2D hitBase;
-	/**
-	*@brief	:矩形との判定
-	*@param :CollisionBox b 相手のオブジェクト
-	*@return:bool 当たっていればtrue
-	*/
-	virtual bool Hit(CollisionBox& b) override;
-	/**
-	*@brief	:円との判定
-	*@param :CollisionCircle b 相手のオブジェクト
-	*@return:bool 当たっていればtrue
-	*/
-	virtual bool Hit(CollisionCircle& b) override;
-	/**
-	*@brief	:点との判定
-	*@param :CollisionCircle b 相手のオブジェクト
-	*@return:bool 当たっていればtrue
-	*/
-	virtual bool Hit(CollisionPointer& b) override;
 	/**
 	*@brief	:回転値を変更する
 	*@param :float _angle 回転値
@@ -156,8 +138,39 @@ public:
 	*@brief	:当たり判定を生成する
 	*/
 	void CreateCollision();
+	/**
+	*@brief	:当たり判定を返す
+	*@param	:CollisionBase* collision 判定相手
+	*@return:bool true hit
+	*/
+	bool Hit(CollisionBase* collision) override;
+	/**
+	*@brief	:矩形との判定
+	*@param :CollisionBox b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool GetHit(CollisionBox* b) override;
+	/**
+	*@brief	:円との判定
+	*@param :CollisionCircle b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool GetHit(CollisionCircle* b) override;
+	/**
+	*@brief	:点との判定
+	*@param :CollisionPointer b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool GetHit(CollisionPointer* b) override;
+	/**
+	*@brief	:点との判定
+	*@param :CollisionLine b 相手のオブジェクト
+	*@return:bool 当たっていればtrue
+	*/
+	virtual bool GetHit(CollisionLine* b) override;
 };
-class CollisionCircle : public CollisionBase
+
+class CollisionCircle : CollisionBase
 {
 public:
 	//! 当たり判定
@@ -167,29 +180,36 @@ public:
 	*/
 	explicit CollisionCircle();
 	/**
+	*@brief	:当たり判定を生成する
+	*/
+	void CreateCollision();
+	/**
+	*@brief	:当たり判定を返す
+	*@param	:CollisionBase* collision 判定相手
+	*@return:bool true hit
+	*/
+	virtual bool Hit(CollisionBase* collision);
+	/**
 	*@brief	:矩形との判定
 	*@param :CollisionBox b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool Hit(CollisionBox& b) override;
+	virtual bool GetHit(CollisionBox* b) override;
 	/**
 	*@brief	:円との判定
 	*@param :CollisionCircle b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool Hit(CollisionCircle& b) override;
+	virtual bool GetHit(CollisionCircle* b) override;
 	/**
 	*@brief	:点との判定
 	*@param :CollisionCircle b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool Hit(CollisionPointer& b) override;
-	/**
-	*@brief	:当たり判定を生成する
-	*/
-	void CreateCollision();
+	virtual bool GetHit(CollisionPointer* b) override;
 };
-class CollisionPointer : public CollisionBase
+
+class CollisionPointer : CollisionBase
 {
 public:
 	//! 当たり判定
@@ -199,34 +219,41 @@ public:
 	*/
 	explicit CollisionPointer();
 	/**
+	*@brief	:当たり判定を生成する
+	*/
+	void CreateCollision();
+	/**
+	*@brief	:当たり判定を返す
+	*@param	:CollisionBase* collision 判定相手
+	*@return:bool true hit
+	*/
+	virtual bool Hit(CollisionBase* collision);
+	/**
 	*@brief	:矩形との判定
 	*@param	:CollisionBox b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool Hit(CollisionBox& b) override;
+	virtual bool GetHit(CollisionBox* b) override;
 	/**
 	*@brief	:円との判定
-	*@param	:CollisionBox b 相手のオブジェクト
+	*@param	:CollisionPointer b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool Hit(CollisionPointer& b) override;
+	virtual bool GetHit(CollisionPointer* b) override;
 	/**
 	*@brief	:点との判定
-	*@param	:CollisionBox b 相手のオブジェクト
+	*@param	:CollisionCircle b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool Hit(CollisionCircle& b) override;
+	virtual bool GetHit(CollisionCircle* b) override;
 	/**
 	*@brief	:線との判定
 	*@param	:CollisionLine b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
-	virtual bool Hit(CollisionLine& b) override;
-	/**
-	*@brief	:当たり判定を生成する
-	*/
-	void CreateCollision();
+	virtual bool GetHit(CollisionLine* b) override;
 };
+
 class CollisionLine : public CollisionBase
 {
 public:
@@ -240,6 +267,7 @@ public:
 	*/
 	void CreateCollision();
 };
+
 class CollisionCapsule : public CollisionBase
 {
 public:
@@ -248,72 +276,14 @@ public:
 	*@brief	:constructor
 	*/
 	explicit CollisionCapsule();
-	bool Hit(CollisionCapsule& b) override;
-	bool Hit(CollisionBox& b) override;
-	bool Hit(CollisionCircle& b) override;
-	bool Hit(CollisionPointer& b) override;
-};
-
-class Collision
-{
-	CollisionBox* box;
-	CollisionCircle* circle;
-	CollisionPointer* pointer;
-	CollisionLine* line;
-	CollisionCapsule* capsule;
-	CT::CollisionType _type;
 	/**
-	*@brief	:Collision生成
-	*@param	:Vec2* pos Position
-	*@param	:Vec2* scale Scale
-	*@param	:Vec2* radius Radius
-	*@param :float* angle Angle
+	*@brief	:当たり判定を返す
+	*@param	:CollisionBase* collision 判定相手
+	*@return:bool true hit
 	*/
-	void CreateCollision(Vec2* pos, Vec2* scale, Vec2* radius, float* angle);
-	/**
-	*@brief	:Collisionリセット
-	*/
-	void ResetCollision();
-public:
-	/**
-	*@brief	:constructor
-	*@param	:CT::CollisionType& type 生成Collision
-	*@param	:Vec2* pos Position
-	*@param	:Vec2* scale Scale
-	*@param	:Vec2* radius Radius
-	*@param :float* angle Angle
-	*/
-	explicit Collision(CT::CollisionType type, Vec2* pos, Vec2* scale, Vec2* radius, float* angle);
-	/**
-	*@brief	:destructor
-	*/
-	virtual ~Collision();
-	/**
-	*@brief	:判定を取得する
-	*@return:CollisionBase* 判定
-	*/
-	CollisionBase* GetCollision() const;
-	/**
-	*@brief	:当たり判定
-	*/
-	virtual bool Hit(Collision* collision);
-};
-
-template <class T>
-class CollisionTest
-{
-	T* collision;
-public:
-	explicit CollisionTest()
-	{
-		this->collision = new T;
-	}
-	virtual ~CollisionTest()
-	{
-		delete this->collision;
-	}
-	T* GetCollision() const
-	{
-		return this->collision;
-	}
+	bool Hit(CollisionBase* collision) override;
+	bool GetHit(CollisionCapsule* b) override;
+	bool GetHit(CollisionBox* b) override;
+	bool GetHit(CollisionCircle* b) override;
+	bool GetHit(CollisionPointer* b) override;
 };
