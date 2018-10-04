@@ -90,7 +90,7 @@ class EngineSystem : private NonCopyable
 	//! WindowMode
 	bool w_sc;
 	//! カーソル可視化
-	bool Cursor_on;
+	bool cursor_on;
 	//! ファイルパス
 	const std::string path;
 	//! ファイル名
@@ -98,9 +98,9 @@ class EngineSystem : private NonCopyable
 	//! WindowPosition
 	Vec2 w_pos;	
 	//! 描画順
-	std::vector<OrderCheck> Orders;
+	std::vector<OrderCheck> orders;
 	//! Engine終了状況
-	bool DeleteEngine;
+	bool deleteEngine;
 	//! 登録済みGameObject
 	std::vector<GameObject*> nowGameObjects;
 	//! 登録予定GameObject
@@ -109,7 +109,7 @@ class EngineSystem : private NonCopyable
 	SceneManager* _sceneManager;
 public:
 	//! カメラ2D
-	Camera2D * camera;
+	Camera2D* camera;
 	//! window
 	Window* window;
 	//! フレームレート
@@ -228,6 +228,16 @@ public:
 	void SetStartTask(
 		SceneTask* task);
 	/**
+	*@brief	:登録されているオブジェクトすべてを取得する
+	*@return:vector<GameObject*> 登録全オブジェクト
+	*/
+	std::vector<GameObject*> GetAllObject() const;
+	/**
+	*@brief	:登録予定オブジェクトすべてを取得する
+	*@return:vector<GameObject*> 登録予定全オブジェクト
+	*/
+	std::vector<GameObject*> GetAllAddObject() const;
+	/**
 	*@brief	:エンジン終了を返す
 	*@return:bool エンジン終了設定
 	*/
@@ -246,23 +256,23 @@ public:
 	*@param	:string objectName オブジェクト名
 	*@return:指定単体タスクclass
 	*/
-	template <class T> T* GetTask(const std::string& objectName)
+	template <class T> T* GetObject(const std::string& objectName) const
 	{
-		for (auto id = this->taskObjects.begin(); id != this->taskObjects.end(); ++id)
-		{
-			if (id->second)
-			{
-				if (id->second->GetTaskName() == objectName)
-				{
-					return (T*)id->second;
-				}
-			}
-		}
-		for (auto id = this->addTaskObjects.begin(); id != this->addTaskObjects.end(); ++id)
+		for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
 		{
 			if (*id)
 			{
-				if ((*id)->GetTaskName() == objectName)
+				if ((*id)->GetTag() == objectName)
+				{
+					return (T*)(*id);
+				}
+			}
+		}
+		for (auto id = this->addGameObjects.begin(); id != this->addGameObjects.end(); ++id)
+		{
+			if (*id)
+			{
+				if ((*id)->GetTag() == objectName)
 				{
 					return (T*)(*id);
 				}
@@ -275,30 +285,54 @@ public:
 	*@param	:string objectName オブジェクト名
 	*@return:指定複数タスクclass
 	*/
-	template <class T> std::vector<T*> GetTasks(const std::string& objectName)
+	template <class T> std::vector<T*> GetObjects(const std::string& objectName) const
 	{
 		std::vector<T*> w;
-		for (auto id = this->taskObjects.begin(); id != this->taskObjects.end(); ++id)
-		{
-			if (id->second)
-			{
-				if (id->second->GetTaskName() == objectName)
-				{
-					w.push_back((T*)id->second);
-				}
-			}
-		}
-		for (auto id = this->addTaskObjects.begin(); id != this->addTaskObjects.end(); ++id)
+		for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
 		{
 			if (*id)
 			{
-				if ((*id)->GetTaskName() == objectName)
+				if ((*id)->GetTag() == objectName)
+				{
+					w.push_back((T*)(*id));
+				}
+			}
+		}
+		for (auto id = this->addGameObjects.begin(); id != this->addGameObjects.end(); ++id)
+		{
+			if (*id)
+			{
+				if ((*id)->GetTag() == objectName)
 				{
 					w.push_back((T*)(*id));
 				}
 			}
 		}
 		return w;
+	}
+	/**
+	*@brief	:NowScene取得
+	*@return:template class* 現在Scene
+	*/
+	template <class T> T* GetNowScene() const
+	{
+		if (this->_sceneManager->GetNowTask())
+		{
+			return (T*)(this->_sceneManager->GetNowTask());
+		}
+		return nullptr;
+	}
+	/**
+	*@brief	:NextScene取得
+	*@return:template class* 次Scene
+	*/
+	template <class T> T* GetNextScene() const
+	{
+		if (this->_sceneManager->GetNextTask())
+		{
+			return (T*)(this->_sceneManager->GetNextTask());
+		}
+		return nullptr;
 	}
 private:
 	/**
@@ -345,5 +379,5 @@ private:
 	void GameObjectsStateCheck();
 };
 
-extern EngineSystem* OGge;
+extern EngineSystem* ge;
 extern ResourceManager* rm;

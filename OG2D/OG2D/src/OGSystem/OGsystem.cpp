@@ -47,10 +47,10 @@ EngineSystem::EngineSystem()
 	this->w_he = 540;
 	this->w_na = "NoName";
 	this->w_sc = false;
-	this->Cursor_on = true;
+	this->cursor_on = true;
 	this->file = "testicon.png";
 	this->w_pos = { 1920 - this->w_wi, 50 };
-	this->DeleteEngine = false;
+	this->deleteEngine = false;
 }
 EngineSystem::EngineSystem(const int widht,const int height, const char* name, const bool screen)
 {
@@ -66,8 +66,8 @@ bool EngineSystem::Initialize()
 	this->window = new Window(w_wi, w_he, w_na, w_sc, w_pos);
 	//Window設定
 	this->window->LimitsWindow();
-	this->window->InMouseMode(this->Cursor_on);
-	this->window->setIcon(this->path + this->file);
+	this->window->InMouseMode(this->cursor_on);
+	this->window->SetIcon(this->path + this->file);
 	//カメラ2Dの生成
 	this->camera = new Camera2D(Box2D(0, 0, w_wi, w_he));
 	//fpsの設定
@@ -97,7 +97,7 @@ void EngineSystem::SetWindow(const int width, const int height, const char* name
 void EngineSystem::SetCursorOn(const bool on)
 {
 	//カーソルの可視化有無
-	this->Cursor_on = on;
+	this->cursor_on = on;
 }
 void EngineSystem::SetIcon(const std::string& filepath_)
 {
@@ -174,23 +174,23 @@ void EngineSystem::ConfigDrawOrder()
 {
 	//描画順の設定
 	//登録タスク分の描画順を入れておくclassを作っておく
-	this->Orders.resize(this->nowGameObjects.size());
+	this->orders.resize(this->nowGameObjects.size());
 	//初期状態をコピーする
 	for (int i = 0; i < this->nowGameObjects.size(); ++i)
 	{
-		this->Orders[i].id = i;
-		this->Orders[i].order_s = this->nowGameObjects[i]->GetDrawOrder();
+		this->orders[i].id = i;
+		this->orders[i].order_s = this->nowGameObjects[i]->GetDrawOrder();
 	}
 	//描画順に合わせてidとorderを並び替える
 	for (int i = 0; i < this->nowGameObjects.size(); ++i)
 	{
 		for (int j = i; j < this->nowGameObjects.size(); ++j)
 		{
-			if (this->Orders[i].order_s > this->Orders[j].order_s)
+			if (this->orders[i].order_s > this->orders[j].order_s)
 			{
-				OrderCheck kari = this->Orders[i];
-				this->Orders[i] = this->Orders[j];
-				this->Orders[j] = kari;
+				OrderCheck kari = this->orders[i];
+				this->orders[i] = this->orders[j];
+				this->orders[j] = kari;
 			}
 		}
 	}
@@ -227,7 +227,6 @@ void EngineSystem::ChengeTask()
 }
 void EngineSystem::SetTask(SceneTask* to)
 {
-	//this->addTaskObjects.push_back(To);
 	this->_sceneManager->SetNextTask(to);
 }
 void EngineSystem::SetStartTask(SceneTask* to)
@@ -237,6 +236,14 @@ void EngineSystem::SetStartTask(SceneTask* to)
 void EngineSystem::SetGameObject(GameObject* object)
 {
 	this->addGameObjects.push_back(object);
+}
+std::vector<GameObject*> EngineSystem::GetAllObject() const
+{
+	return this->nowGameObjects;
+}
+std::vector<GameObject*> EngineSystem::GetAllAddObject() const
+{
+	return this->addGameObjects;
 }
 void EngineSystem::TaskApplication()
 {
@@ -337,12 +344,12 @@ void EngineSystem::SetWindowPos(const Vec2& pos)
 void EngineSystem::SetDeleteEngine(const bool flag)
 {
 	//エンジンの終了を登録
-	this->DeleteEngine = flag;
+	this->deleteEngine = flag;
 }
 bool EngineSystem::GetDeleteEngine()
 {
 	//エンジン終了を返す
-	return this->DeleteEngine;
+	return this->deleteEngine;
 }
 void EngineSystem::ShowNameAddedObject()
 {
@@ -380,6 +387,6 @@ void EngineSystem::AllObjectKill()
 	}
 }
 //! 内部システムエンジン
-EngineSystem* OGge;
+EngineSystem* ge;
 //! リソース管理システム
 ResourceManager* rm;
