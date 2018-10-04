@@ -81,7 +81,7 @@ bool OGSystem::LibConfirmation()
 		//ピクセル演算を指定する
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		//更新処理
-		if (ge->in->key.down(In::ESCAPE) || ge->GetEnd())
+		if (ge->in->key->down(In::ESCAPE) || ge->GetEnd())
 		{
 			ge->SetDeleteEngine(true);
 			//ウィンドウの破棄

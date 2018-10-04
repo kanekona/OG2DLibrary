@@ -598,14 +598,14 @@ public:
 	};
 	//class宣言
 	//! ゲームパッド配列
-	std::vector<GamePad> pad;
+	std::vector<GamePad*> pad;
 	//! キーボード
-	KeyBoard key;
+	KeyBoard* key;
 	//! マウス
 	Mouse* mouse;
 	//変数
 	//! ゲームパッドの存在有無
-	bool Pad_Connection;
+	bool pad_Connection;
 	//関数
 	/**
 	*@brief	:入力初期化
@@ -676,9 +676,9 @@ private:
 	//! 入力データ
 	int inputData[256];
 	//! ゲームパッド初期化
-	std::vector<Input::GamePad> initGamePad();
+	std::vector<Input::GamePad*> initGamePad();
 	//! キーボード初期化
-	KeyBoard initkeyBoard();
+	KeyBoard* initkeyBoard();
 	//! マウス初期化
 	Mouse* initMouse();
 	//! in分のデータ

@@ -65,16 +65,15 @@ void Input::GamePad::Reset()
 	std::fill(std::begin(axis_button_down), std::end(axis_button_down), 0);
 	std::fill(std::begin(axis_button_up), std::end(axis_button_up), 0);
 }
-std::vector<Input::GamePad> Input::initGamePad()
+std::vector<Input::GamePad*> Input::initGamePad()
 {
 	//GamePadが存在する分だけ生成する
-	std::vector<Input::GamePad> gamepad_;
+	std::vector<Input::GamePad*> gamepad_;
 	for (int id = GLFW_JOYSTICK_1; id <= GLFW_JOYSTICK_LAST; ++id)
 	{
 		if (glfwJoystickPresent(id) == GLFW_TRUE)
 		{
-			gamepad_.emplace_back(id);
-			
+			gamepad_.emplace_back(new GamePad(id));
 		}
 	}
 	return gamepad_;
@@ -226,14 +225,14 @@ const char* Input::GamePad::GetName() const
 {
 	return this->name;
 }
-void ResetGamePad(std::vector<Input::GamePad>& gamepad_)
+void ResetGamePad(std::vector<Input::GamePad*>& gamepad_)
 {
 	//入力状況を初期化する
 	for (auto& id : gamepad_)
 	{
-		if (id.isPresent())
+		if (id->isPresent())
 		{
-			id.Reset();
+			id->Reset();
 		}
 	}
 }
@@ -286,11 +285,11 @@ Input::KeyBoard::KeyBoard()
 
 	this->isPresent = true;
 }
-Input::KeyBoard Input::initkeyBoard()
+Input::KeyBoard* Input::initkeyBoard()
 {
 	//キーボードを１つ生成
-	KeyBoard keyBoard_;
-	keyBoard_.isPresent = true;
+	KeyBoard* keyBoard_ = new KeyBoard;
+	keyBoard_->isPresent = true;
 	return keyBoard_;
 }
 void Input::KeyBoard::SetWindow(GLFWwindow* w)
@@ -487,23 +486,28 @@ void Input::Mouse::ResetMouse()
 Input::~Input()
 {
 	OG::Destroy<Mouse>(this->mouse);
+	OG::Destroy<KeyBoard>(this->key);
+	for (auto id = this->pad.begin(); id != this->pad.end(); ++id)
+	{
+		OG::Destroy<GamePad>(*id);
+	}
 }
 void Input::Inputinit(GLFWwindow *w)
 {
 	//キーボードの初期化
 	this->key = this->initkeyBoard();
-	this->key.SetWindow(w);
+	this->key->SetWindow(w);
 	//マウスの初期化
 	this->mouse = this->initMouse();
 	this->mouse->SetWindow(w);
 	//ゲームパッドの初期化
 	this->pad = this->initGamePad();
 	//ゲームパッドが１つ以上存在している場合
-	this->Pad_Connection = false;
+	this->pad_Connection = false;
 	for (int i = 0; i < this->pad.size(); ++i)
 	{
-		this->pad[i].Initialize();
-		this->Pad_Connection = true;
+		this->pad[i]->Initialize();
+		this->pad_Connection = true;
 	}
 	//ゲームパッドとの紐づけ
 	{
@@ -578,9 +582,9 @@ void Input::Update()
 {
 	for (int i = 0; i < this->pad.size(); ++i)
 	{
-		this->pad[i].Update();
+		this->pad[i]->Update();
 	}
-	this->key.Update();
+	this->key->Update();
 	this->mouse->Update();
 }
 bool Input::down(const int index, const int padNum) const
@@ -588,13 +592,13 @@ bool Input::down(const int index, const int padNum) const
 	//選択された番号のゲームパッドが存在しない場合
 	if (!glfwJoystickPresent(padNum) == GLFW_TRUE)
 	{
-		return this->key.down(this->inputdata[index].key);
+		return this->key->down(this->inputdata[index].key);
 	}
 	if (index < 14)
 	{
-		return this->key.down(this->inputdata[index].key) || this->pad[padNum].down(this->inputdata[index].button);
+		return this->key->down(this->inputdata[index].key) || this->pad[padNum]->down(this->inputdata[index].button);
 	}
-	return this->key.down(this->inputdata[index].key) || this->pad[padNum].axis_down(this->inputdata[index].button);
+	return this->key->down(this->inputdata[index].key) || this->pad[padNum]->axis_down(this->inputdata[index].button);
 	//return this->key.down(this->inputdata[index].key) || index < 14 ? this->pad[padNum].down(this->inputdata[index].button) : this->pad[padNum].axis_down(this->inputdata[index].button);
 }
 bool Input::on(const int index, const int padNum) const
@@ -602,13 +606,13 @@ bool Input::on(const int index, const int padNum) const
 	//選択された番号のゲームパッドが存在しない場合
 	if (!glfwJoystickPresent(padNum) == GLFW_TRUE)
 	{
-		return this->key.on(this->inputdata[index].key);
+		return this->key->on(this->inputdata[index].key);
 	}
 	if (index < 14)
 	{
-		return this->key.on(this->inputdata[index].key) || this->pad[padNum].on(this->inputdata[index].button);
+		return this->key->on(this->inputdata[index].key) || this->pad[padNum]->on(this->inputdata[index].button);
 	}
-	return this->key.on(this->inputdata[index].key) || this->pad[padNum].axis_on(this->inputdata[index].button);
+	return this->key->on(this->inputdata[index].key) || this->pad[padNum]->axis_on(this->inputdata[index].button);
 	//return this->key.on(this->inputdata[index].key) || index < 14 ? this->pad[padNum].on(this->inputdata[index].button) : this->pad[padNum].axis_on(this->inputdata[index].button);
 }
 bool Input::up(const int index, const int padNum) const
@@ -616,47 +620,47 @@ bool Input::up(const int index, const int padNum) const
 	//選択された番号のゲームパッドが存在しない場合
 	if (!glfwJoystickPresent(padNum) == GLFW_TRUE)
 	{
-		return this->key.up(this->inputdata[index].key);
+		return this->key->up(this->inputdata[index].key);
 	}
 	if (index < 14)
 	{
-		return this->key.up(this->inputdata[index].key) || this->pad[padNum].up(this->inputdata[index].button);
+		return this->key->up(this->inputdata[index].key) || this->pad[padNum]->up(this->inputdata[index].button);
 	}
-	return this->key.up(this->inputdata[index].key) || this->pad[padNum].axis_up(this->inputdata[index].button);
+	return this->key->up(this->inputdata[index].key) || this->pad[padNum]->axis_up(this->inputdata[index].button);
 	//return this->key.up(this->inputdata[index].key) || index < 14 ? this->pad[padNum].up(this->inputdata[index].button) : this->pad[padNum].axis_up(this->inputdata[index].button);
 }
 bool Input::EitherDown() const
 {
 	for (auto id = this->pad.begin(); id != this->pad.end(); ++id)
 	{
-		if (id->EitherDown())
+		if ((*id)->EitherDown())
 		{
 			return true;
 		}
 	}
-	return this->key.EitherDown() || this->mouse->EitherDown();
+	return this->key->EitherDown() || this->mouse->EitherDown();
 }
 bool Input::EitherOn() const
 {
 	for (auto id = this->pad.begin(); id != this->pad.end(); ++id)
 	{
-		if (id->EitherOn())
+		if ((*id)->EitherOn())
 		{
 			return true;
 		}
 	}
-	return this->key.EitherOn() || this->mouse->EitherOn();
+	return this->key->EitherOn() || this->mouse->EitherOn();
 }
 bool Input::EitherUp() const
 {
 	for (auto id = this->pad.begin(); id != this->pad.end(); ++id)
 	{
-		if (id->EitherUp())
+		if ((*id)->EitherUp())
 		{
 			return true;
 		}
 	}
-	return this->key.EitherUp() || this->mouse->EitherUp();
+	return this->key->EitherUp() || this->mouse->EitherUp();
 }
 float Input::axis(const int index, const int padNum) const
 {
@@ -664,53 +668,53 @@ float Input::axis(const int index, const int padNum) const
 	switch (index)
 	{
 	case In::AXIS::AXIS_LEFT_X:
-		if (this->key.on(KeyBoard::A))
+		if (this->key->on(KeyBoard::A))
 		{
 			ang -= 1.0f;
 		}
-		if (this->key.on(KeyBoard::D))
+		if (this->key->on(KeyBoard::D))
 		{
 			ang += 1.0f;
 		}
 		break;
 	case In::AXIS::AXIS_LEFT_Y:
-		if (this->key.on(KeyBoard::W))
+		if (this->key->on(KeyBoard::W))
 		{
 			ang += 1.0f;
 		}
-		if (this->key.on(KeyBoard::S))
+		if (this->key->on(KeyBoard::S))
 		{
 			ang -= 1.0f;
 		}
 		break;
 	case In::AXIS::AXIS_RIGHT_X:
-		if (this->key.on(KeyBoard::J))
+		if (this->key->on(KeyBoard::J))
 		{
 			ang -= 1.0f;
 		}
-		if (this->key.on(KeyBoard::L))
+		if (this->key->on(KeyBoard::L))
 		{
 			ang += 1.0f;
 		}
 		break;
 	case In::AXIS::AXIS_RIGHT_Y:
-		if (this->key.on(KeyBoard::I))
+		if (this->key->on(KeyBoard::I))
 		{
 			ang += 1.0f;
 		}
-		if (this->key.on(KeyBoard::K))
+		if (this->key->on(KeyBoard::K))
 		{
 			ang -= 1.0f;
 		}
 		break;
 	case In::AXIS::AXIS_L2:
-		if (this->key.on(KeyBoard::O))
+		if (this->key->on(KeyBoard::O))
 		{
 			ang += 1.0f;
 		}
 		break;
 	case In::AXIS::AXIS_R2:
-		if (this->key.on(KeyBoard::U))
+		if (this->key->on(KeyBoard::U))
 		{
 			ang += 1.0f;
 		}
@@ -719,9 +723,9 @@ float Input::axis(const int index, const int padNum) const
 	}
 	if (glfwJoystickPresent(padNum) == GLFW_TRUE)
 	{
-		if (this->pad[padNum].axis(index) != 0.f)
+		if (this->pad[padNum]->axis(index) != 0.f)
 		{
-			ang = this->pad[padNum].axis(index);
+			ang = this->pad[padNum]->axis(index);
 		}
 	}
 	return ang;
@@ -729,14 +733,14 @@ float Input::axis(const int index, const int padNum) const
 void Input::ResetInputData()
 {
 	ResetGamePad(this->pad);
-	ResetKeyBoard(this->key);
+	ResetKeyBoard(*this->key);
 	this->mouse->ResetMouse();
 }
 void Input::registAxis(const float regist)
 {
 	for (auto id = this->pad.begin(); id != this->pad.end(); ++id)
 	{
-		id->registAxisButton(regist);
+		(*id)->registAxisButton(regist);
 	}
 }
 Vec2 Input::Mouse::scroll;

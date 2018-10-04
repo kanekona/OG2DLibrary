@@ -18,7 +18,7 @@ Sample::~Sample()
 }
 void Sample::Update()
 {
-	if (ge->in->key.down(In::SPACE))
+	if (ge->in->key->down(In::SPACE))
 	{
 		this->EnableGameObjectDestroy(true);
 		this->Kill();
