@@ -163,13 +163,13 @@ public:
 	*/
 	virtual bool GetHit(CollisionPointer* b) override;
 	/**
-	*@brief	:点との判定
+	*@brief	:点との判定(未完成)
 	*@param :CollisionLine b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
 	virtual bool GetHit(CollisionLine* b) override;
 	/**
-	*@brief	:カプセルとの判定
+	*@brief	:カプセルとの判定(未完成)
 	*@param :CollisionCapsule b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
@@ -214,13 +214,13 @@ public:
 	*/
 	virtual bool GetHit(CollisionPointer* b) override;
 	/**
-	*@brief	:点との判定
+	*@brief	:点との判定(未完成)
 	*@param :CollisionLine b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
 	virtual bool GetHit(CollisionLine* b) override;
 	/**
-	*@brief	:カプセルとの判定
+	*@brief	:カプセルとの判定(未完成)
 	*@param :CollisionCapsule b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/
@@ -271,7 +271,7 @@ public:
 	*/
 	virtual bool GetHit(CollisionLine* b) override;
 	/**
-	*@brief	:カプセルとの判定
+	*@brief	:カプセルとの判定(未完成)
 	*@param :CollisionCapsule b 相手のオブジェクト
 	*@return:bool 当たっていればtrue
 	*/

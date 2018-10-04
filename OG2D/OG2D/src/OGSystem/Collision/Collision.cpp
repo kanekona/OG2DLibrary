@@ -411,6 +411,24 @@ bool CollisionLine::GetHit(CollisionLine* b)
 //ü~“_
 bool CollisionLine::GetHit(CollisionPointer* b)
 {
+	b->CreateCollision();
+	this->CreateCollision();
+	float line_1 = sqrt(
+		(this->hitBase[1].x - this->hitBase[0].x)*(this->hitBase[1].x - this->hitBase[0].x) +
+		(this->hitBase[1].y - this->hitBase[0].y)*(this->hitBase[1].y - this->hitBase[0].y)
+	);
+	float line_2 = sqrt(
+		(b->hitBase.x - this->hitBase[0].x)*(b->hitBase.x - this->hitBase[0].x) +
+		(b->hitBase.y - this->hitBase[0].y)*(b->hitBase.y - this->hitBase[0].y)
+	);
+	if (
+		((this->hitBase[1].x - this->hitBase[0].x)*(b->hitBase.x - this->hitBase[0].x) +
+		(this->hitBase[1].y - this->hitBase[0].y)*(b->hitBase.x - this->hitBase[0].y)) == line_1 * line_2 &&
+		line_1 >= line_2
+		)
+	{
+		return true;
+	}
 	return false;
 }
 //ü~ƒJƒvƒZƒ‹
