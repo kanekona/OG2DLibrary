@@ -197,20 +197,20 @@ public:
 		enum Pad
 		{
 			
-			BUTTON_A,		//1
-			BUTTON_B,		//2
-			BUTTON_X,		//3
-			BUTTON_Y,		//4
-			BUTTON_L1,		//5
-			BUTTON_R1,		//6
-			BUTTON_BACK,	//7
-			BUTTON_START,	//8
-			BUTTON_L3,		//9
-			BUTTON_R3,		//10
-			BUTTON_U,		//11
-			BUTTON_R,		//12
-			BUTTON_D,		//13
-			BUTTON_L,		//14
+			BUTTON_A,		//! 1
+			BUTTON_B,		//! 2
+			BUTTON_X,		//! 3
+			BUTTON_Y,		//! 4
+			BUTTON_L1,		//! 5
+			BUTTON_R1,		//! 6
+			BUTTON_BACK,	//! 7
+			BUTTON_START,	//! 8
+			BUTTON_L3,		//! 9
+			BUTTON_R3,		//! 10
+			BUTTON_U,		//! 11
+			BUTTON_R,		//! 12
+			BUTTON_D,		//! 13
+			BUTTON_L,		//! 14
 		};
 		/**
 		*enum AXIS
@@ -229,6 +229,7 @@ public:
 			AXIS_R2,
 			//! L2
 			AXIS_L2,
+			//! ButtonNumber
 			AXIS_BUTTON_NUM,
 		};
 		/**

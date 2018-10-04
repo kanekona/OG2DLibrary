@@ -9,8 +9,8 @@ TestObject::TestObject()
 TestObject::~TestObject()
 {
 	std::cout << "~TestObject()\n";
-	delete this->draw;
-	delete this->src;
+	OG::Destroy<Box2D>(this->draw);
+	OG::Destroy<Box2D>(this->src);
 }
 void TestObject::Update()
 {

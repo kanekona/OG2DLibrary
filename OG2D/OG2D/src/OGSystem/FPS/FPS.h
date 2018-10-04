@@ -21,7 +21,7 @@ public:
 	*/
 	void Update();
 	/**
-	*@bried	:フレームレート指定*
+	*@bried	:フレームレート指定
 	*@param	:int rate frame rate
 	*/
 	void SetFrameRate(const int rate);

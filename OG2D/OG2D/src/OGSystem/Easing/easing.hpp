@@ -19,8 +19,11 @@ public:
 	{
 		In, Out, InOut
 	};
-	Easing() { cnt = 0; this->toplay = true; };
-	//イージング用カウンタ
+	/**
+	*@brief	:イージング用カウンタ
+	*@param	:float duration 設定タイム
+	*@return:現在タイム
+	*/
 	float Time(const float duration)
 	{
 		if (cnt <= duration)
@@ -33,17 +36,26 @@ public:
 		}
 		return cnt;
 	}
-	//イージング中の判定
-	bool isplay() const
+	/**
+	*@brief	:実行中か取得
+	*@return:bool true 実行中
+	*/
+	bool IsPlay() const
 	{
 		return this->toplay;
 	}
-	//タイム初期化
+	/**
+	*@brief	:タイム初期化
+	*/
 	void ResetTime()
 	{
 		this->cnt = 0;
 		this->toplay = true;
 	}
+	/**
+	*@brief	:constructor
+	*/
+	Easing() { this->ResetTime(); };
 
 	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Linear
