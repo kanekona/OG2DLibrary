@@ -55,7 +55,7 @@ bool Window::createWindow(const int wi, const int he, char* name, const bool scr
 	glfwSetWindowPos(this->window, (int)this->position.x, (int)this->position.y);
 	return true;
 }
-void Window::setIcon(const std::string& path_)
+void Window::SetIcon(const std::string& path_)
 {
 	//stbimage‚ğg‚Á‚Ä‰æ‘œ‚ğ“Ç‚İ‚Ş
 	image[0].pixels = stbi_load(path_.c_str(), &image[0].width, &image[0].height, 0, 4);

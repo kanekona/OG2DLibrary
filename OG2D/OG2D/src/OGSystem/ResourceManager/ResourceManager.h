@@ -9,10 +9,8 @@
 
 class ResourceManager : private NonCopyable
 {
-	//std::vector<S_Data> soundData;
 	//! サウンドデータ
 	std::vector<std::pair<std::string, Sound*>> soundData;
-	//std::vector<T_Data> textureData;
 	//! テクスチャデータ
 	std::vector<std::pair<std::string, Texture*>> textureData;
 public:

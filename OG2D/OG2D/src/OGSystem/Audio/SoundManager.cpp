@@ -13,7 +13,7 @@ float SoundManager::GetMaxVolume() const
 }
 void SoundManager::SetVolume(const Sound* s, const float value_)
 {
-	s->volume(value_ * this->MaxVolume);
+	s->Volume(value_ * this->MaxVolume);
 }
 void SoundManager::SetSound(Sound* s) 
 {
@@ -43,6 +43,6 @@ void SoundManager::Application()
 {
 	for (unsigned int i = 0; i < this->sounddata.size(); ++i)
 	{
-		this->sounddata[i]->volume(sounddata[i]->getVolume() * this->GetMaxVolume());
+		this->sounddata[i]->Volume(sounddata[i]->GetVolume() * this->GetMaxVolume());
 	}
 }

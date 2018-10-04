@@ -68,7 +68,7 @@ public:
 	*@brief	:アイコンを設定する
 	*@param	:string path ファイルパス
 	*/
-	void setIcon(const std::string& path);
+	void SetIcon(const std::string& path);
 	/**
 	*@brief	:Windowのサイズとアスペクト比を固定する
 	*/

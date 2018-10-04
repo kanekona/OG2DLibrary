@@ -101,10 +101,6 @@ namespace OG
 	std::string Data_Composite(std::ifstream& ifs);
 	void OutDebugData(const std::string& out_path, const std::string& text);
 	void DataClear(const std::string& path);
-	template <class T> T* Create()
-	{
-		return new T;
-	}
 	template <class T> bool Destroy(T* t)
 	{
 		if (t)

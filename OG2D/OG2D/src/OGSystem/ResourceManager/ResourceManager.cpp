@@ -25,7 +25,7 @@ bool ResourceManager::CreateSound(const std::string& name,const std::string& pat
 		}
 	}
 	Sound* so = new Sound();
-	so->create(path);
+	so->Create(path);
 	std::pair<std::string, Sound*> d;
 	d.first = name;
 	d.second = so;

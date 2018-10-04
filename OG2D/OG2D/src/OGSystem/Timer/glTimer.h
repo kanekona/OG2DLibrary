@@ -41,7 +41,7 @@ public:
 	*@brief	:計測判定
 	*@return:bool 計測を行っているか調べる
 	*/
-	bool isplay() const;
+	bool IsPlay() const;
 private:
 	//! 初期タイム
 	float initTime;

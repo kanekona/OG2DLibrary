@@ -17,7 +17,7 @@ Button::~Button()
 }
 void Button::Update()
 {
-	this->hitFlag = this->Hit(OGge->in->mouse->GetCollision());
+	this->hitFlag = this->Hit(ge->in->mouse->GetCollision());
 	this->SetRotate(this->GetRotate() + 1.f);
 }
 void Button::Render2D()
@@ -30,7 +30,7 @@ void Button::Render2D()
 	{
 		*this->image_color = { 0.1f,0.1f,0.1f,1.0f };
 	}
-	if (OGge->in->mouse->on(Mouse::LEFT))
+	if (ge->in->mouse->on(Mouse::LEFT))
 	{
 		*this->image_color = { 0.4f,0.4f,0.4f,1.0f };
 	}

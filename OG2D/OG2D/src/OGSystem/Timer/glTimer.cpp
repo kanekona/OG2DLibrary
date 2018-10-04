@@ -70,7 +70,7 @@ void Time::InitTime(const float time_)
 	this->addTime = time_;
 }
 
-bool Time::isplay() const
+bool Time::IsPlay() const
 {
 	return this->isPlay;
 }

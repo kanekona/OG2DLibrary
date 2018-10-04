@@ -23,33 +23,24 @@
 int main() {
 	//ƒƒ‚ƒŠƒŠ[ƒNŒŸ’m
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	OGSystem* System = new OGSystem();
+	OGSystem* system = new OGSystem();
 	OGTK* ogtk = new OGTK();
-	ogtk->_myGameInitialize();
+	ogtk->Init();
 	Time* timer = new Time();
 	timer->Start();
-	if (!System->Create())
+	if (!system->Create())
 	{
-		if (System)
-		{
-			delete System;
-		}
-		if (ogtk)
-		{
-			delete ogtk;
-		}
-		if (timer)
-		{
-			delete timer;
-		}
+		OG::Destroy<OGSystem>(system);
+		OG::Destroy<OGTK>(ogtk);
+		OG::Destroy<Time>(timer);
 		return -1;
 	}
 	ogtk->StartTaskObject();
-	while (System->LibConfirmation()) 
+	while (system->LibConfirmation()) 
 	{
 
 	}
-	delete ogtk;
-	delete System;
-	delete timer;
+	OG::Destroy<OGSystem>(system);
+	OG::Destroy<OGTK>(ogtk);
+	OG::Destroy<Time>(timer);
 }

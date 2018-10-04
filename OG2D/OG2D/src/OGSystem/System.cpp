@@ -1,15 +1,15 @@
 #include "System.h"
 OGSystem::OGSystem()
 {
-	OGge = new EngineSystem();
+	ge = new EngineSystem();
 	rm = new ResourceManager();
 }
 
 OGSystem::~OGSystem()
 {
 	//ゲームエンジンの内容を解放
-	delete OGge;
-	delete rm;
+	OG::Destroy<EngineSystem>(ge);
+	OG::Destroy<ResourceManager>(rm);
 	//GLFWのライブラリを終了する
 	glfwTerminate();
 }
@@ -22,12 +22,12 @@ bool OGSystem::Create()
 	}
 
 	//ゲームエンジンの初期化
-	OGge->Initialize();
+	ge->Initialize();
 	//使用OpenGLのVersion指定
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 	//使用するウィンドウを設定する
-	glfwMakeContextCurrent(OGge->window->GetWindow());
+	glfwMakeContextCurrent(ge->window->GetWindow());
 	//同期(ダブルバッファの入れ替えタイミングの指定)
 	glfwSwapInterval(1);
 #if defined(_MSC_VER)
@@ -41,7 +41,7 @@ bool OGSystem::Create()
 	// 透視変換行列を設定
 	glMatrixMode(GL_PROJECTION);
 	//描画範囲の指定
-	glViewport(0, 0, (GLsizei)OGge->window->GetSize().x, (GLsizei)OGge->window->GetSize().y);
+	glViewport(0, 0, (GLsizei)ge->window->GetSize().x, (GLsizei)ge->window->GetSize().y);
 	//行列の初期化
 	glLoadIdentity();
 	// 操作対象の行列をモデリングビュー行列に切り替えておく
@@ -63,15 +63,15 @@ bool OGSystem::Create()
 
 bool OGSystem::LibConfirmation()
 {
-	if (OGge->fps->FrameCheck())
+	if (ge->fps->FrameCheck())
 	{
 		//ダブルバッファ
-		glfwSwapBuffers(OGge->window->GetWindow());
+		glfwSwapBuffers(ge->window->GetWindow());
 		// glfwSwapBuffers(OGge->window->GetWindow());
 		//ウィンドウ、マウス、キーボードの入力の状態をアップデートする
 		glfwPollEvents();
 		//GameEngineの更新処理
-		OGge->Update();
+		ge->Update();
 		//捜査対象の行列をモデルビュー行列に変更
 		glMatrixMode(GL_MODELVIEW);
 		//バッファをクリアして値を設定する
@@ -81,15 +81,15 @@ bool OGSystem::LibConfirmation()
 		//ピクセル演算を指定する
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		//更新処理
-		if (OGge->in->key.down(In::ESCAPE) || OGge->GetEnd())
+		if (ge->in->key.down(In::ESCAPE) || ge->GetEnd())
 		{
-			OGge->SetDeleteEngine(true);
+			ge->SetDeleteEngine(true);
 			//ウィンドウの破棄
-			glfwDestroyWindow(OGge->window->GetWindow());
+			glfwDestroyWindow(ge->window->GetWindow());
 			return false;
 		}
 		//各タスクの更新処理
-		OGge->TaskGameUpdate();
+		ge->TaskGameUpdate();
 	}
-	return !glfwWindowShouldClose(OGge->window->GetWindow());
+	return !glfwWindowShouldClose(ge->window->GetWindow());
 }

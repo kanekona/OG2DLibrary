@@ -13,67 +13,67 @@ Sound::Sound(const std::string& path_, const bool loop) :
 	filepath_("./data/bgm/")
 {
 	this->source->BindBuffer(*this->buffer);
-	this->looping(loop);
-	this->pitch(1.0f);
+	this->Looping(loop);
+	this->Pitch(1.0f);
 	this->volume_ = 1.0f;
-	this->volume(this->volume_);
+	this->Volume(this->volume_);
 }
 Sound::~Sound()
 {
 
 };
-bool Sound::create(const std::string& path_, const bool loop)
+bool Sound::Create(const std::string& path_, const bool loop)
 {
 	this->buffer = std::make_shared<Buffer>(filepath_ + path_);
 	this->source = std::make_shared<Source>();
 	this->source->BindBuffer(*this->buffer);
-	this->looping(loop);
-	this->pitch(1.0f);
+	this->Looping(loop);
+	this->Pitch(1.0f);
 	this->volume_ = 1.0f;
-	this->volume(this->volume_);
+	this->Volume(this->volume_);
 	return true;
 }
-void Sound::play() const
+void Sound::Play() const
 {
 	this->source->Play();
 }
-void Sound::stop() const
+void Sound::Stop() const
 {
 	this->source->Stop();
 }
-void Sound::pause() const
+void Sound::Pause() const
 {
 	this->source->Pause();
 }
-void Sound::volume(const float value_) const
+void Sound::Volume(const float value_) const
 {
 	this->source->Volume(value_);
 }
-void Sound::pitch(const float value_) const
+void Sound::Pitch(const float value_) const
 {
 	this->source->Pitch(value_);
 }
-void Sound::looping(const bool loop_) const
+void Sound::Looping(const bool loop_) const
 {
 	this->source->Looping(loop_);
 }
-bool Sound::isplay() const
+bool Sound::IsPlay() const
 {
 	return this->source->isPlay();
 }
-float Sound::currenttime() const
+float Sound::CurrentTime() const
 {
 	return this->source->currenttime();
 }
-float Sound::duration() const
+float Sound::Duration() const
 {
 	return this->buffer->GetTime();
 }
-void Sound::setVolume(float maxVolume_)
+void Sound::SetVolume(float maxVolume_)
 {
 	this->volume_ = maxVolume_;
 }
-float Sound::getVolume() const
+float Sound::GetVolume() const
 {
 	return this->volume_;
 }

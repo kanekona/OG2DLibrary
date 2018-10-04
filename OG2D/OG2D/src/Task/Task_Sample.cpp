@@ -5,20 +5,20 @@
 Sample::Sample()
 {
 	std::cout << "Sample()\n";
-	OGge->SetGameObject(TestObject::Create());
-	OGge->SetGameObject(Button::Create(Vec2(400, 400), Vec2(256, 128)));
+	ge->SetGameObject(TestObject::Create());
+	ge->SetGameObject(Button::Create(Vec2(400, 400), Vec2(256, 128)));
 }
 Sample::~Sample()
 {
 	std::cout << "~Sample()\n";
-	if (this->GetNextTask() && !OGge->GetDeleteEngine())
+	if (this->GetNextTask() && !ge->GetDeleteEngine())
 	{
-		OGge->SetTask(Sample2::Create());
+		ge->SetTask(Sample2::Create());
 	}
 }
 void Sample::Update()
 {
-	if (OGge->in->key.down(In::SPACE))
+	if (ge->in->key.down(In::SPACE))
 	{
 		this->EnableGameObjectDestroy(true);
 		this->Kill();

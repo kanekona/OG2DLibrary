@@ -8,14 +8,14 @@ Sample2::Sample2()
 Sample2::~Sample2()
 {
 	std::cout << "~Sample2()\n";
-	if (this->GetNextTask() && !OGge->GetDeleteEngine())
+	if (this->GetNextTask() && !ge->GetDeleteEngine())
 	{
-		OGge->SetTask(Sample::Create());
+		ge->SetTask(Sample::Create());
 	}
 }
 void Sample2::Update()
 {
-	if (OGge->in->key.down(In::SPACE))
+	if (ge->in->key.down(In::SPACE))
 	{
 		this->EnableGameObjectDestroy(true);
 		this->Kill();
