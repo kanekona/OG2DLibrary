@@ -11,6 +11,10 @@ SceneManager::~SceneManager()
 {
 	OG::Destroy<SceneTask>(this->nowScene);
 	OG::Destroy<SceneTask>(this->nextScene);
+	for (auto id = this->otherScene.begin(); id != this->otherScene.end(); ++id)
+	{
+		OG::Destroy<SceneTask>(*id);
+	}
 }
 void SceneManager::SetNowTask(SceneTask* task)
 {
@@ -28,6 +32,24 @@ void SceneManager::SceneMigration()
 	this->nowScene = this->nextScene;
 	this->nextScene = nullptr;
 }
+void SceneManager::OrtherSceneKillCheck()
+{
+	for (auto id = this->otherScene.begin(); id != this->otherScene.end(); ++id)
+	{
+		if ((*id))
+		{
+			if ((*id)->ModeCheck(Scene::Mode::KILL))
+			{
+				OG::Destroy<SceneTask>(*id);
+				id = this->otherScene.erase(id);
+			}
+		}
+	}
+}
+void SceneManager::SetOtherTask(SceneTask* task)
+{
+	this->otherScene.push_back(task);
+}
 SceneTask* SceneManager::GetNowTask() const
 {
 	return this->nowScene;
@@ -35,6 +57,10 @@ SceneTask* SceneManager::GetNowTask() const
 SceneTask* SceneManager::GetNextTask() const
 {
 	return this->nextScene;
+}
+std::vector<SceneTask*> SceneManager::GetOtherAllTask() const
+{
+	return this->otherScene;
 }
 //--------------------------------------------------
 //@:GameEngineclass									

@@ -40,6 +40,8 @@ class SceneManager
 	SceneTask* nowScene;
 	//! 次のタスク
 	SceneTask* nextScene;
+	//! 他タスク
+	std::vector<SceneTask*> otherScene;
 public:
 	/**
 	*@brief	:constructor
@@ -51,18 +53,27 @@ public:
 	virtual ~SceneManager();
 	/**
 	*@brief	:タスクを登録する
-	*@param	:現在に登録したいタスク
+	*@param	:SceneTask* 現在に登録したいタスク
 	*/
 	void SetNowTask(SceneTask* task);
 	/**
 	*@brief	:タスクを登録する
-	*@param	:次に登録したいタスク
+	*@param	:SceneTask* 次に登録したいタスク
 	*/
 	void SetNextTask(SceneTask* task);
+	/**
+	*@brief	:タスクを登録する
+	*@param	:SceneTask* 登録したいタスク
+	*/
+	void SetOtherTask(SceneTask* task);
 	/**
 	*@brief	:タスクを移行する
 	*/
 	void SceneMigration();
+	/**
+	*@brief	:他タスクの削除管理
+	*/
+	void OrtherSceneKillCheck();
 	/**
 	*@brief	:現在タスクを取得
 	*@return:SceneTask* 現在のタスク
@@ -73,6 +84,11 @@ public:
 	*@return:SceneTask* 次のタスク
 	*/
 	SceneTask* GetNextTask() const;
+	/**
+	*@brief	:他タスクを全取得
+	*@return:vector<SceneTask*> 他タスク達
+	*/
+	std::vector<SceneTask*> GetOtherAllTask() const;
 };
 /**
 *@brief	:メインシステム処理
@@ -333,6 +349,24 @@ public:
 			return (T*)(this->_sceneManager->GetNextTask());
 		}
 		return nullptr;
+	}
+	/**
+	*@brief	:OtherScene検索
+	*@param	:std::string name Scene名
+	*@return:vector<template class*> 該当Scene達
+	*/
+	template <class T> std::vector<T*> GetSceneOthers(const std::string& name) const
+	{
+		std::vector<T*> w;
+		auto id = this->_sceneManager->GetOtherAllTask();
+		for (auto is = id.begin(); is != id.end(); ++is)
+		{
+			if ((*is)->GetTaskName() == name)
+			{
+				w.push_back((T*)(*is));
+			}
+		}
+		return w;
 	}
 private:
 	/**
