@@ -32,7 +32,6 @@ void Font::Draw(const std::string& text,const Vec2& pos,const int fontSize,const
 			{
 				this->draw.OffsetSize();
 				this->fontTex->Draw(this->draw, *this->src, color);
-				OG::LineHitDraw(&this->draw, Color(1, 0, 0, 1));
 			}
 			//•`‰æ‚ðI‚¦‚½•¶Žš—ñ‚ðÁ‚·
 			this->drawText.erase(0, 2);
@@ -47,7 +46,6 @@ void Font::Draw(const std::string& text,const Vec2& pos,const int fontSize,const
 			{
 				this->draw.OffsetSize();
 				this->fontTex->Draw(this->draw, *this->src, color);
-				OG::LineHitDraw(&this->draw, Color(0, 0, 1, 1));
 			}
 			//•`‰æ‚ðI‚¦‚½•¶Žš—ñ‚ðÁ‚·
 			this->drawText.erase(0, 1);

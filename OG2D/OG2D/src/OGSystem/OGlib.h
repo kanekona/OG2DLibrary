@@ -46,8 +46,10 @@ public:
 	Vec2 operator+(const Vec2&);
 	Vec2 operator-(const Vec2&);
 	Vec2 operator*(const float);
+	Vec2 operator*(const Vec2&);
 	void operator+=(const Vec2&);
 	void operator*=(const float);
+	void operator*=(const Vec2&);
 	void operator-=(const Vec2&);
 	bool operator==(const Vec2&);
 };

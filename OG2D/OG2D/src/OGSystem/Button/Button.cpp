@@ -3,7 +3,7 @@
 Button::Button(const Vec2& pos, const Vec2& size)
 {
 	this->hitFlag = false;
-	this->Init(Objform::Cube, "Button1", pos, size, 0.0f);
+	this->Init(Objform::Box, "Button1", pos, size, 0.0f);
 	this->image = rm->GetTextureData("button");
 	this->draw = new Box2D;
 	this->src = new Box2D;
@@ -18,6 +18,7 @@ Button::~Button()
 void Button::Update()
 {
 	this->hitFlag = this->Hit(OGge->in->mouse->GetCollision());
+	this->SetRotate(this->GetRotate() + 1.f);
 }
 void Button::Render2D()
 {
@@ -33,8 +34,10 @@ void Button::Render2D()
 	{
 		*this->image_color = { 0.4f,0.4f,0.4f,1.0f };
 	}
+	this->image->Rotate(this->GetRotate());
 	this->image->Draw(*this->draw, *this->src, *this->image_color);
 	this->LineDistanceDraw();
+	this->LineDraw();
 }
 Button* Button::Create(const Vec2& pos, const Vec2& size)
 {

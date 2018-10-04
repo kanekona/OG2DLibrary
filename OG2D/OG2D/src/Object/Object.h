@@ -14,9 +14,9 @@ enum Objform
 	//! –³
 	Non,
 	//!	‰~
-	Ball,
+	Circle,
 	//! ‹éŒ`
-	Cube,
+	Box,
 	//! “_
 	Pointer,
 	//! ü

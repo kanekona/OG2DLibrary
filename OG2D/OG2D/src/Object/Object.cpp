@@ -60,13 +60,13 @@ void GameObject::CreateCollision()
 	OG::Destroy<CollisionBase>(this->_collision);
 	switch (this->_form)
 	{
-	case Objform::Ball:
+	case Objform::Circle:
 	{
 		this->_collision = new CollisionCircle;
 		this->_collision->CreateHitBase(&this->_position, &this->_scale, &this->_radius, &this->_angle);
 	}
 		break;
-	case Objform::Cube:
+	case Objform::Box:
 	{
 		this->_collision = new CollisionBox;
 		this->_collision->CreateHitBase(&this->_position, &this->_scale, &this->_radius, &this->_angle);
@@ -110,11 +110,51 @@ bool GameObject::IsObjectDistanceCheck(CollisionCircle* object)
 }
 void GameObject::LineDraw(const float lineWidth)
 {
-
+	switch (this->_form)
+	{
+	case Objform::Circle:
+	{
+		Vec2 scaleSize = { this->_scale * this->_radius };
+		OG::LineOvalDraw(
+			&this->_position,
+			&scaleSize,
+			lineWidth);
+	}
+		break;
+	case Objform::Box:
+	{
+		Box2D d = { this->_position ,this->_scale * this->_radius };
+		d.OffsetCenterSize();
+		Vec2 _v[4] = {
+			{ d.x,d.y },
+		{ d.w - 1,d.y },
+		{ d.w - 1,d.h },
+		{ d.x,d.h }
+		};
+		OG::_Rotate(_angle, _v);
+		OG::LineBoxDraw(_v, lineWidth);
+	}
+		break;
+	case Objform::Line:
+	{
+		Vec2 _v[2] =
+		{
+		{this->_position},
+		{this->_scale}
+		};
+		OG::LineDraw(_v, lineWidth);
+	}
+		break;
+	case Objform::Pointer:
+		OG::PointDraw(&this->_position, lineWidth);
+		break;
+	default:
+		break;
+	}
 }
 void GameObject::LineDistanceDraw(const float lineWidth)
 {
-	OG::LineOvalDraw(this->_position.x, this->_position.y, this->_distanceScale.x, this->_distanceScale.y);
+	OG::LineOvalDraw(this->_position.x, this->_position.y, this->_distanceScale.x, this->_distanceScale.y,lineWidth);
 }
 void GameObject::Update()
 {

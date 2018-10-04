@@ -18,74 +18,6 @@ namespace OG {
 		v[1] *= m;
 		v[2] *= m;
 	}
-	void LineHitDraw(Vec2* _b, const Color& color_) {
-		glColor4f(color_.red, color_.green, color_.blue, color_.alpha);
-		glBegin(GL_LINES);
-		glVertex2f((_b)->x, (_b)->y);
-		glVertex2f((_b + 1)->x, (_b + 1)->y);
-
-		glVertex2f((_b + 1)->x, (_b + 1)->y);
-		glVertex2f((_b + 2)->x, (_b + 2)->y);
-
-		glVertex2f((_b + 2)->x, (_b + 2)->y);
-		glVertex2f((_b + 3)->x, (_b + 3)->y);
-
-		glVertex2f((_b + 3)->x, (_b + 3)->y);
-		glVertex2f((_b)->x, (_b)->y);
-		glEnd();
-		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-	}
-	void LineHitDraw(Vec2* _b) {
-		glBegin(GL_LINES);
-		glVertex2f((_b)->x, (_b)->y);
-		glVertex2f((_b + 1)->x, (_b + 1)->y);
-
-		glVertex2f((_b + 1)->x, (_b + 1)->y);
-		glVertex2f((_b + 2)->x, (_b + 2)->y);
-
-		glVertex2f((_b + 2)->x, (_b + 2)->y);
-		glVertex2f((_b + 3)->x, (_b + 3)->y);
-
-		glVertex2f((_b + 3)->x, (_b + 3)->y);
-		glVertex2f((_b)->x, (_b)->y);
-		glEnd();
-		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-	}
-	void LineHitDraw(Box2D* _b)
-	{
-		glBegin(GL_LINES);
-		glVertex2f((_b)->x, (_b)->y);
-		glVertex2f((_b)->w, (_b)->y);
-
-		glVertex2f((_b)->w, (_b)->y);
-		glVertex2f((_b)->w, (_b)->h);
-
-		glVertex2f((_b)->w, (_b)->h);
-		glVertex2f((_b)->x, (_b)->h);
-
-		glVertex2f((_b)->x, (_b)->h);
-		glVertex2f((_b)->x, (_b)->y);
-		glEnd();
-		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-	}
-	void LineHitDraw(Box2D* _b,const Color& color)
-	{
-		glColor4f(color.red, color.green, color.blue, color.alpha);
-		glBegin(GL_LINES);
-		glVertex2f((_b)->x, (_b)->y);
-		glVertex2f((_b)->w, (_b)->y);
-
-		glVertex2f((_b)->w, (_b)->y);
-		glVertex2f((_b)->w, (_b)->h);
-
-		glVertex2f((_b)->w, (_b)->h);
-		glVertex2f((_b)->x, (_b)->h);
-
-		glVertex2f((_b)->x, (_b)->h);
-		glVertex2f((_b)->x, (_b)->y);
-		glEnd();
-		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-	}
 	void LineBoxDraw(const Box2D* _b, const Color& color, const float linewidth)
 	{
 		glColor4f(color.red, color.green, color.blue, color.alpha);
@@ -182,8 +114,13 @@ namespace OG {
 		glEnd();
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 	}
-	void LineOvalDraw(const int x, const int y, const float ovalx, const float ovaly, const float linewidth)
+	void LineOvalDraw(const Vec2* pos, const Vec2* scale, const float linewidth, const Color& color)
 	{
+		OG::LineOvalDraw(pos->x, pos->y, scale->x, scale->y, linewidth, color);
+	}
+	void LineOvalDraw(const int x, const int y, const float ovalx, const float ovaly, const float linewidth,const Color& color)
+	{
+		glColor4f(color.red, color.green, color.blue, color.alpha);
 		for (float th1 = 0.0; th1 <= 360.0; th1 = th1 + 1.0)
 		{
 			float th2 = th1 + 10.0;
@@ -201,6 +138,25 @@ namespace OG {
 			glVertex2f(x2 + x, y2 + y);
 			glEnd();
 		}
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	}
+	void PointDraw(const Vec2* pos, const Color& color, const float linewidth)
+	{
+		glColor4f(color.red, color.green, color.blue, color.alpha);
+		glBegin(GL_POINT);
+		glLineWidth(linewidth);
+		glVertex2f(pos->x, pos->y);
+		glEnd();
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	}
+	void PointDraw(const Vec2* pos, const float linewidth, const Color& color)
+	{
+		glColor4f(color.red, color.green, color.blue, color.alpha);
+		glBegin(GL_POINT);
+		glLineWidth(linewidth);
+		glVertex2f(pos->x, pos->y);
+		glEnd();
+		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 	void _Rotate(const float _ang, Vec2* _b)
 	{
