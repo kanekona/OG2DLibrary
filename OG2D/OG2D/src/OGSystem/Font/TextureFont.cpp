@@ -1,16 +1,14 @@
 #include "TextureFont.h"
-
+#include "OGSystem\OGsystem.h"
 Font::Font()
 	:TexFontSize(Vec2(70.f,71.f)),TexNumberSize(Vec2(39.8f,71.f)),TexHalfFontSize(Vec2(35,71))
 {
 	this->fontTex = nullptr;
-	this->SetTexture("A34.bin");
+	this->SetTexture("font1");
 	this->CreateCharacter();
 }
 Font::~Font()
 {
-	delete this->fontTex;
-	this->fontTex = nullptr;
 }
 void Font::Draw(const std::string& text,const Vec2& pos,const int fontSize,const Color& color)
 {
@@ -70,11 +68,7 @@ Box2D* Font::CharacterCheck(const std::string& c)
 }
 void Font::SetTexture(const std::string& path)
 {
-	if (this->fontTex)
-	{
-		delete this->fontTex;
-	}
-	this->fontTex = new Texture(path);
+	this->fontTex = rm->GetTextureData(path);
 }
 void Font::CreateCharacter()
 {

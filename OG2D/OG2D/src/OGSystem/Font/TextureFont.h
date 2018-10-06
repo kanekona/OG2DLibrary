@@ -41,7 +41,7 @@ public:
 	/**
 	*@brief	:constructor
 	*/
-	Font();
+	explicit Font();
 	/**
 	*@brief	:destructor
 	*/
