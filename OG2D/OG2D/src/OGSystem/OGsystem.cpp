@@ -34,15 +34,16 @@ void SceneManager::SceneMigration()
 }
 void SceneManager::OrtherSceneKillCheck()
 {
-	for (auto id = this->otherScene.begin(); id != this->otherScene.end(); ++id)
+	for (auto id = this->otherScene.begin(); id != this->otherScene.end();)
 	{
-		if ((*id))
+		if ((*id) && (*id)->ModeCheck(Scene::Mode::KILL))
 		{
-			if ((*id)->ModeCheck(Scene::Mode::KILL))
-			{
-				OG::Destroy<SceneTask>(*id);
-				id = this->otherScene.erase(id);
-			}
+			OG::Destroy<SceneTask>(*id);
+			id = this->otherScene.erase(id);
+		}
+		else
+		{
+			++id;
 		}
 	}
 }
@@ -75,8 +76,9 @@ EngineSystem::EngineSystem()
 	this->w_sc = false;
 	this->cursor_on = true;
 	this->file = "testicon.png";
-	this->w_pos = { 1920 - this->w_wi, 50 };
+	this->w_pos = { 0, 30 };
 	this->deleteEngine = false;
+	this->nextWindowCreateEnable = false;
 }
 EngineSystem::EngineSystem(const int widht,const int height, const char* name, const bool screen)
 {
@@ -90,10 +92,7 @@ bool EngineSystem::Initialize()
 	//初期化処理
 	//Windowの生成
 	this->window = new Window(w_wi, w_he, w_na, w_sc, w_pos);
-	//Window設定
-	this->window->LimitsWindow();
-	this->window->InMouseMode(this->cursor_on);
-	this->window->SetIcon(this->path + this->file);
+	this->WindowConfig();
 	//カメラ2Dの生成
 	this->camera = new Camera2D(Box2D(0, 0, w_wi, w_he));
 	//fpsの設定
@@ -120,6 +119,27 @@ void EngineSystem::SetWindow(const int width, const int height, const char* name
 	this->w_na = name;
 	this->w_sc = screen;
 }
+void EngineSystem::WindowChenge(const Vec2& pos, const Vec2& size, const char* name, const bool screen)
+{
+	this->window->ChengeTitle(name);
+	this->window->ChengeWindow(pos, size, screen);
+	this->camera->Initialize(Box2D(0.f, 0.f, size.x, size.y));
+	glViewport(0, 0, (GLsizei)size.x, (GLsizei)size.y);
+}
+void EngineSystem::WindowChenge(const int x,const int y,const int w,const int h, const char* name, const bool screen)
+{
+	this->window->ChengeTitle(name);
+	this->window->ChengeWindow(x, y, w, h, screen);
+	this->camera->Initialize(Box2D(0, 0, w, h));
+	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+}
+void EngineSystem::GetWindow(int& width, int& height, bool& screen,Vec2& pos)
+{
+	width = this->w_wi;
+	height = this->w_he;
+	screen = this->w_sc;
+	pos = this->w_pos;
+}
 void EngineSystem::SetCursorOn(const bool on)
 {
 	//カーソルの可視化有無
@@ -129,6 +149,13 @@ void EngineSystem::SetIcon(const std::string& filepath_)
 {
 	//アイコンに使用する画像の設定
 	this->file = filepath_;
+}
+void EngineSystem::WindowConfig()
+{
+	//Window設定
+	this->window->LimitsWindow();
+	this->window->InMouseMode(this->cursor_on);
+	this->window->SetIcon(this->path + this->file);
 }
 void EngineSystem::Update()
 {
@@ -145,7 +172,8 @@ void EngineSystem::Task_Update()
 	{
 		this->_sceneManager->GetNowTask()->UpdateManager();
 	}
-	for (auto id = this->_sceneManager->GetOtherAllTask().begin(); id != this->_sceneManager->GetOtherAllTask().end(); ++id)
+	auto is = this->_sceneManager->GetOtherAllTask();
+	for (auto id = is.begin(); id != is.end(); ++id)
 	{
 		(*id)->UpdateManager();
 	}
@@ -228,6 +256,7 @@ void EngineSystem::ConfigDrawOrder()
 }
 EngineSystem::~EngineSystem()
 {
+	this->deleteEngine = true;
 	//登録しているタスクをすべて破棄する
 	delete this->_sceneManager;
 	this->AllGameObjectsDelete();
@@ -243,11 +272,22 @@ void EngineSystem::GameEnd()
 {
 	//アプリケーションの終了予定設定
 	this->end = true;
+	//this->nextWindowCreateEnable = flag;
 }
 bool EngineSystem::GetEnd() const
 {
 	//アプリケーションを終了の有無を返す
 	return this->end;
+}
+void EngineSystem::Reset()
+{
+	this->end = false;
+	this->nextWindowCreateEnable = false;
+	this->deleteEngine = false;
+}
+bool EngineSystem::GetNextWindowCreateEnable() const
+{
+	return this->nextWindowCreateEnable;
 }
 void EngineSystem::ChengeTask()
 {
@@ -293,12 +333,16 @@ void EngineSystem::TaskApplication()
 void EngineSystem::TaskKillCheck()
 {
 	//削除予定のタスクを削除する
-	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
+	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end();)
 	{
 		if ((*id)->ModeCheck(GO::Mode::KILL))
 		{
 			delete *id;
 			id = this->nowGameObjects.erase(id);
+		}
+		else
+		{
+			++id;
 		}
 	}
 }
@@ -387,7 +431,8 @@ bool EngineSystem::GetDeleteEngine()
 void EngineSystem::ShowNameAddedObject()
 {
 	std::cout << this->_sceneManager->GetNowTask()->GetTaskName() << ":";
-	for (auto id = this->_sceneManager->GetOtherAllTask().begin(); id != this->_sceneManager->GetOtherAllTask().end(); ++id)
+	auto is = this->_sceneManager->GetOtherAllTask();
+	for (auto id = is.begin(); id != is.end(); ++id)
 	{
 		std::cout << (*id)->GetTaskName() << ":";
 	}

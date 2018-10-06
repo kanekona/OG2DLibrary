@@ -34,6 +34,9 @@ public:
 	int id;
 	float order_s;
 };
+/**
+*@brief	:sceneを管理するclass
+*/
 class SceneManager
 {
 	//! 現在タスク
@@ -123,6 +126,8 @@ class EngineSystem : private NonCopyable
 	std::vector<GameObject*> addGameObjects;
 	//! タスク管理
 	SceneManager* _sceneManager;
+	//! nextWindowCreate
+	bool nextWindowCreateEnable;
 public:
 	//! カメラ2D
 	Camera2D* camera;
@@ -180,6 +185,18 @@ public:
 		const char* name,
 		const bool flag = false);
 	/**
+	*@brief	:Window情報取得
+	*@param	:int* x WindowSizeX
+	*@param	:int* y WindowSizeY
+	*@param	:bool* flag ScreenMode
+	*@param	:Vec2* pos WindowPosition
+	*/
+	void GetWindow(
+		int& x,
+		int& y,
+		bool& flag,
+		Vec2& pos);
+	/**
 	*@brief	:Window生成位置登録
 	*@param	:Vec2 pos 位置情報
 	*/
@@ -194,6 +211,10 @@ public:
 	*@param	:string path ファイルパスファイルパス
 	*/
 	void SetIcon(const std::string& path);
+	/**
+	*@brief	:Window設定処理
+	*/
+	void WindowConfig();
 	/**
 	*@brief	:全オブジェクトの停止設定
 	*@param	:bool flag 停止設定
@@ -246,6 +267,11 @@ public:
 	*/
 	bool GetEnd() const;
 	/**
+	*@brief	:次Window生成を行うかを返す
+	*@return:bool trueなら再びWindowを生成する
+	*/
+	bool GetNextWindowCreateEnable() const;
+	/**
 	*@brief	:タスク変更時処理
 	*/
 	void ChengeTask();
@@ -271,6 +297,28 @@ public:
 	*/
 	void SetStartTask(
 		SceneTask* task);
+	/**
+	*@brief	:値リセット
+	*/
+	void Reset();
+	/**
+	*@brief	:WindowChenge
+	*@param	:const Vec2& pos WindowPosition
+	*@param	:const Vec2& size WindowSize
+	*@param	:char* name WindowTitleName
+	*@param	:bool screen WindowMode
+	*/
+	void WindowChenge(const Vec2& pos, const Vec2& size, const char* name, const bool screen);
+	/**
+	*@brief	:WindowChenge
+	*@param	:int x WindowPosition_x
+	*@param	:int y WindowPosition_y
+	*@param	:int w WindowSize_w
+	*@param :int h WindowSize_h
+	*@param	:char* name WindowTitleName
+	*@param	:bool screen WindowMode
+	*/
+	void WindowChenge(const int x, const int y, const int w, const int h, const char* name, const bool screen);
 	/**
 	*@brief	:登録されているオブジェクトすべてを取得する
 	*@return:vector<GameObject*> 登録全オブジェクト

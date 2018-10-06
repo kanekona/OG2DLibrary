@@ -20,6 +20,7 @@ bool OGSystem::Create()
 	if (!glfwInit()) {
 		return false;
 	}
+	//WinConfig
 
 	//ゲームエンジンの初期化
 	ge->Initialize();
@@ -67,7 +68,6 @@ bool OGSystem::LibConfirmation()
 	{
 		//ダブルバッファ
 		glfwSwapBuffers(ge->window->GetWindow());
-		// glfwSwapBuffers(OGge->window->GetWindow());
 		//ウィンドウ、マウス、キーボードの入力の状態をアップデートする
 		glfwPollEvents();
 		//GameEngineの更新処理
@@ -80,16 +80,16 @@ bool OGSystem::LibConfirmation()
 		glEnable(GL_BLEND);
 		//ピクセル演算を指定する
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//各タスクの更新処理
+		ge->TaskGameUpdate();
 		//更新処理
 		if (ge->in->key->down(In::ESCAPE) || ge->GetEnd())
 		{
-			ge->SetDeleteEngine(true);
 			//ウィンドウの破棄
 			glfwDestroyWindow(ge->window->GetWindow());
+			ge->SetDeleteEngine(true);
 			return false;
 		}
-		//各タスクの更新処理
-		ge->TaskGameUpdate();
 	}
 	return !glfwWindowShouldClose(ge->window->GetWindow());
 }
