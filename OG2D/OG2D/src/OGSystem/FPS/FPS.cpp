@@ -16,10 +16,8 @@ void FPS::Update()
 	//60回動作したらその時の時間と前の時間からfpsを求める
 	if (this->count == this->framerate) {
 		this->fps = this->count / ((float)glfwGetTime() - this->lastTime);
-#if(_DEBUG)
 		std::cout << this->fps << std::endl;		//デバッグ時のみfpsを出力
 		OG::OutDebugData("fpsrate.og", std::to_string(this->fps) + "\n");
-#endif
 		this->count = 0;
 		this->lastTime = (float)glfwGetTime();
 	}
