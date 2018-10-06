@@ -195,10 +195,30 @@ public:
 	*/
 	void SetIcon(const std::string& path);
 	/**
+	*@brief	:全オブジェクトの停止設定
+	*@param	:bool flag 停止設定
+	*/
+	void AllObjectStop(const bool flag = true);
+	/**
+	*@brief	:全シーンの停止設定
+	*@param	:bool flag 停止設定
+	*/
+	void AllSceneStop(const bool flag = true);
+	/**
 	*@brief	:全タスクの停止設定
 	*@param	:bool flag 停止設定
 	*/
 	void AllStop(const bool flag = true);
+	/**
+	*@brief	:全オブジェクトのポーズ設定
+	*@param	:bool flag ポーズ設定
+	*/
+	void AllObjectPause(const bool flag = true);
+	/**
+	*@brief	:全シーンのポーズ設定
+	*@param	:bool flag ポーズ設定
+	*/
+	void AllScenePause(const bool flag = true);
 	/**
 	*@brief	:全タスクのポーズ設定
 	*@param	:bool flag ポーズ設定
@@ -208,6 +228,14 @@ public:
 	*@brief	:全オブジェクトの削除命令
 	*/
 	void AllObjectKill();
+	/**
+	*@brief	:全シーンの削除命令
+	*/
+	void AllSceneKill();
+	/**
+	*@brief	:全タスク削除命令
+	*/
+	void AllKill();
 	/**
 	*@brief	:アプリケーション終了
 	*/
@@ -253,6 +281,11 @@ public:
 	*@return:vector<GameObject*> 登録予定全オブジェクト
 	*/
 	std::vector<GameObject*> GetAllAddObject() const;
+	/**
+	*@brief	:他Sceneを全て取得する
+	*@return:vector<SceneTask*> 他Scene達
+	*/
+	std::vector<SceneTask*> GetAllOtherScenes() const;
 	/**
 	*@brief	:エンジン終了を返す
 	*@return:bool エンジン終了設定
@@ -402,7 +435,7 @@ private:
 	/**
 	*@brief	:登録タスク全削除
 	*/
-	void AllTaskDelete();
+	void AllGameObjectsDelete();
 	/**
 	*@brief	:Sceneの状態チェック
 	*/

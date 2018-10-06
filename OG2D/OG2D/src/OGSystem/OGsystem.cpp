@@ -145,6 +145,10 @@ void EngineSystem::Task_Update()
 	{
 		this->_sceneManager->GetNowTask()->UpdateManager();
 	}
+	for (auto id = this->_sceneManager->GetOtherAllTask().begin(); id != this->_sceneManager->GetOtherAllTask().end(); ++id)
+	{
+		(*id)->UpdateManager();
+	}
 	//GameObjects‚ÌUpdate‚ðŒÄ‚Ô
 	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
 	{
@@ -185,14 +189,15 @@ void EngineSystem::SceneStateCheck()
 			}
 		}
 	}
+	this->_sceneManager->OrtherSceneKillCheck();
 }
 void EngineSystem::GameObjectsStateCheck()
 {
 	//GameObject‚Ì“o˜^
 	if (this->CheckAddTask() || this->CheckKillTask())
 	{
-		this->TaskApplication();	//“o˜^—\’è‚Ìƒ^ƒXƒN‚ð“o˜^‚·‚é
 		this->TaskKillCheck();		//íœ—\’è‚Ìƒ^ƒXƒN‚ðíœ‚·‚é
+		this->TaskApplication();	//“o˜^—\’è‚Ìƒ^ƒXƒN‚ð“o˜^‚·‚é
 		this->ConfigDrawOrder();	//ƒ^ƒXƒN‚ÌW‡‘Ì‚Ì•ÏXŒã‚É•`‰æ‡‚ðÝ’è‚·‚é
 	}
 }
@@ -225,7 +230,7 @@ EngineSystem::~EngineSystem()
 {
 	//“o˜^‚µ‚Ä‚¢‚éƒ^ƒXƒN‚ð‚·‚×‚Ä”jŠü‚·‚é
 	delete this->_sceneManager;
-	this->AllTaskDelete();
+	this->AllGameObjectsDelete();
 	//¶¬‚µ‚½class‚ðdelete‚·‚é
 	delete this->audiodevice;
 	delete this->soundManager;
@@ -249,7 +254,6 @@ void EngineSystem::ChengeTask()
 	//ƒ^ƒXƒN‚ð•ÏX‚·‚éÛ‚ÉŒ³‚É–ß‚µ‚½‚¢ˆ—
 	this->camera->SetPos(Vec2(0.f, 0.f));
 	this->camera->SetSize(this->window->GetSize());
-	//this->soundManager->AllDelete();
 }
 void EngineSystem::SetTask(SceneTask* to)
 {
@@ -271,6 +275,10 @@ std::vector<GameObject*> EngineSystem::GetAllAddObject() const
 {
 	return this->addGameObjects;
 }
+std::vector<SceneTask*> EngineSystem::GetAllOtherScenes() const
+{
+	return this->_sceneManager->GetOtherAllTask();
+}
 void EngineSystem::TaskApplication()
 {
 	//“o˜^—\’è‚Ì‚à‚Ì‚ð“o˜^‚·‚é
@@ -285,26 +293,12 @@ void EngineSystem::TaskApplication()
 void EngineSystem::TaskKillCheck()
 {
 	//íœ—\’è‚Ìƒ^ƒXƒN‚ðíœ‚·‚é
-	auto id = this->nowGameObjects.begin();
-	while (id != this->nowGameObjects.end())
+	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
 	{
-		if (*id)
+		if ((*id)->ModeCheck(GO::Mode::KILL))
 		{
-			if ((*id)->ModeCheck(GO::Mode::KILL))
-			{
-				delete *id;
-				this->nowGameObjects.erase(id);
-				this->TaskApplication();
-				id = this->nowGameObjects.begin();
-			}
-			else
-			{
-				++id;
-			}
-		}
-		else
-		{
-			++id;
+			delete *id;
+			id = this->nowGameObjects.erase(id);
 		}
 	}
 }
@@ -323,7 +317,7 @@ bool EngineSystem::CheckKillTask()
 	}
 	return false;
 }
-void EngineSystem::AllTaskDelete()
+void EngineSystem::AllGameObjectsDelete()
 {
 	//‘Síœ
 	{
@@ -345,7 +339,7 @@ void EngineSystem::AllTaskDelete()
 		}
 	}
 }
-void EngineSystem::AllPause(const bool flag)
+void EngineSystem::AllObjectPause(const bool flag)
 {
 	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
 	{
@@ -361,6 +355,19 @@ void EngineSystem::AllPause(const bool flag)
 			(*id)->SetPause(flag);
 		}
 	}
+}
+void EngineSystem::AllScenePause(const bool flag)
+{
+	this->_sceneManager->GetNowTask()->SetPause(flag);
+	for (auto& id : this->_sceneManager->GetOtherAllTask())
+	{
+		id->SetPause(flag);
+	}
+}
+void EngineSystem::AllPause(const bool flag)
+{
+	this->AllScenePause(flag);
+	this->AllObjectPause(flag);
 }
 void EngineSystem::SetWindowPos(const Vec2& pos)
 {
@@ -379,13 +386,18 @@ bool EngineSystem::GetDeleteEngine()
 }
 void EngineSystem::ShowNameAddedObject()
 {
+	std::cout << this->_sceneManager->GetNowTask()->GetTaskName() << ":";
+	for (auto id = this->_sceneManager->GetOtherAllTask().begin(); id != this->_sceneManager->GetOtherAllTask().end(); ++id)
+	{
+		std::cout << (*id)->GetTaskName() << ":";
+	}
 	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
 	{
 		std::cout << (*id)->GetTag() << ":";
 	}
 	std::cout << std::endl;
 }
-void EngineSystem::AllStop(const bool flag)
+void EngineSystem::AllObjectStop(const bool flag)
 {
 	for (auto id = nowGameObjects.begin(); id != nowGameObjects.end(); ++id)
 	{
@@ -402,6 +414,19 @@ void EngineSystem::AllStop(const bool flag)
 		}
 	}
 }
+void EngineSystem::AllSceneStop(const bool flag)
+{
+	this->_sceneManager->GetNowTask()->SetStop(flag);
+	for (auto& id : this->_sceneManager->GetOtherAllTask())
+	{
+		id->SetStop(flag);
+	}
+}
+void EngineSystem::AllStop(const bool flag)
+{
+	this->AllSceneStop(flag);
+	this->AllObjectStop(flag);
+}
 void EngineSystem::AllObjectKill()
 {
 	for (auto id = nowGameObjects.begin(); id != nowGameObjects.end(); ++id)
@@ -411,6 +436,26 @@ void EngineSystem::AllObjectKill()
 			(*id)->Kill();
 		}
 	}
+	for (auto id = this->addGameObjects.begin(); id != this->addGameObjects.end(); ++id)
+	{
+		if (*id)
+		{
+			(*id)->Kill();
+		}
+	}
+}
+void EngineSystem::AllSceneKill()
+{
+	this->_sceneManager->GetNowTask()->Kill();
+	for (auto& id : this->_sceneManager->GetOtherAllTask())
+	{
+		id->Kill();
+	}
+}
+void EngineSystem::AllKill()
+{
+	this->AllSceneKill();
+	this->AllObjectKill();
 }
 //! “à•”ƒVƒXƒeƒ€ƒGƒ“ƒWƒ“
 EngineSystem* ge;
