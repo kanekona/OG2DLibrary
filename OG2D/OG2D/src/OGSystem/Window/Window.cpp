@@ -8,6 +8,7 @@ Window::Window()
 	this->_name = "NoName";
 	this->enableIcon = false;
 	this->isVisualization = false;
+	this->window = nullptr;
 }
 Window::Window(const int wi, const int he, const char* name, const bool screen,const Vec2& pos)
 	:widht(wi)
@@ -16,13 +17,7 @@ Window::Window(const int wi, const int he, const char* name, const bool screen,c
 	, _screen(screen)
 	, position(pos)
 {
-	if (screen) {
-		window = glfwCreateWindow(widht, height, name, glfwGetPrimaryMonitor(), NULL);
-	}
-	else
-	{
-		window = glfwCreateWindow(widht, height, name, NULL, NULL);
-	}
+	this->window = glfwCreateWindow(this->widht, this->height, this->_name, this->_screen ? glfwGetPrimaryMonitor() : NULL, NULL);
 	if (!window) {
 		glfwTerminate();
 		return;
@@ -41,13 +36,7 @@ bool Window::createWindow(const int wi, const int he, char* name, const bool scr
 	this->_name = name;
 	this->_screen = screen;
 	this->position = pos;
-	if (this->_screen) {
-		this->window = glfwCreateWindow(this->widht, this->height, this->_name, glfwGetPrimaryMonitor(), NULL);
-	}
-	else
-	{
-		this->window = glfwCreateWindow(this->widht, this->height, this->_name, NULL, NULL);
-	}
+	this->window = glfwCreateWindow(this->widht, this->height, this->_name, this->_screen ? glfwGetPrimaryMonitor() : NULL, this->window ? this->window : NULL);
 	if (!this->window) {
 		glfwTerminate();
 		return false;
@@ -68,6 +57,15 @@ void Window::LimitsWindow()
 {
 	//Windowのサイズを固定化させる
 	glfwSetWindowSizeLimits(this->window, this->widht, this->height, this->widht, this->height);
+	//windowのアスペクト比を固定させる
+	glfwSetWindowAspectRatio(this->window, 16, 9);
+	//windowのサイズを変更する(固定化されている場合変更はできない)
+	//glfwSetWindowSize(this->window, 1920, 1080);
+}
+void Window::LimitsWindow(const int w,const int h)
+{
+	//Windowのサイズを固定化させる
+	glfwSetWindowSizeLimits(this->window, w, h, w, h);
 	//windowのアスペクト比を固定させる
 	glfwSetWindowAspectRatio(this->window, 16, 9);
 	//windowのサイズを変更する(固定化されている場合変更はできない)
@@ -107,14 +105,7 @@ void Window::Visualization()
 
 void Window::InMouseMode(const bool index)
 {
-	if (index)
-	{
-		glfwSetInputMode(this->window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-	}
-	else
-	{
-		glfwSetInputMode(this->window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-	}
+	glfwSetInputMode(this->window, GLFW_CURSOR, index ? GLFW_CURSOR_NORMAL : GLFW_CURSOR_HIDDEN);
 }
 Vec2 Window::GetSize() const
 {
@@ -135,4 +126,36 @@ void Window::SetWindowPos(const Vec2& pos)
 GLFWwindow* Window::GetWindow() const
 {
 	return this->window;
+}
+void Window::SetPos(const Vec2& pos)
+{
+	glfwSetWindowPos(this->window, (int)pos.x, (int)pos.y);
+}
+void Window::SetPos(const int x, const int y)
+{
+	glfwSetWindowPos(this->window, x, y);
+}
+void Window::SetSize(const Vec2& size)
+{
+	this->LimitsWindow((int)size.x, (int)size.y);
+	glfwSetWindowSize(this->window, (int)size.x, (int)size.y);
+}
+void Window::SetSize(const int w, const int h)
+{
+	this->LimitsWindow(w, h);
+	glfwSetWindowSize(this->window, w, h);
+}
+void Window::ChengeTitle(const char* name)
+{
+	glfwSetWindowTitle(this->window, name);
+}
+void Window::ChengeWindow(const int x, const int y, const int w, const int h, const bool flag)
+{
+	this->SetPos(x, y);
+	this->SetSize(w, h);
+	glfwSetWindowMonitor(this->window, flag ? glfwGetPrimaryMonitor() : NULL, x, y, w, h, GLFW_DONT_CARE);
+}
+void Window::ChengeWindow(const Vec2& pos, const Vec2& size, const bool flag)
+{
+	this->ChengeWindow((int)pos.x, (int)pos.y, (int)size.x, (int)size.y, flag);
 }
