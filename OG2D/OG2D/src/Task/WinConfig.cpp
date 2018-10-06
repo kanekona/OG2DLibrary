@@ -4,8 +4,12 @@
 ConfigTask::ConfigTask()
 {
 	this->Init("Config");
-	ge->SetGameObject(Button::Create(Vec2(ge->window->GetSize().x / 4, ge->window->GetSize().y / 2), Vec2(ge->window->GetSize().x / 2,ge->window->GetSize().y), "Yes"));
-	ge->SetGameObject(Button::Create(Vec2(ge->window->GetSize().x / 2 + ge->window->GetSize().x / 4, ge->window->GetSize().y / 2), Vec2(ge->window->GetSize().x / 2, ge->window->GetSize().y), "No"));
+	auto button1 = Button::Create(Vec2(ge->window->GetSize().x / 4, ge->window->GetSize().y / 2), Vec2(ge->window->GetSize().x / 2, ge->window->GetSize().y), "Yes");
+	button1->SetText("‚Í‚¢");
+	ge->SetGameObject(button1);
+	auto button2 = Button::Create(Vec2(ge->window->GetSize().x / 2 + ge->window->GetSize().x / 4, ge->window->GetSize().y / 2), Vec2(ge->window->GetSize().x / 2, ge->window->GetSize().y), "No");
+	button2->SetText("‚¢‚¢‚¦");
+	ge->SetGameObject(button2);
 	this->nextWindowMode = false;
 }
 ConfigTask::~ConfigTask()

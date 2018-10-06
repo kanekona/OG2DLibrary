@@ -8,6 +8,7 @@ Button::Button(const Vec2& pos, const Vec2& size,const std::string& name)
 	this->draw = new Box2D;
 	this->src = new Box2D;
 	this->image_color = new Color;
+	this->font.SetTexture("font1");
 }
 Button::~Button()
 {
@@ -35,8 +36,9 @@ void Button::Render2D()
 	}
 	this->image->Rotate(this->GetRotate());
 	this->image->Draw(*this->draw, *this->src, *this->image_color);
-	this->LineDraw();
-	this->LineDistanceDraw();
+	this->draw->x += this->GetScale().x / 10.f;
+	this->draw->y += this->GetScale().x / 10.f;
+	this->font.Draw(this->_text, Vec2(this->draw->x, this->draw->y), (int)((this->GetScale().x - (this->GetScale().x / 5.f)) / 3));
 }
 bool Button::IsMouseHit() const
 {

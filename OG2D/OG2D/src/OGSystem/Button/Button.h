@@ -15,6 +15,8 @@ class Button : public GameObject
 	Color* image_color;
 	//! Textï∂éö
 	std::string _text;
+	//! Font
+	Font font;
 	/**
 	*@brief	:constructor
 	*@param	:Vec2 pos ê∂ê¨à íu
