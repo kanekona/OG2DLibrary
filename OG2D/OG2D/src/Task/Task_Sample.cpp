@@ -5,8 +5,9 @@
 Sample::Sample()
 {
 	std::cout << "Sample()\n";
+	this->Init("Sample");
 	ge->SetGameObject(TestObject::Create());
-	ge->SetGameObject(Button::Create(Vec2(400, 400), Vec2(256, 128)));
+	ge->SetGameObject(Button::Create(Vec2(400, 400), Vec2(256, 128),"Button1"));
 }
 Sample::~Sample()
 {
