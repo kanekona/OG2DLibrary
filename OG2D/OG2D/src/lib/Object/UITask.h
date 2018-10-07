@@ -7,10 +7,10 @@
 namespace UO
 {
 	/**
-	*enum Mode
+	*enum class Mode
 	*@brief	ó‘Ô‚Ìİ’è
 	*/
-	enum Mode
+	enum class Mode
 	{
 		//! ’Êíˆ—
 		NORMAL,

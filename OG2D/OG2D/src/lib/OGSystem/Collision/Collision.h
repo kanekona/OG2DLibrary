@@ -8,29 +8,6 @@ class CollisionLine;
 class CollisionCapsule;
 
 /**
-*namespace CT 
-*@brief	生成するときに使用する型
-*/
-namespace CT
-{
-	enum CollisionType
-	{
-		//! 矩形
-		BOX,
-		//! 円
-		CIRCLE,
-		//! 点
-		POINTER,
-		//! カプセル
-		CAPSULE,
-		//! 線
-		LINE,
-		//! 無
-		NON,
-	};
-}
-
-/**
 *@brief	判定の元
 */
 class CollisionBase

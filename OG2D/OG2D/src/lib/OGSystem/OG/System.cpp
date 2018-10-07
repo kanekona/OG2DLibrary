@@ -3,6 +3,8 @@ OGSystem::OGSystem()
 {
 	ge = new EngineSystem();
 	rm = new ResourceManager();
+	ogtk = new OGTK();
+	ogtk->Init();
 }
 
 OGSystem::~OGSystem()
@@ -10,6 +12,7 @@ OGSystem::~OGSystem()
 	//ゲームエンジンの内容を解放
 	OG::Destroy<EngineSystem>(ge);
 	OG::Destroy<ResourceManager>(rm);
+	OG::Destroy<OGTK>(ogtk);
 	//GLFWのライブラリを終了する
 	glfwTerminate();
 }
@@ -59,6 +62,8 @@ bool OGSystem::Create()
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	//初期化処理
 	random::Init();
+	//TaskCreate
+	ogtk->StartTaskObject();
 	return true;
 }
 

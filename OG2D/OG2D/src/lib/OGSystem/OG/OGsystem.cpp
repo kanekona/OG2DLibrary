@@ -49,7 +49,7 @@ void SceneManager::OrtherSceneKillCheck()
 }
 void SceneManager::SetOtherTask(SceneTask* task)
 {
-	this->otherScene.push_back(task);
+	this->otherScene.emplace_back(task);
 }
 SceneTask* SceneManager::GetNowTask() const
 {
@@ -214,7 +214,7 @@ void EngineSystem::SceneStateCheck()
 {
 	if (this->_sceneManager->GetNowTask())
 	{
-		if (this->_sceneManager->GetNowTask()->ModeCheck(ST::KILL))
+		if (this->_sceneManager->GetNowTask()->ModeCheck(ST::Mode::KILL))
 		{
 			//オブジェクトの削除を指定されているならば
 			if (this->_sceneManager->GetNowTask()->GetAllObjectDestroy())
@@ -352,11 +352,11 @@ void EngineSystem::SetStartTask(SceneTask* to)
 }
 void EngineSystem::SetGameObject(GameObject* object)
 {
-	this->addGameObjects.push_back(object);
+	this->addGameObjects.emplace_back(object);
 }
 void EngineSystem::SetUI(UIObject* object)
 {
-	this->addUIs.push_back(object);
+	this->addUIs.emplace_back(object);
 }
 std::vector<GameObject*> EngineSystem::GetAllObject() const
 {
@@ -385,7 +385,7 @@ void EngineSystem::ObjectApplication()
 	{
 		GameObject* d;
 		d = this->addGameObjects[id];
-		this->nowGameObjects.push_back(d);
+		this->nowGameObjects.emplace_back(d);
 	}
 	addGameObjects.clear();
 }
@@ -396,7 +396,7 @@ void EngineSystem::UIApplication()
 	{
 		UIObject* d;
 		d = this->addUIs[id];
-		this->nowUIs.push_back(d);
+		this->nowUIs.emplace_back(d);
 	}
 	addUIs.clear();
 }

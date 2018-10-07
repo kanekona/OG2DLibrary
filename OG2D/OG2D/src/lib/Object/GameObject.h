@@ -1,10 +1,10 @@
 #pragma once
 #include "OGSystem\Collision\Collision.h"
 /**
-*enum Objform
+*enum class Objform
 *@brief	オブジェクトの形の設定
 */
-enum Objform
+enum class Objform
 {
 	//! 無
 	Non,
@@ -24,10 +24,10 @@ enum Objform
 namespace GO
 {
 	/**
-	*enum Mode
+	*enum class Mode
 	*@brief	状態の設定
 	*/
-	enum Mode
+	enum class Mode
 	{
 		//! 通常処理
 		NORMAL,

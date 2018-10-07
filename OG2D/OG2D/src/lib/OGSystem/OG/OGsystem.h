@@ -495,7 +495,7 @@ public:
 			{
 				if ((*id)->GetTag() == objectName)
 				{
-					w.push_back((T*)(*id));
+					w.emplace_back((T*)(*id));
 				}
 			}
 		}
@@ -505,7 +505,7 @@ public:
 			{
 				if ((*id)->GetTag() == objectName)
 				{
-					w.push_back((T*)(*id));
+					w.emplace_back((T*)(*id));
 				}
 			}
 		}
@@ -554,7 +554,7 @@ public:
 			{
 				if ((*id)->GetTag() == tag)
 				{
-					w.push_back((T*)(*id));
+					w.emplace_back((T*)(*id));
 				}
 			}
 		}
@@ -564,7 +564,7 @@ public:
 			{
 				if ((*id)->GetTag() == tag)
 				{
-					w.push_back((T*)(*id));
+					w.emplace_back((T*)(*id));
 				}
 			}
 		}
@@ -607,7 +607,7 @@ public:
 		{
 			if ((*is)->GetTaskName() == name)
 			{
-				w.push_back((T*)(*is));
+				w.emplace_back((T*)(*is));
 			}
 		}
 		return w;

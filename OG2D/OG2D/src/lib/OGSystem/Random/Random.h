@@ -18,7 +18,7 @@ namespace random
 	*@brief	整数のランダム
 	*@param[in]	int min_ 最低値
 	*@param[in]	int max_ 最大値
-	*@returnint ランダム値
+	*@return int ランダム値
 	*/
 	int GetRand(const int min_,const int max_);
 	/**
@@ -37,5 +37,18 @@ namespace random
 	std::string GetRand(
 		const std::string& text, 
 		const std::size_t size
-	);											
+	);
+	/**
+	*@brief	指定割合でtrueを返す
+	*@param[in]	float proportion 割合
+	*@return bool true or false
+	*/
+	bool GetProportion(const float proportion);
+	/**
+	*@brief	浮動小数点の正規分布
+	*@param[in]	float mu 平均
+	*@param[in]	float sig 標準僅差
+	*@return float ランダム値
+	*/
+	float GetRand_Normal(const float mu, const float sig);
 }

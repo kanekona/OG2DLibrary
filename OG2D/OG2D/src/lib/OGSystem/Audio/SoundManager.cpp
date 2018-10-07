@@ -17,7 +17,7 @@ void SoundManager::SetVolume(const Sound* s, const float value_)
 }
 void SoundManager::SetSound(Sound* s) 
 {
-	sounddata.push_back(s);
+	sounddata.emplace_back(s);
 }
 bool SoundManager::DeleteSound(const Sound* s) 
 {

@@ -20,6 +20,12 @@ float random::GetRand(const float min_,const float max_)
 	return range(engine);
 }
 
+float random::GetRand_Normal(const float mu, const float sig)
+{
+	std::normal_distribution<float> range(mu, sig);
+	return range(engine);
+}
+
 std::string random::GetRand(const std::string& text, const std::size_t size)
 {
 	if (text.empty())
@@ -37,4 +43,10 @@ std::string random::GetRand(const std::string& text, const std::size_t size)
 		ReturnText += random_char;
 	}
 	return ReturnText;
+}
+
+bool random::GetProportion(const float proportion)
+{
+	std::bernoulli_distribution dist((double)proportion);
+	return dist(engine);
 }

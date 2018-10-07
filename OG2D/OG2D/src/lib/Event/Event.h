@@ -1,10 +1,10 @@
 #pragma once
 #include "OG\_OGsystem.h"
 /**
-*enum Event
+*enum class Event
 *@brief	読み込むイベントの種類
 */
-enum Event
+enum class Event
 {
 	//! リソース読み込みイベント
 	RESOURCE_LOAD,
