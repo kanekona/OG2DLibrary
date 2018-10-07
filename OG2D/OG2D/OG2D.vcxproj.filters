@@ -85,9 +85,6 @@
     <Filter Include="ソース ファイル\OGLib\System\Timer">
       <UniqueIdentifier>{cc9f6cff-3875-4903-8f0b-36f90233fd9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\OGLib\System\Win">
-      <UniqueIdentifier>{cf018700-09bc-418e-a5bc-0934ce5f0b50}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\OGLib\System\WIndow">
       <UniqueIdentifier>{ecc9d2c4-2f76-4887-b889-b26576ebfe21}</UniqueIdentifier>
     </Filter>
@@ -96,6 +93,9 @@
     </Filter>
     <Filter Include="ソース ファイル\OGLib\System\Random">
       <UniqueIdentifier>{ea06a808-0f38-42f9-8edd-16997b59dc89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Win">
+      <UniqueIdentifier>{cf018700-09bc-418e-a5bc-0934ce5f0b50}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,9 +142,6 @@
     </ClCompile>
     <ClCompile Include="src\lib\OGSystem\Window\Window.cpp">
       <Filter>ソース ファイル\OGLib\System\WIndow</Filter>
-    </ClCompile>
-    <ClCompile Include="src\lib\OGSystem\Win\WinMain.cpp">
-      <Filter>ソース ファイル\OGLib\System\Win</Filter>
     </ClCompile>
     <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp">
       <Filter>ソース ファイル\OGLib\System\Timer</Filter>
@@ -193,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="src\lib\OGSystem\Random\Random.cpp">
       <Filter>ソース ファイル\OGLib\System\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Win\WinMain.cpp">
+      <Filter>ソース ファイル\Win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

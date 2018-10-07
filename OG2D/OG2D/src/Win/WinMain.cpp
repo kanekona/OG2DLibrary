@@ -1,9 +1,4 @@
-//数値演算定数
-#define _USE_MATH_DEFINES
-//小数点誤差修正
-#define _OX_EPSILON_ 0.0000001f
 #include "OG\System.h"
-#include "OG\OGTask.h"
 //メモリリーク検知
 #if (_DEBUG)
 #define _CRTDBG_MAP_ALLOC
@@ -18,23 +13,14 @@ int main() {
 	//メモリリーク検知
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	OGSystem* system = new OGSystem();
-	OGTK* ogtk = new OGTK();
-	ogtk->Init();
-	Time* timer = new Time();
-	timer->Start();
 	if (!system->Create())
 	{
 		OG::Destroy<OGSystem>(system);
-		OG::Destroy<OGTK>(ogtk);
-		OG::Destroy<Time>(timer);
 		return -1;
 	}
-	ogtk->StartTaskObject();
 	while (system->LibConfirmation()) 
 	{
 
 	}
 	OG::Destroy<OGSystem>(system);
-	OG::Destroy<OGTK>(ogtk);
-	OG::Destroy<Time>(timer);
 }

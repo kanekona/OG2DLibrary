@@ -1,7 +1,6 @@
 #include "OGTask.h"
 #include "Task\WinConfig.h"
 #include "Event\Event.h"
-
 void OGTK::Init()
 {
 	//¶¬‚·‚éWindowî•ñ

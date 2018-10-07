@@ -38,6 +38,13 @@
 #endif
 #endif
 
+//数値演算定数
+#define _USE_MATH_DEFINES
+//小数点誤差修正
+#define _OX_EPSILON_ 0.0000001f
+
+#define PI 3.1415926f
+
 #if defined(_MSC_VER)
 //EWを先にインクルードする必要がある。
 #include <GL/glew.h>
@@ -61,10 +68,10 @@
 #include <unordered_map>
 #include <utility>
 
+
 #include "OGlib.h"
 #include "randmais.h"
 
-#define PI 3.1415926f
 typedef unsigned char u_char;
 typedef unsigned int u_int;
 typedef unsigned long u_long;

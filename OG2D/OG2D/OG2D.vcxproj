@@ -157,11 +157,11 @@
     <ClCompile Include="src\lib\OGSystem\Texture\Texture.cpp" />
     <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp" />
     <ClCompile Include="src\lib\OGSystem\Window\Window.cpp" />
-    <ClCompile Include="src\lib\OGSystem\Win\WinMain.cpp" />
     <ClCompile Include="src\lib\Task\WinConfig.cpp" />
     <ClCompile Include="src\Task\Task_Sample.cpp" />
     <ClCompile Include="src\Task\Task_Sample2.cpp" />
     <ClCompile Include="src\Task\TestObject.cpp" />
+    <ClCompile Include="src\Win\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\Event\Event.h" />

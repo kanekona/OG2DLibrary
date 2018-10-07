@@ -3,7 +3,7 @@
 /**
 *@brief	Engine¶¬‚ÉŠÖ‚·‚éˆ—‚ğs‚¤class
 */
-class OGTK
+class OGTK : private NonCopyable
 {
 public:
 	/**

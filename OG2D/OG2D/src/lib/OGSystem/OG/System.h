@@ -1,6 +1,6 @@
 
 #pragma once
-#include "OGsystem.h"
+#include "OGTask.h"
 /**
 *@brief	System
 *
@@ -10,6 +10,7 @@
 */
 class OGSystem : private NonCopyable
 {
+	OGTK* ogtk;
 public:
 	/**
 	*@brief	constructor
