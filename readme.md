@@ -8,4 +8,4 @@ OG2DLibrary
 	:GLEW
 	:GLM
 	:OpenAL
-	
+	:stb_image

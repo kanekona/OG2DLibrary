@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>OG2DLibrary: src/lib/OGSystem/Texture/Texture.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="testicon.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">OG2DLibrary
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_texture_8h_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Texture.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_texture_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="___o_gsystem_8h.html">OG\_OGsystem.h</a>&quot;</span></div><div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="class_texture.html">    7</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_texture.html">Texture</a> {</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    GLuint* _TexId;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="class_vec2.html">Vec2</a> TextureSize;</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_vec2.html">Vec2</a> _materix[4];</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">const</span> std::string FileName;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> _Rotate(<span class="keyword">const</span> <span class="keywordtype">float</span> angle,</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        GLfloat* materix);</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">float</span> angle;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">bool</span> Finalize();</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_texture.html#a6c275e3f186675ff6ed73ccf970e552f">Texture</a>();</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_texture.html#a6c275e3f186675ff6ed73ccf970e552f">Texture</a>(<span class="keyword">const</span> std::string&amp; path);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_texture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">~Texture</a>();</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_texture.html#a7302de2e2a4af90e6a48e7733dfcf330">Create</a>(<span class="keyword">const</span> std::string&amp; path);</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_texture.html#ab604c51a8cbc5b9791c6a11d7f47cf2e">Draw</a>(</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">const</span> <a class="code" href="class_box2_d.html">Box2D</a>&amp; draw, </div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">const</span> <a class="code" href="class_box2_d.html">Box2D</a>&amp; src,</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">const</span> <a class="code" href="class_color.html">Color</a>&amp; color = { 1.0f,1.0f,1.0f,1.0f });</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_texture.html#a0fdf1d2d2da1181391caf600020a41ef">Rotate</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> angle);</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_vec2.html">Vec2</a> <a class="code" href="class_texture.html#af9f88bbe7bd1fc89470b9a8aea9e173c">GetTextureSize</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    GLuint <a class="code" href="class_texture.html#a50d80fc73084cc1ee064c3896bea529e">GetID</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    GLuint <a class="code" href="class_texture.html#a4d3d8abcfebb58b66abe7b20f6c6142e">CreateID</a>(<span class="keyword">const</span> GLsizei&amp; size);</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_texture.html#ad6d9cfe070d7f8f0c8f66d7e914cf657">DeleteID</a>(<span class="keyword">const</span> GLsizei&amp; size);</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_texture.html#a7a2ce04bb0fab00b16560bbf250d88cf">Bind</a>(<span class="keyword">const</span> GLuint&amp; <span class="keywordtype">id</span>);</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;};</div><div class="ttc" id="class_texture_html_a50d80fc73084cc1ee064c3896bea529e"><div class="ttname"><a href="class_texture.html#a50d80fc73084cc1ee064c3896bea529e">Texture::GetID</a></div><div class="ttdeci">GLuint GetID() const</div><div class="ttdoc">登録されているIDを返す </div><div class="ttdef"><b>Definition:</b> Texture.cpp:209</div></div>
+<div class="ttc" id="class_texture_html_ab604c51a8cbc5b9791c6a11d7f47cf2e"><div class="ttname"><a href="class_texture.html#ab604c51a8cbc5b9791c6a11d7f47cf2e">Texture::Draw</a></div><div class="ttdeci">void Draw(const Box2D &amp;draw, const Box2D &amp;src, const Color &amp;color={ 1.0f, 1.0f, 1.0f, 1.0f })</div><div class="ttdoc">描画処理 </div><div class="ttdef"><b>Definition:</b> Texture.cpp:100</div></div>
+<div class="ttc" id="class_texture_html_a7302de2e2a4af90e6a48e7733dfcf330"><div class="ttname"><a href="class_texture.html#a7302de2e2a4af90e6a48e7733dfcf330">Texture::Create</a></div><div class="ttdeci">bool Create(const std::string &amp;path)</div><div class="ttdoc">画像データの生成 </div><div class="ttdef"><b>Definition:</b> Texture.cpp:7</div></div>
+<div class="ttc" id="class_texture_html_a0fdf1d2d2da1181391caf600020a41ef"><div class="ttname"><a href="class_texture.html#a0fdf1d2d2da1181391caf600020a41ef">Texture::Rotate</a></div><div class="ttdeci">void Rotate(const float angle)</div><div class="ttdoc">回転の適用 </div><div class="ttdef"><b>Definition:</b> Texture.cpp:147</div></div>
+<div class="ttc" id="class_texture_html_a7a2ce04bb0fab00b16560bbf250d88cf"><div class="ttname"><a href="class_texture.html#a7a2ce04bb0fab00b16560bbf250d88cf">Texture::Bind</a></div><div class="ttdeci">void Bind(const GLuint &amp;id)</div><div class="ttdoc">テクスチャをバインドする </div><div class="ttdef"><b>Definition:</b> Texture.cpp:222</div></div>
+<div class="ttc" id="class_color_html"><div class="ttname"><a href="class_color.html">Color</a></div><div class="ttdoc">色データ </div><div class="ttdef"><b>Definition:</b> OGlib.h:125</div></div>
+<div class="ttc" id="___o_gsystem_8h_html"><div class="ttname"><a href="___o_gsystem_8h.html">_OGsystem.h</a></div></div>
+<div class="ttc" id="class_box2_d_html"><div class="ttname"><a href="class_box2_d.html">Box2D</a></div><div class="ttdoc">2Dデータ型 </div><div class="ttdef"><b>Definition:</b> OGlib.h:102</div></div>
+<div class="ttc" id="class_texture_html_a09c4bcb7462f64c1d20fa69dba3cee8a"><div class="ttname"><a href="class_texture.html#a09c4bcb7462f64c1d20fa69dba3cee8a">Texture::~Texture</a></div><div class="ttdeci">virtual ~Texture()</div><div class="ttdoc">destructor </div><div class="ttdef"><b>Definition:</b> Texture.cpp:200</div></div>
+<div class="ttc" id="class_texture_html_a6c275e3f186675ff6ed73ccf970e552f"><div class="ttname"><a href="class_texture.html#a6c275e3f186675ff6ed73ccf970e552f">Texture::Texture</a></div><div class="ttdeci">Texture()</div><div class="ttdoc">constructor </div><div class="ttdef"><b>Definition:</b> Texture.cpp:53</div></div>
+<div class="ttc" id="class_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">画像の読み込み、表示を行うclass </div><div class="ttdef"><b>Definition:</b> Texture.h:7</div></div>
+<div class="ttc" id="class_vec2_html"><div class="ttname"><a href="class_vec2.html">Vec2</a></div><div class="ttdoc">2次元Vector </div><div class="ttdef"><b>Definition:</b> OGlib.h:41</div></div>
+<div class="ttc" id="class_texture_html_a4d3d8abcfebb58b66abe7b20f6c6142e"><div class="ttname"><a href="class_texture.html#a4d3d8abcfebb58b66abe7b20f6c6142e">Texture::CreateID</a></div><div class="ttdeci">GLuint CreateID(const GLsizei &amp;size)</div><div class="ttdoc">テクスチャIDを生成する </div><div class="ttdef"><b>Definition:</b> Texture.cpp:213</div></div>
+<div class="ttc" id="class_texture_html_ad6d9cfe070d7f8f0c8f66d7e914cf657"><div class="ttname"><a href="class_texture.html#ad6d9cfe070d7f8f0c8f66d7e914cf657">Texture::DeleteID</a></div><div class="ttdeci">void DeleteID(const GLsizei &amp;size)</div><div class="ttdoc">テクスチャIDを削除する </div><div class="ttdef"><b>Definition:</b> Texture.cpp:218</div></div>
+<div class="ttc" id="class_texture_html_af9f88bbe7bd1fc89470b9a8aea9e173c"><div class="ttname"><a href="class_texture.html#af9f88bbe7bd1fc89470b9a8aea9e173c">Texture::GetTextureSize</a></div><div class="ttdeci">Vec2 GetTextureSize() const</div><div class="ttdoc">読み込んだ画像のサイズを返す </div><div class="ttdef"><b>Definition:</b> Texture.cpp:196</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="dir_b76bc5e380dc3b902ae9c337622968e0.html">OGSystem</a></li><li class="navelem"><a class="el" href="dir_a4161648dce0cac6fa9b72926dfb3182.html">Texture</a></li><li class="navelem"><a class="el" href="_texture_8h.html">Texture.h</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,21 +1,11 @@
-#pragma once
-//____________________________
-//|タスクサンプル              
-//|履歴：2018/03/20  
-//|___________________________
 
-#include "OGSystem\OGsystem.h"
+#include "OG\OGsystem.h"
 
-class Sample2 : public TaskObject
+class Sample2 : public SceneTask
 {
-public:
-	bool CheckOn();
-	std::string taskName = "Sample2";
-	virtual ~Sample2();
-	static Sample2* Create(bool);
 	Sample2();
-	bool Initialize();
-	void UpDate();
-	void Render2D();
-	bool Finalize();
+	void Update() override;
+public:
+	~Sample2();
+	static Sample2* Create();
 };

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -20,25 +20,23 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{61186991-858F-4A3C-BB26-186468F21C26}</ProjectGuid>
-    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{137CCAF0-2F19-4AD3-8592-A30339147471}</ProjectGuid>
     <RootNamespace>OG2D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
-    <ProjectName>OG2D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -51,7 +49,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -71,153 +69,135 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;Windows/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>Windows\include;include;src</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <AdditionalLibraryDirectories>Windows\lib\Debug</AdditionalLibraryDirectories>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>Windows/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <AdditionalIncludeDirectories>include;Windows\include;src;src\lib;src\lib\OGSystem</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Windows/include;include;src</AdditionalIncludeDirectories>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <MinimalRebuild>false</MinimalRebuild>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>Windows\lib\Debug</AdditionalLibraryDirectories>
-      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <SubSystem>Console</SubSystem>
     </Link>
-    <Bscmake>
-      <PreserveSbr>true</PreserveSbr>
-    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>Windows/include;include;src</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>src;include;Windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>Windows/lib/Release</AdditionalLibraryDirectories>
-      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <AdditionalLibraryDirectories>Windows\lib\Release</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Object\Object.cpp" />
-    <ClCompile Include="src\OGSystem\Audio\Audio.cpp" />
-    <ClCompile Include="src\OGSystem\Audio\Sound.cpp" />
-    <ClCompile Include="src\OGSystem\Audio\SoundManager.cpp" />
-    <ClCompile Include="src\OGSystem\Audio\StreamingSound.cpp" />
-    <ClCompile Include="src\OGSystem\Camera\Camera.cpp" />
-    <ClCompile Include="src\OGSystem\Collision\Collision.cpp" />
-    <ClCompile Include="src\OGSystem\Font\Font.cpp" />
-    <ClCompile Include="src\OGSystem\Font\TextureFont.cpp" />
-    <ClCompile Include="src\OGSystem\FPS\FPS.cpp" />
-    <ClCompile Include="src\OGSystem\Input\Input.cpp" />
-    <ClCompile Include="src\OGSystem\OGlib.cpp" />
-    <ClCompile Include="src\OGSystem\OGsystem.cpp" />
-    <ClCompile Include="src\OGSystem\OGTask.cpp" />
-    <ClCompile Include="src\OGSystem\Random\Random.cpp" />
-    <ClCompile Include="src\OGSystem\ResourceManager\ResourceManager.cpp" />
-    <ClCompile Include="src\OGSystem\Shader\shader.cpp" />
-    <ClCompile Include="src\OGSystem\System.cpp" />
-    <ClCompile Include="src\OGSystem\TaskObject.cpp" />
-    <ClCompile Include="src\OGSystem\Texture\Texture.cpp" />
-    <ClCompile Include="src\OGSystem\Timer\glTimer.cpp" />
-    <ClCompile Include="src\OGSystem\Window\Window.cpp" />
-    <ClCompile Include="src\OGSystem\_OGsystem.cpp" />
+    <Image Include="data\image\testicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\lib\Event\Event.cpp" />
+    <ClCompile Include="src\lib\Event\ResourceLoad\ResourceLoad.cpp" />
+    <ClCompile Include="src\lib\Object\GameObject.cpp" />
+    <ClCompile Include="src\lib\Object\SceneTask.cpp" />
+    <ClCompile Include="src\lib\Object\UITask.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Audio\Audio.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Audio\Sound.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Audio\SoundManager.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Audio\StreamingSound.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Button\Button.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Camera\Camera.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Collision\Collision.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Font\TextureFont.cpp" />
+    <ClCompile Include="src\lib\OGSystem\FPS\FPS.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Input\Input.cpp" />
+    <ClCompile Include="src\lib\OGSystem\OG\OGlib.cpp" />
+    <ClCompile Include="src\lib\OGSystem\OG\OGsystem.cpp" />
+    <ClCompile Include="src\lib\OGSystem\OG\OGTask.cpp" />
+    <ClCompile Include="src\lib\OGSystem\OG\System.cpp" />
+    <ClCompile Include="src\lib\OGSystem\OG\_OGsystem.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Random\Random.cpp" />
+    <ClCompile Include="src\lib\OGSystem\ResourceManager\ResourceManager.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Texture\Texture.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Window\Window.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Win\WinMain.cpp" />
+    <ClCompile Include="src\lib\Task\WinConfig.cpp" />
     <ClCompile Include="src\Task\Task_Sample.cpp" />
     <ClCompile Include="src\Task\Task_Sample2.cpp" />
     <ClCompile Include="src\Task\TestObject.cpp" />
-    <ClCompile Include="src\Win\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Object\Object.h" />
-    <ClInclude Include="src\OGSystem\Audio\Audio.h" />
-    <ClInclude Include="src\OGSystem\Audio\Sound.h" />
-    <ClInclude Include="src\OGSystem\Audio\SoundManager.h" />
-    <ClInclude Include="src\OGSystem\Audio\StreamingSound.h" />
-    <ClInclude Include="src\OGSystem\Camera\Camera.h" />
-    <ClInclude Include="src\OGSystem\Collision\Collision.h" />
-    <ClInclude Include="src\OGSystem\Easing\Easing.hpp" />
-    <ClInclude Include="src\OGSystem\Font\Font.h" />
-    <ClInclude Include="src\OGSystem\Font\TextureFont.h" />
-    <ClInclude Include="src\OGSystem\FPS\FPS.h" />
-    <ClInclude Include="src\OGSystem\Input\Input.h" />
-    <ClInclude Include="src\OGSystem\OGlib.h" />
-    <ClInclude Include="src\OGSystem\OGsystem.h" />
-    <ClInclude Include="src\OGSystem\OGTask.h" />
-    <ClInclude Include="src\OGSystem\Random\Random.h" />
-    <ClInclude Include="src\OGSystem\ResourceManager\ResourceManager.h" />
-    <ClInclude Include="src\OGSystem\Shader\shader.h" />
-    <ClInclude Include="src\OGSystem\System.h" />
-    <ClInclude Include="src\OGSystem\TaskObject.h" />
-    <ClInclude Include="src\OGSystem\Texture\Texture.h" />
-    <ClInclude Include="src\OGSystem\Timer\glTimer.h" />
-    <ClInclude Include="src\OGSystem\Window\Window.h" />
-    <ClInclude Include="src\OGSystem\_OGsystem.h" />
+    <ClInclude Include="src\lib\Event\Event.h" />
+    <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h" />
+    <ClInclude Include="src\lib\Object\GameObject.h" />
+    <ClInclude Include="src\lib\Object\SceneTask.h" />
+    <ClInclude Include="src\lib\Object\UITask.h" />
+    <ClInclude Include="src\lib\OGSystem\Audio\Audio.h" />
+    <ClInclude Include="src\lib\OGSystem\Audio\Sound.h" />
+    <ClInclude Include="src\lib\OGSystem\Audio\SoundManager.h" />
+    <ClInclude Include="src\lib\OGSystem\Audio\StreamingSound.h" />
+    <ClInclude Include="src\lib\OGSystem\Button\Button.h" />
+    <ClInclude Include="src\lib\OGSystem\Camera\Camera.h" />
+    <ClInclude Include="src\lib\OGSystem\Collision\Collision.h" />
+    <ClInclude Include="src\lib\OGSystem\Easing\easing.hpp" />
+    <ClInclude Include="src\lib\OGSystem\Font\TextureFont.h" />
+    <ClInclude Include="src\lib\OGSystem\FPS\FPS.h" />
+    <ClInclude Include="src\lib\OGSystem\Input\Input.h" />
+    <ClInclude Include="src\lib\OGSystem\OG\OGlib.h" />
+    <ClInclude Include="src\lib\OGSystem\OG\OGsystem.h" />
+    <ClInclude Include="src\lib\OGSystem\OG\OGTask.h" />
+    <ClInclude Include="src\lib\OGSystem\OG\System.h" />
+    <ClInclude Include="src\lib\OGSystem\OG\_OGsystem.h" />
+    <ClInclude Include="src\lib\OGSystem\randmais.h" />
+    <ClInclude Include="src\lib\OGSystem\Random\Random.h" />
+    <ClInclude Include="src\lib\OGSystem\ResourceManager\ResourceManager.h" />
+    <ClInclude Include="src\lib\OGSystem\Texture\Texture.h" />
+    <ClInclude Include="src\lib\OGSystem\Timer\glTimer.h" />
+    <ClInclude Include="src\lib\OGSystem\Window\Window.h" />
+    <ClInclude Include="src\lib\Task\WinConfig.h" />
     <ClInclude Include="src\Task\Task_Sample.h" />
     <ClInclude Include="src\Task\Task_Sample2.h" />
     <ClInclude Include="src\Task\TestObject.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="data\image\testicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="src\OGSystem\Icon\Resource.rc" />
+    <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

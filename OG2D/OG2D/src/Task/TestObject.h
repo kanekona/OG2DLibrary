@@ -1,19 +1,15 @@
-#pragma once
-#include "OGSystem\OGsystem.h"
-#include "Object\Object.h"
+
+#include "OG\OGsystem.h"
+#include "Object\GameObject.h"
 
 class TestObject : public GameObject
 {
-public:
-	TestObject(bool = false);
-	bool TestCheck();
-	std::string taskName = "TestObject";
-	virtual ~TestObject();
-	static TestObject* Create(bool, bool = true);
 	TestObject();
-	bool Initialize();
-	void UpDate() override;
+	void Update() override;
 	void Render2D() override;
-	bool isMove;
-	bool isHit;
+	Box2D* draw;
+	Box2D* src;
+public:
+	static TestObject* Create();
+	~TestObject();
 };

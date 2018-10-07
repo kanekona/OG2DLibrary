@@ -1,66 +1,32 @@
 #include "Task_Sample2.h"
+#include "TestObject.h"
 #include "Task_Sample.h"
-
-bool Sample2::Initialize()
+Sample2::Sample2()
 {
-	std::cout << "Sample2:" << "Initialize()" << std::endl;
-	__super::Init(taskName);
-	this->SetDrawOrder(0.5f);
-	return true;
+	std::cout << "Sample2()\n";
 }
-
-void Sample2::UpDate()
+Sample2::~Sample2()
 {
-	if (OGge->in->key.down(In::SPACE))
+	std::cout << "~Sample2()\n";
+	if (this->GetNextTask() && !ge->GetDeleteEngine())
 	{
+		ge->SetTask(Sample::Create());
+	}
+}
+void Sample2::Update()
+{
+	if (ge->in->key->down(In::SPACE))
+	{
+		this->EnableGameObjectDestroy(true);
 		this->Kill();
 	}
 }
-
-void Sample2::Render2D()
+Sample2* Sample2::Create()
 {
-	//std::cout << "Sample2:" << "Render2D()" << std::endl;
-}
-
-bool Sample2::CheckOn()
-{
-	return true;
-}
-
-bool Sample2::Finalize()
-{
-	std::cout << "Sample2:" << "Finalize()" << std::endl;
-	if (this->GetNextTask() && !OGge->GetDeleteEngine())
-	{
-		auto nextTask = Sample::Create(true);
-	}
-	return true;
-}
-
-Sample2::Sample2()
-{
-	std::cout << "Sample2:" << "()" << std::endl;
-}
-
-Sample2::~Sample2()
-{
-	std::cout << "Sample2:" << "~()" << std::endl;
-	this->Finalize();
-}
-
-Sample2* Sample2::Create(bool flag_)
-{
+	std::cout << "Sample2::Create\n";
 	Sample2* to = new Sample2();
 	if (to)
 	{
-		if (flag_)
-		{
-			OGge->SetTaskObject(to);
-		}
-		if (!to->Initialize())
-		{
-			to->Kill();
-		}
 		return to;
 	}
 	return nullptr;

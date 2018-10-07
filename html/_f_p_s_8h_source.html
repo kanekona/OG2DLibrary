@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>OG2DLibrary: src/lib/OGSystem/FPS/FPS.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="testicon.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">OG2DLibrary
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_f_p_s_8h_source.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">FPS.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_f_p_s_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#pragma once</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="___o_gsystem_8h.html">OG\_OGsystem.h</a>&quot;</span></div><div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_f_p_s.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_f_p_s.html">FPS</a> : <span class="keyword">private</span> <a class="code" href="class_non_copyable.html">NonCopyable</a> </div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">float</span> lastTime;</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">int</span> count;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    GLfloat fps;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">int</span> framerate;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">float</span> oneFrameTime;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_f_p_s.html#a731dd05bb14a606dcb40b6414a95d32c">FPS</a>();             </div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_f_p_s.html#ae9c26e732f0773feaacd6c812db04e88">~FPS</a>();</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_f_p_s.html#a2c11f5ca10b8fe910db8548ffff20656">Update</a>();</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_f_p_s.html#a5adf3555dde6adcd75b5813a2e57af2a">SetFrameRate</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> rate);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_f_p_s.html#a0a0e5ff3c803e55adb452597a8461fb8">FrameCheck</a>();</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div><div class="ttc" id="class_f_p_s_html_a5adf3555dde6adcd75b5813a2e57af2a"><div class="ttname"><a href="class_f_p_s.html#a5adf3555dde6adcd75b5813a2e57af2a">FPS::SetFrameRate</a></div><div class="ttdeci">void SetFrameRate(const int rate)</div><div class="ttdef"><b>Definition:</b> FPS.cpp:30</div></div>
+<div class="ttc" id="class_f_p_s_html"><div class="ttname"><a href="class_f_p_s.html">FPS</a></div><div class="ttdoc">フレームレートを計算,制限するclass </div><div class="ttdef"><b>Definition:</b> FPS.h:9</div></div>
+<div class="ttc" id="class_non_copyable_html"><div class="ttname"><a href="class_non_copyable.html">NonCopyable</a></div><div class="ttdoc">コピーを禁止するclass </div><div class="ttdef"><b>Definition:</b> OGlib.h:145</div></div>
+<div class="ttc" id="___o_gsystem_8h_html"><div class="ttname"><a href="___o_gsystem_8h.html">_OGsystem.h</a></div></div>
+<div class="ttc" id="class_f_p_s_html_a0a0e5ff3c803e55adb452597a8461fb8"><div class="ttname"><a href="class_f_p_s.html#a0a0e5ff3c803e55adb452597a8461fb8">FPS::FrameCheck</a></div><div class="ttdeci">bool FrameCheck()</div><div class="ttdoc">フレームチェック </div><div class="ttdef"><b>Definition:</b> FPS.cpp:34</div></div>
+<div class="ttc" id="class_f_p_s_html_ae9c26e732f0773feaacd6c812db04e88"><div class="ttname"><a href="class_f_p_s.html#ae9c26e732f0773feaacd6c812db04e88">FPS::~FPS</a></div><div class="ttdeci">virtual ~FPS()</div><div class="ttdoc">destructor </div><div class="ttdef"><b>Definition:</b> FPS.cpp:26</div></div>
+<div class="ttc" id="class_f_p_s_html_a2c11f5ca10b8fe910db8548ffff20656"><div class="ttname"><a href="class_f_p_s.html#a2c11f5ca10b8fe910db8548ffff20656">FPS::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">更新処理 </div><div class="ttdef"><b>Definition:</b> FPS.cpp:14</div></div>
+<div class="ttc" id="class_f_p_s_html_a731dd05bb14a606dcb40b6414a95d32c"><div class="ttname"><a href="class_f_p_s.html#a731dd05bb14a606dcb40b6414a95d32c">FPS::FPS</a></div><div class="ttdeci">FPS()</div><div class="ttdoc">constructor </div><div class="ttdef"><b>Definition:</b> FPS.cpp:2</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="dir_b76bc5e380dc3b902ae9c337622968e0.html">OGSystem</a></li><li class="navelem"><a class="el" href="dir_e1e3004840295f046a88d1fb4e541f6e.html">FPS</a></li><li class="navelem"><a class="el" href="_f_p_s_8h.html">FPS.h</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
+</body>
+</html>
