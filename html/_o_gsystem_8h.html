@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>OG2DLibrary: D:/git/gitOG2D/OG2D/OG2D/src/lib/OGSystem/OG/OGsystem.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">OG2DLibrary
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_o_gsystem_8h.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle">
+<div class="title">OGsystem.h ファイル</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_camera_8h_source.html">Camera\Camera.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_window_8h_source.html">Window\Window.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_f_p_s_8h_source.html">FPS\FPS.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_input_8h_source.html">Input\Input.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_texture_8h_source.html">Texture\Texture.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_collision_8h_source.html">Collision\Collision.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_font_8h_source.html">Font\Font.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_sound_manager_8h_source.html">Audio\SoundManager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="gl_timer_8h_source.html">Timer\glTimer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="easing_8hpp_source.html">Easing\easing.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_streaming_sound_8h_source.html">Audio\StreamingSound.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_random_8h_source.html">Random\Random.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_resource_manager_8h_source.html">ResourceManager\ResourceManager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_texture_font_8h_source.html">Font\TextureFont.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_game_object_8h_source.html">Object\GameObject.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_scene_task_8h_source.html">Object\SceneTask.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="_u_i_task_8h_source.html">Object\UITask.h</a>&quot;</code><br />
+</div>
+<p><a href="_o_gsystem_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_order_check.html">OrderCheck</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画順を管理するclass  <a href="class_order_check.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_manager.html">SceneManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">sceneを管理するclass  <a href="class_scene_manager.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_engine_system.html">EngineSystem</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲームエンジン  <a href="class_engine_system.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:a644ab4ca48d2e671a80a189f71bd0aa2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_engine_system.html">EngineSystem</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_o_gsystem_8h.html#a644ab4ca48d2e671a80a189f71bd0aa2">ge</a></td></tr>
+<tr class="memdesc:a644ab4ca48d2e671a80a189f71bd0aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">内部システムエンジン  <a href="#a644ab4ca48d2e671a80a189f71bd0aa2">[詳解]</a><br /></td></tr>
+<tr class="separator:a644ab4ca48d2e671a80a189f71bd0aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68144497fd0027cf341423f1ad8fa4f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_resource_manager.html">ResourceManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_o_gsystem_8h.html#a68144497fd0027cf341423f1ad8fa4f0">rm</a></td></tr>
+<tr class="memdesc:a68144497fd0027cf341423f1ad8fa4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">リソース管理システム  <a href="#a68144497fd0027cf341423f1ad8fa4f0">[詳解]</a><br /></td></tr>
+<tr class="separator:a68144497fd0027cf341423f1ad8fa4f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">変数詳解</h2>
+<a id="a644ab4ca48d2e671a80a189f71bd0aa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a644ab4ca48d2e671a80a189f71bd0aa2">&#9670;&nbsp;</a></span>ge</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_engine_system.html">EngineSystem</a>* ge</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>内部システムエンジン </p>
+
+</div>
+</div>
+<a id="a68144497fd0027cf341423f1ad8fa4f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68144497fd0027cf341423f1ad8fa4f0">&#9670;&nbsp;</a></span>rm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_resource_manager.html">ResourceManager</a>* rm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>リソース管理システム </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_9bec7083027963d9f9ceae2cc7474de5.html">git</a></li><li class="navelem"><a class="el" href="dir_f730d42f1d8652abfa160cf58468ccaa.html">gitOG2D</a></li><li class="navelem"><a class="el" href="dir_b32636a3a038cd3fdc35f4e7a74a9e9a.html">OG2D</a></li><li class="navelem"><a class="el" href="dir_9bede0e05c6c5f6eef275a7a7d0a89c1.html">OG2D</a></li><li class="navelem"><a class="el" href="dir_c4f8c9352f6388de71b9ccdfc4bc621b.html">src</a></li><li class="navelem"><a class="el" href="dir_e89a8716f8c9eca67d91a4359cd5f0fc.html">lib</a></li><li class="navelem"><a class="el" href="dir_012d400043702fee2e1af629f308f31c.html">OGSystem</a></li><li class="navelem"><a class="el" href="dir_0807c1155d63f8a45b9cf2c522210e55.html">OG</a></li><li class="navelem"><a class="el" href="_o_gsystem_8h.html">OGsystem.h</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.14 </li>
+  </ul>
+</div>
+</body>
+</html>
