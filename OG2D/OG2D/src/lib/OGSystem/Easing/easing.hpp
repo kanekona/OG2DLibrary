@@ -16,18 +16,18 @@ private:
 	bool toplay = false;
 public:
 	/**
-	*enum Name
+	*enum class Name
 	*@brief	EasingName
 	*/
-	enum Name
+	enum class Name
 	{
 		Back, Bounce, Circ, Cubic, Elastic, Expo, Linear, Quad, Quart, Quint, Sine
 	};
 	/**
-	*enum Mode
+	*enum class Mode
 	*@brief	EasingMode
 	*/
-	enum Mode
+	enum class Mode
 	{
 		In, Out, InOut
 	};

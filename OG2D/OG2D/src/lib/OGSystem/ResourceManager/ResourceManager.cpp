@@ -12,7 +12,7 @@ void ResourceManager::SetSoundData(const std::string& dataname,Sound* sound)
 	std::pair<std::string, Sound*> d;
 	d.first = dataname;
 	d.second = sound;
-	this->soundData.push_back(d);
+	this->soundData.emplace_back(d);
 }
 
 bool ResourceManager::CreateSound(const std::string& name,const std::string& path)
@@ -29,7 +29,7 @@ bool ResourceManager::CreateSound(const std::string& name,const std::string& pat
 	std::pair<std::string, Sound*> d;
 	d.first = name;
 	d.second = so;
-	this->soundData.push_back(d);
+	this->soundData.emplace_back(d);
 	return true;
 }
 
@@ -45,7 +45,7 @@ void ResourceManager::SetTextureData(const std::string& dataname, Texture* textu
 	std::pair<std::string, Texture*> d;
 	d.first = dataname;
 	d.second = texture;
-	this->textureData.push_back(d);
+	this->textureData.emplace_back(d);
 }
 
 bool ResourceManager::CreateTexture(const std::string& name, const std::string& path)
@@ -62,7 +62,7 @@ bool ResourceManager::CreateTexture(const std::string& name, const std::string& 
 	std::pair<std::string, Texture*> d;
 	d.first = name;
 	d.second = tex;
-	this->textureData.push_back(d);
+	this->textureData.emplace_back(d);
 	return true;
 }
 

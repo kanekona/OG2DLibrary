@@ -7,10 +7,10 @@
 namespace ST
 {
 	/**
-	*enum Mode
+	*enum class Mode
 	*ó‘Ô‚Ìİ’è
 	*/
-	enum Mode
+	enum class Mode
 	{
 		//! ’Êíˆ—
 		NORMAL,
