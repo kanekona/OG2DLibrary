@@ -2,7 +2,7 @@
 #pragma once
 #include "OGSystem\_OGsystem.h"
 /**
-*Windowの生成、管理を行うclass
+*@brief	Windowの生成、管理を行うclass
 */
 class Window : private NonCopyable
 {

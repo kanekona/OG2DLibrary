@@ -1,7 +1,7 @@
 
 #pragma once
 #include "OGSystem\_OGsystem.h"
-/*
+/**
 *@brief	デバイスを設定するためのclass
 */
 class Audio
@@ -12,6 +12,9 @@ public:
 		Audio();
 		~Audio();
 };
+/**
+*@brief	SoundDataのBufferDataを扱う
+*/
 class Buffer
 {
 public:
@@ -24,6 +27,9 @@ public:
 	ALuint GetID() const;
 	void Bind(const bool stereo, const void* data, const u_int size, const u_int rate) const;
 };
+/**
+*@brief	SoundDataのSourceDataを扱う
+*/
 class Source
 {
 public:
@@ -45,6 +51,9 @@ public:
 	ALuint UnqueueBuffer() const;
 	int processed() const;
 };
+/**
+*@brief	Wavファイルのデータを扱う
+*/
 class Wav
 {
 public:

@@ -31,7 +31,7 @@ namespace CT
 }
 
 /**
-*@brief	:判定の元
+*@brief	判定の元
 */
 class CollisionBase
 {
@@ -97,7 +97,7 @@ public:
 	virtual bool GetHit(CollisionLine* b) = 0;
 };
 /**
-*@brief	:矩形判定
+*@brief	矩形判定
 */
 class CollisionBox : public CollisionBase
 {
@@ -162,7 +162,7 @@ public:
 	virtual bool GetHit(CollisionCapsule* b) override;
 };
 /**
-*@brief	:円判定
+*@brief	円判定
 */
 class CollisionCircle : public CollisionBase
 {
@@ -215,7 +215,7 @@ public:
 	virtual bool GetHit(CollisionCapsule* b) override;
 };
 /**
-*@brief	:点判定
+*@brief	点判定
 */
 class CollisionPointer : public CollisionBase
 {
@@ -268,7 +268,7 @@ public:
 	virtual bool GetHit(CollisionCapsule* b) override;
 };
 /**
-*@brief	:線判定
+*@brief	線判定
 */
 class CollisionLine : public CollisionBase
 {
@@ -321,7 +321,7 @@ public:
 	virtual bool GetHit(CollisionCapsule* b) override;
 };
 /**
-*@brief	:カプセル判定
+*@brief	カプセル判定
 *! 未完成
 */
 class CollisionCapsule : public CollisionBase

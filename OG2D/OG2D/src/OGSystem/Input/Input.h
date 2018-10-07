@@ -419,7 +419,7 @@ public:
 		int axes() const;
 	};
 	/**
-	*@brief	:キーボード入力
+	*@brief	キーボード入力
 	*/
 	class KeyBoard
 	{
@@ -496,7 +496,7 @@ public:
 		GLFWwindow* nowWindow;
 	};
 	/**
-	*@brief	:マウス入力
+	*@brief	マウス入力
 	*/
 	class Mouse
 	{
@@ -620,7 +620,7 @@ public:
 		static void scroll_callback(GLFWwindow* w, double x, double y);
 	};
 	/**
-	*@brief	:ゲームパッドとキーボードを区別する
+	*@brief	ゲームパッドとキーボードを区別する
 	*/
 	struct InputData
 	{
@@ -629,14 +629,12 @@ public:
 		//! キーボードのキー
 		int key;
 	};
-	//class宣言
 	//! ゲームパッド配列
 	std::vector<GamePad*> pad;
 	//! キーボード
 	KeyBoard* key;
 	//! マウス
 	Mouse* mouse;
-	//変数
 	//! ゲームパッドの存在有無
 	bool pad_Connection;
 	//関数
