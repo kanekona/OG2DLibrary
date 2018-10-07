@@ -1,25 +1,23 @@
-///音楽に必要なもの、デバイスを設定するためのclass
+
 #pragma once
 #include "OGSystem\_OGsystem.h"
-
+/*
+*@brief	デバイスを設定するためのclass
+*/
 class Audio
 {
-public:
-	Audio();
-	~Audio();
-	typedef std::shared_ptr<Audio> SP;
-	static SP Create();
-private:
 	ALCdevice* device;
 	ALCcontext*context;
 public:
+		Audio();
+		~Audio();
 };
 class Buffer
 {
 public:
-	Buffer();
+	explicit Buffer();
 	explicit Buffer(const std::string& path_);
-	~Buffer();
+	virtual ~Buffer();
 	ALuint id_;
 	float nowTime;
 	float GetTime() const;

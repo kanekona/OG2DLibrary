@@ -34,7 +34,7 @@ private:
 	//! ó‘ÔŠÇ—
 	Scene::Mode _mode;
 	//! I—¹‚ÉGameObject‚ğ”jŠü‚·‚é‚©
-	bool enableDestroyGameObjectWhenExitng;
+	bool enableDestroyAllObjectWhenExitng;
 public:
 	/**
 	*@brief	:constructor
@@ -107,5 +107,5 @@ public:
 	*@brief	:I—¹‚ÉGameObject‚ğíœ‚³‚¹‚éİ’è‚ğæ“¾
 	*@return:bool true‚È‚çíœ‚³‚¹‚é
 	*/
-	bool GetGameObjectDestroy() const;
+	bool GetAllObjectDestroy() const;
 };

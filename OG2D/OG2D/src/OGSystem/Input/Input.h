@@ -1,13 +1,11 @@
-/**
-*ゲームパッド、キーボード、マウスの入力を扱うclass
-*既存GameEngineを使用している場合は自動で生成される
-*/
+
 #pragma once
 #include "OGSystem\_OGsystem.h"
 #include "OGSystem\Collision\Collision.h"
+
 /**
 *namespace In
-*簡易引数用
+*@brief	簡易引数用
 */
 namespace In
 {
@@ -132,7 +130,7 @@ namespace In
 }
 /**
 *namespace Mouse
-*マウス用簡易引数
+*@brief	マウス用簡易引数
 */
 namespace Mouse
 {
@@ -151,12 +149,16 @@ namespace Mouse
 		BUTTON_8,
 	};
 }
+/**
+*@brief	ゲームパッド、キーボード、マウスの入力を扱うclass
+*既存GameEngineを使用している場合は自動で生成される
+*/
 class Input : private NonCopyable
 {
 public:
 	/**
 	*enum in
-	*入力用仮想入力
+	*@brief	入力用仮想入力
 	*/
 	enum in {
 		B1,
@@ -509,7 +511,7 @@ public:
 		*@brief	:Windowからのマウスの位置を返す
 		*@return:Vec2 マウスの位置
 		*/
-		Vec2 GetPos();
+		Vec2 GetPos() const;
 		/**
 		*@brief	:押している判定を返す
 		*@param :int index 判定を行いたい入力番号

@@ -32,10 +32,6 @@ Audio::~Audio()
 	alcDestroyContext(this->context);
 	alcCloseDevice(this->device);
 }
-Audio::SP Audio::Create()
-{
-	return Audio::SP(new Audio());
-}
 //---------------------------------
 //@:Bufferclass
 //---------------------------------

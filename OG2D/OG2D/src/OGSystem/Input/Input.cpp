@@ -466,7 +466,7 @@ Vec2 Input::Mouse::GetScroll() const
 {
 	return this->_scroll;
 }
-Vec2 Input::Mouse::GetPos()
+Vec2 Input::Mouse::GetPos() const
 {
 	return this->position;
 }

@@ -3,7 +3,7 @@ SceneTask::SceneTask()
 {
 	this->taskName = "";
 	this->NextTask = true;
-	this->enableDestroyGameObjectWhenExitng = false;
+	this->enableDestroyAllObjectWhenExitng = false;
 	this->_mode = Scene::Mode::NORMAL;
 }
 SceneTask::~SceneTask()
@@ -81,9 +81,9 @@ bool SceneTask::ModeCheck(const Scene::Mode& mode) const
 }
 void SceneTask::EnableGameObjectDestroy(const bool flag)
 {
-	this->enableDestroyGameObjectWhenExitng = flag;
+	this->enableDestroyAllObjectWhenExitng = flag;
 }
-bool SceneTask::GetGameObjectDestroy() const
+bool SceneTask::GetAllObjectDestroy() const
 {
-	return this->enableDestroyGameObjectWhenExitng;
+	return this->enableDestroyAllObjectWhenExitng;
 }
