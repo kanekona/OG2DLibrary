@@ -143,8 +143,8 @@ namespace OG {
 	void PointDraw(const Vec2* pos, const Color& color, const float linewidth)
 	{
 		glColor4f(color.red, color.green, color.blue, color.alpha);
-		glBegin(GL_POINT);
-		glLineWidth(linewidth);
+		glBegin(GL_POINTS);
+		glPointSize(linewidth);
 		glVertex2f(pos->x, pos->y);
 		glEnd();
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -152,8 +152,8 @@ namespace OG {
 	void PointDraw(const Vec2* pos, const float linewidth, const Color& color)
 	{
 		glColor4f(color.red, color.green, color.blue, color.alpha);
-		glBegin(GL_POINT);
-		glLineWidth(linewidth);
+		glBegin(GL_POINTS);
+		glPointSize(linewidth);
 		glVertex2f(pos->x, pos->y);
 		glEnd();
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);

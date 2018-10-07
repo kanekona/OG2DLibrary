@@ -4,6 +4,11 @@
 //|履歴：2018/03/20       
 //|____________________________
 
+/**
+ * @mainpage OG2DLibrary version 0.75
+ * 自作OpenGL2Dゲームライブラリ
+ */
+
 #if !defined (_DEBUG)
 // Degub版のみコンソールを表示する設定
 #pragma comment(linker, "/subsystem:windows /entry:mainCRTStartup")
