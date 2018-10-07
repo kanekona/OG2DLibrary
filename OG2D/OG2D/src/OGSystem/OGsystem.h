@@ -20,19 +20,25 @@
 #include "Font\TextureFont.h"
 #include "TaskObject.h"
 #include "Object\Object.h"
+#include "UITask.h"
 /**
 *@brief	:描画順を管理するclass
 */
 class OrderCheck
 {
 public:
+	/**
+	*@brief	:constructor
+	*/
 	OrderCheck()
 	{
 		this->id = -1;
-		this->order_s = -1.f;
+		this->order_s = 0;
 	}
+	//! ObjectID
 	int id;
-	float order_s;
+	//! 描画順
+	unsigned int order_s;
 };
 /**
 *@brief	:sceneを管理するclass
@@ -116,18 +122,26 @@ class EngineSystem : private NonCopyable
 	std::string file;
 	//! WindowPosition
 	Vec2 w_pos;	
-	//! 描画順
-	std::vector<OrderCheck> orders;
+	//! Object描画順
+	std::vector<OrderCheck> object_orders;
+	//! UI描画順
+	std::vector<OrderCheck> ui_orders;
 	//! Engine終了状況
 	bool deleteEngine;
 	//! 登録済みGameObject
 	std::vector<GameObject*> nowGameObjects;
 	//! 登録予定GameObject
 	std::vector<GameObject*> addGameObjects;
+	//! 登録済みUI
+	std::vector<UIObject*> nowUIs;
+	//! 登録予定UI
+	std::vector<UIObject*> addUIs;
 	//! タスク管理
 	SceneManager* _sceneManager;
 	//! nextWindowCreate
 	bool nextWindowCreateEnable;
+	//! デバイス管理
+	Audio* audiodevice;
 public:
 	//! カメラ2D
 	Camera2D* camera;
@@ -135,8 +149,6 @@ public:
 	Window* window;
 	//! フレームレート
 	FPS* fps;
-	//! デバイス管理
-	Audio* audiodevice;
 	//! サウンド管理
 	SoundManager* soundManager;
 	//! 入力管理
@@ -221,6 +233,11 @@ public:
 	*/
 	void AllObjectStop(const bool flag = true);
 	/**
+	*@brief	:全UIの停止設定
+	*@param	:bool flag 停止設定
+	*/
+	void AllUIStop(const bool flag = true);
+	/**
 	*@brief	:全シーンの停止設定
 	*@param	:bool flag 停止設定
 	*/
@@ -241,6 +258,11 @@ public:
 	*/
 	void AllScenePause(const bool flag = true);
 	/**
+	*@brief	:全UIのポーズ設定
+	*@param	:bool flag ポーズ設定
+	*/
+	void AllUIPause(const bool flag = true);
+	/**
 	*@brief	:全タスクのポーズ設定
 	*@param	:bool flag ポーズ設定
 	*/
@@ -249,6 +271,10 @@ public:
 	*@brief	:全オブジェクトの削除命令
 	*/
 	void AllObjectKill();
+	/**
+	*@brief	:全UIの削除命令
+	*/
+	void AllUIKill();
 	/**
 	*@brief	:全シーンの削除命令
 	*/
@@ -286,11 +312,16 @@ public:
 	void SetTask(
 		SceneTask* task);
 	/**
-	*@brief	:タスクを登録する
+	*@brief	:GameObjectを登録する
 	*@param	:GameObject* object GameObject
 	*/
 	void SetGameObject(
 		GameObject* object);
+	/**
+	*@brief	:UIを登録する
+	*@param	:UIObject* ui UI
+	*/
+	void SetUI(UIObject* ui);
 	/**
 	*@brief	:開始タスクを登録する
 	*@param	:SceneTask* task タスク
@@ -329,6 +360,16 @@ public:
 	*@return:vector<GameObject*> 登録予定全オブジェクト
 	*/
 	std::vector<GameObject*> GetAllAddObject() const;
+	/**
+	*@brief	:登録されているUIすべてを取得する
+	*@return:vector<UIObject*> 登録全UI
+	*/
+	std::vector<UIObject*> GetAllUI() const;
+	/**
+	*@brief	:登録予定UIすべてを取得する
+	*@return:vector<UIObject*> 登録予定全UI
+	*/
+	std::vector<UIObject*> GetAllAddUI() const;
 	/**
 	*@brief	:他Sceneを全て取得する
 	*@return:vector<SceneTask*> 他Scene達
@@ -408,6 +449,65 @@ public:
 		return w;
 	}
 	/**
+	*@brief	:UI検索(最初の同名のUIを返す)
+	*@param	:string tag UITag
+	*@return:指定単体タスクclass
+	*/
+	template <class T> T* GetUI(const std::string& tag) const
+	{
+		for (auto id = this->nowUIs.begin(); id != this->nowUIs.end(); ++id)
+		{
+			if (*id)
+			{
+				if ((*id)->GetTag() == tag)
+				{
+					return (T*)(*id);
+				}
+			}
+		}
+		for (auto id = this->addUIs.begin(); id != this->addUIs.end(); ++id)
+		{
+			if (*id)
+			{
+				if ((*id)->GetTag() == tag)
+				{
+					return (T*)(*id);
+				}
+			}
+		}
+		return nullptr;
+	}
+	/**
+	*@brief	:UI検索(同名すべてを返す)
+	*@param	:string tag UItag
+	*@return:指定複数タスクclass
+	*/
+	template <class T> std::vector<T*> GetUIs(const std::string& tag) const
+	{
+		std::vector<T*> w;
+		for (auto id = this->nowUIs.begin(); id != this->nowUIs.end(); ++id)
+		{
+			if (*id)
+			{
+				if ((*id)->GetTag() == tag)
+				{
+					w.push_back((T*)(*id));
+				}
+			}
+		}
+		for (auto id = this->addUIs.begin(); id != this->addUIs.end(); ++id)
+		{
+			if (*id)
+			{
+				if ((*id)->GetTag() == tag)
+				{
+					w.push_back((T*)(*id));
+				}
+			}
+		}
+		return w;
+	}
+	/**
 	*@brief	:NowScene取得
 	*@return:template class* 現在Scene
 	*/
@@ -453,21 +553,47 @@ private:
 	/**
 	*@brief	:登録予定タスクを登録する
 	*/
-	void TaskApplication();
+	void ObjectApplication();
 	/**
-	*@brief	:描画順を設定する
+	*@brief	:Object描画順を設定する
 	*/
-	void ConfigDrawOrder();
+	void ConfigObjectDrawOrder();
 	/**
 	*@brief	:登録予定タスクの有無
 	*@return:登録予定タスクが存在すればtrue
 	*/
-	bool CheckAddTask();
+	bool CheckAddObject();
 	/**
 	*@brief	:削除予定タスクの有無
 	*@return:削除予定タスクが存在すればtrue
 	*/
-	bool CheckKillTask();
+	bool CheckKillObject();
+	/**
+	*@brief	:削除予定タスクを削除する
+	*/
+	void ObjectKillCheck();
+	/**
+	*@brief	:登録予定UIを登録する
+	*/
+	void UIApplication();
+	/**
+	*@brief	:UI描画順を設定する
+	*/
+	void ConfigUIDrawOrder();
+	/**
+	*@brief	:登録予定UIの有無
+	*@return:登録予定UIが存在すればtrue
+	*/
+	bool CheckAddUI();
+	/**
+	*@brief	:削除予定UIの有無
+	*@return:削除予定UIが存在すればtrue
+	*/
+	bool CheckKillUI();
+	/**
+	*@brief	:削除予定UIを削除する
+	*/
+	void UIKillCheck();
 	/**
 	*@brief	:タスク更新処理
 	*/
@@ -475,15 +601,11 @@ private:
 	/**
 	*@brief	:タスク描画処理
 	*/
-	void Task_Render_AF();
-	/**
-	*@brief	:削除予定タスクを削除する
-	*/
-	void TaskKillCheck();
+	void Task_Render_2D();
 	/**
 	*@brief	:登録タスク全削除
 	*/
-	void AllGameObjectsDelete();
+	void AllObjectsDelete();
 	/**
 	*@brief	:Sceneの状態チェック
 	*/
@@ -492,6 +614,10 @@ private:
 	*@brief	:GameObjectsの状態チェック
 	*/
 	void GameObjectsStateCheck();
+	/**
+	*@brief	:UIsの状態チェック
+	*/
+	void UIsStateCheck();
 };
 
 extern EngineSystem* ge;

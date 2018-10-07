@@ -85,6 +85,9 @@
     <Filter Include="ソース ファイル\OGSystem\System\Button">
       <UniqueIdentifier>{d5bc8251-9275-4b88-9cf1-38030ecf8fc6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\OGSystem\UI">
+      <UniqueIdentifier>{c45b6a38-8589-421d-a26d-2a29ef91289b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Win\WinMain.cpp">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="src\Task\WinConfig.cpp">
       <Filter>ソース ファイル\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGSystem\UITask.cpp">
+      <Filter>ソース ファイル\OGSystem\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="src\Task\WinConfig.h">
       <Filter>ソース ファイル\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OGSystem\UITask.h">
+      <Filter>ソース ファイル\OGSystem\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

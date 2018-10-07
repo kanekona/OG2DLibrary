@@ -114,7 +114,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -152,6 +152,7 @@
     <ClCompile Include="src\OGSystem\Texture\Texture.cpp" />
     <ClCompile Include="src\OGSystem\Thread\DataThread.cpp" />
     <ClCompile Include="src\OGSystem\Timer\glTimer.cpp" />
+    <ClCompile Include="src\OGSystem\UITask.cpp" />
     <ClCompile Include="src\OGSystem\Window\Window.cpp" />
     <ClCompile Include="src\OGSystem\_OGsystem.cpp" />
     <ClCompile Include="src\Task\Task_Sample.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="src\OGSystem\Texture\Texture.h" />
     <ClInclude Include="src\OGSystem\Thread\DataThread.h" />
     <ClInclude Include="src\OGSystem\Timer\glTimer.h" />
+    <ClInclude Include="src\OGSystem\UITask.h" />
     <ClInclude Include="src\OGSystem\Window\Window.h" />
     <ClInclude Include="src\OGSystem\_OGsystem.h" />
     <ClInclude Include="src\Task\Task_Sample.h" />
