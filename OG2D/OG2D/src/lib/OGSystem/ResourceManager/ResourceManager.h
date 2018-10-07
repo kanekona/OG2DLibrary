@@ -4,8 +4,11 @@
 #include "OGSystem\Texture\Texture.h"
 /**
 *@brief	リソースを生成、解放、管理を行うclass
+*
 *既存GameEngineを使用している場合は自動で生成される
+*
 *ここに登録しているものはEngine終了時自動でdeleteされるので自分でdeleteしないこと
+*
 *newせず登録したものは自分でDeleteResource呼んで消しておくこと
 */
 class ResourceManager : private NonCopyable

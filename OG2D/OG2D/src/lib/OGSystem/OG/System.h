@@ -3,7 +3,9 @@
 #include "OGsystem.h"
 /**
 *@brief	System
+*
 *既存GameEngineClassを使用する場合OGSystem
+*
 *使用しない場合_OGSystem(こちら用は未制作)
 */
 class OGSystem : private NonCopyable

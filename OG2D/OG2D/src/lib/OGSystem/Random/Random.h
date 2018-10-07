@@ -5,6 +5,7 @@
 /**
 *namespace random
 *@brief ランダム生成名前空間
+*
 *既存GameEngineを使用している場合は自動で生成、初期化される
 */
 namespace random

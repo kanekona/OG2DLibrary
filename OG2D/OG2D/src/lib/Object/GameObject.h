@@ -43,6 +43,7 @@ namespace GO
 }
 /**
 *@brief	GameObject
+*
 *当たり判定や更新、描画処理を行うことが出来る
 */
 class GameObject :private NonCopyable

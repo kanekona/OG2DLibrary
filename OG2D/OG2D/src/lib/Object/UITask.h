@@ -26,6 +26,7 @@ namespace UO
 }
 /**
 *@brief	UI表示のためのオブジェクト
+*
 *更新と描画のみを行える
 */
 class UIObject

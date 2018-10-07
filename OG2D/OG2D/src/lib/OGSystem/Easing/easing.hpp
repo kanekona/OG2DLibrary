@@ -4,6 +4,7 @@
 #include <math.h>
 /**
 *@brief	Easingを扱うclass
+*
 *各詳細はEasing表を確認
 */
 class Easing

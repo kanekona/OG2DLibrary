@@ -3,6 +3,7 @@
 #include "OG\_OGsystem.h"
 /**
 *@brief	フレームレートを計算,制限するclass
+*
 *既存GameEngineを使用している場合はUpdateをDEBUG時のみ行う
 */
 class FPS : private NonCopyable 

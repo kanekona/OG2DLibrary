@@ -24,7 +24,9 @@ namespace ST
 }
 /**
 *@brief	Sceneを扱うclass
+*
 *更新処理のみをもっている
+*
 *破棄時に全オブジェクトの削除権限をもっている
 */
 class SceneTask : private NonCopyable

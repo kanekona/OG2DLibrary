@@ -2,8 +2,11 @@
 #include "OG\_OGsystem.h"
 /**
 *@brief	2DCamera
+*
 *GL機能を使用し2D上でのカメラを扱うclass
+*
 *既存GameEngineを使用している場合は内部で宣言されている
+*
 *使用しない場合は2Dの描画のために１つ生成する必要がある
 */
 class Camera2D : private NonCopyable

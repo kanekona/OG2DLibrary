@@ -2,10 +2,15 @@
 #include "OGSystem\Texture\Texture.h"
 /**
 *@brief	フォントの描画class
+*
 *現在対応しているもの
+*
 *アルファベット
+*
 *ひらがな
+*
 *カタカナ
+*
 *数字
 */
 class Font

@@ -164,6 +164,7 @@ namespace Mouse
 }
 /**
 *@brief	ゲームパッド、キーボード、マウスの入力を扱うclass
+*
 *既存GameEngineを使用している場合は自動で生成される
 */
 class Input : private NonCopyable

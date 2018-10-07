@@ -3,6 +3,7 @@
 #include "Object\GameObject.h"
 /**
 *@brief	マウスに反応するButtonclass
+*
 *マウスと当たっていてクリックされている判定を行ってくれる
 */
 class Button : public GameObject
