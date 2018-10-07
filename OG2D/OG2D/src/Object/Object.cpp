@@ -34,6 +34,7 @@ void GameObject::ResetData()
 	this->enableCollision = true;
 	this->_mode = GO::Mode::NORMAL;
 	this->_radius = { 1,1 };
+	this->_order = 0;
 }
 
 void GameObject::Init(
