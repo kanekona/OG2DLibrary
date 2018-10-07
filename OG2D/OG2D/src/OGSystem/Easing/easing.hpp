@@ -1,28 +1,39 @@
-/**
-*Easingを扱うclass
-*各詳細はEasing表を確認
-*/
+
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
+/**
+*@brief	Easingを扱うclass
+*各詳細はEasing表を確認
+*/
 class Easing
 {
 private:
+	//! TimeCount
 	float cnt;
+	//! EnablePlay
 	bool toplay = false;
 public:
+	/**
+	*enum Name
+	*@brief	EasingName
+	*/
 	enum Name
 	{
 		Back, Bounce, Circ, Cubic, Elastic, Expo, Linear, Quad, Quart, Quint, Sine
 	};
+	/**
+	*enum Mode
+	*@brief	EasingMode
+	*/
 	enum Mode
 	{
 		In, Out, InOut
 	};
 	/**
-	*@brief	:イージング用カウンタ
-	*@param	:float duration 設定タイム
-	*@return:現在タイム
+	*@brief	イージング用カウンタ
+	*@param[in]	float duration 設定タイム
+	*@return 現在タイム
 	*/
 	float Time(const float duration)
 	{
@@ -37,15 +48,15 @@ public:
 		return cnt;
 	}
 	/**
-	*@brief	:実行中か取得
-	*@return:bool true 実行中
+	*@brief	実行中か取得
+	*@return bool true 実行中
 	*/
 	bool IsPlay() const
 	{
 		return this->toplay;
 	}
 	/**
-	*@brief	:タイム初期化
+	*@brief	タイム初期化
 	*/
 	void ResetTime()
 	{
@@ -53,7 +64,7 @@ public:
 		this->toplay = true;
 	}
 	/**
-	*@brief	:constructor
+	*@brief	constructor
 	*/
 	Easing() { this->ResetTime(); };
 
@@ -79,6 +90,7 @@ public:
 		}
 	}linear;
 
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Back
 	{
 	public:
@@ -105,6 +117,7 @@ public:
 	}back;
 	
 
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Bounce
 	{
 	public:
@@ -141,7 +154,8 @@ public:
 			else return Out(t * 2 - d, 0, c, d) * .5f + c*.5f + b;
 		}
 	}bounce;
-	
+
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Circ
 	{
 	public:
@@ -159,7 +173,8 @@ public:
 			return c / 2 * static_cast<float>((sqrt(1 - t*(t -= 2)) + 1)) + b;
 		}
 	}circ;
-	
+
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Cubic
 	{
 	public:
@@ -177,7 +192,8 @@ public:
 			return c / 2 * ((t -= 2)*t*t + 2) + b;
 		}
 	}cubic;
-	
+
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Elastic
 	{
 	public:
@@ -216,6 +232,7 @@ public:
 		}
 	}elastic;
 
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Expo
 	{
 	public:
@@ -235,7 +252,8 @@ public:
 			return c / 2 * (static_cast<float>(-pow(2, -10 * --t) + 2)) + b;
 		}
 	}expo;
-	
+
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間	
 	class Quad
 	{
 	public:
@@ -254,6 +272,7 @@ public:
 		}
 	}quad;
 
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Quart
 	{
 	public:
@@ -272,6 +291,7 @@ public:
 		}
 	}quart;
 
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Quint
 	{
 	public:
@@ -290,6 +310,7 @@ public:
 		}
 	}quint;
 	
+	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Sine
 	{
 	public:

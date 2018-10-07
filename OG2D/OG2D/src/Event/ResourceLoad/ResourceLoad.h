@@ -1,7 +1,9 @@
 #pragma once
 #include "OGSystem\OGsystem.h"
 
-
+/**
+*@brief	リソースを読み込むイベントclass
+*/
 class ResourceLoad
 {
 	//!	ファイルの中身のデータ
@@ -11,18 +13,18 @@ class ResourceLoad
 	//! データのファイル名
 	std::string dataName;
 	/**
-	*@brief	:データを生成する
-	*@param	:string text 生成するためのデータ
+	*@brief	データを生成する
+	*@param[in]	string text 生成するためのデータ
 	*/
 	void DataCreate(const std::string& text);
 public:
 	/**
-	*@brief	:constructor
-	*@param	:ifstream ifs ファイルデータ
+	*@brief	constructor
+	*@param[in]	ifstream ifs ファイルデータ
 	*/
 	explicit ResourceLoad(std::ifstream& ifs);
 	/**
-	*@brief	:destructor
+	*@brief	destructor
 	*/
 	virtual ~ResourceLoad();
 };

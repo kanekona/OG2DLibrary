@@ -1,9 +1,9 @@
+
+#pragma once
+#include "OGSystem\_OGsystem.h"
 /**
 *Windowの生成、管理を行うclass
 */
-#pragma once
-#include "OGSystem\_OGsystem.h"
-
 class Window : private NonCopyable
 {
 	//! アイコン情報
@@ -28,35 +28,35 @@ class Window : private NonCopyable
 	GLFWwindow *window;	
 public:
 	/**
-	*@brief	:constructor
+	*@brief	constructor
 	*/
-	Window();
+	explicit Window();
 	/**
-	*@brief	:constructor
-	*@param	:int x windowXサイズ
-	*@param :int y windowYサイズ
-	*@param	:char* name window名
-	*@param :bool flag フルスク設定
-	*@param	:Vec2 pos window位置
+	*@brief	constructor
+	*@param[in]	int x windowXサイズ
+	*@param[in] int y windowYサイズ
+	*@param[in]	char* name window名
+	*@param[in] bool flag フルスク設定
+	*@param[in]	Vec2 pos window位置
 	*/
-	Window(
+	explicit Window(
 		const int x,
 		const int y,
 		const char* name,
 		const bool flag,
 		const Vec2& pos);
 	/**
-	*@brief	:destructor
+	*@brief	destructor
 	*/
-	~Window();
+	virtual ~Window();
 	/**
-	*@brief	:constructor
-	*@param	:int x windowXサイズ
-	*@param :int y windowYサイズ
-	*@param	:char* name window名
-	*@param :bool flag フルスク設定
-	*@param	:Vec2 pos window位置
-	*@return:bool 生成に成功でtrue
+	*@brief	constructor
+	*@param[in]	int x windowXサイズ
+	*@param[in] int y windowYサイズ
+	*@param[in]	char* name window名
+	*@param[in] bool flag フルスク設定
+	*@param[in]	Vec2 pos window位置
+	*@return bool 生成に成功でtrue
 	*/
 	bool createWindow(
 		const int x,
@@ -65,94 +65,94 @@ public:
 		const bool flag,
 		const Vec2& pos);
 	/**
-	*@brief	:アイコンを設定する
-	*@param	:string path ファイルパス
+	*@brief	アイコンを設定する
+	*@param[in]	string path ファイルパス
 	*/
 	void SetIcon(const std::string& path);
 	/**
-	*@brief	:Windowのサイズとアスペクト比を固定する
+	*@brief	Windowのサイズとアスペクト比を固定する
 	*/
 	void LimitsWindow();
 	/**
-	*@brief	:Windowのサイズとアスペクト比を固定する
-	*@param	:int w WindowSize_w
-	*@param	:int h WindowSize_h
+	*@brief	Windowのサイズとアスペクト比を固定する
+	*@param[in]	int w WindowSize_w
+	*@param[in]	int h WindowSize_h
 	*/
 	void LimitsWindow(const int w, const int h);
 	/**
-	*@brief	:Windowをアイコン化、アイコン化から解除する
+	*@brief	Windowをアイコン化、アイコン化から解除する
 	*/
 	void WindowIcon();
 	/**
-	*@brief	:Windowを可視化、可視化から解除する
+	*@brief	Windowを可視化、可視化から解除する
 	*/
 	void Visualization();
 	/**
-	*@brief	:マウスを表示させるかを決める
-	*@param	:bool flag 表示設定
+	*@brief	マウスを表示させるかを決める
+	*@param[in]	bool flag 表示設定
 	*/
 	void InMouseMode(const bool flag);
 	/**
-	*@brief	:Windowのサイズを返す
-	*@return:Vec2 Windowのサイズ
+	*@brief	Windowのサイズを返す
+	*@return Vec2 Windowのサイズ
 	*/
 	Vec2 GetSize() const;
 	/**
-	*@brief	:Windowの位置を返す
-	*@return:Vec2 Windowの位置
+	*@brief	Windowの位置を返す
+	*@return Vec2 Windowの位置
 	*/
 	Vec2 GetPos() const;
 	/**
-	*@brief	:生成するWindowの位置を設定する
-	*@param	:Vec2 pos Windowの位置
+	*@brief	生成するWindowの位置を設定する
+	*@param[in]	Vec2 pos Windowの位置
 	*/
 	void SetWindowPos(const Vec2& pos);
 	/**
-	*@brief	:Window情報を返す
-	*@return:GLFWWinfow* Window情報
+	*@brief	Window情報を返す
+	*@return GLFWWinfow* Window情報
 	*/
 	GLFWwindow* GetWindow() const;
 	/**
-	*@brief	:Windowの位置を設定する
-	*@param	:const Vec2& pos 位置
+	*@brief	Windowの位置を設定する
+	*@param[in]	const Vec2& pos 位置
 	*/
 	void SetPos(const Vec2& pos);
 	/**
-	*@brief	:Windowの位置を設定する
-	*@param	:int x WindowPosition_x
-	*@param	:int y WindowPosition_y
+	*@brief	Windowの位置を設定する
+	*@param[in]	int x WindowPosition_x
+	*@param[in]	int y WindowPosition_y
 	*/
 	void SetPos(const int x, const int y);
 	/**
-	*@brief	:Windowのサイズを設定する
-	*@param	:const Vec2& size サイズ
+	*@brief	Windowのサイズを設定する
+	*@param[in]	const Vec2& size サイズ
 	*/
 	void SetSize(const Vec2& size);
 	/**
-	*@brief	:Windowのサイズを設定する
-	*@param	:int w WindowSize_w
-	*@param	:int h WindowSize_h
+	*@brief	Windowのサイズを設定する
+	*@param[in]	int w WindowSize_w
+	*@param[in]	int h WindowSize_h
 	*/
 	void SetSize(const int w,const int h);
 	/**
-	*@brief	:ChengeWindowTitle
-	*@param	:const char* name TitleName
+	*@brief	ChengeWindowTitle
+	*@param[in]	const char* name TitleName
 	*/
 	void ChengeTitle(const char* name);
 	/**
-	*@brief	:Windowモードを変更
-	*@param	:int x WindowPosition_x
-	*@param	:int y WindowPosition_y
-	*@param	:int w WindowSize_x
-	*@param	:int h WindowSize_h
-	*@param	:bool flag true hullScreen
+	*@brief	Windowモードを変更
+	*@param[in]	int x WindowPosition_x
+	*@param[in]	int y WindowPosition_y
+	*@param[in]	int w WindowSize_x
+	*@param[in]	int h WindowSize_h
+	*@param[in]	bool flag true hullScreen
 	*/
 	void ChengeWindow(const int x,const int y,const int w, const int h, const bool flag);
 	/**
-	*@brief	:Windowモードを変更
-	*@param	:const Vec2& pos WindowPosition
-	*@param	:const Vec2& size WindowSize
-	*@param	:bool flag true hullScreen
+	*@brief	Windowモードを変更
+	*@param[in]	const Vec2& pos WindowPosition
+	*@param[in]	const Vec2& size WindowSize
+	*@param[in]	bool flag true hullScreen
 	*/
 	void ChengeWindow(const Vec2& pos, const Vec2& size, const bool flag);
 };

@@ -79,7 +79,7 @@ typedef unsigned int u_int;
 typedef unsigned long u_long;
 /**
 *namespace OG
-*便利機能関数や数学計算
+*@brief	便利機能関数や数学計算
 */
 namespace OG 
 {

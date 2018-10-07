@@ -4,7 +4,7 @@ SceneTask::SceneTask()
 	this->taskName = "";
 	this->NextTask = true;
 	this->enableDestroyAllObjectWhenExitng = false;
-	this->_mode = Scene::Mode::NORMAL;
+	this->_mode = ST::Mode::NORMAL;
 }
 SceneTask::~SceneTask()
 {
@@ -18,10 +18,10 @@ void SceneTask::UpdateManager()
 {
 	switch (this->_mode)
 	{
-	case Scene::Mode::NORMAL:
+	case ST::Mode::NORMAL:
 		this->Update();
 		break;
-	case Scene::Mode::PAUSE:
+	case ST::Mode::PAUSE:
 		this->Pause();
 		break;
 	default:
@@ -31,7 +31,7 @@ void SceneTask::UpdateManager()
 void SceneTask::Kill(const bool on)
 {
 	this->NextTask = on;
-	this->_mode = Scene::Mode::KILL;
+	this->_mode = ST::Mode::KILL;
 }
 bool SceneTask::GetNextTask() const
 {
@@ -51,31 +51,31 @@ void SceneTask::Pause()
 }
 void SceneTask::SetPause(const bool flag)
 {
-	if (this->ModeCheck(Scene::Mode::KILL))
+	if (this->ModeCheck(ST::Mode::KILL))
 	{
 		return;
 	}
 	if (flag)
-		this->_mode = Scene::Mode::PAUSE;
+		this->_mode = ST::Mode::PAUSE;
 	else
-		this->_mode = Scene::Mode::NORMAL;
+		this->_mode = ST::Mode::NORMAL;
 }
 void SceneTask::SetStop(const bool flag)
 {
-	if (this->ModeCheck(Scene::Mode::KILL))
+	if (this->ModeCheck(ST::Mode::KILL))
 	{
 		return;
 	}
 	if (flag)
-		this->_mode = Scene::Mode::STOP;
+		this->_mode = ST::Mode::STOP;
 	else
-		this->_mode = Scene::Mode::NORMAL;
+		this->_mode = ST::Mode::NORMAL;
 }
-Scene::Mode SceneTask::GetMode() const
+ST::Mode SceneTask::GetMode() const
 {
 	return this->_mode;
 }
-bool SceneTask::ModeCheck(const Scene::Mode& mode) const
+bool SceneTask::ModeCheck(const ST::Mode& mode) const
 {
 	return this->_mode == mode ? true : false;
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "OGSystem\Texture\Texture.h"
 /**
-*フォントの描画class
+*@brief	フォントの描画class
 *現在対応しているもの
 *アルファベット
 *ひらがな
@@ -29,34 +29,35 @@ class Font
 	//! 画像描画位置
 	Box2D* src;
 	/**
-	*@brief	:指定文字の画像位置
-	*@return:Box2D* 画像位置
+	*@brief	 指定文字の画像位置
+	*@param[in] const string& c oneText
+	*@return Box2D* 画像位置
 	*/
 	Box2D* CharacterCheck(const std::string& c);
 	/**
-	*@brief	:文字データの生成
+	*@brief	文字データの生成
 	*/
 	void CreateCharacter();
 public:
 	/**
-	*@brief	:constructor
+	*@brief	constructor
 	*/
 	explicit Font();
 	/**
-	*@brief	:destructor
+	*@brief	destructor
 	*/
 	virtual ~Font();
 	/**
-	*@brief	:フォント描画
-	*@param	:string text 描画文字列
-	*@param	:Vec2 pos 描画位置
-	*@param :int fontSize 描画文字サイズ
-	*@param	:Color color 色指定
+	*@brief	フォント描画
+	*@param[in]	string text 描画文字列
+	*@param[in]	Vec2 pos 描画位置
+	*@param[in] int fontSize 描画文字サイズ
+	*@param[in]	Color color 色指定
 	*/
 	void Draw(const std::string& text, const Vec2& pos, const int fontSize, const Color& color = { 1,1,1,1 });
 	/**
-	*@brief	:登録画像の変更
-	*@param	:string path ファイルパス
+	*@brief	登録画像の変更
+	*@param[in]	string path ファイルパス
 	*/
 	void SetTexture(const std::string& path);
 };

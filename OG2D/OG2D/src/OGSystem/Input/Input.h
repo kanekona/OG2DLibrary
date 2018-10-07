@@ -10,10 +10,10 @@
 namespace In
 {
 	/**
-	*enum
-	*仮装コントローラの入力設定
+	*enum Button
+	*@brief	仮装コントローラの入力設定
 	*/
-	enum
+	enum Button
 	{
 		//!	1
 		BUTTON_A,		
@@ -44,6 +44,10 @@ namespace In
 		//! 14
 		BUTTON_L,
 	};
+	/**
+	*enum AXIS
+	*@brief	コントローラのスティックと押し込み
+	*/
 	enum AXIS
 	{
 		//! 左スティックX値
@@ -58,9 +62,14 @@ namespace In
 		AXIS_R2,
 		//! L2
 		AXIS_L2,
+		//! AXISNumber
 		AXIS_BUTTON_NUM,
 	};
-	enum
+	/**
+	*enum StickButton
+	*@brief	スティックをボタンButton入力にも対応
+	*/
+	enum StickButton
 	{
 		//! 左スティック左入力
 		LSTICK_LEFT,
@@ -86,10 +95,10 @@ namespace In
 		STICK_NUM,
 	};
 	/**
-	*enum
-	*仮想入力
+	*enum IN
+	*@brief	仮想入力
 	*/
-	enum
+	enum IN
 	{
 		B1,
 		B2,
@@ -117,10 +126,10 @@ namespace In
 		R2,
 	};
 	/**
-	*enum
-	*キーボード入力
+	*enum Key
+	*@brief	キーボード入力
 	*/
-	enum
+	enum Key
 	{
 		A, S, D, W, Q, E, Z, X, C, R, F, V, T,
 		G, B, Y, H, N, U, J, M, I, K, O, L, P,
@@ -134,7 +143,11 @@ namespace In
 */
 namespace Mouse
 {
-	enum
+	/**
+	*enum Button
+	*@brief	Mouseのボタン
+	*/
+	enum Button
 	{
 		//! 左
 		LEFT,
@@ -187,36 +200,49 @@ public:
 		R2,
 	};
 	/**
-	*@brief	:ゲームパッド入力
+	*@brief	ゲームパッド入力
 	*/
 	class GamePad
 	{
 	public:
 		/**
 		*enum Pad
-		*仮装コントローラの入力設定
+		*@brief	仮装コントローラの入力設定
 		*/
 		enum Pad
 		{
-			
-			BUTTON_A,		//! 1
-			BUTTON_B,		//! 2
-			BUTTON_X,		//! 3
-			BUTTON_Y,		//! 4
-			BUTTON_L1,		//! 5
-			BUTTON_R1,		//! 6
-			BUTTON_BACK,	//! 7
-			BUTTON_START,	//! 8
-			BUTTON_L3,		//! 9
-			BUTTON_R3,		//! 10
-			BUTTON_U,		//! 11
-			BUTTON_R,		//! 12
-			BUTTON_D,		//! 13
-			BUTTON_L,		//! 14
+			//! 1
+			BUTTON_A,
+			//! 2
+			BUTTON_B,
+			//! 3
+			BUTTON_X,
+			//! 4
+			BUTTON_Y,		
+			//! 5
+			BUTTON_L1,		
+			//! 6
+			BUTTON_R1,		
+			//! 7
+			BUTTON_BACK,	
+			//! 8
+			BUTTON_START,	
+			//! 9
+			BUTTON_L3,		
+			//! 10
+			BUTTON_R3,		
+			//! 11
+			BUTTON_U,		
+			//! 12
+			BUTTON_R,	
+			//! 13
+			BUTTON_D,	
+			//! 14
+			BUTTON_L,	
 		};
 		/**
 		*enum AXIS
-		*仮装コントローラの入力設定
+		*@brief	仮装コントローラの入力設定
 		*/
 		enum AXIS {
 			//! 左スティックX値
@@ -236,7 +262,7 @@ public:
 		};
 		/**
 		*enum AXISBUTTON
-		*仮装コントローラの入力設定
+		*@brief	仮装コントローラの入力設定
 		*/
 		enum AXISBUTTON
 		{
@@ -264,94 +290,94 @@ public:
 			STICK_NUM,
 		};
 		/**
-		*@brief	:constructor
-		*@param	:int id ゲームパッド番号
+		*@brief	constructor
+		*@param[in]	int id ゲームパッド番号
 		*/
 		explicit GamePad(const int id);
 		/**
-		*@brief	:押している判定を返す
-		*@param :int index 判定を行いたい入力番号
-		*@return:bool 押していればtrue
+		*@brief	押している判定を返す
+		*@param[in] int index 判定を行いたい入力番号
+		*@return bool 押していればtrue
 		*/
 		bool on(const int index) const;
 		/**
-		*@brief	:押した瞬間の判定を返す
-		*@param :int index 判定を行いたい入力番号
-		*@return:bool 押した瞬間であればtrue
+		*@brief	押した瞬間の判定を返す
+		*@param[in] int index 判定を行いたい入力番号
+		*@return bool 押した瞬間であればtrue
 		*/
 		bool down(const int index) const;
 		/**
-		*@brief	:離した瞬間の判定を返す
-		*@param :int index 判定を行いたい入力番号
-		*@return:bool 離した瞬間であればtrue
+		*@brief	離した瞬間の判定を返す
+		*@param[in] int index 判定を行いたい入力番号
+		*@return bool 離した瞬間であればtrue
 		*/
 		bool up(const int index) const;
 		/**
-		*@brief	:全てのdown入力のうち１つでも判定があるか調べる
-		*@return:1つ以上入力されているとtrue
+		*@brief	全てのdown入力のうち１つでも判定があるか調べる
+		*@return 1つ以上入力されているとtrue
 		*/
 		bool EitherDown() const;
 		/**
-		*@brief	:全てのon入力のうち１つでも判定があるか調べる
-		*@return:1つ以上入力されているとtrue
+		*@brief	全てのon入力のうち１つでも判定があるか調べる
+		*@return 1つ以上入力されているとtrue
 		*/
 		bool EitherOn() const;
 		/**
-		*@brief	:全てのup入力のうち１つでも判定があるか調べる
-		*@return:1つ以上入力されているとtrue
+		*@brief	全てのup入力のうち１つでも判定があるか調べる
+		*@return 1つ以上入力されているとtrue
 		*/
 		bool EitherUp() const;
 		/**
-		*@brief	:指定値のスティックの傾きを返す
-		*@param	:int index スティック指定
-		*@return:float 傾き度(0~1)
+		*@brief	指定値のスティックの傾きを返す
+		*@param[in]	int index スティック指定
+		*@return float 傾き度(0~1)
 		*/
 		float axis(const int index) const;
 		/**
-		*@brief	:指定スティックの押し状態を返す
-		*@param	:int index スティック指定
-		*@return:bool 指定側に倒れていればtrue
+		*@brief	指定スティックの押し状態を返す
+		*@param[in]	int index スティック指定
+		*@return bool 指定側に倒れていればtrue
 		*/
 		bool axis_on(const int index) const;
 		/**
-		*@brief	:指定スティックの押し状態を返す
-		*@param	:int index スティック指定
-		*@return:bool 指定側に倒された瞬間であればtrue
+		*@brief	指定スティックの押し状態を返す
+		*@param[in]	int index スティック指定
+		*@return bool 指定側に倒された瞬間であればtrue
 		*/
 		bool axis_down(const int index) const;
 		/**
-		*@brief	:指定スティックの押し状態を返す
-		*@param	:int index スティック指定
-		*@return:bool 指定側から上がった瞬間であればtrue
+		*@brief	指定スティックの押し状態を返す
+		*@param[in]	int index スティック指定
+		*@return bool 指定側から上がった瞬間であればtrue
 		*/
 		bool axis_up(const int index) const;
 		/**
-		*@brief	:ゲームパッドの有無を返す
-		*@return:bool 存在すればtrue
+		*@brief	ゲームパッドの有無を返す
+		*@return bool 存在すればtrue
 		*/
 		bool isPresent() const;
 		/**
-		*@brief	:入力状況の更新
+		*@brief	入力状況の更新
 		*/
 		void Update();
 		/**
-		*@brief	:各値の初期化
+		*@brief	各値の初期化
 		*/
 		void Initialize();
 		/**
-		*@brief	:入力状態のリセット
+		*@brief	入力状態のリセット
 		*/
 		void Reset();
 		/**
-		*@brief	:スティックの範囲外処理
-		*@param	:float axis_threshold_ 区切る値
-		*@return:成功true
+		*@brief	スティックの範囲外処理
+		*@param[in]	float axis_threshold_ 区切る値
+		*@return 成功true
 		*/
 		bool registAxisButton(
 			const float axis_threshold_);
 		/**
-		*@brief	:ゲームパッド名を返す
-		*@return:char* ゲームパッド名
+		*@brief	ゲームパッド名を返す
+		*@return char* ゲームパッド名
 		*/
 		const char* GetName() const;
 	private:
@@ -382,13 +408,13 @@ public:
 		//! コントローラ名
 		const char* name;
 		/**
-		*@brief	:ボタン数を返す
-		*@return:int ボタン数
+		*@brief	ボタン数を返す
+		*@return int ボタン数
 		*/
 		int buttons() const;
 		/**
-		*@brief	:スティック数を返す
-		*@return:スティック数
+		*@brief	スティック数を返す
+		*@return スティック数
 		*/
 		int axes() const;
 	};
@@ -400,7 +426,7 @@ public:
 	public:
 		/**
 		*enum Key
-		*キーボードの仮装キー設定
+		*@brief	キーボードの仮装キー設定
 		*/
 		enum Key
 		{	
@@ -410,49 +436,49 @@ public:
 			UP, DOWN, LEFT, RIGHT,
 		};
 		/**
-		*@brief	:constructor
+		*@brief	constructor
 		*/
 		explicit KeyBoard();
 		/**
-		*@brief	:離した瞬間の判定を返す
-		*@param :int index 判定を行いたい入力番号
-		*@return:bool 離した瞬間であればtrue
+		*@brief	離した瞬間の判定を返す
+		*@param[in] int index 判定を行いたい入力番号
+		*@return bool 離した瞬間であればtrue
 		*/
 		bool up(const int index) const;
 		/**
-		*@brief	:押した瞬間の判定を返す
-		*@param :int index 判定を行いたい入力番号
-		*@return:bool 押した瞬間であればtrue
+		*@brief	押した瞬間の判定を返す
+		*@param[in] int index 判定を行いたい入力番号
+		*@return bool 押した瞬間であればtrue
 		*/
 		bool down(const int index) const;
 		/**
-		*@brief	:押している判定を返す
-		*@param :int index 判定を行いたい入力番号
-		*@return:bool 押していればtrue
+		*@brief	押している判定を返す
+		*@param[in] int index 判定を行いたい入力番号
+		*@return bool 押していればtrue
 		*/
 		bool on(const int index) const;
 		/**
-		*@brief	:全てのdown入力のうち１つでも判定があるか調べる
-		*@return:1つ以上入力されているとtrue
+		*@brief	全てのdown入力のうち１つでも判定があるか調べる
+		*@return 1つ以上入力されているとtrue
 		*/
 		bool EitherDown() const;
 		/**
-		*@brief	:全てのon入力のうち１つでも判定があるか調べる
-		*@return:1つ以上入力されているとtrue
+		*@brief	全てのon入力のうち１つでも判定があるか調べる
+		*@return 1つ以上入力されているとtrue
 		*/
 		bool EitherOn() const;
 		/**
-		*@brief	:全てのup入力のうち１つでも判定があるか調べる
-		*@return:1つ以上入力されているとtrue
+		*@brief	全てのup入力のうち１つでも判定があるか調べる
+		*@return 1つ以上入力されているとtrue
 		*/
 		bool EitherUp() const;
 		/**
-		*@brief	:入力状況の更新
+		*@brief	入力状況の更新
 		*/
 		void Update();
 		/**
-		*@brief	:反映させるWindowを登録する
-		*@param :GLFWWindow* w Windowのポインタ
+		*@brief	反映させるWindowを登録する
+		*@param[in] GLFWWindow* w Windowのポインタ
 		*/
 		void SetWindow(GLFWwindow* w);
 		//! キーボードの有無
@@ -477,12 +503,15 @@ public:
 	public:
 		/**
 		*enum Mouse_
-		*マウスの入力設定
+		*@brief	マウスの入力設定
 		*/
 		enum Mouse_
 		{
+			//! 右
 			LEFT,
+			//! 左
 			RIGHT,
+			//! 中心
 			CENTER,
 			BUTTON_4,
 			BUTTON_5,
@@ -491,71 +520,72 @@ public:
 			BUTTON_8,
 		};
 		/**
-		*@brief	:constructor
+		*@brief	constructor
 		*/
 		explicit Mouse();
 		/**
-		*@brief	:destructor
+		*@brief	destructor
 		*/
 		virtual ~Mouse();
 		/**
-		*@brief	:入力状況の更新
+		*@brief	入力状況の更新
 		*/
 		void Update();
 		/**
-		*@brief	:反映させるWindowを登録する
-		*@param	:GLFWWindow* w Windowのポインタ
+		*@brief	反映させるWindowを登録する
+		*@param[in]	GLFWWindow* w Windowのポインタ
 		*/
 		void SetWindow(GLFWwindow *w);
 		/**
-		*@brief	:Windowからのマウスの位置を返す
-		*@return:Vec2 マウスの位置
+		*@brief	Windowからのマウスの位置を返す
+		*@return Vec2 マウスの位置
 		*/
 		Vec2 GetPos() const;
 		/**
-		*@brief	:押している判定を返す
-		*@param :int index 判定を行いたい入力番号
-		*@return:bool 押していればtrue
+		*@brief	押している判定を返す
+		*@param[in] int index 判定を行いたい入力番号
+		*@returnbool 押していればtrue
 		*/
 		bool on(const int index) const;
 		/**
-		*@brief	:押した瞬間の判定を返す
-		*@param :int index 判定を行いたい入力番号
-		*@return:bool 押した瞬間であればtrue
+		*@brief	押した瞬間の判定を返す
+		*@param[in] int index 判定を行いたい入力番号
+		*@returnbool 押した瞬間であればtrue
 		*/
 		bool down(const int index) const;
 		/**
-		*@brief	:離した瞬間の判定を返す
-		*@param :int index 判定を行いたい入力番号
-		*@return:bool 離した瞬間であればtrue
+		*@brief	離した瞬間の判定を返す
+		*@param[in] int index 判定を行いたい入力番号
+		*@returnbool 離した瞬間であればtrue
 		*/
 		bool up(const int index) const;
 		/**
-		*@brief	:全てのdown入力のうち１つでも判定があるか調べる
-		*@return:1つ以上入力されているとtrue
+		*@brief	全てのdown入力のうち１つでも判定があるか調べる
+		*@return 1つ以上入力されているとtrue
 		*/
 		bool EitherDown() const;
 		/**
-		*@brief	:全てのon入力のうち１つでも判定があるか調べる
-		*@return:1つ以上入力されているとtrue
+		*@brief	てのon入力のうち１つでも判定があるか調べる
+		*@return 1つ以上入力されているとtrue
 		*/
 		bool EitherOn() const;
 		/**
-		*@brief	:全てのup入力のうち１つでも判定があるか調べる
-		*@return:1つ以上入力されているとtrue
+		*@brief	全てのup入力のうち１つでも判定があるか調べる
+		*@return 1つ以上入力されているとtrue
 		*/
 		bool EitherUp() const;
 		/**
-		*@brief	:!テスト実装!マウスのホイール値を返す
-		*@return:Vec2 ホイールの値
+		*@brief	マウスのホイール値を返す
+		*@return Vec2 ホイールの値
 		*/
 		Vec2 GetScroll() const;
 		/**
-		*@brief	:マウスの入力状況をリセットする
+		*@brief	マウスの入力状況をリセットする
 		*/
 		void ResetMouse();
 		/**
-		*@brief	:マウスの判定を取得する
+		*@brief	マウスの判定を取得する
+		*@return CollisionPointer* マウスのCollision
 		*/
 		CollisionPointer* GetCollision() const;
 		//! マウスの有無
@@ -582,10 +612,10 @@ public:
 		//! ホイール獲得のコールバックで得た値をいれておく
 		static Vec2 scroll;
 		/**
-		*@brief	:マウスのホイール状態を獲得する
-		*@param	:GLFWWindow* w window情報
-		*@param	:double x x座標のホイール値
-		*@param :double y y座標のホイール値
+		*@brief	マウスのホイール状態を獲得する
+		*@param[in]	GLFWWindow* w window情報
+		*@param[in]	double x x座標のホイール値
+		*@param[in] double y y座標のホイール値
 		*/
 		static void scroll_callback(GLFWwindow* w, double x, double y);
 	};
@@ -611,78 +641,87 @@ public:
 	bool pad_Connection;
 	//関数
 	/**
-	*@brief	:入力初期化
-	*@param	:GLFWWindow* w 指定するWindowのポインタ
+	*@brief	入力初期化
+	*@param[in]	GLFWWindow* w 指定するWindowのポインタ
 	*/
 	void Inputinit(GLFWwindow *w);
 	/**
-	*@brief	:押している判定を返す
-	*@param :int index 判定を行いたい入力番号
-	*@param	:int padNum 判定を行うゲームパッドの番号
-	*@return:bool 押していればtrue
+	*@brief	押している判定を返す
+	*@param[in] int index 判定を行いたい入力番号
+	*@param[in]	int padNum 判定を行うゲームパッドの番号
+	*@return bool 押していればtrue
 	*/
 	bool on(const int index, const int padNum = 0) const;
 	/**
-	*@brief	:押した瞬間の判定を返す
-	*@param :int index 判定を行いたい入力番号
-	*@param	:int padNum 判定を行うゲームパッドの番号
-	*@return:bool 押した瞬間であればtrue
+	*@brief	押した瞬間の判定を返す
+	*@param[in] int index 判定を行いたい入力番号
+	*@param[in]	int padNum 判定を行うゲームパッドの番号
+	*@return bool 押した瞬間であればtrue
 	*/
 	bool down(const int index, const int padNum = 0) const;
 	/**
-	*@brief	:離した瞬間の判定を返す
-	*@param :int index 判定を行いたい入力番号
-	*@param	:int padNum 判定を行うゲームパッドの番号
-	*@return:bool 離した瞬間であればtrue
+	*@brief	離した瞬間の判定を返す
+	*@param[in] int index 判定を行いたい入力番号
+	*@param[in]	int padNum 判定を行うゲームパッドの番号
+	*@return bool 離した瞬間であればtrue
 	*/
 	bool up(const int index, const int padNum = 0) const;
 	/**
-	*@brief	:指定値のスティックの傾きを返す
-	*@param	:int index スティック指定
-	*@param	:int padNum 判定を行うゲームパッドの番号
-	*@return:float 傾き度(0~1)
+	*@brief	指定値のスティックの傾きを返す
+	*@param[in]	int index スティック指定
+	*@param[in]	int padNum 判定を行うゲームパッドの番号
+	*@return float 傾き度(0~1)
 	*/
 	float axis(const int index, const int padNum = 0) const;
 	/**
-	*@brief	:全てのゲームパッドのスティックの傾き範囲を制限する
-	*@param	:float regist 指定値
+	*@brief	全てのゲームパッドのスティックの傾き範囲を制限する
+	*@param[in]	float regist 指定値
 	*/
 	void registAxis(const float regist);
 	/**
-	*@brief	:入力状況の更新
+	*@brief	入力状況の更新
 	*/
 	void Update();
 	/**
-	*@brief	:全てのdown入力のうち１つでも判定があるか調べる
-	*@return:1つ以上入力されているとtrue
+	*@brief	全てのdown入力のうち１つでも判定があるか調べる
+	*@return bool 1つ以上入力されているとtrue
 	*/
 	bool EitherDown() const;
 	/**
-	*@brief	:全てのon入力のうち１つでも判定があるか調べる
-	*@return:1つ以上入力されているとtrue
+	*@brief	全てのon入力のうち１つでも判定があるか調べる
+	*@return bool 1つ以上入力されているとtrue
 	*/
 	bool EitherOn() const;
 	/**
-	*@brief	:全てのup入力のうち１つでも判定があるか調べる
-	*@return:1つ以上入力されているとtrue
+	*@brief	全てのup入力のうち１つでも判定があるか調べる
+	*@return bool 1つ以上入力されているとtrue
 	*/
 	bool EitherUp() const;
 	/**
-	*@brief	:destructor
+	*@brief	destructor
 	*/
 	virtual ~Input();
 private:
 	/**
-	*@brief	:入力状態をリセット
+	*@brief	入力状態をリセット
 	*/
 	void ResetInputData();
 	//! 入力データ
 	int inputData[256];
-	//! ゲームパッド初期化
+	/**
+	*@brief	ゲームパッド初期化
+	*@return vetor<GamePad*> 生成したゲームパッド達
+	*/
 	std::vector<Input::GamePad*> initGamePad();
-	//! キーボード初期化
+	/**
+	*@brief	キーボード初期化
+	*return KeyBoard* 生成したキーボード
+	*/
 	KeyBoard* initkeyBoard();
-	//! マウス初期化
+	/**
+	*@brief	マウス初期化
+	*@return Mouse* 生成したマウス
+	*/
 	Mouse* initMouse();
 	//! in分のデータ
 	InputData inputdata[24];

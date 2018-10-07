@@ -13,6 +13,9 @@ class Box2D;
 class Color;
 class NonCopyable;
 
+/**
+*@brief	円データ型
+*/
 class Circle
 {
 public:
@@ -22,6 +25,9 @@ public:
 	Circle(const int, const int, const int);
 	Circle(const Circle&);
 };
+/**
+*@brief	3次元Vector
+*/
 class Vec3 {
 public:
 	float x, y, z;
@@ -29,6 +35,9 @@ public:
 	Vec3(const float, const float, const float);
 	Vec3(const int, const int, const int);
 };
+/**
+*@brief	2次元Vector
+*/
 class Vec2
 {
 public:
@@ -49,12 +58,18 @@ public:
 	void operator-=(const Vec2&);
 	bool operator==(const Vec2&);
 };
+/**
+*@brief	2*2行列
+*/
 class Mat4 {
 public:
 	float mat4[4];
 	Mat4(const float, const float, const float, const float);
 	Mat4(const int, const int, const int, const int);
 };
+/**
+*@brief	4*4行列
+*/
 class Mat4x4 {
 public:
 	float mat4[16];
@@ -67,8 +82,9 @@ public:
 		const int dx, const int dy, const int dz, const int dw,
 		const int rx, const int ry, const int rz, const int rw);
 };
-
-
+/**
+*@brief	3DBoxデータ型
+*/
 class Box3D {
 public:
 	float x, y, z, w, h, d;
@@ -80,6 +96,9 @@ private:
 	int InOdd(const int n, const int a, const int b);
 	int IfOdd(const int n, const int a, const int b);
 };
+/**
+*@brief 2Dデータ型
+*/
 class Box2D {
 public:
 	float x, y, w, h;
@@ -100,6 +119,9 @@ public:
 	void operator-=(const Box2D& b);
 	void operator*=(const Box2D& b);
 };
+/**
+*@brief	色データ
+*/
 class Color
 {
 public:
@@ -116,7 +138,7 @@ public:
 	Color operator*(const Color&);
 };
 /**
-*コピーを禁止するclass
+*@brief	コピーを禁止するclass
 *このclassを継承したclassはコピーコンストラクタと代入演算を禁止されます
 */
 class NonCopyable
@@ -141,6 +163,7 @@ protected:
 };
 /**
 *namespace OG
+*@brief	数学計算
 */
 namespace OG
 {

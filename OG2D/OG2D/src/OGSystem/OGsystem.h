@@ -1,9 +1,4 @@
 #pragma once
-//_____________________________
-//|システムクラス２             
-//|履歴：2018/03/20       
-//|履歴：2018/03/23		   
-//|____________________________
 #include "Camera\Camera.h"
 #include "Window\Window.h"
 #include "FPS\FPS.h"
@@ -22,15 +17,15 @@
 #include "Object\Object.h"
 #include "UITask.h"
 /**
-*@brief	:描画順を管理するclass
+*@brief	描画順を管理するclass
 */
 class OrderCheck
 {
 public:
 	/**
-	*@brief	:constructor
+	*@brief	constructor
 	*/
-	OrderCheck()
+	explicit OrderCheck()
 	{
 		this->id = -1;
 		this->order_s = 0;
@@ -41,7 +36,7 @@ public:
 	unsigned int order_s;
 };
 /**
-*@brief	:sceneを管理するclass
+*@brief	sceneを管理するclass
 */
 class SceneManager
 {
@@ -53,54 +48,54 @@ class SceneManager
 	std::vector<SceneTask*> otherScene;
 public:
 	/**
-	*@brief	:constructor
+	*@brief	constructor
 	*/
 	explicit SceneManager();
 	/**
-	*@brief	:destructor
+	*@brief	destructor
 	*/
 	virtual ~SceneManager();
 	/**
-	*@brief	:タスクを登録する
-	*@param	:SceneTask* 現在に登録したいタスク
+	*@brief	タスクを登録する
+	*@param[in]	SceneTask* 現在に登録したいタスク
 	*/
 	void SetNowTask(SceneTask* task);
 	/**
-	*@brief	:タスクを登録する
-	*@param	:SceneTask* 次に登録したいタスク
+	*@brief	タスクを登録する
+	*@param[in]	SceneTask* 次に登録したいタスク
 	*/
 	void SetNextTask(SceneTask* task);
 	/**
-	*@brief	:タスクを登録する
-	*@param	:SceneTask* 登録したいタスク
+	*@brief	タスクを登録する
+	*@param[in]	SceneTask* 登録したいタスク
 	*/
 	void SetOtherTask(SceneTask* task);
 	/**
-	*@brief	:タスクを移行する
+	*@brief	タスクを移行する
 	*/
 	void SceneMigration();
 	/**
-	*@brief	:他タスクの削除管理
+	*@brief	他タスクの削除管理
 	*/
 	void OrtherSceneKillCheck();
 	/**
-	*@brief	:現在タスクを取得
-	*@return:SceneTask* 現在のタスク
+	*@brief	現在タスクを取得
+	*@return SceneTask* 現在のタスク
 	*/
 	SceneTask* GetNowTask() const;
 	/**
-	*@brief	:次タスクを取得
-	*@return:SceneTask* 次のタスク
+	*@brief	次タスクを取得
+	*@return SceneTask* 次のタスク
 	*/
 	SceneTask* GetNextTask() const;
 	/**
-	*@brief	:他タスクを全取得
-	*@return:vector<SceneTask*> 他タスク達
+	*@brief	他タスクを全取得
+	*@return vector<SceneTask*> 他タスク達
 	*/
 	std::vector<SceneTask*> GetOtherAllTask() const;
 };
 /**
-*@brief	:メインシステム処理
+*@brief	ゲームエンジン
 */
 class EngineSystem : private NonCopyable
 {
@@ -142,6 +137,74 @@ class EngineSystem : private NonCopyable
 	bool nextWindowCreateEnable;
 	//! デバイス管理
 	Audio* audiodevice;
+	/**
+	*@brief	登録予定タスクを登録する
+	*/
+	void ObjectApplication();
+	/**
+	*@brief	Object描画順を設定する
+	*/
+	void ConfigObjectDrawOrder();
+	/**
+	*@brief	登録予定タスクの有無
+	*@return 登録予定タスクが存在すればtrue
+	*/
+	bool CheckAddObject();
+	/**
+	*@brief	削除予定タスクの有無
+	*@return 削除予定タスクが存在すればtrue
+	*/
+	bool CheckKillObject();
+	/**
+	*@brief	削除予定タスクを削除する
+	*/
+	void ObjectKillCheck();
+	/**
+	*@brief	登録予定UIを登録する
+	*/
+	void UIApplication();
+	/**
+	*@brief	UI描画順を設定する
+	*/
+	void ConfigUIDrawOrder();
+	/**
+	*@brief	登録予定UIの有無
+	*@return 登録予定UIが存在すればtrue
+	*/
+	bool CheckAddUI();
+	/**
+	*@brief	削除予定UIの有無
+	*@return 削除予定UIが存在すればtrue
+	*/
+	bool CheckKillUI();
+	/**
+	*@brief	削除予定UIを削除する
+	*/
+	void UIKillCheck();
+	/**
+	*@brief	タスク更新処理
+	*/
+	void Task_Update();
+	/**
+	*@brief	タスク描画処理
+	*/
+	void Task_Render_2D();
+	/**
+	*@brief	登録タスク全削除
+	*/
+	void AllObjectsDelete();
+	/**
+	*@brief	Sceneの状態チェック
+	*/
+	void SceneStateCheck();
+	/**
+	*@brief	GameObjectsの状態チェック
+	*/
+	void GameObjectsStateCheck();
+	/**
+	*@brief	UIsの状態チェック
+	*/
+	void UIsStateCheck();
 public:
 	//! カメラ2D
 	Camera2D* camera;
@@ -156,15 +219,15 @@ public:
 	//! デバッグ機能
 	bool DebugFunction;
 	/**
-	*@brief	:constructor
+	*@brief	constructor
 	*/
 	explicit EngineSystem();
 	/**
-	*@brief	:constructor
-	*@param	:int x WindowSizeX
-	*@param	:int y WindowSizeY
-	*@param	:char* name WindowName
-	*@param	:bool flag ScreenMode
+	*@brief	constructor
+	*@param[in]	int x WindowSizeX
+	*@param[in]	int y WindowSizeY
+	*@param[in]	char* name WindowName
+	*@param[in]	bool flag ScreenMode
 	*/
 	explicit EngineSystem(
 		const int x,
@@ -172,24 +235,24 @@ public:
 		const char* name,
 		const bool flag = false);
 	/**
-	*@brief	:destructor
+	*@brief	destructor
 	*/
 	virtual ~EngineSystem();
 	/**
-	*@brief	:初期化処理
-	*@return:成功でtrue
+	*@brief	初期化処理
+	*@return 成功でtrue
 	*/
 	bool Initialize();
 	/**
-	*@brief	:System更新処理
+	*@brief	System更新処理
 	*/
 	void Update();
 	/**
-	*@brief	:Window情報登録
-	*@param	:int x WindowSizeX
-	*@param	:int y WindowSizeY
-	*@param	:char* name WindowName
-	*@param	:bool flag ScreenMode
+	*@brief	Window情報登録
+	*@param[in]	int x WindowSizeX
+	*@param[in]	int y WindowSizeY
+	*@param[in]	char* name WindowName
+	*@param[in]	bool flag ScreenMode
 	*/
 	void SetWindow(
 		const int x,
@@ -197,11 +260,11 @@ public:
 		const char* name,
 		const bool flag = false);
 	/**
-	*@brief	:Window情報取得
-	*@param	:int* x WindowSizeX
-	*@param	:int* y WindowSizeY
-	*@param	:bool* flag ScreenMode
-	*@param	:Vec2* pos WindowPosition
+	*@brief	Window情報取得
+	*@param[out]	int* x WindowSizeX
+	*@param[out]	int* y WindowSizeY
+	*@param[out]	bool* flag ScreenMode
+	*@param[out]	Vec2* pos WindowPosition
 	*/
 	void GetWindow(
 		int& x,
@@ -209,190 +272,190 @@ public:
 		bool& flag,
 		Vec2& pos);
 	/**
-	*@brief	:Window生成位置登録
-	*@param	:Vec2 pos 位置情報
+	*@brief	Window生成位置登録
+	*@param[in]	Vec2 pos 位置情報
 	*/
 	void SetWindowPos(const Vec2& pos);
 	/**
-	*@brief	:カーソル可視化設定
-	*@param	:bool flag 可視化設定
+	*@brief	カーソル可視化設定
+	*@param[in]	bool flag 可視化設定
 	*/
 	void SetCursorOn(const bool flag);
 	/**
-	*@brief	:アイコン画像設定
-	*@param	:string path ファイルパスファイルパス
+	*@brief	アイコン画像設定
+	*@param[in]	string path ファイルパスファイルパス
 	*/
 	void SetIcon(const std::string& path);
 	/**
-	*@brief	:Window設定処理
+	*@brief	Window設定処理
 	*/
 	void WindowConfig();
 	/**
-	*@brief	:全オブジェクトの停止設定
-	*@param	:bool flag 停止設定
+	*@brief	全オブジェクトの停止設定
+	*@param[in]	bool flag 停止設定
 	*/
 	void AllObjectStop(const bool flag = true);
 	/**
-	*@brief	:全UIの停止設定
-	*@param	:bool flag 停止設定
+	*@brief	全UIの停止設定
+	*@param[in]	bool flag 停止設定
 	*/
 	void AllUIStop(const bool flag = true);
 	/**
-	*@brief	:全シーンの停止設定
-	*@param	:bool flag 停止設定
+	*@brief	全シーンの停止設定
+	*@param[in]	bool flag 停止設定
 	*/
 	void AllSceneStop(const bool flag = true);
 	/**
-	*@brief	:全タスクの停止設定
-	*@param	:bool flag 停止設定
+	*@brief	全タスクの停止設定
+	*@param[in]	bool flag 停止設定
 	*/
 	void AllStop(const bool flag = true);
 	/**
-	*@brief	:全オブジェクトのポーズ設定
-	*@param	:bool flag ポーズ設定
+	*@brief	全オブジェクトのポーズ設定
+	*@param[in]	bool flag ポーズ設定
 	*/
 	void AllObjectPause(const bool flag = true);
 	/**
-	*@brief	:全シーンのポーズ設定
-	*@param	:bool flag ポーズ設定
+	*@brief	全シーンのポーズ設定
+	*@param[in]	bool flag ポーズ設定
 	*/
 	void AllScenePause(const bool flag = true);
 	/**
-	*@brief	:全UIのポーズ設定
-	*@param	:bool flag ポーズ設定
+	*@brief	全UIのポーズ設定
+	*@param[in]	bool flag ポーズ設定
 	*/
 	void AllUIPause(const bool flag = true);
 	/**
-	*@brief	:全タスクのポーズ設定
-	*@param	:bool flag ポーズ設定
+	*@brief	全タスクのポーズ設定
+	*@param[in]	bool flag ポーズ設定
 	*/
 	void AllPause(const bool flag = true);
 	/**
-	*@brief	:全オブジェクトの削除命令
+	*@brief	全オブジェクトの削除命令
 	*/
 	void AllObjectKill();
 	/**
-	*@brief	:全UIの削除命令
+	*@brief	全UIの削除命令
 	*/
 	void AllUIKill();
 	/**
-	*@brief	:全シーンの削除命令
+	*@brief	全シーンの削除命令
 	*/
 	void AllSceneKill();
 	/**
-	*@brief	:全タスク削除命令
+	*@brief	全タスク削除命令
 	*/
 	void AllKill();
 	/**
-	*@brief	:アプリケーション終了
+	*@brief	アプリケーション終了
 	*/
 	void GameEnd();
 	/**
-	*@brief	:終了設定を返す
-	*@return:bool 終了設定
+	*@brief	終了設定を返す
+	*@return bool 終了設定
 	*/
 	bool GetEnd() const;
 	/**
-	*@brief	:次Window生成を行うかを返す
-	*@return:bool trueなら再びWindowを生成する
+	*@brief	次Window生成を行うかを返す
+	*@return bool trueなら再びWindowを生成する
 	*/
 	bool GetNextWindowCreateEnable() const;
 	/**
-	*@brief	:タスク変更時処理
+	*@brief	タスク変更時処理
 	*/
 	void ChengeTask();
 	/**
-	*@brief	:タスク達の更新処理
+	*@brief	タスク達の更新処理
 	*/
 	void TaskGameUpdate();
 	/**
-	*@brief	:タスクを登録する
-	*@param	:SceneTask* task タスク
+	*@brief	タスクを登録する
+	*@param[in]	SceneTask* task タスク
 	*/
 	void SetTask(
 		SceneTask* task);
 	/**
-	*@brief	:GameObjectを登録する
-	*@param	:GameObject* object GameObject
+	*@brief	GameObjectを登録する
+	*@param[in]	GameObject* object GameObject
 	*/
 	void SetGameObject(
 		GameObject* object);
 	/**
-	*@brief	:UIを登録する
-	*@param	:UIObject* ui UI
+	*@brief	UIを登録する
+	*@param[in]	UIObject* ui UI
 	*/
 	void SetUI(UIObject* ui);
 	/**
-	*@brief	:開始タスクを登録する
-	*@param	:SceneTask* task タスク
+	*@brief	開始タスクを登録する
+	*@param[in]	SceneTask* task タスク
 	*/
 	void SetStartTask(
 		SceneTask* task);
 	/**
-	*@brief	:値リセット
+	*@brief	値リセット
 	*/
 	void Reset();
 	/**
-	*@brief	:WindowChenge
-	*@param	:const Vec2& pos WindowPosition
-	*@param	:const Vec2& size WindowSize
-	*@param	:char* name WindowTitleName
-	*@param	:bool screen WindowMode
+	*@brief	WindowChenge
+	*@param[in]	const Vec2& pos WindowPosition
+	*@param[in]	const Vec2& size WindowSize
+	*@param[in]	char* name WindowTitleName
+	*@param[in]	bool screen WindowMode
 	*/
 	void WindowChenge(const Vec2& pos, const Vec2& size, const char* name, const bool screen);
 	/**
-	*@brief	:WindowChenge
-	*@param	:int x WindowPosition_x
-	*@param	:int y WindowPosition_y
-	*@param	:int w WindowSize_w
-	*@param :int h WindowSize_h
-	*@param	:char* name WindowTitleName
-	*@param	:bool screen WindowMode
+	*@brief	WindowChenge
+	*@param[in]	int x WindowPosition_x
+	*@param[in]	int y WindowPosition_y
+	*@param[in]	int w WindowSize_w
+	*@param[in] int h WindowSize_h
+	*@param[in]	char* name WindowTitleName
+	*@param[in]	bool screen WindowMode
 	*/
 	void WindowChenge(const int x, const int y, const int w, const int h, const char* name, const bool screen);
 	/**
-	*@brief	:登録されているオブジェクトすべてを取得する
-	*@return:vector<GameObject*> 登録全オブジェクト
+	*@brief	登録されているオブジェクトすべてを取得する
+	*@return vector<GameObject*> 登録全オブジェクト
 	*/
 	std::vector<GameObject*> GetAllObject() const;
 	/**
-	*@brief	:登録予定オブジェクトすべてを取得する
-	*@return:vector<GameObject*> 登録予定全オブジェクト
+	*@brief	登録予定オブジェクトすべてを取得する
+	*@return vector<GameObject*> 登録予定全オブジェクト
 	*/
 	std::vector<GameObject*> GetAllAddObject() const;
 	/**
-	*@brief	:登録されているUIすべてを取得する
-	*@return:vector<UIObject*> 登録全UI
+	*@brief	登録されているUIすべてを取得する
+	*@return vector<UIObject*> 登録全UI
 	*/
 	std::vector<UIObject*> GetAllUI() const;
 	/**
-	*@brief	:登録予定UIすべてを取得する
-	*@return:vector<UIObject*> 登録予定全UI
+	*@brief	登録予定UIすべてを取得する
+	*@return vector<UIObject*> 登録予定全UI
 	*/
 	std::vector<UIObject*> GetAllAddUI() const;
 	/**
-	*@brief	:他Sceneを全て取得する
-	*@return:vector<SceneTask*> 他Scene達
+	*@brief	他Sceneを全て取得する
+	*@return vector<SceneTask*> 他Scene達
 	*/
 	std::vector<SceneTask*> GetAllOtherScenes() const;
 	/**
-	*@brief	:エンジン終了を返す
-	*@return:bool エンジン終了設定
+	*@brief	エンジン終了を返す
+	*@return bool エンジン終了設定
 	*/
 	bool GetDeleteEngine();
 	/**
-	*@brief	:エンジン終了を登録
-	*@param	:bool falg 終了設定
+	*@brief	エンジン終了を登録
+	*@param[in]	bool falg 終了設定
 	*/
 	void SetDeleteEngine(const bool flag);
 	/**
-	*@brief	:登録されているタスクを表示する
+	*@brief	登録されているタスクを表示する
 	*/
 	void ShowNameAddedObject();
 	/**
-	*@brief	:オブジェクト検索(最初の同名のオブジェクトを返す)
-	*@param	:string objectName オブジェクト名
-	*@return:指定単体タスクclass
+	*@brief	オブジェクト検索(最初の同名のオブジェクトを返す)
+	*@param[in]	string objectName オブジェクト名
+	*@return template<class*> 指定単体タスクclass
 	*/
 	template <class T> T* GetObject(const std::string& objectName) const
 	{
@@ -419,9 +482,9 @@ public:
 		return nullptr;
 	}
 	/**
-	*@brief	:オブジェクト検索(同名すべてを返す)
-	*@param	:string objectName オブジェクト名
-	*@return:指定複数タスクclass
+	*@brief	オブジェクト検索(同名すべてを返す)
+	*@param[in]	string objectName オブジェクト名
+	*@return vector<template<class*>> 指定複数タスクclass
 	*/
 	template <class T> std::vector<T*> GetObjects(const std::string& objectName) const
 	{
@@ -449,9 +512,9 @@ public:
 		return w;
 	}
 	/**
-	*@brief	:UI検索(最初の同名のUIを返す)
-	*@param	:string tag UITag
-	*@return:指定単体タスクclass
+	*@brief	UI検索(最初の同名のUIを返す)
+	*@param[in]	string tag UITag
+	*@return template<class*> 指定単体タスクclass
 	*/
 	template <class T> T* GetUI(const std::string& tag) const
 	{
@@ -478,9 +541,9 @@ public:
 		return nullptr;
 	}
 	/**
-	*@brief	:UI検索(同名すべてを返す)
-	*@param	:string tag UItag
-	*@return:指定複数タスクclass
+	*@brief	UI検索(同名すべてを返す)
+	*@param[in]	string tag UItag
+	*@return vector<template<class*>> 指定複数タスクclass
 	*/
 	template <class T> std::vector<T*> GetUIs(const std::string& tag) const
 	{
@@ -508,8 +571,8 @@ public:
 		return w;
 	}
 	/**
-	*@brief	:NowScene取得
-	*@return:template class* 現在Scene
+	*@brief	NowScene取得
+	*@return template<class*> 現在Scene
 	*/
 	template <class T> T* GetNowScene() const
 	{
@@ -520,8 +583,8 @@ public:
 		return nullptr;
 	}
 	/**
-	*@brief	:NextScene取得
-	*@return:template class* 次Scene
+	*@brief	NextScene取得
+	*@return template<class*> 次Scene
 	*/
 	template <class T> T* GetNextScene() const
 	{
@@ -532,9 +595,9 @@ public:
 		return nullptr;
 	}
 	/**
-	*@brief	:OtherScene検索
-	*@param	:std::string name Scene名
-	*@return:vector<template class*> 該当Scene達
+	*@brief	OtherScene検索
+	*@param[in]	std::string name Scene名
+	*@return vector<template class*> 該当Scene達
 	*/
 	template <class T> std::vector<T*> GetSceneOthers(const std::string& name) const
 	{
@@ -549,75 +612,6 @@ public:
 		}
 		return w;
 	}
-private:
-	/**
-	*@brief	:登録予定タスクを登録する
-	*/
-	void ObjectApplication();
-	/**
-	*@brief	:Object描画順を設定する
-	*/
-	void ConfigObjectDrawOrder();
-	/**
-	*@brief	:登録予定タスクの有無
-	*@return:登録予定タスクが存在すればtrue
-	*/
-	bool CheckAddObject();
-	/**
-	*@brief	:削除予定タスクの有無
-	*@return:削除予定タスクが存在すればtrue
-	*/
-	bool CheckKillObject();
-	/**
-	*@brief	:削除予定タスクを削除する
-	*/
-	void ObjectKillCheck();
-	/**
-	*@brief	:登録予定UIを登録する
-	*/
-	void UIApplication();
-	/**
-	*@brief	:UI描画順を設定する
-	*/
-	void ConfigUIDrawOrder();
-	/**
-	*@brief	:登録予定UIの有無
-	*@return:登録予定UIが存在すればtrue
-	*/
-	bool CheckAddUI();
-	/**
-	*@brief	:削除予定UIの有無
-	*@return:削除予定UIが存在すればtrue
-	*/
-	bool CheckKillUI();
-	/**
-	*@brief	:削除予定UIを削除する
-	*/
-	void UIKillCheck();
-	/**
-	*@brief	:タスク更新処理
-	*/
-	void Task_Update();
-	/**
-	*@brief	:タスク描画処理
-	*/
-	void Task_Render_2D();
-	/**
-	*@brief	:登録タスク全削除
-	*/
-	void AllObjectsDelete();
-	/**
-	*@brief	:Sceneの状態チェック
-	*/
-	void SceneStateCheck();
-	/**
-	*@brief	:GameObjectsの状態チェック
-	*/
-	void GameObjectsStateCheck();
-	/**
-	*@brief	:UIsの状態チェック
-	*/
-	void UIsStateCheck();
 };
 
 extern EngineSystem* ge;

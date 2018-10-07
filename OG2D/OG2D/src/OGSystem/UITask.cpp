@@ -1,5 +1,5 @@
 #include "UITask.h"
-
+#include "OGsystem.h"
 UIObject::UIObject()
 {
 	this->_angle = 0.f;
@@ -16,7 +16,7 @@ UIObject::~UIObject()
 void UIObject::ResetData()
 {
 	this->_order = 0;
-	this->_mode = UT::Mode::NORMAL;
+	this->_mode = UO::Mode::NORMAL;
 }
 void UIObject::Init(const std::string& tag, const Vec2& pos, const Vec2& scale, const float angle)
 {
@@ -42,10 +42,10 @@ void UIObject::UpdateManager()
 {
 	switch (this->_mode)
 	{
-	case UT::Mode::NORMAL:
+	case UO::Mode::NORMAL:
 		this->Update();
 		break;
-	case UT::Mode::PAUSE:
+	case UO::Mode::PAUSE:
 		this->Pause();
 		break;
 	default:
@@ -56,9 +56,9 @@ void UIObject::RenderManager()
 {
 	switch (this->_mode)
 	{
-	case UT::Mode::NORMAL:
-	case UT::Mode::PAUSE:
-	case UT::Mode::STOP:
+	case UO::Mode::NORMAL:
+	case UO::Mode::PAUSE:
+	case UO::Mode::STOP:
 		this->Render2D();
 		break;
 	default:
@@ -73,9 +73,9 @@ void UIObject::SetPosition(const float x, const float y)
 {
 	this->_position = { x,y };
 }
-Vec2 UIObject::GetPosition() const
+Vec2 UIObject::GetPosition()
 {
-	return this->_position;
+	return this->_position + ge->camera->GetPos();
 }
 void UIObject::SetScale(const Vec2& scale)
 {
@@ -107,63 +107,63 @@ std::string UIObject::GetTag() const
 }
 void UIObject::Kill()
 {
-	this->_mode = UT::Mode::KILL;
+	this->_mode = UO::Mode::KILL;
 }
 void UIObject::CancelKill()
 {
-	this->_mode = UT::Mode::NORMAL;
+	this->_mode = UO::Mode::NORMAL;
 }
 void UIObject::SetPause(const bool flag)
 {
 	//íœó‘Ô‚ÍÅ—Dæ‚Ì‚½‚ß‚»‚Ìê‡‚ÍÈ‚­
-	if (this->ModeCheck(UT::Mode::KILL))
+	if (this->ModeCheck(UO::Mode::KILL))
 	{
 		return;
 	}
 	if (flag)
 	{
-		this->_mode = UT::Mode::PAUSE;
+		this->_mode = UO::Mode::PAUSE;
 	}
 	else
 	{
-		this->_mode = UT::Mode::NORMAL;
+		this->_mode = UO::Mode::NORMAL;
 	}
 }
 void UIObject::SetStop(const bool flag)
 {
-	if (this->ModeCheck(UT::Mode::KILL))
+	if (this->ModeCheck(UO::Mode::KILL))
 	{
 		return;
 	}
 	if (flag)
 	{
-		this->_mode = UT::Mode::STOP;
+		this->_mode = UO::Mode::STOP;
 	}
 	else
 	{
-		this->_mode = UT::Mode::NORMAL;
+		this->_mode = UO::Mode::NORMAL;
 	}
 }
 void UIObject::SetAllStop(const bool flag)
 {
-	if (this->ModeCheck(UT::Mode::KILL))
+	if (this->ModeCheck(UO::Mode::KILL))
 	{
 		return;
 	}
 	if (flag)
 	{
-		this->_mode = UT::Mode::ALLSTOP;
+		this->_mode = UO::Mode::ALLSTOP;
 	}
 	else
 	{
-		this->_mode = UT::Mode::NORMAL;
+		this->_mode = UO::Mode::NORMAL;
 	}
 }
-UT::Mode UIObject::GetMode() const
+UO::Mode UIObject::GetMode() const
 {
 	return this->_mode;
 }
-bool UIObject::ModeCheck(const UT::Mode& mode) const
+bool UIObject::ModeCheck(const UO::Mode& mode) const
 {
 	return this->_mode == mode ? true : false;
 }

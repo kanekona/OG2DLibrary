@@ -36,7 +36,7 @@ void SceneManager::OrtherSceneKillCheck()
 {
 	for (auto id = this->otherScene.begin(); id != this->otherScene.end();)
 	{
-		if ((*id) && (*id)->ModeCheck(Scene::Mode::KILL))
+		if ((*id) && (*id)->ModeCheck(ST::Mode::KILL))
 		{
 			OG::Destroy<SceneTask>(*id);
 			id = this->otherScene.erase(id);
@@ -214,7 +214,7 @@ void EngineSystem::SceneStateCheck()
 {
 	if (this->_sceneManager->GetNowTask())
 	{
-		if (this->_sceneManager->GetNowTask()->ModeCheck(Scene::KILL))
+		if (this->_sceneManager->GetNowTask()->ModeCheck(ST::KILL))
 		{
 			//オブジェクトの削除を指定されているならば
 			if (this->_sceneManager->GetNowTask()->GetAllObjectDestroy())
@@ -421,7 +421,7 @@ void EngineSystem::UIKillCheck()
 	//削除予定のタスクを削除する
 	for (auto id = this->nowUIs.begin(); id != this->nowUIs.end();)
 	{
-		if ((*id)->ModeCheck(UT::Mode::KILL))
+		if ((*id)->ModeCheck(UO::Mode::KILL))
 		{
 			delete *id;
 			id = this->nowUIs.erase(id);
@@ -455,7 +455,7 @@ bool EngineSystem::CheckKillUI()
 {
 	for (int i = 0; i < this->nowUIs.size(); ++i)
 	{
-		if (this->nowUIs[i]->ModeCheck(UT::Mode::KILL))
+		if (this->nowUIs[i]->ModeCheck(UO::Mode::KILL))
 		{
 			return true;
 		}

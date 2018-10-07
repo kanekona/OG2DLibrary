@@ -1,9 +1,10 @@
-///サウンドの読み込み、再生を行うclass
-///随時読み込み
-///※バグあり
+
 #pragma once
 #include "Audio.h"
 #include <mutex>
+///サウンドの読み込み、再生を行うclass
+///随時読み込み
+///※バグあり
 class StreamingSound {
 private:
 	enum {

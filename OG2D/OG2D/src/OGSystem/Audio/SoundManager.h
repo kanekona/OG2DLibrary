@@ -1,7 +1,7 @@
-///Sound‚ğŠÇ—‚·‚éManager
+
 #pragma once
 #include "Sound.h"
-
+///Sound‚ğŠÇ—‚·‚éManager
 class SoundManager
 {
 public:

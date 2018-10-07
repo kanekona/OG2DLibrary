@@ -1,30 +1,30 @@
-/**
-*既存GameEngineClassを使用する場合OGSystem
-*使用しない場合_OGSystem
-*/
+
 #pragma once
 #include "OGsystem.h"
-///#include "_OGsystem.h"
-
+/**
+*@brief	System
+*既存GameEngineClassを使用する場合OGSystem
+*使用しない場合_OGSystem(こちら用は未制作)
+*/
 class OGSystem : private NonCopyable
 {
 public:
 	/**
-	*@brief	:constructor
+	*@brief	constructor
 	*/
-	OGSystem();
+	explicit OGSystem();
 	/**
-	*@brief	:システム生成
-	*@return:bool 成功true
+	*@brief	システム生成
+	*@return bool 成功true
 	*/
 	bool Create();
 	/**
-	*@brief	:更新チェック
-	*@return:bool 続行true
+	*@brief	更新チェック
+	*@return bool 続行true
 	*/
 	bool LibConfirmation();
 	/**
-	*@brief	:destructor
+	*@brief	destructor
 	*/
 	virtual ~OGSystem();
 };
