@@ -1,4 +1,5 @@
-#include "OGSystem\OGsystem.h"
+
+#include "OG\OGsystem.h"
 class Sample : public SceneTask
 {
 	Sample();

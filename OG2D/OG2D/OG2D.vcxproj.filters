@@ -13,148 +13,174 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\OGSystem">
-      <UniqueIdentifier>{783c3d9e-2166-4366-9ce8-756926084f85}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\OGLib">
+      <UniqueIdentifier>{0f6516a8-b53e-4010-a1c3-d5a9a1e43ed8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\GameObject">
-      <UniqueIdentifier>{b091b7ee-8bee-4075-9ccf-de1849195d1c}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\OGLib\System">
+      <UniqueIdentifier>{234d2c99-fb39-4bf8-a629-63ae86498afd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\Event">
+      <UniqueIdentifier>{428027fe-796b-4e85-a6b5-1d16f4389547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\Task">
+      <UniqueIdentifier>{1ffb3c43-be8c-4edf-88a2-d846df8992c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\Object">
+      <UniqueIdentifier>{5830f81d-74e4-496a-98ef-b79a3260f01b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\Event\ResourceLoad">
+      <UniqueIdentifier>{d21fcaa9-d12d-42db-8c5d-18cd08dd3889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\Object\UI">
+      <UniqueIdentifier>{7b90116a-4833-4cae-ae3d-10b48d703c72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\Object\GameObject">
+      <UniqueIdentifier>{b8dafea0-bdd7-4a32-a12c-35d8230573f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\Object\Scene">
+      <UniqueIdentifier>{9c3d3208-eaef-4b93-8783-f8e80332f107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\Task\WinConfig">
+      <UniqueIdentifier>{8ab65e84-f2e2-4197-9110-1ba407757ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\OG">
+      <UniqueIdentifier>{fd2d72a2-8baf-486a-96cf-9d3c57ac05d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Sound">
+      <UniqueIdentifier>{e024fd22-a6f3-4182-8034-b71288e3b5c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Sound\Audio">
+      <UniqueIdentifier>{bdbc12d3-f0d1-4732-a923-fdb1afd94d85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Button">
+      <UniqueIdentifier>{ebd0fb50-970d-4816-b2ff-aa5b9b350ddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Camera">
+      <UniqueIdentifier>{92ed8503-60f3-4631-b1af-b008714cb150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Collision">
+      <UniqueIdentifier>{a2d51340-c136-4e91-b6d1-2bec53534588}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Easing">
+      <UniqueIdentifier>{6d9be677-b894-4a02-9a18-b919b2dc3e4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Font">
+      <UniqueIdentifier>{0323928f-abee-442c-a5af-2606e3b3bdb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\FPS">
+      <UniqueIdentifier>{803b2431-6c74-4d42-93e2-421670515082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Icon">
+      <UniqueIdentifier>{d1fccb90-64a6-41f2-a89c-5b07436263a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Input">
+      <UniqueIdentifier>{64739b4c-8531-4f5c-b92e-0aa5b7f63d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\ResourceManager">
+      <UniqueIdentifier>{0b0489c7-5057-4fc8-a01e-92fd0c22f303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Texture">
+      <UniqueIdentifier>{f260da04-cc8e-4cc4-827b-2f2b799806bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Timer">
+      <UniqueIdentifier>{cc9f6cff-3875-4903-8f0b-36f90233fd9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Win">
+      <UniqueIdentifier>{cf018700-09bc-418e-a5bc-0934ce5f0b50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\WIndow">
+      <UniqueIdentifier>{ecc9d2c4-2f76-4887-b889-b26576ebfe21}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Task">
-      <UniqueIdentifier>{1e14d045-4ca2-497b-abbf-c130420a9a9b}</UniqueIdentifier>
+      <UniqueIdentifier>{71fff47c-f389-4f02-bec2-5728468d85a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System">
-      <UniqueIdentifier>{20a4970d-bb9e-4063-828e-2188bb53859c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Camera">
-      <UniqueIdentifier>{f3548f8f-2057-4dc4-a16f-e5c821ac5f63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Collision">
-      <UniqueIdentifier>{6303c474-adf2-4566-ae04-103565381677}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Easing">
-      <UniqueIdentifier>{c5b3d70d-23c4-4592-86c7-7ea9ebc6ec63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Font">
-      <UniqueIdentifier>{6b4e077f-ef52-404f-a83e-7c71d0262bb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\FPS">
-      <UniqueIdentifier>{4fdf0e9f-5ee5-44ff-a5b7-c8d37b997697}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Icon">
-      <UniqueIdentifier>{d637fca4-a918-460d-94ce-3a2b7854d292}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Input">
-      <UniqueIdentifier>{877c06c8-5d08-4766-adb0-0470dc817bf5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Window">
-      <UniqueIdentifier>{ed651ef3-f735-4e27-9c09-80356ce93030}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Timer">
-      <UniqueIdentifier>{84a8ce53-7924-4d47-95c2-7a2888fa8425}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Texture">
-      <UniqueIdentifier>{a0649fe7-fd9a-4d3f-a969-8ac7a5295ad4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Sound">
-      <UniqueIdentifier>{ee052936-a115-4df9-8fca-828ef9f7bb09}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Sound\Audio">
-      <UniqueIdentifier>{ccc2fd46-07ae-4a0c-b5ce-c2129732758c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\ResourceManager">
-      <UniqueIdentifier>{aed79e8a-c5c8-4b1e-b971-1a0834ad4934}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Random">
-      <UniqueIdentifier>{6b65b6cc-5e0a-40b8-a9b4-50b273344574}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\OG">
-      <UniqueIdentifier>{1713cf7c-ffe3-4dde-a83f-60b7b40a7ef9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Win">
-      <UniqueIdentifier>{bc949d3f-a629-4825-98e0-804c4711083c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Thread">
-      <UniqueIdentifier>{89a60442-853f-49b1-96b6-49e0f7607376}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Event">
-      <UniqueIdentifier>{2d8ea88a-5ca6-410d-935a-17bb96fee5df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Event\ResourceLoad">
-      <UniqueIdentifier>{8890182f-815b-4506-a6b3-3ce8addd73ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\System\Button">
-      <UniqueIdentifier>{d5bc8251-9275-4b88-9cf1-38030ecf8fc6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\OGSystem\UI">
-      <UniqueIdentifier>{c45b6a38-8589-421d-a26d-2a29ef91289b}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\OGLib\System\Random">
+      <UniqueIdentifier>{ea06a808-0f38-42f9-8edd-16997b59dc89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Win\WinMain.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Win</Filter>
+    <Image Include="data\image\testicon.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\lib\Event\ResourceLoad\ResourceLoad.cpp">
+      <Filter>ソース ファイル\OGLib\Event\ResourceLoad</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Camera\Camera.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Camera</Filter>
+    <ClCompile Include="src\lib\Event\Event.cpp">
+      <Filter>ソース ファイル\OGLib\Event</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Collision\Collision.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Collision</Filter>
+    <ClCompile Include="src\lib\Object\GameObject.cpp">
+      <Filter>ソース ファイル\OGLib\Object\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Font\TextureFont.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Font</Filter>
+    <ClCompile Include="src\lib\Object\SceneTask.cpp">
+      <Filter>ソース ファイル\OGLib\Object\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\FPS\FPS.cpp">
-      <Filter>ソース ファイル\OGSystem\System\FPS</Filter>
+    <ClCompile Include="src\lib\Object\UITask.cpp">
+      <Filter>ソース ファイル\OGLib\Object\UI</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Input\Input.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Input</Filter>
+    <ClCompile Include="src\lib\Task\WinConfig.cpp">
+      <Filter>ソース ファイル\OGLib\Task\WinConfig</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Window\Window.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Window</Filter>
+    <ClCompile Include="src\lib\OGSystem\Button\Button.cpp">
+      <Filter>ソース ファイル\OGLib\System\Button</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Timer\glTimer.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Timer</Filter>
+    <ClCompile Include="src\lib\OGSystem\Camera\Camera.cpp">
+      <Filter>ソース ファイル\OGLib\System\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Texture\Texture.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Texture</Filter>
+    <ClCompile Include="src\lib\OGSystem\Collision\Collision.cpp">
+      <Filter>ソース ファイル\OGLib\System\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Audio\Audio.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Sound\Audio</Filter>
+    <ClCompile Include="src\lib\OGSystem\Font\TextureFont.cpp">
+      <Filter>ソース ファイル\OGLib\System\Font</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Audio\Sound.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Sound</Filter>
+    <ClCompile Include="src\lib\OGSystem\FPS\FPS.cpp">
+      <Filter>ソース ファイル\OGLib\System\FPS</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Audio\SoundManager.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Sound</Filter>
+    <ClCompile Include="src\lib\OGSystem\Input\Input.cpp">
+      <Filter>ソース ファイル\OGLib\System\Input</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Audio\StreamingSound.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Sound</Filter>
+    <ClCompile Include="src\lib\OGSystem\Window\Window.cpp">
+      <Filter>ソース ファイル\OGLib\System\WIndow</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\ResourceManager\ResourceManager.cpp">
-      <Filter>ソース ファイル\OGSystem\System\ResourceManager</Filter>
+    <ClCompile Include="src\lib\OGSystem\Win\WinMain.cpp">
+      <Filter>ソース ファイル\OGLib\System\Win</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Random\Random.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Random</Filter>
+    <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp">
+      <Filter>ソース ファイル\OGLib\System\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\_OGsystem.cpp">
-      <Filter>ソース ファイル\OGSystem\System\OG</Filter>
+    <ClCompile Include="src\lib\OGSystem\Texture\Texture.cpp">
+      <Filter>ソース ファイル\OGLib\System\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\OGlib.cpp">
-      <Filter>ソース ファイル\OGSystem\System\OG</Filter>
+    <ClCompile Include="src\lib\OGSystem\ResourceManager\ResourceManager.cpp">
+      <Filter>ソース ファイル\OGLib\System\ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\OGsystem.cpp">
-      <Filter>ソース ファイル\OGSystem\System\OG</Filter>
+    <ClCompile Include="src\lib\OGSystem\OG\_OGsystem.cpp">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\System.cpp">
-      <Filter>ソース ファイル\OGSystem\System\OG</Filter>
+    <ClCompile Include="src\lib\OGSystem\OG\OGlib.cpp">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\OGTask.cpp">
-      <Filter>ソース ファイル\OGSystem</Filter>
+    <ClCompile Include="src\lib\OGSystem\OG\OGsystem.cpp">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\TaskObject.cpp">
-      <Filter>ソース ファイル\OGSystem</Filter>
+    <ClCompile Include="src\lib\OGSystem\OG\OGTask.cpp">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object\Object.cpp">
-      <Filter>ソース ファイル\GameObject</Filter>
+    <ClCompile Include="src\lib\OGSystem\OG\System.cpp">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Audio\Sound.cpp">
+      <Filter>ソース ファイル\OGLib\System\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Audio\SoundManager.cpp">
+      <Filter>ソース ファイル\OGLib\System\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Audio\StreamingSound.cpp">
+      <Filter>ソース ファイル\OGLib\System\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Audio\Audio.cpp">
+      <Filter>ソース ファイル\OGLib\System\Sound\Audio</Filter>
     </ClCompile>
     <ClCompile Include="src\Task\Task_Sample.cpp">
       <Filter>ソース ファイル\Task</Filter>
@@ -165,91 +191,91 @@
     <ClCompile Include="src\Task\TestObject.cpp">
       <Filter>ソース ファイル\Task</Filter>
     </ClCompile>
-    <ClCompile Include="src\OGSystem\Thread\DataThread.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Thread</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Event\Event.cpp">
-      <Filter>ソース ファイル\Event</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Event\ResourceLoad\ResourceLoad.cpp">
-      <Filter>ソース ファイル\Event\ResourceLoad</Filter>
-    </ClCompile>
-    <ClCompile Include="src\OGSystem\Button\Button.cpp">
-      <Filter>ソース ファイル\OGSystem\System\Button</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Task\WinConfig.cpp">
-      <Filter>ソース ファイル\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="src\OGSystem\UITask.cpp">
-      <Filter>ソース ファイル\OGSystem\UI</Filter>
+    <ClCompile Include="src\lib\OGSystem\Random\Random.cpp">
+      <Filter>ソース ファイル\OGLib\System\Random</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\OGSystem\Camera\Camera.h">
-      <Filter>ソース ファイル\OGSystem\System\Camera</Filter>
+    <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h">
+      <Filter>ソース ファイル\OGLib\Event\ResourceLoad</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Collision\Collision.h">
-      <Filter>ソース ファイル\OGSystem\System\Collision</Filter>
+    <ClInclude Include="src\lib\Event\Event.h">
+      <Filter>ソース ファイル\OGLib\Event</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Easing\easing.hpp">
-      <Filter>ソース ファイル\OGSystem\System\Easing</Filter>
+    <ClInclude Include="src\lib\Object\GameObject.h">
+      <Filter>ソース ファイル\OGLib\Object\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Font\TextureFont.h">
-      <Filter>ソース ファイル\OGSystem\System\Font</Filter>
+    <ClInclude Include="src\lib\Object\SceneTask.h">
+      <Filter>ソース ファイル\OGLib\Object\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\FPS\FPS.h">
-      <Filter>ソース ファイル\OGSystem\System\FPS</Filter>
+    <ClInclude Include="src\lib\Object\UITask.h">
+      <Filter>ソース ファイル\OGLib\Object\UI</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Input\Input.h">
-      <Filter>ソース ファイル\OGSystem\System\Input</Filter>
+    <ClInclude Include="src\lib\Task\WinConfig.h">
+      <Filter>ソース ファイル\OGLib\Task\WinConfig</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Window\Window.h">
-      <Filter>ソース ファイル\OGSystem\System\Window</Filter>
+    <ClInclude Include="src\lib\OGSystem\Button\Button.h">
+      <Filter>ソース ファイル\OGLib\System\Button</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Timer\glTimer.h">
-      <Filter>ソース ファイル\OGSystem\System\Timer</Filter>
+    <ClInclude Include="src\lib\OGSystem\Camera\Camera.h">
+      <Filter>ソース ファイル\OGLib\System\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Texture\Texture.h">
-      <Filter>ソース ファイル\OGSystem\System\Texture</Filter>
+    <ClInclude Include="src\lib\OGSystem\Collision\Collision.h">
+      <Filter>ソース ファイル\OGLib\System\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Audio\Audio.h">
-      <Filter>ソース ファイル\OGSystem\System\Sound\Audio</Filter>
+    <ClInclude Include="src\lib\OGSystem\Easing\easing.hpp">
+      <Filter>ソース ファイル\OGLib\System\Easing</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Audio\Sound.h">
-      <Filter>ソース ファイル\OGSystem\System\Sound</Filter>
+    <ClInclude Include="src\lib\OGSystem\Font\TextureFont.h">
+      <Filter>ソース ファイル\OGLib\System\Font</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Audio\SoundManager.h">
-      <Filter>ソース ファイル\OGSystem\System\Sound</Filter>
+    <ClInclude Include="src\lib\OGSystem\FPS\FPS.h">
+      <Filter>ソース ファイル\OGLib\System\FPS</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Audio\StreamingSound.h">
-      <Filter>ソース ファイル\OGSystem\System\Sound</Filter>
+    <ClInclude Include="src\lib\OGSystem\Input\Input.h">
+      <Filter>ソース ファイル\OGLib\System\Input</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\ResourceManager\ResourceManager.h">
-      <Filter>ソース ファイル\OGSystem\System\ResourceManager</Filter>
+    <ClInclude Include="src\lib\OGSystem\Window\Window.h">
+      <Filter>ソース ファイル\OGLib\System\WIndow</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\Random\Random.h">
-      <Filter>ソース ファイル\OGSystem\System\Random</Filter>
+    <ClInclude Include="src\lib\OGSystem\Timer\glTimer.h">
+      <Filter>ソース ファイル\OGLib\System\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\_OGsystem.h">
-      <Filter>ソース ファイル\OGSystem\System\OG</Filter>
+    <ClInclude Include="src\lib\OGSystem\Texture\Texture.h">
+      <Filter>ソース ファイル\OGLib\System\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\OGlib.h">
-      <Filter>ソース ファイル\OGSystem\System\OG</Filter>
+    <ClInclude Include="src\lib\OGSystem\ResourceManager\ResourceManager.h">
+      <Filter>ソース ファイル\OGLib\System\ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\OGsystem.h">
-      <Filter>ソース ファイル\OGSystem\System\OG</Filter>
+    <ClInclude Include="src\lib\OGSystem\OG\_OGsystem.h">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\System.h">
-      <Filter>ソース ファイル\OGSystem\System\OG</Filter>
+    <ClInclude Include="src\lib\OGSystem\OG\OGlib.h">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\OGTask.h">
-      <Filter>ソース ファイル\OGSystem</Filter>
+    <ClInclude Include="src\lib\OGSystem\OG\OGsystem.h">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\TaskObject.h">
-      <Filter>ソース ファイル\OGSystem</Filter>
+    <ClInclude Include="src\lib\OGSystem\OG\OGTask.h">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
     </ClInclude>
-    <ClInclude Include="src\Object\Object.h">
-      <Filter>ソース ファイル\GameObject</Filter>
+    <ClInclude Include="src\lib\OGSystem\OG\System.h">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Audio\Sound.h">
+      <Filter>ソース ファイル\OGLib\System\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Audio\SoundManager.h">
+      <Filter>ソース ファイル\OGLib\System\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Audio\StreamingSound.h">
+      <Filter>ソース ファイル\OGLib\System\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Audio\Audio.h">
+      <Filter>ソース ファイル\OGLib\System\Sound\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\randmais.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="src\Task\Task_Sample.h">
       <Filter>ソース ファイル\Task</Filter>
@@ -260,36 +286,13 @@
     <ClInclude Include="src\Task\TestObject.h">
       <Filter>ソース ファイル\Task</Filter>
     </ClInclude>
-    <ClInclude Include="src\OGSystem\randmais.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="src\OGSystem\Thread\DataThread.h">
-      <Filter>ソース ファイル\OGSystem\System\Thread</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Event\Event.h">
-      <Filter>ソース ファイル\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Event\ResourceLoad\ResourceLoad.h">
-      <Filter>ソース ファイル\Event\ResourceLoad</Filter>
-    </ClInclude>
-    <ClInclude Include="src\OGSystem\Button\Button.h">
-      <Filter>ソース ファイル\OGSystem\System\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Task\WinConfig.h">
-      <Filter>ソース ファイル\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="src\OGSystem\UITask.h">
-      <Filter>ソース ファイル\OGSystem\UI</Filter>
+    <ClInclude Include="src\lib\OGSystem\Random\Random.h">
+      <Filter>ソース ファイル\OGLib\System\Random</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="src\OGSystem\Icon\Resource.rc">
-      <Filter>ソース ファイル\OGSystem\System\Icon</Filter>
+    <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc">
+      <Filter>ソース ファイル\OGLib\System\Icon</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="data\image\testicon.ico">
-      <Filter>リソース ファイル</Filter>
-    </Image>
   </ItemGroup>
 </Project>

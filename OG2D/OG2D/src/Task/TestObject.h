@@ -1,5 +1,6 @@
-#include "OGSystem\OGsystem.h"
-#include "Object\Object.h"
+
+#include "OG\OGsystem.h"
+#include "Object\GameObject.h"
 
 class TestObject : public GameObject
 {
