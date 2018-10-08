@@ -1,4 +1,0 @@
-var searchData=
-[
-  ['hit',['Hit',['../class_game_object.html#aa651ad986fba905ea04beaf5614c7aaf',1,'GameObject::Hit(GameObject *object)'],['../class_game_object.html#a749c26257ac2dafcaf3f397b1db1d113',1,'GameObject::Hit(CollisionBase *object)'],['../class_collision_base.html#a73cbb41ebe3592992ca18c8d40593c22',1,'CollisionBase::Hit()'],['../class_collision_box.html#af191f69436d6d3a3f777370df3f88757',1,'CollisionBox::Hit()'],['../class_collision_circle.html#aa94faef2959d43f6f0ed4e0e3e49b89c',1,'CollisionCircle::Hit()'],['../class_collision_pointer.html#ac0aadcd54d83075f4b3635c5cc279909',1,'CollisionPointer::Hit()'],['../class_collision_line.html#abf42299e8c64dbc712f4aa0d69c4a6be',1,'CollisionLine::Hit()'],['../class_collision_capsule.html#a01064db6046351ced0a9ee836170f10d',1,'CollisionCapsule::Hit()']]]
-];
