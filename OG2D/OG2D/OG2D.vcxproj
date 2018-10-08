@@ -144,6 +144,7 @@
     <ClCompile Include="src\lib\OGSystem\Button\Button.cpp" />
     <ClCompile Include="src\lib\OGSystem\Camera\Camera.cpp" />
     <ClCompile Include="src\lib\OGSystem\Collision\Collision.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Font\Font.cpp" />
     <ClCompile Include="src\lib\OGSystem\Font\TextureFont.cpp" />
     <ClCompile Include="src\lib\OGSystem\FPS\FPS.cpp" />
     <ClCompile Include="src\lib\OGSystem\Input\Input.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="src\lib\OGSystem\Camera\Camera.h" />
     <ClInclude Include="src\lib\OGSystem\Collision\Collision.h" />
     <ClInclude Include="src\lib\OGSystem\Easing\easing.hpp" />
+    <ClInclude Include="src\lib\OGSystem\Font\Font.h" />
     <ClInclude Include="src\lib\OGSystem\Font\TextureFont.h" />
     <ClInclude Include="src\lib\OGSystem\FPS\FPS.h" />
     <ClInclude Include="src\lib\OGSystem\Input\Input.h" />

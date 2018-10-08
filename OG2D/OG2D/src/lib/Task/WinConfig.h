@@ -1,5 +1,6 @@
 #pragma once
 #include "OG\OGsystem.h"
+#include "Font\Font.h"
 /**
 *@brief	WindowをフルスクリーンかWindowで開くか設定を行うScene
 */

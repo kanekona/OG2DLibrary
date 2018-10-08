@@ -194,6 +194,9 @@
     <ClCompile Include="src\Win\WinMain.cpp">
       <Filter>ソース ファイル\Win</Filter>
     </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Font\Font.cpp">
+      <Filter>ソース ファイル\OGLib\System\Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h">
@@ -288,6 +291,9 @@
     </ClInclude>
     <ClInclude Include="src\lib\OGSystem\Random\Random.h">
       <Filter>ソース ファイル\OGLib\System\Random</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Font\Font.h">
+      <Filter>ソース ファイル\OGLib\System\Font</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

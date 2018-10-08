@@ -27,6 +27,12 @@ class Texture {
 	*@return 解放成功true
 	*/
 	bool Finalize();
+	/**
+	*@brief	初期化
+	*@param[in]	const string& path 読み込むファイル名
+	*@return bool 読み込み失敗した場合falseを返す
+	*/
+	bool Init(const std::string& path);
 public:
 	/**
 	*@brief	constructor
@@ -88,4 +94,11 @@ public:
 	*0指定で対象を無にする
 	*/
 	void Bind(const GLuint& id);
+	/**
+	*@brief	テクスチャデータを登録する
+	*@param[in]	char* data TextureData
+	*@param[in] unsigned int w TextureSize_w
+	*@param[in] unsigned int h TextureSize_h
+	*/
+	void SetBuffer(const char* data, const unsigned int w, const unsigned int h);
 };

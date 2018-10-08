@@ -4,12 +4,12 @@
 ConfigTask::ConfigTask()
 {
 	this->Init("Config");
-	auto button1 = Button::Create(Vec2(ge->window->GetSize().x / 4, ge->window->GetSize().y / 2), Vec2(ge->window->GetSize().x / 2, ge->window->GetSize().y), "Yes");
+	/*auto button1 = Button::Create(Vec2(ge->window->GetSize().x / 4, ge->window->GetSize().y / 2), Vec2(ge->window->GetSize().x / 2, ge->window->GetSize().y), "Yes");
 	button1->SetText("‚Í‚¢");
 	ge->SetGameObject(button1);
 	auto button2 = Button::Create(Vec2(ge->window->GetSize().x / 2 + ge->window->GetSize().x / 4, ge->window->GetSize().y / 2), Vec2(ge->window->GetSize().x / 2, ge->window->GetSize().y), "No");
 	button2->SetText("‚¢‚¢‚¦");
-	ge->SetGameObject(button2);
+	ge->SetGameObject(button2);*/
 	this->nextWindowMode = false;
 }
 ConfigTask::~ConfigTask()
@@ -22,7 +22,7 @@ ConfigTask::~ConfigTask()
 }
 void ConfigTask::Update()
 {
-	auto yesButton = ge->GetObject<Button>("Yes");
+	/*auto yesButton = ge->GetObject<Button>("Yes");
 	if (yesButton->IsMouseHit() && ge->in->mouse->down(Mouse::LEFT))
 	{
 		this->Destroy(true);
@@ -31,7 +31,9 @@ void ConfigTask::Update()
 	if (noButton->IsMouseHit() && ge->in->mouse->down(Mouse::LEFT))
 	{
 		this->Destroy(false);
-	}
+	}*/
+	TestFont font;
+	font.Draw("a", 100, Vec2(1, 1));
 }
 void ConfigTask::Destroy(const bool flag)
 {

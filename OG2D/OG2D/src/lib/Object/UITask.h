@@ -194,6 +194,7 @@ public:
 	void SetDrawOrder(const unsigned int order);
 	/**
 	*@brief	•`‰æ‡‚ğæ“¾
+	*@return unsigned int •`‰æ‡
 	*/
 	unsigned int GetDrawOrder() const;
 };

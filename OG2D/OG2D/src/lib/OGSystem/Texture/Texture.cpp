@@ -6,6 +6,36 @@
 //--------------------------------------------------
 bool Texture::Create(const std::string& path)
 {
+	return this->Init(path);
+}
+Texture::Texture()
+	:FileName("./data/image/")
+{
+	OG::Destroy<GLuint>(this->_TexId);
+	if (!this->_TexId)
+	{
+		this->_TexId = new GLuint;
+		//テクスチャを1つだけ生成する
+		this->CreateID(1);
+	}
+	//テクスチャをバインドする
+	this->Bind(*this->_TexId);
+	//nullデータを登録
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, 0, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+}
+Texture::Texture(const std::string& path)
+	:FileName("./data/image/")
+{
+	OG::Destroy<GLuint>(this->_TexId);
+	this->Init(path);
+}
+bool Texture::Init(const std::string& path)
+{
 	if (!this->_TexId)
 	{
 		this->_TexId = new GLuint;
@@ -40,62 +70,23 @@ bool Texture::Create(const std::string& path)
 	//表示用設定
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
-	this->_materix[0] = { 0,0 };
-	this->_materix[1] = { width,0 };
-	this->_materix[2] = { width,height };
-	this->_materix[3] = { 0,height };
 	this->angle = 0.f;
 	return true;
 }
-Texture::Texture()
-	:FileName("./data/image/")
+void Texture::SetBuffer(const char* data, const unsigned int w, const unsigned int h)
 {
-	this->_TexId = nullptr;
-}
-Texture::Texture(const std::string& path)
-	:FileName("./data/image/")
-{
-	this->_TexId = new GLuint;
-	this->CreateID(1);
 	//テクスチャをバインドする
 	this->Bind(*this->_TexId);
-	//画像を読み込む
-	int width;
-	int height;
-	int comp;
-	std::string filepath = FileName + path;
-	unsigned char *data = stbi_load(filepath.c_str(), &width, &height, &comp, 0);
-	//画像データを読み込む
-	if (data == NULL)
-	{
-		std::cout << "Texture Create Error!" << path << "\n";
-		OG::OutDebugData("TextureErrorPath.og", path + "\n");
-		this->Finalize();
-		OG::Destroy<GLuint>(this->_TexId);
-		return;
-	}
-	//データ形式を選ぶ
-	GLint type = (comp == 3) ? GL_RGB : GL_RGBA;
-	//画像データをOpenGLへ送る
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glTexImage2D(GL_TEXTURE_2D, 0, type, width, height, 0, type, GL_UNSIGNED_BYTE, data);
-	this->TextureSize = Vec2(width, height);
-	//元データの破棄
-	stbi_image_free(data);
-	//表示用設定
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-	this->_materix[0] = { 0,0 };
-	this->_materix[1] = { width,0 };
-	this->_materix[2] = { width,height };
-	this->_materix[3] = { 0,height };
-	this->angle = 0.f;
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);	
+	this->TextureSize = Vec2((int)w, (int)h);
 }
 void Texture::Draw(const Box2D& draw, const Box2D& src,const Color& color_) {
 	//座標
