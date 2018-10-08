@@ -9,3 +9,6 @@ OG2DLibrary
 	:GLM
 	:OpenAL
 	:stb_image
+
+Reference
+	:https://kanekona.github.io/
