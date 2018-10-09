@@ -1,6 +1,5 @@
 #include "WinConfig.h"
 #include "OGSystem\Button\Button.h"
-#include "Task\Task_Sample.h"
 ConfigTask::ConfigTask()
 {
 	this->Init("Config");
@@ -17,7 +16,7 @@ ConfigTask::~ConfigTask()
 	if (this->GetNextTask() && !ge->GetDeleteEngine())
 	{
 		ge->WindowChenge(0, 30, 1920, 1080, "WindowName", this->nextWindowMode);
-		ge->SetTask(Sample::Create());
+		//ge->SetTask(Sample::Create());
 	}
 }
 void ConfigTask::Update()

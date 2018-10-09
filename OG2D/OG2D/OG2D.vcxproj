@@ -159,9 +159,7 @@
     <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp" />
     <ClCompile Include="src\lib\OGSystem\Window\Window.cpp" />
     <ClCompile Include="src\lib\Task\WinConfig.cpp" />
-    <ClCompile Include="src\Task\Task_Sample.cpp" />
-    <ClCompile Include="src\Task\Task_Sample2.cpp" />
-    <ClCompile Include="src\Task\TestObject.cpp" />
+    <ClCompile Include="src\Task\Title.cpp" />
     <ClCompile Include="src\Win\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -194,9 +192,7 @@
     <ClInclude Include="src\lib\OGSystem\Timer\glTimer.h" />
     <ClInclude Include="src\lib\OGSystem\Window\Window.h" />
     <ClInclude Include="src\lib\Task\WinConfig.h" />
-    <ClInclude Include="src\Task\Task_Sample.h" />
-    <ClInclude Include="src\Task\Task_Sample2.h" />
-    <ClInclude Include="src\Task\TestObject.h" />
+    <ClInclude Include="src\Task\Title.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc" />

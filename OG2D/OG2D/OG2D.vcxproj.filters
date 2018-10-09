@@ -179,15 +179,6 @@
     <ClCompile Include="src\lib\OGSystem\Audio\Audio.cpp">
       <Filter>ソース ファイル\OGLib\System\Sound\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="src\Task\Task_Sample.cpp">
-      <Filter>ソース ファイル\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Task\Task_Sample2.cpp">
-      <Filter>ソース ファイル\Task</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Task\TestObject.cpp">
-      <Filter>ソース ファイル\Task</Filter>
-    </ClCompile>
     <ClCompile Include="src\lib\OGSystem\Random\Random.cpp">
       <Filter>ソース ファイル\OGLib\System\Random</Filter>
     </ClCompile>
@@ -196,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="src\lib\OGSystem\Font\Font.cpp">
       <Filter>ソース ファイル\OGLib\System\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Task\Title.cpp">
+      <Filter>ソース ファイル\Task</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,20 +274,14 @@
     <ClInclude Include="src\lib\OGSystem\randmais.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\Task\Task_Sample.h">
-      <Filter>ソース ファイル\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Task\Task_Sample2.h">
-      <Filter>ソース ファイル\Task</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Task\TestObject.h">
-      <Filter>ソース ファイル\Task</Filter>
-    </ClInclude>
     <ClInclude Include="src\lib\OGSystem\Random\Random.h">
       <Filter>ソース ファイル\OGLib\System\Random</Filter>
     </ClInclude>
     <ClInclude Include="src\lib\OGSystem\Font\Font.h">
       <Filter>ソース ファイル\OGLib\System\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Task\Title.h">
+      <Filter>ソース ファイル\Task</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
