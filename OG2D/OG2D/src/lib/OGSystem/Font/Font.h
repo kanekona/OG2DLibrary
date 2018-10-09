@@ -10,6 +10,8 @@ class TestFont
 	struct TextureData
 	{
 		Texture* texture;
+		Vec2 size;
+		Vec2 bearing;
 		wchar_t character;
 	};
 public:

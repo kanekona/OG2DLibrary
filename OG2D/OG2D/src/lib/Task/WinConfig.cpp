@@ -33,7 +33,7 @@ void ConfigTask::Update()
 		this->Destroy(false);
 	}*/
 	TestFont font;
-	font.Draw("a", 100, Vec2(1, 1));
+	font.Draw("ABC", 100, Vec2(0, 0));
 }
 void ConfigTask::Destroy(const bool flag)
 {

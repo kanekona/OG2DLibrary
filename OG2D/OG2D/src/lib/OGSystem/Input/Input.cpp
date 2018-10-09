@@ -448,7 +448,7 @@ bool Input::Mouse::EitherUp() const
 }
 void Input::Mouse::Update()
 {
-	for (int i = 0; i < 256; ++i)
+	for (int i = 0; i < 8; ++i)
 	{
 		//ƒ}ƒEƒX‚Ì“ü—Íó‹µ‚ðŽæ“¾
 		int state = glfwGetMouseButton(this->nowWindow, this->MouseData[i]);

@@ -26,33 +26,35 @@ void TestFont::Draw(const std::string& text, unsigned int fontSize, const Vec2& 
 		if (this->Check(t))
 		{
 			FT_Set_Pixel_Sizes(this->face, fontSize, fontSize);
-			FT_Load_Glyph(this->face, FT_Get_Char_Index(this->face, t), FT_LOAD_RENDER);
+			FT_UInt index = FT_Get_Char_Index(this->face, t);
+			FT_Error error = FT_Load_Char(this->face, t, FT_LOAD_RENDER);
+			error = FT_Render_Glyph(this->face->glyph, FT_Render_Mode::FT_RENDER_MODE_NORMAL);
 
 			FT_Bitmap bitmap = this->face->glyph->bitmap;
 			TextureData data;
-			char* textbuffer = new char[bitmap.width * bitmap.rows];
-			unsigned int count = 0;
-			for (int y = bitmap.rows - 1; y >= 0; --y)
-			{
-				for (unsigned int x = 0; x < bitmap.width; ++x)
-				{
-					textbuffer[count] = bitmap.buffer[y * bitmap.width + x];
-					++count;
-				}
-			}
 			data.character = t;
 			data.texture = new Texture();
-			data.texture->SetBuffer(textbuffer, bitmap.width, bitmap.rows - 1);
+			data.size = { (int)face->glyph->bitmap.width,(int)face->glyph->bitmap.rows };
+			data.bearing = { face->glyph->bitmap_left,face->glyph->bitmap_top };
+			data.texture->SetBuffer(bitmap.buffer, bitmap.width, bitmap.rows);
 			this->datas.emplace_back(data);
-			delete[] textbuffer;
+			//delete[] textbuffer;
 		}
 	}
-	for (auto& t : this->datas)
+	for (int i = 0; i < text.size(); ++i)
 	{
-		Box2D draw(pos, Vec2((int)fontSize, (int)fontSize));
-		draw.OffsetSize();
-		Box2D src(Vec2(), t.texture->GetTextureSize());
-		t.texture->Draw(draw, src);
+		for (auto& id : datas)
+		{
+			if (id.character == text[i])
+			{
+				float pos_x = pos.x + (fontSize*i);
+				Box2D draw(Vec2(pos_x, pos.y), Vec2((int)fontSize, (int)fontSize));
+				draw.OffsetSize();
+				Box2D src(Vec2(), id.texture->GetTextureSize());
+				id.texture->Draw(draw, src, Color(0.f, 0.f, 1.f, 1.0f));
+				break;
+			}
+		}
 	}
 }
 

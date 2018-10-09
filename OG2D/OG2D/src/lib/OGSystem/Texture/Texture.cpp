@@ -76,12 +76,12 @@ bool Texture::Init(const std::string& path)
 	this->angle = 0.f;
 	return true;
 }
-void Texture::SetBuffer(const char* data, const unsigned int w, const unsigned int h)
+void Texture::SetBuffer(void* data, const unsigned int w, const unsigned int h)
 {
 	//テクスチャをバインドする
 	this->Bind(*this->_TexId);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, w, h, 0, GL_RED, GL_UNSIGNED_BYTE, data);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);

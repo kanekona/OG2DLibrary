@@ -100,5 +100,5 @@ public:
 	*@param[in] unsigned int w TextureSize_w
 	*@param[in] unsigned int h TextureSize_h
 	*/
-	void SetBuffer(const char* data, const unsigned int w, const unsigned int h);
+	void SetBuffer(void* data, const unsigned int w, const unsigned int h);
 };
