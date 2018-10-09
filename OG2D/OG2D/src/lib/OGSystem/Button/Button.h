@@ -21,7 +21,7 @@ class Button : public GameObject
 	//! Textï∂éö
 	std::string _text;
 	//! Font
-	Font font;
+	TestFont font;
 	/**
 	*@brief	constructor
 	*@param[in]	Vec2 pos ê∂ê¨à íu
