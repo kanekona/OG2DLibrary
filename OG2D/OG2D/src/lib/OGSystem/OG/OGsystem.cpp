@@ -342,13 +342,17 @@ void EngineSystem::ChengeTask()
 	this->camera->SetPos(Vec2(0.f, 0.f));
 	this->camera->SetSize(this->window->GetSize());
 }
-void EngineSystem::SetTask(SceneTask* to)
+void EngineSystem::SetScene(SceneTask* to)
 {
 	this->_sceneManager->SetNextTask(to);
 }
 void EngineSystem::SetStartTask(SceneTask* to)
 {
 	this->_sceneManager->SetNowTask(to);
+}
+void EngineSystem::SetOtherScene(SceneTask* task)
+{
+	this->_sceneManager->SetOtherTask(task);
 }
 void EngineSystem::SetGameObject(GameObject* object)
 {

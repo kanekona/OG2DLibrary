@@ -159,7 +159,10 @@
     <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp" />
     <ClCompile Include="src\lib\OGSystem\Window\Window.cpp" />
     <ClCompile Include="src\lib\Task\WinConfig.cpp" />
-    <ClCompile Include="src\Task\Title.cpp" />
+    <ClCompile Include="src\Map\Map.cpp" />
+    <ClCompile Include="src\Task\Scene\Game.cpp" />
+    <ClCompile Include="src\Task\Scene\Load.cpp" />
+    <ClCompile Include="src\Task\Scene\Title.cpp" />
     <ClCompile Include="src\Win\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -192,7 +195,10 @@
     <ClInclude Include="src\lib\OGSystem\Timer\glTimer.h" />
     <ClInclude Include="src\lib\OGSystem\Window\Window.h" />
     <ClInclude Include="src\lib\Task\WinConfig.h" />
-    <ClInclude Include="src\Task\Title.h" />
+    <ClInclude Include="src\Map\Map.h" />
+    <ClInclude Include="src\Task\Scene\Game.h" />
+    <ClInclude Include="src\Task\Scene\Load.h" />
+    <ClInclude Include="src\Task\Scene\Title.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc" />

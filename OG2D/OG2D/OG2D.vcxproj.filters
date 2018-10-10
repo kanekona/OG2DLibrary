@@ -97,6 +97,18 @@
     <Filter Include="ソース ファイル\Win">
       <UniqueIdentifier>{cf018700-09bc-418e-a5bc-0934ce5f0b50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Task\Title">
+      <UniqueIdentifier>{dcfdb279-a11d-41d8-87ef-d77e8c3f9599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Task\Game">
+      <UniqueIdentifier>{f2871ebb-45bf-47df-837a-699359399d47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Map">
+      <UniqueIdentifier>{faaffc4d-71ae-4d16-980b-07d68463260c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Task\Load">
+      <UniqueIdentifier>{34ddb10c-2faa-4416-a6d8-6395754d2eb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -188,8 +200,17 @@
     <ClCompile Include="src\lib\OGSystem\Font\Font.cpp">
       <Filter>ソース ファイル\OGLib\System\Font</Filter>
     </ClCompile>
-    <ClCompile Include="src\Task\Title.cpp">
-      <Filter>ソース ファイル\Task</Filter>
+    <ClCompile Include="src\Task\Scene\Title.cpp">
+      <Filter>ソース ファイル\Task\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Task\Scene\Game.cpp">
+      <Filter>ソース ファイル\Task\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Map\Map.cpp">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Task\Scene\Load.cpp">
+      <Filter>ソース ファイル\Task\Load</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -280,8 +301,17 @@
     <ClInclude Include="src\lib\OGSystem\Font\Font.h">
       <Filter>ソース ファイル\OGLib\System\Font</Filter>
     </ClInclude>
-    <ClInclude Include="src\Task\Title.h">
-      <Filter>ソース ファイル\Task</Filter>
+    <ClInclude Include="src\Task\Scene\Title.h">
+      <Filter>ソース ファイル\Task\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Task\Scene\Game.h">
+      <Filter>ソース ファイル\Task\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Map\Map.h">
+      <Filter>ソース ファイル\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Task\Scene\Load.h">
+      <Filter>ソース ファイル\Task\Load</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

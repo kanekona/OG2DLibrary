@@ -372,7 +372,7 @@ public:
 	*@brief	タスクを登録する
 	*@param[in]	SceneTask* task タスク
 	*/
-	void SetTask(
+	void SetScene(
 		SceneTask* task);
 	/**
 	*@brief	GameObjectを登録する
@@ -385,6 +385,11 @@ public:
 	*@param[in]	UIObject* ui UI
 	*/
 	void SetUI(UIObject* ui);
+	/**
+	*@brief	他Sceneを登録する
+	*@param[in]	SceneTask* task Task
+	*/
+	void SetOtherScene(SceneTask* task);
 	/**
 	*@brief	開始タスクを登録する
 	*@param[in]	SceneTask* task タスク
