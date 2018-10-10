@@ -109,6 +109,12 @@
     <Filter Include="ソース ファイル\Task\Load">
       <UniqueIdentifier>{34ddb10c-2faa-4416-a6d8-6395754d2eb4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Task\BackUI">
+      <UniqueIdentifier>{0dde4834-7016-405e-b309-fc1bf11c8338}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Shader">
+      <UniqueIdentifier>{21ca396e-f8d2-44a2-abe8-d7d429b53623}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -212,6 +218,12 @@
     <ClCompile Include="src\Task\Scene\Load.cpp">
       <Filter>ソース ファイル\Task\Load</Filter>
     </ClCompile>
+    <ClCompile Include="src\Back\Back.cpp">
+      <Filter>ソース ファイル\Task\BackUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Shader\shader.cpp">
+      <Filter>ソース ファイル\OGLib\System\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h">
@@ -312,6 +324,12 @@
     </ClInclude>
     <ClInclude Include="src\Task\Scene\Load.h">
       <Filter>ソース ファイル\Task\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Back\Back.h">
+      <Filter>ソース ファイル\Task\BackUI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Shader\shader.h">
+      <Filter>ソース ファイル\OGLib\System\Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

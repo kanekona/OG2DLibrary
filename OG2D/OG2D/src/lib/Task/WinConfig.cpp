@@ -1,5 +1,6 @@
 #include "WinConfig.h"
 #include "OGSystem\Button\Button.h"
+#include "Task\Scene\Title.h"
 ConfigTask::ConfigTask()
 {
 	this->Init("Config");
@@ -16,7 +17,7 @@ ConfigTask::~ConfigTask()
 	if (this->GetNextTask() && !ge->GetDeleteEngine())
 	{
 		ge->WindowChenge(0, 30, 1920, 1080, "WindowName", this->nextWindowMode);
-		//ge->SetTask(Sample::Create());
+		ge->SetScene(Title::Create());
 	}
 }
 void ConfigTask::Update()

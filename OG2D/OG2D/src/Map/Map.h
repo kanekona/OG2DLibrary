@@ -8,7 +8,7 @@ class Map : public SceneTask
 		//!	マップ番号
 		int arr;
 		//!	判定用ID
-		int* id;
+		int* _id;
 	public:
 		/**
 		*@brief	constructor

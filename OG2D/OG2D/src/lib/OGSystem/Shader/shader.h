@@ -1,7 +1,7 @@
 ///未実装
 #pragma once
 //必要ファイルのインクルード
-#include "OGSystem\_OGsystem.h"
+#include "OG\_OGsystem.h"
 
 //シェーダーのセットアップ
 

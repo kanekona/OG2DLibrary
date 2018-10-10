@@ -16,22 +16,22 @@ Map* Map::Create()
 Map::Base::Base()
 {
 	this->arr = 0;
-	this->id = nullptr;
+	this->_id = nullptr;
 }
 Map::Base::~Base()
 {
-	if (this->id)
+	if (this->_id)
 	{
-		delete this->id;
-		this->id = nullptr;
+		delete this->_id;
+		this->_id = nullptr;
 	}
 }
 
 bool Map::Base::IDCheck(const int id)
 {
-	if (this->id)
+	if (this->_id)
 	{
-		return *this->id <= id ? true : false;
+		return *this->_id <= id ? true : false;
 	}
 	return false;
 }
@@ -46,13 +46,13 @@ void Map::Base::Setarr(const int _arr)
 }
 void Map::Base::SetID(const int id)
 {
-	if (!this->id)
+	if (!this->_id)
 	{
-		this->id = new int(id);
+		this->_id = new int(id);
 	}
 	else
 	{
-		*this->id = id;
+		*this->_id = id;
 	}
 }
 int Map::Base::Getarr() const
@@ -61,5 +61,5 @@ int Map::Base::Getarr() const
 }
 int* Map::Base::GetID() const
 {
-	return this->id;
+	return this->_id;
 }

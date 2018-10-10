@@ -57,8 +57,7 @@ bool ResourceManager::CreateTexture(const std::string& name, const std::string& 
 			return false;
 		}
 	}
-	Texture* tex = new Texture();
-	tex->Create(path);
+	Texture* tex = new Texture(path);
 	std::pair<std::string, Texture*> d;
 	d.first = name;
 	d.second = tex;

@@ -9,8 +9,6 @@ class Texture {
 	GLuint* _TexId;
 	//! 画像サイズ
 	Vec2 TextureSize;
-	//! 頂点情報
-	Vec2 _materix[4];
 	//! 画像ファイルパス
 	const std::string FileName;
 	/**

@@ -132,6 +132,7 @@
     <Image Include="data\image\testicon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Back\Back.cpp" />
     <ClCompile Include="src\lib\Event\Event.cpp" />
     <ClCompile Include="src\lib\Event\ResourceLoad\ResourceLoad.cpp" />
     <ClCompile Include="src\lib\Object\GameObject.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="src\lib\OGSystem\OG\_OGsystem.cpp" />
     <ClCompile Include="src\lib\OGSystem\Random\Random.cpp" />
     <ClCompile Include="src\lib\OGSystem\ResourceManager\ResourceManager.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Shader\shader.cpp" />
     <ClCompile Include="src\lib\OGSystem\Texture\Texture.cpp" />
     <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp" />
     <ClCompile Include="src\lib\OGSystem\Window\Window.cpp" />
@@ -166,6 +168,7 @@
     <ClCompile Include="src\Win\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Back\Back.h" />
     <ClInclude Include="src\lib\Event\Event.h" />
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h" />
     <ClInclude Include="src\lib\Object\GameObject.h" />
@@ -191,6 +194,7 @@
     <ClInclude Include="src\lib\OGSystem\randmais.h" />
     <ClInclude Include="src\lib\OGSystem\Random\Random.h" />
     <ClInclude Include="src\lib\OGSystem\ResourceManager\ResourceManager.h" />
+    <ClInclude Include="src\lib\OGSystem\Shader\shader.h" />
     <ClInclude Include="src\lib\OGSystem\Texture\Texture.h" />
     <ClInclude Include="src\lib\OGSystem\Timer\glTimer.h" />
     <ClInclude Include="src\lib\OGSystem\Window\Window.h" />
