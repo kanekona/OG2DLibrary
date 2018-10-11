@@ -62,6 +62,8 @@ bool OGSystem::Create()
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	//‰Šú‰»ˆ—
 	random::Init();
+	Shader::programID = Shader::read("sample");
+	Shader::use(Shader::programID);
 	//TaskCreate
 	ogtk->StartTaskObject();
 	return true;

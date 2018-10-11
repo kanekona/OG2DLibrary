@@ -16,6 +16,7 @@
 #include "Object\GameObject.h"
 #include "Object\SceneTask.h"
 #include "Object\UITask.h"
+#include "Shader\shader.h"
 /**
 *@brief	•`‰æ‡‚ğŠÇ—‚·‚éclass
 */

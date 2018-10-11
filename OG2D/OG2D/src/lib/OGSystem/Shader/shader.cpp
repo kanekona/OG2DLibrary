@@ -92,7 +92,7 @@ namespace Shader
 		std::ifstream vsh_fs(vsh_path);
 		//読み込みエラー
 		if (!vsh_fs) {
-			return -1;
+			return (GLuint)-1;
 		}
 		//テキストデータをstring型に変換
 		std::string v_source((std::istreambuf_iterator<char>(vsh_fs)), std::istreambuf_iterator<char>());
@@ -102,7 +102,7 @@ namespace Shader
 		std::ifstream fsh_fs(fsh_path);
 		//読み込みエラー
 		if (!fsh_fs) {
-			return -1;
+			return (GLuint)-1;
 		}
 		//テキストデータをstring型に変換
 		std::string f_source((std::istreambuf_iterator<char>(fsh_fs)), std::istreambuf_iterator<char>());

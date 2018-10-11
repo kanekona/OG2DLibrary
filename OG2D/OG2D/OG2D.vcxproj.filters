@@ -115,6 +115,9 @@
     <Filter Include="ソース ファイル\OGLib\System\Shader">
       <UniqueIdentifier>{21ca396e-f8d2-44a2-abe8-d7d429b53623}</UniqueIdentifier>
     </Filter>
+    <Filter Include="リソース ファイル\Shader">
+      <UniqueIdentifier>{552a775f-5147-4c38-8a07-ea778dbcf76c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -336,5 +339,15 @@
     <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc">
       <Filter>ソース ファイル\OGLib\System\Icon</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\shader\sample.fsh">
+      <Filter>リソース ファイル\Shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="data\shader\sample.vsh">
+      <Filter>リソース ファイル\Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
