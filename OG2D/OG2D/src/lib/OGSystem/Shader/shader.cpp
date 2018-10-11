@@ -129,21 +129,21 @@ namespace Shader
 	}
 	void SetViewPort(float cl, float cr, float cb, float ct, float cn, float cf)
 	{
-		promaterix[0] = 2.f / (cr - cl);
-		promaterix[1] = 0.f;
-		promaterix[2] = 0.f;
-		promaterix[3] = (cr + cl) / (cr - cl) * -1;
-		promaterix[4] = 0.f;
-		promaterix[5] = 2.f / (ct - cb);
-		promaterix[6] = 0.f;
-		promaterix[7] = (ct + cb) / (ct - cb) * -1;
-		promaterix[8] = 0.f;
-		promaterix[9] = 0.f;
-		promaterix[10] = 2.f / (cf - cn);
-		promaterix[11] = (cf + cn) / (cf - cn) * -1;
-		promaterix[12] = 0.f;
-		promaterix[13] = 0.f;
-		promaterix[14] = 0.f;
-		promaterix[15] = 1.0f;
+		viewMatrix[0] = 2.f / (cr - cl);
+		viewMatrix[1] = 0.f;
+		viewMatrix[2] = 0.f;
+		viewMatrix[3] = (cr + cl) / (cr - cl) * -1;
+		viewMatrix[4] = 0.f;
+		viewMatrix[5] = 2.f / (ct - cb);
+		viewMatrix[6] = 0.f;
+		viewMatrix[7] = (ct + cb) / (ct - cb) * -1;
+		viewMatrix[8] = 0.f;
+		viewMatrix[9] = 0.f;
+		viewMatrix[10] = 2.f / (cf - cn);
+		viewMatrix[11] = (cf + cn) / (cf - cn) * -1;
+		viewMatrix[12] = 0.f;
+		viewMatrix[13] = 0.f;
+		viewMatrix[14] = 0.f;
+		viewMatrix[15] = 1.0f;
 	}
 }

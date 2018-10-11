@@ -7,7 +7,8 @@
 
 namespace Shader {
 	static GLuint programID;
-	static GLfloat promaterix[16];
+	GLfloat viewMatrix[16];
+	GLfloat projectionMatrix[16];
 	//コンパイル
 	GLuint compile(GLuint type, const std::string &text);
 	//準備
@@ -22,4 +23,6 @@ namespace Shader {
 	void use(const GLuint program);
 	//ビュー行列を登録する
 	void SetViewPort(float, float, float, float, float, float);
+	//プロジェクション行列を登録する
+	void SetProjection(float, float, float, float, float, float);
 }

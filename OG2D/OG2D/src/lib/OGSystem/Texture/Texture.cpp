@@ -123,48 +123,49 @@ void Texture::SetBuffer(void* data, const unsigned int w, const unsigned int h)
 //	glBindTexture(GL_TEXTURE_2D, 0);
 //}
 void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
-		//座標
-		GLfloat vtx[] = {
-			draw.x,draw.h,
-			draw.w,draw.h,
-			draw.w,draw.y,
-			draw.x,draw.y,
-		};
-		_Rotate(angle, &vtx[0]);
-		glVertexPointer(2, GL_FLOAT, 0, vtx);
-		//画像座標
-		const GLfloat texuv[] = {
-			src.x / TextureSize.x,src.h / TextureSize.y,
-			src.w / TextureSize.x,src.h / TextureSize.y,
-			src.w / TextureSize.x,src.y / TextureSize.y,
-			src.x / TextureSize.x,src.y / TextureSize.y,
-		};
-		const GLfloat color[] = {
-			color_.red,
-			color_.green,
-			color_.blue,
-			color_.alpha
-		};
-		//0.1以下のカラーを表示しない、これで透過されてる部分を切り抜くことで透過された画像になる
-		glAlphaFunc(GL_GREATER, (GLclampf)0.0);
-		glTexCoordPointer(2, GL_FLOAT, 0, texuv);
-		//OpenGLに登録されているテクスチャを紐づけ
-		glBindTexture(GL_TEXTURE_2D, *this->_TexId);
-		glColor4f(color_.red, color_.green, color_.blue, color_.alpha);
-			//描画
-			//glMatrixMode(GL_TEXTURE);
-			glEnable(GL_ALPHA_TEST);
-			glEnable(GL_TEXTURE_2D);
-			glEnableClientState(GL_VERTEX_ARRAY);
-			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-			glDrawArrays(GL_QUADS, 0, 4);
-			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-			glDisableClientState(GL_VERTEX_ARRAY);
-			glDisable(GL_TEXTURE_2D);
-			glDisable(GL_ALPHA_TEST);
-			glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-			glBindTexture(GL_TEXTURE_2D, 0);
-	}
+	//座標
+	GLfloat vtx[] = {
+		draw.x,draw.h,
+		draw.w,draw.h,
+		draw.w,draw.y,
+		draw.x,draw.y,
+	};
+	_Rotate(angle, &vtx[0]);
+	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	//画像座標
+	const GLfloat texuv[] = {
+		src.x / TextureSize.x,src.h / TextureSize.y,
+		src.w / TextureSize.x,src.h / TextureSize.y,
+		src.w / TextureSize.x,src.y / TextureSize.y,
+		src.x / TextureSize.x,src.y / TextureSize.y,
+	};
+	const GLfloat color[] = {
+		color_.red,
+		color_.green,
+		color_.blue,
+		color_.alpha
+	};
+	//0.1以下のカラーを表示しない、これで透過されてる部分を切り抜くことで透過された画像になる
+	glAlphaFunc(GL_GREATER, (GLclampf)0.0);
+	glTexCoordPointer(2, GL_FLOAT, 0, texuv);
+	//OpenGLに登録されているテクスチャを紐づけ
+	GLuint in_posLocation = glGetAttribLocation(Shader::programID, "in_pos");
+	GLuint in_uvLocation = glGetAttribLocation(Shader::programID, "in_uv");
+	GLuint in_colorLocation = glGetAttribLocation(Shader::programID, "in_color");
+	GLuint in_texture = glGetUniformLocation(Shader::programID, "texture2d");
+	glEnableVertexAttribArray(in_posLocation);
+	glEnableVertexAttribArray(in_uvLocation);
+	glEnableVertexAttribArray(in_colorLocation);
+
+	glUniform1i(in_texture, *this->_TexId);
+	glVertexAttribPointer(in_posLocation, 2, GL_FLOAT, false, 0, vtx);
+	glVertexAttribPointer(in_uvLocation, 2, GL_FLOAT, false, 0, texuv);
+	glVertexAttribPointer(in_colorLocation, 4, GL_FLOAT, false, 0, color);
+
+
+	glBindTexture(GL_TEXTURE_2D, *this->_TexId);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+}
 bool Texture::Finalize()
 {
 	this->Bind(0);
