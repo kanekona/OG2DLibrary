@@ -146,4 +146,8 @@ namespace Shader
 		viewMatrix[14] = 0.f;
 		viewMatrix[15] = 1.0f;
 	}
+	void SetProjection(float cl, float cr, float cb, float ct, float cn, float cf)
+	{
+		projectionMatrix[0] = 0.f;
+	}
 }

@@ -153,14 +153,17 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 	GLuint in_uvLocation = glGetAttribLocation(Shader::programID, "in_uv");
 	GLuint in_colorLocation = glGetAttribLocation(Shader::programID, "in_color");
 	GLuint in_texture = glGetUniformLocation(Shader::programID, "texture2d");
+	GLuint in_matrix = glGetAttribLocation(Shader::programID, "in_viewMatrix");
 	glEnableVertexAttribArray(in_posLocation);
 	glEnableVertexAttribArray(in_uvLocation);
 	glEnableVertexAttribArray(in_colorLocation);
+	glEnableVertexAttribArray(in_matrix);
 
 	glUniform1i(in_texture, *this->_TexId);
 	glVertexAttribPointer(in_posLocation, 2, GL_FLOAT, false, 0, vtx);
 	glVertexAttribPointer(in_uvLocation, 2, GL_FLOAT, false, 0, texuv);
 	glVertexAttribPointer(in_colorLocation, 4, GL_FLOAT, false, 0, color);
+	glVertexAttribPointer(in_matrix, 4, GL_FLOAT, false, 0, Shader::viewMatrix);
 
 
 	glBindTexture(GL_TEXTURE_2D, *this->_TexId);

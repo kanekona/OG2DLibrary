@@ -10,11 +10,13 @@ out vec2 uv;
 in vec2 in_pos;
 in vec4 in_color;
 
+in mat4 in_viewMatrix;
+
 in vec2 in_uv;
 
 void main()
 {
 	vec4 p = vec4(in_pos, 0.0, 1.0);
-	gl_Position = p;
+	gl_Position = in_viewMatrix * p;
 	color = in_color;
 }
