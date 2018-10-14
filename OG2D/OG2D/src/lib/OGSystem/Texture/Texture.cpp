@@ -69,7 +69,7 @@ bool Texture::Init(const std::string& path)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
+	this->Bind(0);
 	this->angle = 0.f;
 	return true;
 }
@@ -131,7 +131,7 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 		draw.x,draw.y,
 	};
 	_Rotate(angle, &vtx[0]);
-	glVertexPointer(2, GL_FLOAT, 0, vtx);
+	//glVertexPointer(2, GL_FLOAT, 0, vtx);
 	//画像座標
 	const GLfloat texuv[] = {
 		src.x / TextureSize.x,src.h / TextureSize.y,
@@ -146,24 +146,22 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 		color_.alpha
 	};
 	//0.1以下のカラーを表示しない、これで透過されてる部分を切り抜くことで透過された画像になる
-	glAlphaFunc(GL_GREATER, (GLclampf)0.0);
-	glTexCoordPointer(2, GL_FLOAT, 0, texuv);
+	//glAlphaFunc(GL_GREATER, (GLclampf)0.0);
+	//glTexCoordPointer(2, GL_FLOAT, 0, texuv);
 	//OpenGLに登録されているテクスチャを紐づけ
 	GLuint in_posLocation = glGetAttribLocation(Shader::programID, "in_pos");
 	GLuint in_uvLocation = glGetAttribLocation(Shader::programID, "in_uv");
-	GLuint in_colorLocation = glGetAttribLocation(Shader::programID, "in_color");
 	GLuint in_texture = glGetUniformLocation(Shader::programID, "texture2d");
 	glEnableVertexAttribArray(in_posLocation);
 	glEnableVertexAttribArray(in_uvLocation);
-	glEnableVertexAttribArray(in_colorLocation);
 
-	glUniform1i(in_texture, *this->_TexId);
+	glUniform1f(in_texture, 0);
 	glVertexAttribPointer(in_posLocation, 2, GL_FLOAT, false, 0, vtx);
 	glVertexAttribPointer(in_uvLocation, 2, GL_FLOAT, false, 0, texuv);
-	glVertexAttribPointer(in_colorLocation, 4, GL_FLOAT, false, 0, color);
 
 
 	glBindTexture(GL_TEXTURE_2D, *this->_TexId);
+	//this->Bind(*this->_TexId);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 bool Texture::Finalize()

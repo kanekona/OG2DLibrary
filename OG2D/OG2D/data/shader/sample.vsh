@@ -2,19 +2,17 @@
 // バーテックスシェーダー
 //
 
-#version 450 
+#version 400
 
-out vec4 color;
 out vec2 uv;
 
-in vec2 in_pos;
-in vec4 in_color;
+in vec3 in_pos;
 
 in vec2 in_uv;
 
 void main()
 {
-	vec4 p = vec4(in_pos, 0.0, 1.0);
-	gl_Position = p;
-	color = in_color;
+	//vec4 p = vec4(in_pos, 0.0, 1.0);
+	gl_Position = vec4(in_pos, 1.0);
+	uv = in_uv;
 }

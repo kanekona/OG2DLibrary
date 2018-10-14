@@ -23,13 +23,11 @@ bool OGSystem::Create()
 	if (!glfwInit()) {
 		return false;
 	}
-	//WinConfig
-
 	//ゲームエンジンの初期化
 	ge->Initialize();
 	//使用OpenGLのVersion指定
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+	//glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	//glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	//使用するウィンドウを設定する
 	glfwMakeContextCurrent(ge->window->GetWindow());
 	//同期(ダブルバッファの入れ替えタイミングの指定)
@@ -80,7 +78,7 @@ bool OGSystem::LibConfirmation()
 		//GameEngineの更新処理
 		ge->Update();
 		//捜査対象の行列をモデルビュー行列に変更
-		glMatrixMode(GL_MODELVIEW);
+		//glMatrixMode(GL_MODELVIEW);
 		//バッファをクリアして値を設定する
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//有効になっている場合、計算されたフラグメントカラー値をカラーバッファの値とブレンドします。

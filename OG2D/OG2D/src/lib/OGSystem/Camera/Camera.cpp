@@ -39,7 +39,7 @@ void Camera2D::Update() const
 	_camera.h = this->Scale.y;
 	_camera.OffsetSize();
 	//描画縦横サイズの指定
-	glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
+	//glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
 }
 void Camera2D::MovePos(const Vec2& est)
 {
