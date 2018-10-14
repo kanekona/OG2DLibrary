@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "Shader\shader.h"
 //--------------------------------------------------
 //@:Camera2Dclass									
 //--------------------------------------------------
@@ -39,7 +40,12 @@ void Camera2D::Update() const
 	_camera.h = this->Scale.y;
 	_camera.OffsetSize();
 	//描画縦横サイズの指定
+<<<<<<< HEAD
 	//glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
+=======
+	glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
+	Shader::SetViewPort(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
+>>>>>>> 63011734d9efc3448fe86589090a0c28e58d28e8
 }
 void Camera2D::MovePos(const Vec2& est)
 {

@@ -8,7 +8,11 @@
 namespace Shader {
 	static GLuint programID;
 	static GLfloat viewMatrix[16];
+<<<<<<< HEAD
 	//GLfloat projectionMatrix[16];
+=======
+	static GLfloat projectionMatrix[16];
+>>>>>>> 63011734d9efc3448fe86589090a0c28e58d28e8
 	//ƒRƒ“ƒpƒCƒ‹
 	GLuint compile(GLuint type, const std::string &text);
 	//€”õ
