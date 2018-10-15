@@ -42,17 +42,17 @@ bool OGSystem::Create()
 	}
 #endif
 	// 透視変換行列を設定
-	glMatrixMode(GL_PROJECTION);
+	//glMatrixMode(GL_PROJECTION);
 	//描画範囲の指定
 	glViewport(0, 0, (GLsizei)ge->window->GetSize().x, (GLsizei)ge->window->GetSize().y);
 	//行列の初期化
-	glLoadIdentity();
+	//glLoadIdentity();
 	// 操作対象の行列をモデリングビュー行列に切り替えておく
-	glMatrixMode(GL_MODELVIEW);
+	//glMatrixMode(GL_MODELVIEW);
 	//行列の初期化
-	glLoadIdentity();
+	//glLoadIdentity();
 	//ウインドウの座標の巻線に基づいてポリゴンをカリングする
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 	//深さの比較を行い、深度バッファを更新する(3D用)
 	//glEnable(GL_DEPTH_TEST);
 	//法線ベクトルの設定、正規化
@@ -80,7 +80,7 @@ bool OGSystem::LibConfirmation()
 		//GameEngineの更新処理
 		ge->Update();
 		//捜査対象の行列をモデルビュー行列に変更
-		//glMatrixMode(GL_MODELVIEW);
+		glMatrixMode(GL_MODELVIEW);
 		//バッファをクリアして値を設定する
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//有効になっている場合、計算されたフラグメントカラー値をカラーバッファの値とブレンドします。

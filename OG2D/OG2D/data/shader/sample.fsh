@@ -2,11 +2,11 @@
 // フラグメントシェーダー
 //
 
-#version 400
+//#version 400
 in vec2 uv;
 uniform sampler2D tex;
-out vec4 flagColor;
+
 void main()
 {
-	flagColor = texture2D(tex,uv);
+	gl_FragColor = texture2D(tex,uv);
 }

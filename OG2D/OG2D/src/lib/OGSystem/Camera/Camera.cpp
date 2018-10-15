@@ -28,9 +28,9 @@ void Camera2D::Initialize(const Box2D& pos)
 void Camera2D::Update() const
 {
 	//行列をプロジェクションモードに変更
-	glMatrixMode(GL_PROJECTION);
+	//glMatrixMode(GL_PROJECTION);
 	//行列の初期化
-	glLoadIdentity();
+	//glLoadIdentity();
 	//元データが書き換わらないよう値の代入
 	Box2D _camera(cameraPos);
 	//初期設定値からの変更値
