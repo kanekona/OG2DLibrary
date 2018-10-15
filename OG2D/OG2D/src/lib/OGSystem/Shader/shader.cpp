@@ -129,7 +129,7 @@ namespace Shader
 	}
 	void SetViewPort(float cl, float cr, float cb, float ct, float cn, float cf)
 	{
-		viewMatrix[0] = 2.f / (cr - cl);
+		/*viewMatrix[0] = 2.f / (cr - cl);
 		viewMatrix[1] = 0.f;
 		viewMatrix[2] = 0.f;
 		viewMatrix[3] = (cr + cl) / (cr - cl) * -1;
@@ -144,10 +144,10 @@ namespace Shader
 		viewMatrix[12] = 0.f;
 		viewMatrix[13] = 0.f;
 		viewMatrix[14] = 0.f;
-		viewMatrix[15] = 1.0f;
+		viewMatrix[15] = 1.0f;*/
 	}
 	void SetProjection(float cl, float cr, float cb, float ct, float cn, float cf)
 	{
-		projectionMatrix[0] = 0.f;
+		//projectionMatrix[0] = 0.f;
 	}
 }
