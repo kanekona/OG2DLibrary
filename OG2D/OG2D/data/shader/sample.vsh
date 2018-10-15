@@ -6,15 +6,13 @@
 
 out vec2 uv;
 
-in vec3 in_pos;
+in vec2 inpos;
 
-in mat4 in_viewMatrix;
-
-in vec2 in_uv;
+in vec2 inuv;
 
 void main()
 {
 	//vec4 p = vec4(in_pos, 0.0, 1.0);
-	gl_Position = vec4(in_pos, 1.0);
-	uv = in_uv;
+	gl_Position = vec4(inpos, 0.0,0.0);
+	uv = inuv;
 }

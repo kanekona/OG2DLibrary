@@ -687,3 +687,5 @@ void EngineSystem::AllKill()
 EngineSystem* ge;
 //! リソース管理システム
 ResourceManager* rm;
+
+Shader* shader;

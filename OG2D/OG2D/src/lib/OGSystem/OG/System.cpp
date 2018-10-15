@@ -13,6 +13,7 @@ OGSystem::~OGSystem()
 	OG::Destroy<EngineSystem>(ge);
 	OG::Destroy<ResourceManager>(rm);
 	OG::Destroy<OGTK>(ogtk);
+	OG::Destroy<Shader>(shader);
 	//GLFW‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚ðI—¹‚·‚é
 	glfwTerminate();
 }
@@ -60,8 +61,9 @@ bool OGSystem::Create()
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	//‰Šú‰»ˆ—
 	random::Init();
-	Shader::programID = Shader::read("sample");
-	Shader::use(Shader::programID);
+	shader = new Shader;
+	shader->id = shader->read("sample");
+	shader->use(shader->id);
 	//TaskCreate
 	ogtk->StartTaskObject();
 	return true;

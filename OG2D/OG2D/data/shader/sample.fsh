@@ -4,8 +4,9 @@
 
 #version 400
 in vec2 uv;
-uniform sampler2D texture2d;
+uniform sampler2D tex;
+out vec4 flagColor;
 void main()
 {
-	gl_FragColor = texture2D(texture2d,uv);
+	flagColor = texture2D(tex,uv);
 }

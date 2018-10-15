@@ -2,6 +2,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "Shader\shader.h"
+#include "OG\OGsystem.h"
 //--------------------------------------------------
 //@:Textureclass									
 //--------------------------------------------------
@@ -149,13 +150,30 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 	//glAlphaFunc(GL_GREATER, (GLclampf)0.0);
 	//glTexCoordPointer(2, GL_FLOAT, 0, texuv);
 	//OpenGL‚É“o˜^‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ð•R‚Ã‚¯
-	GLuint in_posLocation = glGetAttribLocation(Shader::programID, "in_pos");
-	GLuint in_uvLocation = glGetAttribLocation(Shader::programID, "in_uv");
-	GLuint in_texture = glGetUniformLocation(Shader::programID, "texture2d");
-	glEnableVertexAttribArray(in_posLocation);
-	glEnableVertexAttribArray(in_uvLocation);
+	glActiveTexture(GL_TEXTURE0 + *this->_TexId);
+	GLint in_posLocation = glGetAttribLocation(shader->id, "inpos");
+	GLint in_uvLocation = glGetAttribLocation(shader->id, "inuv");
+	GLint in_texture = glGetUniformLocation(shader->id, "tex");
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	/*GLenum glerror = glGetError();
+	std::cout << glerror << "\n";
+	GLint in_posLocation = Shader::attrib(Shader::programID,"inpos");
+	glerror = glGetError();
+	std::cout << glerror << "\n";
+	GLint in_uvLocation = Shader::attrib(Shader::programID, "inuv");
+	glerror = glGetError();
+	std::cout << glerror << "\n";
+	GLint in_texture =	Shader::uniform(Shader::programID,"tex");
+	glerror = glGetError();
+	std::cout << glerror << "\n";*/
+	std::cout << "pos:" << in_posLocation << std::endl;
+	std::cout << " uv:" << in_uvLocation << std::endl;
+	std::cout << "tex:" << in_texture << std::endl;
+	
 
 	glUniform1f(in_texture, 0);
+
 	glVertexAttribPointer(in_posLocation, 2, GL_FLOAT, false, 0, vtx);
 	glVertexAttribPointer(in_uvLocation, 2, GL_FLOAT, false, 0, texuv);
 
