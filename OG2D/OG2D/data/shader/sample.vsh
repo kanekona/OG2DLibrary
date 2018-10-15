@@ -2,7 +2,7 @@
 // バーテックスシェーダー
 //
 
-//#version 400
+#version 400
 
 out vec2 uv;
 

@@ -27,8 +27,8 @@ bool OGSystem::Create()
 	//ゲームエンジンの初期化
 	ge->Initialize();
 	//使用OpenGLのVersion指定
-	//glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	//glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	//使用するウィンドウを設定する
 	glfwMakeContextCurrent(ge->window->GetWindow());
 	//同期(ダブルバッファの入れ替えタイミングの指定)
