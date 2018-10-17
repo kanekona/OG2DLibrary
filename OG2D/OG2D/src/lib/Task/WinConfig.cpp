@@ -16,7 +16,7 @@ ConfigTask::~ConfigTask()
 {
 	if (this->GetNextTask() && !ge->GetDeleteEngine())
 	{
-		ge->WindowChenge(0, 30, 1920, 1080, "WindowName", this->nextWindowMode);
+		ge->WindowChenge(0, 30, 720, 720, "WindowName", this->nextWindowMode);
 		ge->SetScene(Title::Create());
 	}
 }
