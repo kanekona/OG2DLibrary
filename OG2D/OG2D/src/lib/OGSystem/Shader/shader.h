@@ -6,38 +6,49 @@
 */
 class Shader
 {
-public:
 	//! 生成したShaderのID
 	GLuint id;
-	//! 投影行列を保存しておく配列
-	GLfloat projectionMatrix[16];
 	/**
 	*@brief	Shaderのコンパイル
-	*@param[in] GLuint type
-	*@param[in] const string& text
+	*@param[in] GLuint type CompileShaderType
+	*@param[in] const string& text ShaderSource
 	*@return GLuint
 	*/
-	GLuint compile(GLuint type, const std::string &text);
+	GLuint Compile(GLuint type, const std::string &text);
 	/**
 	*@brief	Shaderの準備
-	*@param[in] const GLuint program
-	*@param[in] const string& v_source
-	*@param[in] const string& f_source
+	*@param[in] const GLuint program ShaderID
+	*@param[in] const string& v_source vertexShaderSource
+	*@param[in] const string& f_source fragmentShaderSource
 	*/
-	void setup(const GLuint program,
+	void Setup(const GLuint program,
 		const std::string &v_source, const std::string &f_source);
+public:
 	/**
 	*@brief	Shader読み込み
-	*@param[in] const string& file
+	*@param[in] const string& file シェーダーファイル名
 	*@return GLuint ShaderID
 	*/
-	GLuint read(const std::string &file);
-	//シェーダー内アトリビュート変数の識別子を取得
-	GLint attrib(const GLuint program, const std::string &name);
-	//シェーダー内ユニフォーム変数の識別子を取得
-	GLint uniform(const GLuint program, const std::string &name);
-	//シェーダープログラムの使用開始
-	void use(const GLuint program);
-	//投影行列を登録する
-	void SetProjectionMatrix(float left, float right, float buttom, float top, float nearVal, float farVal);
+	GLuint Read(const std::string &file);
+	/**
+	*@brief	シェーダー内アトリビュート変数の識別子を取得
+	*@param[in]	const string& name 指定変数名
+	*@return GLint 識別子ID
+	*/
+	GLint Attrib(const std::string &name);
+	/**
+	*@brief	シェーダー内ユニフォーム変数の識別子を取得
+	*@param[in]	const string& name 指定変数名
+	*@return GLint 識別子ID
+	*/
+	GLint Uniform(const std::string &name);
+	/**
+	*@brief	シェーダープログラムの使用開始
+	*/
+	void Use();
+	/**
+	*@brief	ShaderIDを取得する
+	*@return GLuint ShaderID
+	*/
+	GLuint GetID() const;
 };

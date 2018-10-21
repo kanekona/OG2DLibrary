@@ -19,7 +19,6 @@ in vec2 inuv;
 void main()
 {
 	gl_Position = vec4(inpos, 0.0, 1.0) * viewMatrix;
-	//gl_Position = vec4(inpos, 0.0, 1.0);
 	uv = inuv;
 	color = incolor;
 }

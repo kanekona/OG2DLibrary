@@ -43,6 +43,11 @@ void ResourceLoad::DataCreate(const std::string& text)
 		ss >> path >> name;
 		rm->CreateSound(name, path);
 	}
+	else if (dataPath == "Shader")
+	{
+		ss >> path >> name;
+		rm->CreateShader(name, path);
+	}
 	else
 	{
 		std::cout << "ResourceLoad>>–¢“o˜^‚ÌŒ`Ž®‚Å‚·\n";

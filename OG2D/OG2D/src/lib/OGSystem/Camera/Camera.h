@@ -17,6 +17,8 @@ class Camera2D : private NonCopyable
 	Vec2 position;
 	//! サイズ
 	Vec2 Scale;
+	//! 投影行列を保存しておく配列
+	GLfloat projectionMatrix[16];
 public:
 	/**
 	*@brief	constructor
@@ -39,7 +41,7 @@ public:
 	/**
 	*@brief	更新処理
 	*/
-	void Update() const;
+	void Update();
 	/**
 	*@brief	位置を移動させる
 	*@param[in] const Vec2& move 移動値
@@ -90,4 +92,22 @@ public:
 	*@return Vec2 カメラの大きさ
 	*/
 	Vec2 GetSize() const;
+	/**
+	*@brief	投影行列を登録する
+	*@param[in] float left 左
+	*@param[in] float right 右
+	*@param[in] float buttom 下
+	*@param[in] float top 上
+	*@param[in] float nearVal 手前 
+	*@param[in] float farVal 奥
+	*/
+	void SetProjectionMatrix(
+		const float left, const float right,
+		const float buttom, const float top,
+		const float nearVal, const float farVal);
+	/**
+	*@brief	投影行列を取得する
+	*@return GLfloat* 投影行列
+	*/
+	GLfloat* GetProjectionMatrix();
 };

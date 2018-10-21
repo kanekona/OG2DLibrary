@@ -118,6 +118,9 @@
     <Filter Include="リソース ファイル\Shader">
       <UniqueIdentifier>{552a775f-5147-4c38-8a07-ea778dbcf76c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="リソース ファイル\event">
+      <UniqueIdentifier>{8f6238dc-1522-4fb0-b42a-d3b97e72d449}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -342,6 +345,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="data\shader\sample.fsh">
+      <Filter>リソース ファイル\Shader</Filter>
+    </None>
+    <None Include="data\event\sampleLoad.og">
+      <Filter>リソース ファイル\event</Filter>
+    </None>
+    <None Include="data\shader\font.fsh">
       <Filter>リソース ファイル\Shader</Filter>
     </None>
   </ItemGroup>

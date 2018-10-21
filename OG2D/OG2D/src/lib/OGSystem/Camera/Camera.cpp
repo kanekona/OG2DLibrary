@@ -25,7 +25,7 @@ void Camera2D::Initialize(const Box2D& pos)
 	this->position = {0,0 };
 	this->Scale = { pos.w,pos.h };
 }
-void Camera2D::Update() const
+void Camera2D::Update()
 {
 	//行列をプロジェクションモードに変更
 	//glMatrixMode(GL_PROJECTION);
@@ -41,6 +41,7 @@ void Camera2D::Update() const
 	_camera.OffsetSize();
 	//描画縦横サイズの指定
 	//glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
+	this->SetProjectionMatrix(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
 }
 void Camera2D::MovePos(const Vec2& est)
 {
@@ -87,4 +88,27 @@ Vec2 Camera2D::GetSize() const
 {
 	//サイズを返す
 	return this->Scale;
+}
+void Camera2D::SetProjectionMatrix(float cl, float cr, float cb, float ct, float cn, float cf)
+{
+	projectionMatrix[0] = 2.f / (cr - cl);
+	projectionMatrix[1] = 0.f;
+	projectionMatrix[2] = 0.f;
+	projectionMatrix[3] = (cr + cl) / (cr - cl) * -1;
+	projectionMatrix[4] = 0.f;
+	projectionMatrix[5] = 2.f / (ct - cb);
+	projectionMatrix[6] = 0.f;
+	projectionMatrix[7] = (ct + cb) / (ct - cb) * -1;
+	projectionMatrix[8] = 0.f;
+	projectionMatrix[9] = 0.f;
+	projectionMatrix[10] = 2.f / (cf - cn);
+	projectionMatrix[11] = (cf + cn) / (cf - cn) * -1;
+	projectionMatrix[12] = 0.f;
+	projectionMatrix[13] = 0.f;
+	projectionMatrix[14] = 0.f;
+	projectionMatrix[15] = 1.0f;
+}
+GLfloat* Camera2D::GetProjectionMatrix()
+{
+	return this->projectionMatrix;
 }

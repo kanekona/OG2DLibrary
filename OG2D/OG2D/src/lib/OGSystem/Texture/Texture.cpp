@@ -1,7 +1,6 @@
 #include "Texture.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-#include "Shader\shader.h"
 #include "OG\OGsystem.h"
 //--------------------------------------------------
 //@:Textureclass									
@@ -86,43 +85,6 @@ void Texture::SetBuffer(void* data, const unsigned int w, const unsigned int h)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);	
 	this->TextureSize = Vec2((int)w, (int)h);
 }
-//void Texture::Draw(const Box2D& draw, const Box2D& src,const Color& color_) {
-//	//À•W
-//	GLfloat vtx[] = {
-//		draw.x,draw.h,
-//		draw.w,draw.h,
-//		draw.w,draw.y,
-//		draw.x,draw.y,
-//	};
-//	_Rotate(angle, &vtx[0]);
-//	glVertexPointer(2, GL_FLOAT, 0, vtx);
-//	//‰æ‘œÀ•W
-//	const GLfloat texuv[] = {
-//		src.x / TextureSize.x,src.h / TextureSize.y,
-//		src.w / TextureSize.x,src.h / TextureSize.y,
-//		src.w / TextureSize.x,src.y / TextureSize.y,
-//		src.x / TextureSize.x,src.y / TextureSize.y,
-//	};
-//	//0.1ˆÈ‰º‚ÌƒJƒ‰[‚ð•\Ž¦‚µ‚È‚¢A‚±‚ê‚Å“§‰ß‚³‚ê‚Ä‚é•”•ª‚ðØ‚è”²‚­‚±‚Æ‚Å“§‰ß‚³‚ê‚½‰æ‘œ‚É‚È‚é
-//	glAlphaFunc(GL_GREATER, (GLclampf)0.0);
-//	glTexCoordPointer(2, GL_FLOAT, 0, texuv);
-//	//OpenGL‚É“o˜^‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ð•R‚Ã‚¯
-//	glBindTexture(GL_TEXTURE_2D, *this->_TexId);
-//	glColor4f(color_.red, color_.green, color_.blue, color_.alpha);
-//	//•`‰æ
-//	//glMatrixMode(GL_TEXTURE);
-//	glEnable(GL_ALPHA_TEST);
-//	glEnable(GL_TEXTURE_2D);
-//	glEnableClientState(GL_VERTEX_ARRAY);
-//	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-//	glDrawArrays(GL_QUADS, 0, 4);
-//	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-//	glDisableClientState(GL_VERTEX_ARRAY);
-//	glDisable(GL_TEXTURE_2D);
-//	glDisable(GL_ALPHA_TEST);
-//	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-//	glBindTexture(GL_TEXTURE_2D, 0);
-//}
 void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 	//À•W
 	GLfloat vtx[] = {
@@ -166,20 +128,19 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 	//glTexCoordPointer(2, GL_FLOAT, 0, texuv);
 	//OpenGL‚É“o˜^‚³‚ê‚Ä‚¢‚éƒeƒNƒXƒ`ƒƒ‚ð•R‚Ã‚¯
 	//glActiveTexture(GL_TEXTURE0 + *this->_TexId);
-
-	shader->SetProjectionMatrix(0.0f, ge->window->GetSize().x, ge->window->GetSize().y, 0.0f, -1.0f, 1.0f);
-	GLint in_posLocation = glGetAttribLocation(shader->id, "inpos");
-	GLint in_uvLocation = glGetAttribLocation(shader->id, "inuv");
-	GLint in_texture = glGetUniformLocation(shader->id, "tex");
-	GLuint in_color = glGetAttribLocation(shader->id, "incolor");
-	GLuint in_proj = glGetUniformLocation(shader->id, "viewMatrix");
+	Shader* shader = rm->GetShaderData("simple");
+	GLint in_posLocation = shader->Attrib("inpos");
+	GLint in_uvLocation = shader->Attrib("inuv");
+	GLint in_texture = shader->Uniform("tex");
+	GLuint in_color = shader->Attrib("incolor");
+	GLuint in_proj = shader->Uniform("viewMatrix");
 	
 	glEnableVertexAttribArray(in_posLocation);
 	glEnableVertexAttribArray(in_uvLocation);
 	glEnableVertexAttribArray(in_color);
 
 	glUniform1f(in_texture, 0);
-	glUniformMatrix4fv(in_proj, 1, GL_FALSE,shader->projectionMatrix);
+	glUniformMatrix4fv(in_proj, 1, GL_FALSE, ge->camera->GetProjectionMatrix());
 
 	glVertexAttribPointer(in_posLocation, 2, GL_FLOAT, false, 0, vtx);
 	glVertexAttribPointer(in_uvLocation, 2, GL_FLOAT, false, 0, texuv);

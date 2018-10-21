@@ -152,7 +152,7 @@
 //	}
 //}
 
-GLuint Shader::compile(GLuint type, const std::string &text)
+GLuint Shader::Compile(GLuint type, const std::string &text)
 {
 	//shaderの生成
 	GLuint shader = glCreateShader(type);
@@ -180,10 +180,10 @@ GLuint Shader::compile(GLuint type, const std::string &text)
 #endif // _DEBUG
 	return shader;
 }
-void Shader::setup(const GLuint program, const std::string &v_source, const std::string &f_source) {
+void Shader::Setup(const GLuint program, const std::string &v_source, const std::string &f_source) {
 	//シェーダーのコンパイル
 	GLint status;
-	GLuint vertex_shader = compile(GL_VERTEX_SHADER, v_source);
+	GLuint vertex_shader = Compile(GL_VERTEX_SHADER, v_source);
 	glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &status);
 	if (status != GL_TRUE) {
 		std::cout << "VertexShader Compile is Failed " << std::endl;
@@ -192,7 +192,7 @@ void Shader::setup(const GLuint program, const std::string &v_source, const std:
 		return;
 	}
 
-	GLuint fragment_shader = compile(GL_FRAGMENT_SHADER, f_source);
+	GLuint fragment_shader = Compile(GL_FRAGMENT_SHADER, f_source);
 	glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &status);
 	if (status != GL_TRUE) {
 		std::cout << "FragmentShader Compile is Failed " << std::endl;
@@ -236,7 +236,7 @@ void Shader::setup(const GLuint program, const std::string &v_source, const std:
 	}
 }
 	//読み込み
-GLuint Shader::read(const std::string &file) {
+GLuint Shader::Read(const std::string &file) {
 	//vertexshaderの読み込み(.vsh)
 	std::string vsh_path = "./data/shader/" + file + ".vsh";
 	std::ifstream vsh_fs(vsh_path);
@@ -255,42 +255,28 @@ GLuint Shader::read(const std::string &file) {
 		return (GLuint)-1;
 	}
 	//テキストデータをstring型に変換
-	std::string f_source((std::istreambuf_iterator<char>(fsh_fs)), std::istreambuf_iterator<char>());
+	std::string f_source((std::
+		istreambuf_iterator<char>(fsh_fs)), std::istreambuf_iterator<char>());
 
 	//プログラム識別子を生成
 	GLuint program = glCreateProgram();
 	//vertexとfragmentのシェーダーの生成
-	setup(program, v_source, f_source);
+	Setup(program, v_source, f_source);
 	this->id = program;
 	return program;
 }
-GLint Shader::attrib(const GLuint program, const std::string &name) {
-	return glGetAttribLocation(program, name.c_str());
+GLint Shader::Attrib(const std::string &name) {
+	return glGetAttribLocation(this->id, name.c_str());
 }
 //シェーダー内ユニフォーム変数の識別子を取得
-GLint Shader::uniform(const GLuint program, const std::string &name) {
-	return glGetUniformLocation(program, name.data());
+GLint Shader::Uniform(const std::string &name) {
+	return glGetUniformLocation(this->id, name.data());
 }
 //シェーダープログラムの使用開始
-void Shader::use(const GLuint program) {
-	glUseProgram(program);
+void Shader::Use() {
+	glUseProgram(this->id);
 }
-void Shader::SetProjectionMatrix(float cl, float cr, float cb, float ct, float cn, float cf)
+GLuint Shader::GetID() const
 {
-	projectionMatrix[0] = 2.f / (cr - cl);
-	projectionMatrix[1] = 0.f;
-	projectionMatrix[2] = 0.f;
-	projectionMatrix[3] = (cr + cl) / (cr - cl) * -1;
-	projectionMatrix[4] = 0.f;
-	projectionMatrix[5] = 2.f / (ct - cb);
-	projectionMatrix[6] = 0.f;
-	projectionMatrix[7] = (ct + cb) / (ct - cb) * -1;
-	projectionMatrix[8] = 0.f;
-	projectionMatrix[9] = 0.f;
-	projectionMatrix[10] = 2.f / (cf - cn);
-	projectionMatrix[11] = (cf + cn) / (cf - cn) * -1;
-	projectionMatrix[12] = 0.f;
-	projectionMatrix[13] = 0.f;
-	projectionMatrix[14] = 0.f;
-	projectionMatrix[15] = 1.0f;
+	return this->id;
 }

@@ -622,4 +622,3 @@ public:
 
 extern EngineSystem* ge;
 extern ResourceManager* rm;
-extern Shader* shader;
