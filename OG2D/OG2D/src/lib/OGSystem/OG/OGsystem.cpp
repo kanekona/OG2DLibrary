@@ -128,10 +128,16 @@ void EngineSystem::WindowChenge(const Vec2& pos, const Vec2& size, const char* n
 }
 void EngineSystem::WindowChenge(const int x,const int y,const int w,const int h, const char* name, const bool screen)
 {
+	//WindowのTitleを変更
 	this->window->ChengeTitle(name);
+	//Windowを変更
 	this->window->ChengeWindow(x, y, w, h, screen);
+	//Windowに合わせてカメラを変更
 	this->camera->Initialize(Box2D(0, 0, w, h));
+	//ViewPortも変更
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+	//ShaderのProjectionMatrixを初期化する
+	glLoadIdentity();
 }
 void EngineSystem::GetWindow(int& width, int& height, bool& screen,Vec2& pos)
 {

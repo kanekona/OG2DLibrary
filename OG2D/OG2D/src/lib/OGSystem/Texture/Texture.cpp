@@ -144,7 +144,22 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 		color_.red,
 		color_.green,
 		color_.blue,
-		color_.alpha
+		color_.alpha,
+
+		color_.red,
+		color_.green,
+		color_.blue,
+		color_.alpha,
+
+		color_.red,
+		color_.green,
+		color_.blue,
+		color_.alpha,
+
+		color_.red,
+		color_.green,
+		color_.blue,
+		color_.alpha,
 	};
 	//0.1以下のカラーを表示しない、これで透過されてる部分を切り抜くことで透過された画像になる
 	glAlphaFunc(GL_GREATER, (GLclampf)0.0);
@@ -152,17 +167,19 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 	//OpenGLに登録されているテクスチャを紐づけ
 	//glActiveTexture(GL_TEXTURE0 + *this->_TexId);
 
-
+	shader->SetProjectionMatrix(0.0f, ge->window->GetSize().x, ge->window->GetSize().y, 0.0f, -1.0f, 1.0f);
 	GLint in_posLocation = glGetAttribLocation(shader->id, "inpos");
 	GLint in_uvLocation = glGetAttribLocation(shader->id, "inuv");
 	GLint in_texture = glGetUniformLocation(shader->id, "tex");
-	GLuint in_color = glGetUniformLocation(shader->id, "incolor");
+	GLuint in_color = glGetAttribLocation(shader->id, "incolor");
+	GLuint in_proj = glGetUniformLocation(shader->id, "viewMatrix");
 	
 	glEnableVertexAttribArray(in_posLocation);
 	glEnableVertexAttribArray(in_uvLocation);
 	glEnableVertexAttribArray(in_color);
 
 	glUniform1f(in_texture, 0);
+	glUniformMatrix4fv(in_proj, 1, GL_FALSE,shader->projectionMatrix);
 
 	glVertexAttribPointer(in_posLocation, 2, GL_FLOAT, false, 0, vtx);
 	glVertexAttribPointer(in_uvLocation, 2, GL_FLOAT, false, 0, texuv);

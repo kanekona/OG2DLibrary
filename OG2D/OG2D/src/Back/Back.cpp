@@ -16,7 +16,6 @@ void Back::Render2D()
 {
 	this->draw = { ge->camera->GetPos(),ge->camera->GetSize() };
 	this->draw.OffsetSize();
-	this->draw = { -0.5f,-0.5f,0.5f,0.5f };
 	this->src = { Vec2(),this->image->GetTextureSize() };
-	this->image->Draw(this->draw, this->src);
+	this->image->Draw(this->draw, this->src, Color(1.0f, 1.0f, 1.0f, 0.5f));
 }

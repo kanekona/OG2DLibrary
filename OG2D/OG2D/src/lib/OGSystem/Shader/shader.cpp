@@ -261,6 +261,7 @@ GLuint Shader::read(const std::string &file) {
 	GLuint program = glCreateProgram();
 	//vertexとfragmentのシェーダーの生成
 	setup(program, v_source, f_source);
+	this->id = program;
 	return program;
 }
 GLint Shader::attrib(const GLuint program, const std::string &name) {
@@ -273,4 +274,23 @@ GLint Shader::uniform(const GLuint program, const std::string &name) {
 //シェーダープログラムの使用開始
 void Shader::use(const GLuint program) {
 	glUseProgram(program);
+}
+void Shader::SetProjectionMatrix(float cl, float cr, float cb, float ct, float cn, float cf)
+{
+	projectionMatrix[0] = 2.f / (cr - cl);
+	projectionMatrix[1] = 0.f;
+	projectionMatrix[2] = 0.f;
+	projectionMatrix[3] = (cr + cl) / (cr - cl) * -1;
+	projectionMatrix[4] = 0.f;
+	projectionMatrix[5] = 2.f / (ct - cb);
+	projectionMatrix[6] = 0.f;
+	projectionMatrix[7] = (ct + cb) / (ct - cb) * -1;
+	projectionMatrix[8] = 0.f;
+	projectionMatrix[9] = 0.f;
+	projectionMatrix[10] = 2.f / (cf - cn);
+	projectionMatrix[11] = (cf + cn) / (cf - cn) * -1;
+	projectionMatrix[12] = 0.f;
+	projectionMatrix[13] = 0.f;
+	projectionMatrix[14] = 0.f;
+	projectionMatrix[15] = 1.0f;
 }

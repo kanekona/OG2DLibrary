@@ -46,7 +46,7 @@ bool OGSystem::Create()
 	//描画範囲の指定
 	glViewport(0, 0, (GLsizei)ge->window->GetSize().x, (GLsizei)ge->window->GetSize().y);
 	//行列の初期化
-	//glLoadIdentity();
+	glLoadIdentity();
 	// 操作対象の行列をモデリングビュー行列に切り替えておく
 	//glMatrixMode(GL_MODELVIEW);
 	//行列の初期化
