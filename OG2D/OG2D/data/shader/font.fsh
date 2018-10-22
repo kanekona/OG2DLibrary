@@ -13,10 +13,14 @@ in vec4 color;
 
 void main()
 {
-	vec4 _co = texture2D(tex,uv) * color;
+	vec4 _co = texture2D(tex,uv);
 	if(_co == vec4(0,0,0,1))
 	{
 		_co.w = 0.0;
+	}
+	if(_co == vec4(1,0,0,1))
+	{
+		_co = color;
 	}
 	 outcolor = _co;
 }

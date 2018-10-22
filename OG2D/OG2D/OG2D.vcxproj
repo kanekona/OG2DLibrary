@@ -217,6 +217,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="data\shader\font.vsh">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </FxCompile>
     <FxCompile Include="data\shader\sample.vsh">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </FxCompile>

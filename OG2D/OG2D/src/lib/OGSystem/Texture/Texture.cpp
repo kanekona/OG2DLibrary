@@ -24,6 +24,7 @@ Texture::Texture()
 	//nullデータを登録
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, 0, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+	this->shader = rm->GetShaderData("simple");
 }
 Texture::Texture(const std::string& path)
 	:FileName("./data/image/")
@@ -71,6 +72,7 @@ bool Texture::Init(const std::string& path)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	this->Bind(0);
 	this->angle = 0.f;
+	this->shader = rm->GetShaderData("simple");
 	return true;
 }
 void Texture::SetBuffer(void* data, const unsigned int w, const unsigned int h)
@@ -125,10 +127,6 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 	};
 	//0.1以下のカラーを表示しない、これで透過されてる部分を切り抜くことで透過された画像になる
 	glAlphaFunc(GL_GREATER, (GLclampf)0.0);
-	//glTexCoordPointer(2, GL_FLOAT, 0, texuv);
-	//OpenGLに登録されているテクスチャを紐づけ
-	//glActiveTexture(GL_TEXTURE0 + *this->_TexId);
-	Shader* shader = rm->GetShaderData("simple");
 	GLint in_posLocation = shader->Attrib("inpos");
 	GLint in_uvLocation = shader->Attrib("inuv");
 	GLint in_texture = shader->Uniform("tex");
@@ -237,4 +235,12 @@ void Texture::DeleteID(const GLsizei& size)
 void Texture::Bind(const GLuint& id)
 {
 	glBindTexture(GL_TEXTURE_2D, id);
+}
+void Texture::SetShaderData(Shader* shaderData)
+{
+	this->shader = shaderData;
+}
+void Texture::SetShaderData(const std::string& shaderName)
+{
+	this->shader = rm->GetShaderData(shaderName);
 }

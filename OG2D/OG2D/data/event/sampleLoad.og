@@ -1,5 +1,6 @@
+Shader>sample,simple
+Shader>font,font
 Texture>back.png,back
 Texture>Collision.png,collision
 Texture>Button.png,button
 Texture>A33.png,font1
-Shader>sample,simple

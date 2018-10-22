@@ -358,5 +358,8 @@
     <FxCompile Include="data\shader\sample.vsh">
       <Filter>リソース ファイル\Shader</Filter>
     </FxCompile>
+    <FxCompile Include="data\shader\font.vsh">
+      <Filter>リソース ファイル\Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

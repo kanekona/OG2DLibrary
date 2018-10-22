@@ -1,6 +1,6 @@
 
 #pragma once
-#include "OG\_OGsystem.h"
+#include "OGSystem\Shader\shader.h"
 /**
 *@brief	画像の読み込み、表示を行うclass
 */
@@ -11,6 +11,8 @@ class Texture {
 	Vec2 TextureSize;
 	//! 画像ファイルパス
 	const std::string FileName;
+	//! 描画時に使用するShader情報
+	Shader* shader;
 	/**
 	*@brief	頂点座標を回転させる
 	*@param[in] float angle 回転値
@@ -99,4 +101,15 @@ public:
 	*@param[in] unsigned int h TextureSize_h
 	*/
 	void SetBuffer(void* data, const unsigned int w, const unsigned int h);
+	/**
+	*@brief	Shaderデータを登録する
+	*@param[in] Shader* shaderData シェーダーデータのポインタ
+	*/
+	void SetShaderData(Shader* shaderData);
+	/**
+	*@brief	Shaderデータを登録する
+	*@param[in] const string& shaderName 登録したシェーダー名
+	*ResourceManagerから取得する
+	*/
+	void SetShaderData(const std::string& shaderName);
 };

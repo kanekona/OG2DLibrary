@@ -20,7 +20,7 @@ public:
 	virtual ~TestFont();
 	FT_Library ft_library;
 	FT_Face face;
-	void Draw(const std::string& text, unsigned int fontSize, const Vec2& pos);
+	void Draw(const std::string& text, unsigned int fontSize, const Vec2& pos, const Color& color = { 1,1,1,1 });
 	GLuint texID;
 	bool Check(char);
 };

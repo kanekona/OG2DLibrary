@@ -18,7 +18,7 @@ TestFont::~TestFont()
 	FT_Done_Face(this->face);
 	FT_Done_FreeType(this->ft_library);
 }
-void TestFont::Draw(const std::string& text, unsigned int fontSize, const Vec2& pos)
+void TestFont::Draw(const std::string& text, unsigned int fontSize, const Vec2& pos,const Color& color)
 {
 	for (auto t : text)
 	{
@@ -36,8 +36,8 @@ void TestFont::Draw(const std::string& text, unsigned int fontSize, const Vec2& 
 			data.size = { (int)face->glyph->bitmap.width,(int)face->glyph->bitmap.rows };
 			data.bearing = { face->glyph->bitmap_left,face->glyph->bitmap_top };
 			data.texture->SetBuffer(bitmap.buffer, bitmap.width, bitmap.rows);
+			data.texture->SetShaderData("font");
 			this->datas.emplace_back(data);
-			//delete[] textbuffer;
 		}
 	}
 	for (int i = 0; i < text.size(); ++i)
@@ -50,7 +50,7 @@ void TestFont::Draw(const std::string& text, unsigned int fontSize, const Vec2& 
 				Box2D draw(Vec2(pos_x, pos.y), Vec2((int)fontSize, (int)fontSize));
 				draw.OffsetSize();
 				Box2D src(Vec2(), id.texture->GetTextureSize());
-				id.texture->Draw(draw, src);
+				id.texture->Draw(draw, src, color);;
 				break;
 			}
 		}
