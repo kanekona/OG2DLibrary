@@ -38,7 +38,7 @@ void Button::Render2D()
 	this->draw->x += this->GetScale().x / 10.f;
 	this->draw->y += this->GetScale().x / 10.f;
 	//this->font.Draw(this->_text, Vec2(this->draw->x, this->draw->y), (int)((this->GetScale().x - (this->GetScale().x / 5.f)) / 3));
-	this->font.Draw(this->_text, (float)((this->GetScale().x - (this->GetScale().x / 5.f)) / 3), Vec2(this->draw->x, this->draw->y));
+	this->font.Draw(this->_text, (float)((this->GetScale().x - (this->GetScale().x / 5.f)) / 3), Vec2(this->draw->x, this->draw->y), Color(0.0f, 0.0f, 0.0f, 1.0f));
 }
 bool Button::IsMouseHit() const
 {

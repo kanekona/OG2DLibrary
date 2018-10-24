@@ -4,7 +4,7 @@
 #include "Back\Back.h"
 Title::Title()
 {
-	ge->SetUI(new Back("back"));
+	ge->SetGameObject(new Back("back"));
 }
 Title::~Title()
 {

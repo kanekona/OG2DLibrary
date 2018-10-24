@@ -28,6 +28,7 @@ namespace UO
 *@brief	UI表示のためのオブジェクト
 *
 *更新と描画のみを行える
+*現状だとGameObjectより下に描画できないためGameObjectを使用すること
 */
 class UIObject
 {

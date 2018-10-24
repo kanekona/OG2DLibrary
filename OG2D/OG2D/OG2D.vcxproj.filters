@@ -121,6 +121,9 @@
     <Filter Include="リソース ファイル\event">
       <UniqueIdentifier>{8f6238dc-1522-4fb0-b42a-d3b97e72d449}</UniqueIdentifier>
     </Filter>
+    <Filter Include="リソース ファイル\Doxygen">
+      <UniqueIdentifier>{9955d885-1174-4848-9096-32b170da4ff9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -352,6 +355,9 @@
     </None>
     <None Include="data\shader\font.fsh">
       <Filter>リソース ファイル\Shader</Filter>
+    </None>
+    <None Include="src\lib\doxygen.h">
+      <Filter>ヘッダー ファイル</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -127,6 +127,7 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 	};
 	//0.1以下のカラーを表示しない、これで透過されてる部分を切り抜くことで透過された画像になる
 	glAlphaFunc(GL_GREATER, (GLclampf)0.0);
+	shader->Use();
 	GLint in_posLocation = shader->Attrib("inpos");
 	GLint in_uvLocation = shader->Attrib("inuv");
 	GLint in_texture = shader->Uniform("tex");

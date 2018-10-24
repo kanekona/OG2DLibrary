@@ -1,7 +1,7 @@
 #pragma once
 #include "OG\OGsystem.h"
 
-class Back : public UIObject
+class Back : public GameObject
 {
 	//! ‰æ‘œƒf[ƒ^
 	Texture* image;
