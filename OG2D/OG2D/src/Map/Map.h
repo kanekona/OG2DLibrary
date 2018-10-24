@@ -66,7 +66,7 @@ public:
 	*@brief	Sceneê∂ê¨
 	*@return Map* ê∂ê¨ÇµÇΩScene
 	*/
-	static Map*  Create();
+	static Map* Create();
 	/**
 	*@brief	destructor
 	*/

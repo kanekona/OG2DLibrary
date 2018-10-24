@@ -357,7 +357,7 @@
       <Filter>リソース ファイル\Shader</Filter>
     </None>
     <None Include="src\lib\doxygen.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>リソース ファイル\Doxygen</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
