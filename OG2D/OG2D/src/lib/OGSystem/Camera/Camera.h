@@ -1,5 +1,6 @@
 #pragma once
 #include "OG\_OGsystem.h"
+#include "Collision\Collision.h"
 /**
 *@brief	2DCamera
 *
@@ -19,6 +20,16 @@ class Camera2D : private NonCopyable
 	Vec2 Scale;
 	//! 投影行列を保存しておく配列
 	GLfloat projectionMatrix[16];
+	//! 判定用
+	CollisionCircle collision;
+	//! Collision用変数
+	Vec2 radius;
+	//! Collision用変数
+	float angle;
+	//! Collision用Pos
+	Vec2 centerPos;
+	//! Collision用Scale
+	Vec2 direScale;
 public:
 	/**
 	*@brief	constructor
@@ -28,7 +39,7 @@ public:
 	*@brief	constructor
 	*@param[in]	const Box2D& b 位置とサイズ
 	*/
-	explicit Camera2D(const Box2D& b);	
+	explicit Camera2D(const Box2D& b);
 	/**
 	*@brief	destructor
 	*/
@@ -98,7 +109,7 @@ public:
 	*@param[in] float right 右
 	*@param[in] float buttom 下
 	*@param[in] float top 上
-	*@param[in] float nearVal 手前 
+	*@param[in] float nearVal 手前
 	*@param[in] float farVal 奥
 	*/
 	void SetProjectionMatrix(
@@ -110,4 +121,9 @@ public:
 	*@return GLfloat* 投影行列
 	*/
 	GLfloat* GetProjectionMatrix();
+	/**
+	*@brief Camera判定を取得
+	*@return CollisionCircle* 判定
+	*/
+	CollisionCircle* GetCollision();
 };

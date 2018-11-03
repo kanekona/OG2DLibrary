@@ -57,6 +57,7 @@ public:
 	void operator*=(const Vec2&);
 	void operator-=(const Vec2&);
 	bool operator==(const Vec2&);
+	bool operator!=(const Vec2&);
 };
 /**
 *@brief	2*2çsóÒ

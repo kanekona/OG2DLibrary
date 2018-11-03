@@ -1,6 +1,7 @@
 #include "WinConfig.h"
 #include "OGSystem\Button\Button.h"
 #include "Task\Scene\Title.h"
+#include "Event\WindowEvent\WindowEvent.h"
 ConfigTask::ConfigTask()
 {
 	this->Init("Config");
@@ -16,7 +17,10 @@ ConfigTask::~ConfigTask()
 {
 	if (this->GetNextTask() && !ge->GetDeleteEngine())
 	{
-		ge->WindowChenge(0, 30, 1920, 1080, "WindowName", this->nextWindowMode);
+		int x, y;
+		std::ifstream ifs("./data/event/windowSize.og");
+		WindowEvent(ifs, &x, &y);
+		ge->WindowChenge(0, 30, x, y, "WindowName", this->nextWindowMode);
 		ge->SetScene(Title::Create());
 	}
 }

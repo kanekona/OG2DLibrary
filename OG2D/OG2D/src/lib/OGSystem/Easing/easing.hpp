@@ -14,6 +14,10 @@ private:
 	float cnt;
 	//! EnablePlay
 	bool toplay = false;
+	//! StartValue
+	float start;
+	//! EndValue
+	float end;
 public:
 	/**
 	*enum class Name
@@ -63,11 +67,40 @@ public:
 	{
 		this->cnt = 0;
 		this->toplay = true;
+		this->start = 0;
+		this->end = 0;
 	}
 	/**
 	*@brief	constructor
 	*/
 	Easing() { this->ResetTime(); };
+	/**
+	*@brief	開始と終了地点を登録
+	*@param[in] float startValue StartValue
+	*@param[in] float endValue EndValue
+	*/
+	void Set(const float startValue, const float endValue)
+	{
+		this->start = startValue;
+		this->end = endValue;
+	}
+
+	/**
+	*@brief	開始始点を取得
+	*@return float StartValue
+	*/
+	float GetStartValue() const
+	{
+		return this->start;
+	}
+	/**
+	*@brief	終了始点を取得
+	*@return float EndValue
+	*/
+	float GetEndValue() const
+	{
+		return this->end;
+	}
 
 	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Linear
@@ -75,19 +108,19 @@ public:
 	public:
 		float None(float t, float b, float c, float d)
 		{
-			return c*t / d + b;
+			return c * t / d + b;
 		}
 		float In(float t, float b, float c, float d)
 		{
-			return c*t / d + b;
+			return c * t / d + b;
 		}
 		float Out(float t, float b, float c, float d)
 		{
-			return c*t / d + b;
+			return c * t / d + b;
 		}
 		float InOut(float t, float b, float c, float d)
 		{
-			return c*t / d + b;
+			return c * t / d + b;
 		}
 	}linear;
 
@@ -99,14 +132,14 @@ public:
 		{
 			float s = 1.70158f;
 			float postFix = t /= d;
-			return c*(postFix)*t*((s + 1)*t - s) + b;
+			return c * (postFix)*t*((s + 1)*t - s) + b;
 		}
 		float Out(float t, float b, float c, float d)
 		{
 
 			float s = 1.70158f;
 
-			return c*((t = t / d - 1)*t*((s + 1)*t + s) + 1) + b;
+			return c * ((t = t / d - 1)*t*((s + 1)*t + s) + 1) + b;
 		}
 		float InOut(float t, float b, float c, float d)
 		{
@@ -116,7 +149,7 @@ public:
 			return c / 2 * ((postFix)*t*(((s *= (1.525f)) + 1)*t + s) + 2) + b;
 		}
 	}back;
-	
+
 
 	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Bounce
@@ -127,22 +160,22 @@ public:
 
 			if ((t /= d) < (1 / 2.75f))
 			{
-				return c*(7.5625f*t*t) + b;
+				return c * (7.5625f*t*t) + b;
 			}
 			else if (t < (2 / 2.75f))
 			{
 				float postFix = t -= (1.5f / 2.75f);
-				return c*(7.5625f*(postFix)*t + .75f) + b;
+				return c * (7.5625f*(postFix)*t + .75f) + b;
 			}
 			else if (t < (2.5 / 2.75))
 			{
 				float postFix = t -= (2.25f / 2.75f);
-				return c*(7.5625f*(postFix)*t + .9375f) + b;
+				return c * (7.5625f*(postFix)*t + .9375f) + b;
 			}
 			else
 			{
 				float postFix = t -= (2.625f / 2.75f);
-				return c*(7.5625f*(postFix)*t + .984375f) + b;
+				return c * (7.5625f*(postFix)*t + .984375f) + b;
 			}
 		}
 		float In(float t, float b, float c, float d)
@@ -152,7 +185,7 @@ public:
 		float InOut(float t, float b, float c, float d)
 		{
 			if (t < d / 2) return In(t * 2, 0, c, d) * .5f + b;
-			else return Out(t * 2 - d, 0, c, d) * .5f + c*.5f + b;
+			else return Out(t * 2 - d, 0, c, d) * .5f + c * .5f + b;
 		}
 	}bounce;
 
@@ -170,8 +203,8 @@ public:
 		}
 		float InOut(float t, float b, float c, float d)
 		{
-			if ((t /= d / 2) < 1) return -c / 2 * static_cast<float>((sqrt(1 - t*t) - 1)) + b;
-			return c / 2 * static_cast<float>((sqrt(1 - t*(t -= 2)) + 1)) + b;
+			if ((t /= d / 2) < 1) return -c / 2 * static_cast<float>((sqrt(1 - t * t) - 1)) + b;
+			return c / 2 * static_cast<float>((sqrt(1 - t * (t -= 2)) + 1)) + b;
 		}
 	}circ;
 
@@ -181,11 +214,11 @@ public:
 	public:
 		float In(float t, float b, float c, float d)
 		{
-			return c*(t /= d)*t*t + b;
+			return c * (t /= d)*t*t + b;
 		}
 		float Out(float t, float b, float c, float d)
 		{
-			return c*((t = t / d - 1)*t*t + 1) + b;
+			return c * ((t = t / d - 1)*t*t + 1) + b;
 		}
 		float InOut(float t, float b, float c, float d)
 		{
@@ -201,7 +234,7 @@ public:
 		float In(float t, float b, float c, float d)
 		{
 			if (t == 0) return b;  if ((t /= d) == 1) return b + c;
-			float p = d*.3f;
+			float p = d * .3f;
 			float a = c;
 			float s = p / 4;
 			float postFix = static_cast<float>(a*pow(2, 10 * (t -= 1)));
@@ -211,7 +244,7 @@ public:
 		float Out(float t, float b, float c, float d)
 		{
 			if (t == 0) return b;  if ((t /= d) == 1) return b + c;
-			float p = d*.3f;
+			float p = d * .3f;
 			float a = c;
 			float s = p / 4;
 			return (static_cast<float>(a*pow(2, -10 * t) * sin((t*d - s)*(2 * static_cast<float>(M_PI)) / p) + c + b));
@@ -220,7 +253,7 @@ public:
 		float InOut(float t, float b, float c, float d)
 		{
 			if (t == 0) return b;  if ((t /= d / 2) == 2) return b + c;
-			float p = d*(.3f*1.5f);
+			float p = d * (.3f*1.5f);
 			float a = c;
 			float s = p / 4;
 
@@ -260,11 +293,11 @@ public:
 	public:
 		float In(float t, float b, float c, float d)
 		{
-			return c*(t /= d)*t + b;
+			return c * (t /= d)*t + b;
 		}
 		float Out(float t, float b, float c, float d)
 		{
-			return -c *(t /= d)*(t - 2) + b;
+			return -c * (t /= d)*(t - 2) + b;
 		}
 		float InOut(float t, float b, float c, float d)
 		{
@@ -279,7 +312,7 @@ public:
 	public:
 		float In(float t, float b, float c, float d)
 		{
-			return c*(t /= d)*t*t*t + b;
+			return c * (t /= d)*t*t*t + b;
 		}
 		float Out(float t, float b, float c, float d)
 		{
@@ -298,11 +331,11 @@ public:
 	public:
 		float In(float t, float b, float c, float d)
 		{
-			return c*(t /= d)*t*t*t*t + b;
+			return c * (t /= d)*t*t*t*t + b;
 		}
 		float Out(float t, float b, float c, float d)
 		{
-			return c*((t = t / d - 1)*t*t*t*t + 1) + b;
+			return c * ((t = t / d - 1)*t*t*t*t + 1) + b;
 		}
 		float InOut(float t, float b, float c, float d)
 		{
@@ -310,7 +343,7 @@ public:
 			return c / 2 * ((t -= 2)*t*t*t*t + 2) + b;
 		}
 	}quint;
-	
+
 	//t = 時間 d = 始点 c = 終点-始点 d = 経過時間
 	class Sine
 	{
@@ -329,5 +362,5 @@ public:
 			return -c / 2 * static_cast<float>((cos(M_PI*t / d) - 1)) + b;
 		}
 	}sine;
-	
+
 };

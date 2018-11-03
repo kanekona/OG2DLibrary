@@ -135,6 +135,7 @@
     <ClCompile Include="src\Back\Back.cpp" />
     <ClCompile Include="src\lib\Event\Event.cpp" />
     <ClCompile Include="src\lib\Event\ResourceLoad\ResourceLoad.cpp" />
+    <ClCompile Include="src\lib\Event\WindowEvent\WindowEvent.cpp" />
     <ClCompile Include="src\lib\Object\GameObject.cpp" />
     <ClCompile Include="src\lib\Object\SceneTask.cpp" />
     <ClCompile Include="src\lib\Object\UITask.cpp" />
@@ -174,6 +175,7 @@
     </None>
     <ClInclude Include="src\lib\Event\Event.h" />
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h" />
+    <ClInclude Include="src\lib\Event\WindowEvent\WindowEvent.h" />
     <ClInclude Include="src\lib\Object\GameObject.h" />
     <ClInclude Include="src\lib\Object\SceneTask.h" />
     <ClInclude Include="src\lib\Object\UITask.h" />

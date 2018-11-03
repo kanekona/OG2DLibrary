@@ -13,6 +13,8 @@ Camera2D::Camera2D(const Box2D& pos)
 	this->cameraPos = pos;
 	this->position = { 0,0 };
 	this->Scale = { pos.w,pos.h };
+	this->angle = 0.0f;
+	this->radius = { 1,1 };
 }
 Camera2D::~Camera2D()
 {
@@ -22,15 +24,17 @@ void Camera2D::Initialize(const Box2D& pos)
 {
 	//各値をセットする
 	this->cameraPos = pos;
-	this->position = {0,0 };
+	this->position = { 0,0 };
 	this->Scale = { pos.w,pos.h };
+	this->angle = 0.0f;
+	this->radius = { 1,1 };
 }
 void Camera2D::Update()
 {
 	//行列をプロジェクションモードに変更
-	//glMatrixMode(GL_PROJECTION);
+	glMatrixMode(GL_PROJECTION);
 	//行列の初期化
-	//glLoadIdentity();
+	glLoadIdentity();
 	//元データが書き換わらないよう値の代入
 	Box2D _camera(cameraPos);
 	//初期設定値からの変更値
@@ -40,7 +44,10 @@ void Camera2D::Update()
 	_camera.h = this->Scale.y;
 	_camera.OffsetSize();
 	//描画縦横サイズの指定
-	//glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
+	this->centerPos = { this->position.x + this->Scale.x / 2,this->position.y + this->Scale.y / 2 };
+	this->direScale = this->Scale * 1.5f;
+	this->collision.CreateHitBase(&this->centerPos, &this->direScale, &this->radius, &this->angle);
+	glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
 	this->SetProjectionMatrix(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
 }
 void Camera2D::MovePos(const Vec2& est)
@@ -111,4 +118,8 @@ void Camera2D::SetProjectionMatrix(float cl, float cr, float cb, float ct, float
 GLfloat* Camera2D::GetProjectionMatrix()
 {
 	return this->projectionMatrix;
+}
+CollisionCircle* Camera2D::GetCollision()
+{
+	return &this->collision;
 }

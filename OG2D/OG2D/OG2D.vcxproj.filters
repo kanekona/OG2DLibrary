@@ -124,6 +124,9 @@
     <Filter Include="リソース ファイル\Doxygen">
       <UniqueIdentifier>{9955d885-1174-4848-9096-32b170da4ff9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\OGLib\Event\WinodowEvent">
+      <UniqueIdentifier>{3940b656-92b4-4f90-b9ea-05c48dae94de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -233,6 +236,9 @@
     <ClCompile Include="src\lib\OGSystem\Shader\shader.cpp">
       <Filter>ソース ファイル\OGLib\System\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="src\lib\Event\WindowEvent\WindowEvent.cpp">
+      <Filter>ソース ファイル\OGLib\Event\WinodowEvent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h">
@@ -339,6 +345,9 @@
     </ClInclude>
     <ClInclude Include="src\lib\OGSystem\Shader\shader.h">
       <Filter>ソース ファイル\OGLib\System\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\Event\WindowEvent\WindowEvent.h">
+      <Filter>ソース ファイル\OGLib\Event\WinodowEvent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
