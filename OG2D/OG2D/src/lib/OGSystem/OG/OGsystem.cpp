@@ -197,14 +197,14 @@ void EngineSystem::Task_Update()
 void EngineSystem::Task_Render_2D()
 {
 	//GameObjects‚ÌRender‚ðŒÄ‚Ô
-	for (auto id = this->nowGameObjects.begin(); id != this->nowGameObjects.end(); ++id)
+	for (int i = 0; i < this->nowGameObjects.size(); ++i)
 	{
-		(*id)->RenderManager();
+		this->nowGameObjects[this->object_orders[i].id]->RenderManager();
 	}
 	//UI‚ÌRender‚ðŒÄ‚Ô
-	for (auto id = this->nowUIs.begin(); id != this->nowUIs.end(); ++id)
+	for (int i = 0; i < this->nowUIs.size(); ++i)
 	{
-		(*id)->RenderManager();
+		this->nowUIs[this->ui_orders[i].id]->RenderManager();
 	}
 }
 void EngineSystem::TaskGameUpdate()

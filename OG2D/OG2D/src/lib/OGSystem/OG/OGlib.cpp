@@ -179,11 +179,12 @@ void Box2D::OffsetCenterSize()
 	this->OffsetSize();
 }
 //Box2D Box2D::operator+(const Box2D& b) { return Box2D(x += b.x, y += b.y, w += b.w, h += b.h); }
-Box2D Box2D::operator+(const Box2D& b) { this->x += b.x, this->y += b.y, this->w += b.w, this->h += b.h; return *this; }
+//Box2D Box2D::operator+(const Box2D& b) { this->x += b.x, this->y += b.y, this->w += b.w, this->h += b.h; return *this; }
+Box2D Box2D::operator+(const Box2D& b) { return Box2D(this->x + b.x, this->y + b.y, this->w + b.w, this->h + b.h); }
 //Box2D Box2D::operator-(const Box2D& b) { return Box2D(x -= b.x, y -= b.y, w -= b.w, h -= b.h); }
-Box2D Box2D::operator-(const Box2D& b) { this->x -= b.x, this->y -= b.y, this->w -= b.w, this->h -= b.h; return *this; }
+Box2D Box2D::operator-(const Box2D& b) { return Box2D(this->x - b.x, this->y - b.y, this->w - b.w, this->h - b.h); }
 //Box2D Box2D::operator*(const Box2D& b) { return Box2D(x *= b.x, y *= b.y, w *= b.w, h *= b.h); }
-Box2D Box2D::operator*(const Box2D& b) { this->x *= b.x, this->y *= b.y, this->w *= b.w, this->h *= b.h; return *this; }
+Box2D Box2D::operator*(const Box2D& b) { return Box2D(this->x - b.x, this->y - b.y, this->w - b.w, this->h - b.h); }
 void Box2D::operator+=(const Box2D& b){ { x += b.x; y += b.y; w += b.w; h += b.h; } }
 void Box2D::operator-=(const Box2D& b){ { x -= b.x; y -= b.y; w -= b.w; h -= b.h; } }
 void Box2D::operator*=(const Box2D& b){ { x *= b.x; y *= b.y; w *= b.w; h *= b.h; } }

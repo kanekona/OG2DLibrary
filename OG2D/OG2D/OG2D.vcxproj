@@ -155,14 +155,17 @@
     <ClCompile Include="src\lib\OGSystem\OG\OGTask.cpp" />
     <ClCompile Include="src\lib\OGSystem\OG\System.cpp" />
     <ClCompile Include="src\lib\OGSystem\OG\_OGsystem.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Order\Order.cpp" />
     <ClCompile Include="src\lib\OGSystem\Random\Random.cpp" />
     <ClCompile Include="src\lib\OGSystem\ResourceManager\ResourceManager.cpp" />
     <ClCompile Include="src\lib\OGSystem\Shader\shader.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Texture\LayerTexture.cpp" />
     <ClCompile Include="src\lib\OGSystem\Texture\Texture.cpp" />
     <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp" />
     <ClCompile Include="src\lib\OGSystem\Window\Window.cpp" />
     <ClCompile Include="src\lib\Task\WinConfig.cpp" />
     <ClCompile Include="src\Map\Map.cpp" />
+    <ClCompile Include="src\Object\TestObject.cpp" />
     <ClCompile Include="src\Task\Scene\Game.cpp" />
     <ClCompile Include="src\Task\Scene\Load.cpp" />
     <ClCompile Include="src\Task\Scene\Title.cpp" />
@@ -170,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Back\Back.h" />
+    <None Include="data\event\windowSize.og" />
     <None Include="src\lib\doxygen.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
@@ -196,15 +200,18 @@
     <ClInclude Include="src\lib\OGSystem\OG\OGTask.h" />
     <ClInclude Include="src\lib\OGSystem\OG\System.h" />
     <ClInclude Include="src\lib\OGSystem\OG\_OGsystem.h" />
+    <ClInclude Include="src\lib\OGSystem\Order\Order.h" />
     <ClInclude Include="src\lib\OGSystem\randmais.h" />
     <ClInclude Include="src\lib\OGSystem\Random\Random.h" />
     <ClInclude Include="src\lib\OGSystem\ResourceManager\ResourceManager.h" />
     <ClInclude Include="src\lib\OGSystem\Shader\shader.h" />
+    <ClInclude Include="src\lib\OGSystem\Texture\LayerTexture.h" />
     <ClInclude Include="src\lib\OGSystem\Texture\Texture.h" />
     <ClInclude Include="src\lib\OGSystem\Timer\glTimer.h" />
     <ClInclude Include="src\lib\OGSystem\Window\Window.h" />
     <ClInclude Include="src\lib\Task\WinConfig.h" />
     <ClInclude Include="src\Map\Map.h" />
+    <ClInclude Include="src\Object\TestObject.h" />
     <ClInclude Include="src\Task\Scene\Game.h" />
     <ClInclude Include="src\Task\Scene\Load.h" />
     <ClInclude Include="src\Task\Scene\Title.h" />

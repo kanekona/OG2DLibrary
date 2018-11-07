@@ -2,9 +2,11 @@
 #include "Game.h"
 #include "Map\Map.h"
 #include "Back\Back.h"
+#include "Object\TestObject.h"
 Title::Title()
 {
 	ge->SetGameObject(new Back("back"));
+	ge->SetGameObject(new TestObject());
 }
 Title::~Title()
 {

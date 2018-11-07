@@ -3,6 +3,7 @@
 Back::Back(const std::string& path)
 {
 	this->image = rm->GetTextureData(path);
+	__super::SetDrawOrder(0);
 }
 Back::~Back()
 {

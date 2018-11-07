@@ -17,25 +17,8 @@
 #include "Object\SceneTask.h"
 #include "Object\UITask.h"
 #include "Shader\shader.h"
-/**
-*@brief	•`‰æ‡‚ğŠÇ—‚·‚éclass
-*/
-class OrderCheck
-{
-public:
-	/**
-	*@brief	constructor
-	*/
-	explicit OrderCheck()
-	{
-		this->id = -1;
-		this->order_s = 0;
-	}
-	//! ObjectID
-	int id;
-	//! •`‰æ‡
-	unsigned int order_s;
-};
+#include "Order\Order.h"
+#include "Texture\LayerTexture.h"
 /**
 *@brief	scene‚ğŠÇ—‚·‚éclass
 */

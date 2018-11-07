@@ -104,10 +104,9 @@ void StreamingSound::pause()
 }
 void StreamingSound::stop()
 {
-	this->gain(0.0f);
-	this->param_->backStartPos = true;
-	std::lock_guard<std::mutex>(this->param_->mutex);
-	this->param_->stopped = true;
+	this->param_->mutex.lock();
+	this->source_->Stop();
+	this->param_->mutex.unlock();
 	this->isplay_ = false;
 }
 bool StreamingSound::isPlaying()

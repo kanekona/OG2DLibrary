@@ -127,6 +127,18 @@
     <Filter Include="ソース ファイル\OGLib\Event\WinodowEvent">
       <UniqueIdentifier>{3940b656-92b4-4f90-b9ea-05c48dae94de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\LayerTexture">
+      <UniqueIdentifier>{680f2071-ec37-4f54-9c45-517fd7b40b9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Order">
+      <UniqueIdentifier>{2ea3b3cf-427a-4f3a-af47-d666d17ca989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{f93dd0c9-27d7-4808-8459-5ffe71ff5c3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\TestObject">
+      <UniqueIdentifier>{c0e3b053-848c-485a-ae42-efb7e49160ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -239,6 +251,15 @@
     <ClCompile Include="src\lib\Event\WindowEvent\WindowEvent.cpp">
       <Filter>ソース ファイル\OGLib\Event\WinodowEvent</Filter>
     </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Texture\LayerTexture.cpp">
+      <Filter>ソース ファイル\OGLib\System\LayerTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Order\Order.cpp">
+      <Filter>ソース ファイル\OGLib\System\Order</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object\TestObject.cpp">
+      <Filter>ソース ファイル\Object\TestObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h">
@@ -349,6 +370,15 @@
     <ClInclude Include="src\lib\Event\WindowEvent\WindowEvent.h">
       <Filter>ソース ファイル\OGLib\Event\WinodowEvent</Filter>
     </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Texture\LayerTexture.h">
+      <Filter>ソース ファイル\OGLib\System\LayerTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Order\Order.h">
+      <Filter>ソース ファイル\OGLib\System\Order</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\TestObject.h">
+      <Filter>ソース ファイル\Object\TestObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc">
@@ -367,6 +397,9 @@
     </None>
     <None Include="src\lib\doxygen.h">
       <Filter>リソース ファイル\Doxygen</Filter>
+    </None>
+    <None Include="data\event\windowSize.og">
+      <Filter>リソース ファイル\event</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
