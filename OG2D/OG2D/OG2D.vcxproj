@@ -173,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Back\Back.h" />
+    <None Include="data\event\kiritan.og" />
     <None Include="data\event\windowSize.og" />
     <None Include="src\lib\doxygen.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>

@@ -401,6 +401,9 @@
     <None Include="data\event\windowSize.og">
       <Filter>リソース ファイル\event</Filter>
     </None>
+    <None Include="data\event\kiritan.og">
+      <Filter>リソース ファイル\event</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shader\sample.vsh">

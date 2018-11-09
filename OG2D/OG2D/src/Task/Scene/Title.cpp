@@ -6,7 +6,7 @@
 Title::Title()
 {
 	ge->SetGameObject(new Back("back"));
-	ge->SetGameObject(new TestObject());
+	ge->SetGameObject(new TestObject("kiri"));
 }
 Title::~Title()
 {
