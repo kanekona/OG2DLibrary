@@ -1,3 +1,9 @@
+#.gitgnoreの書き方
+# "#"はコメント文
+# *.exe 指定拡張子を無視する
+# Debug/ 指定ファイルを無視する
+# !OG2D/x64/Debug/OG2D.exe 指定物を無視しない
+# data/**/*.exe 指定フォルダの指定拡張子を無視する
 
 # Created by https://www.gitignore.io/api/xcode,macos,windows,visualstudio
 
