@@ -139,6 +139,9 @@
     <Filter Include="ソース ファイル\Object\TestObject">
       <UniqueIdentifier>{c0e3b053-848c-485a-ae42-efb7e49160ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object\State">
+      <UniqueIdentifier>{83680dce-909e-486e-8c1d-4d22cb16245b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -260,6 +263,12 @@
     <ClCompile Include="src\Object\TestObject.cpp">
       <Filter>ソース ファイル\Object\TestObject</Filter>
     </ClCompile>
+    <ClCompile Include="src\Object\State\State.cpp">
+      <Filter>ソース ファイル\Object\State</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object\State\TestState.cpp">
+      <Filter>ソース ファイル\Object\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h">
@@ -378,6 +387,12 @@
     </ClInclude>
     <ClInclude Include="src\Object\TestObject.h">
       <Filter>ソース ファイル\Object\TestObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\State\State.h">
+      <Filter>ソース ファイル\Object\State</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\State\TestState.h">
+      <Filter>ソース ファイル\Object\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

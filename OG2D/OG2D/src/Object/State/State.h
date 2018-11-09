@@ -16,7 +16,7 @@ public:
 	void TimeUp(const unsigned int cnt);
 };
 
-class StateManager
+class StateManager : private NonCopyable
 {
 	//std::vector<std::pair<std::string, StateParam*>> list;
 	std::unordered_map<std::string, StateParam*> list;
@@ -36,4 +36,5 @@ public:
 		return (T*)this->list[tag];
 	}
 	void NextState(const std::string& tag);
+	void Update();
 };

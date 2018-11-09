@@ -37,7 +37,7 @@ void TestObject::Update()
 		{
 			mode = Mode::DOWN_1;
 		}*/
-		if (this->timeCnt > 10)
+		if (this->timeCnt > 5)
 		{
 			mode = Mode::DOWN_1;
 			this->tex.Get("kiri2")->color.alpha = 0.f;
@@ -51,7 +51,7 @@ void TestObject::Update()
 		{
 			mode = Mode::UP_0;
 		}*/
-		if (this->timeCnt > 10)
+		if (this->timeCnt > 5)
 		{
 			mode = Mode::UP_0;
 			this->tex.Get("kiri2")->color.alpha = 1.f;
@@ -65,7 +65,7 @@ void TestObject::Update()
 		{
 			mode = Mode::UP_1;
 		}*/
-		if (this->timeCnt > 10)
+		if (this->timeCnt > 5)
 		{
 			mode = Mode::UP_1;
 			this->tex.Get("kiri1")->color.alpha = 1.0f;
@@ -79,7 +79,7 @@ void TestObject::Update()
 		{
 			mode = Mode::WAIT;
 		}*/
-		if (this->timeCnt > 10)
+		if (this->timeCnt > 5)
 		{
 			mode = Mode::WAIT;
 		}

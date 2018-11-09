@@ -23,8 +23,13 @@ StateParam* StateManager::GetState(const std::string& tag)
 bool StateManager::SetState(const std::string& tag, StateParam* state)
 {
 	this->list[tag] = state;
+	return true;
 }
 void StateManager::NextState(const std::string& tag)
 {
 	this->nextState = tag;
+}
+void StateManager::Update()
+{
+	this->list[this->nowState]->Update();
 }

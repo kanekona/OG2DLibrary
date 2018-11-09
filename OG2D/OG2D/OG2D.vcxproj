@@ -165,6 +165,8 @@
     <ClCompile Include="src\lib\OGSystem\Window\Window.cpp" />
     <ClCompile Include="src\lib\Task\WinConfig.cpp" />
     <ClCompile Include="src\Map\Map.cpp" />
+    <ClCompile Include="src\Object\State\State.cpp" />
+    <ClCompile Include="src\Object\State\TestState.cpp" />
     <ClCompile Include="src\Object\TestObject.cpp" />
     <ClCompile Include="src\Task\Scene\Game.cpp" />
     <ClCompile Include="src\Task\Scene\Load.cpp" />
@@ -212,6 +214,8 @@
     <ClInclude Include="src\lib\OGSystem\Window\Window.h" />
     <ClInclude Include="src\lib\Task\WinConfig.h" />
     <ClInclude Include="src\Map\Map.h" />
+    <ClInclude Include="src\Object\State\State.h" />
+    <ClInclude Include="src\Object\State\TestState.h" />
     <ClInclude Include="src\Object\TestObject.h" />
     <ClInclude Include="src\Task\Scene\Game.h" />
     <ClInclude Include="src\Task\Scene\Load.h" />
