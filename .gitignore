@@ -382,4 +382,4 @@ __pycache__/
 *.dgml
 
 #ResourceFile 
-./image/kiritan/
+kiritan/
