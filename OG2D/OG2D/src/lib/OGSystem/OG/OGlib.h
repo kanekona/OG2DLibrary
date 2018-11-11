@@ -145,20 +145,14 @@ public:
 */
 class NonCopyable
 {
-	void operator=(const NonCopyable&)
-	{
-
-	}
-	NonCopyable(const NonCopyable&)
-	{
-
-	}
+	void operator=(const NonCopyable&) = delete;
+	NonCopyable(const NonCopyable&) = delete;
 protected:
-	NonCopyable()
+	explicit NonCopyable()
 	{
 
 	}
-	~NonCopyable()
+	virtual ~NonCopyable()
 	{
 
 	}

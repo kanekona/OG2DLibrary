@@ -45,6 +45,8 @@
 
 #define PI 3.1415926f
 
+#define STR(var) #var
+
 #if defined(_MSC_VER)
 //EWを先にインクルードする必要がある。
 #include <GL/glew.h>
