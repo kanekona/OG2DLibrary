@@ -53,7 +53,7 @@ void StateManager::NextState(const std::string& tag)
 void StateManager::Update()
 {
 	//this->Param(this->list[this->nowState]->Param());
-	if (this->list[this->nowState]->Param(this))
+	while(this->list[this->nowState]->Param(this))
 	{
 		this->Param();
 	}
