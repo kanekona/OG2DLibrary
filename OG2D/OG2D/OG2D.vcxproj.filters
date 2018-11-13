@@ -142,6 +142,12 @@
     <Filter Include="ソース ファイル\Object\State">
       <UniqueIdentifier>{83680dce-909e-486e-8c1d-4d22cb16245b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\OGLib\Object\RenderObject">
+      <UniqueIdentifier>{54a3484a-a1fc-4744-a7f4-4ede2f739ea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\Effect">
+      <UniqueIdentifier>{9b9aad4d-c2ea-480f-9cba-598e6a469e21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -269,6 +275,12 @@
     <ClCompile Include="src\Object\State\TestState.cpp">
       <Filter>ソース ファイル\Object\State</Filter>
     </ClCompile>
+    <ClCompile Include="src\lib\Object\RenderObject.cpp">
+      <Filter>ソース ファイル\OGLib\Object\RenderObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object\Effect\Effect.cpp">
+      <Filter>ソース ファイル\Object\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h">
@@ -393,6 +405,12 @@
     </ClInclude>
     <ClInclude Include="src\Object\State\TestState.h">
       <Filter>ソース ファイル\Object\State</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\Object\RenderObject.h">
+      <Filter>ソース ファイル\OGLib\Object\RenderObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\Effect\Effect.h">
+      <Filter>ソース ファイル\Object\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

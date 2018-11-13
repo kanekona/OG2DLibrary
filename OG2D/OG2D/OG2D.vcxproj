@@ -137,6 +137,7 @@
     <ClCompile Include="src\lib\Event\ResourceLoad\ResourceLoad.cpp" />
     <ClCompile Include="src\lib\Event\WindowEvent\WindowEvent.cpp" />
     <ClCompile Include="src\lib\Object\GameObject.cpp" />
+    <ClCompile Include="src\lib\Object\RenderObject.cpp" />
     <ClCompile Include="src\lib\Object\SceneTask.cpp" />
     <ClCompile Include="src\lib\Object\UITask.cpp" />
     <ClCompile Include="src\lib\OGSystem\Audio\Audio.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="src\lib\OGSystem\Window\Window.cpp" />
     <ClCompile Include="src\lib\Task\WinConfig.cpp" />
     <ClCompile Include="src\Map\Map.cpp" />
+    <ClCompile Include="src\Object\Effect\Effect.cpp" />
     <ClCompile Include="src\Object\State\State.cpp" />
     <ClCompile Include="src\Object\State\TestState.cpp" />
     <ClCompile Include="src\Object\TestObject.cpp" />
@@ -184,6 +186,7 @@
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h" />
     <ClInclude Include="src\lib\Event\WindowEvent\WindowEvent.h" />
     <ClInclude Include="src\lib\Object\GameObject.h" />
+    <ClInclude Include="src\lib\Object\RenderObject.h" />
     <ClInclude Include="src\lib\Object\SceneTask.h" />
     <ClInclude Include="src\lib\Object\UITask.h" />
     <ClInclude Include="src\lib\OGSystem\Audio\Audio.h" />
@@ -214,6 +217,7 @@
     <ClInclude Include="src\lib\OGSystem\Window\Window.h" />
     <ClInclude Include="src\lib\Task\WinConfig.h" />
     <ClInclude Include="src\Map\Map.h" />
+    <ClInclude Include="src\Object\Effect\Effect.h" />
     <ClInclude Include="src\Object\State\State.h" />
     <ClInclude Include="src\Object\State\TestState.h" />
     <ClInclude Include="src\Object\TestObject.h" />
