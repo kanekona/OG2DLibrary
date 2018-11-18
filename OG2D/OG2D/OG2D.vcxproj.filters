@@ -148,6 +148,12 @@
     <Filter Include="ソース ファイル\Object\Effect">
       <UniqueIdentifier>{9b9aad4d-c2ea-480f-9cba-598e6a469e21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\OGLib\Event\WindowsEvent">
+      <UniqueIdentifier>{eedddce4-6e35-4a08-9e30-39b77ce86d2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Task\SetUp">
+      <UniqueIdentifier>{b36a7704-220e-47b0-88c5-493ad5fb7ce4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="data\image\testicon.ico">
@@ -281,6 +287,12 @@
     <ClCompile Include="src\Object\Effect\Effect.cpp">
       <Filter>ソース ファイル\Object\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="src\lib\Event\WindowsEvent\WindowsEvent.cpp">
+      <Filter>ソース ファイル\OGLib\Event\WindowsEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Task\Scene\SetUp.cpp">
+      <Filter>ソース ファイル\Task\SetUp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h">
@@ -411,6 +423,12 @@
     </ClInclude>
     <ClInclude Include="src\Object\Effect\Effect.h">
       <Filter>ソース ファイル\Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\Event\WindowsEvent\WindowsEvent.h">
+      <Filter>ソース ファイル\OGLib\Event\WindowsEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Task\Scene\SetUp.h">
+      <Filter>ソース ファイル\Task\SetUp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -136,6 +136,7 @@
     <ClCompile Include="src\lib\Event\Event.cpp" />
     <ClCompile Include="src\lib\Event\ResourceLoad\ResourceLoad.cpp" />
     <ClCompile Include="src\lib\Event\WindowEvent\WindowEvent.cpp" />
+    <ClCompile Include="src\lib\Event\WindowsEvent\WindowsEvent.cpp" />
     <ClCompile Include="src\lib\Object\GameObject.cpp" />
     <ClCompile Include="src\lib\Object\RenderObject.cpp" />
     <ClCompile Include="src\lib\Object\SceneTask.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="src\Object\TestObject.cpp" />
     <ClCompile Include="src\Task\Scene\Game.cpp" />
     <ClCompile Include="src\Task\Scene\Load.cpp" />
+    <ClCompile Include="src\Task\Scene\SetUp.cpp" />
     <ClCompile Include="src\Task\Scene\Title.cpp" />
     <ClCompile Include="src\Win\WinMain.cpp" />
   </ItemGroup>
@@ -185,6 +187,7 @@
     <ClInclude Include="src\lib\Event\Event.h" />
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h" />
     <ClInclude Include="src\lib\Event\WindowEvent\WindowEvent.h" />
+    <ClInclude Include="src\lib\Event\WindowsEvent\WindowsEvent.h" />
     <ClInclude Include="src\lib\Object\GameObject.h" />
     <ClInclude Include="src\lib\Object\RenderObject.h" />
     <ClInclude Include="src\lib\Object\SceneTask.h" />
@@ -223,6 +226,7 @@
     <ClInclude Include="src\Object\TestObject.h" />
     <ClInclude Include="src\Task\Scene\Game.h" />
     <ClInclude Include="src\Task\Scene\Load.h" />
+    <ClInclude Include="src\Task\Scene\SetUp.h" />
     <ClInclude Include="src\Task\Scene\Title.h" />
   </ItemGroup>
   <ItemGroup>

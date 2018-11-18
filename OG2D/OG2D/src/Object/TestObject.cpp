@@ -19,7 +19,7 @@ TestObject::TestObject(const std::string& tag)
 	this->sm = new StateManager("test", new TestState(this,"test"));
 	this->sm->SetState("test1", new Test2State(this,"test1"));
 	this->sm->SetState("test2", new Test3State(this,"test2"));
-	this->sm->SetState("test3", new Test4State(this, "test3"));
+	this->sm->SetState("test3", new Test4State(this,"test3"));
 }
 TestObject::~TestObject()
 {

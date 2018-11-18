@@ -303,3 +303,27 @@ void OG::DataClear(const std::string& path)
 	}
 	ofs.close();
 }
+bool OG::CheckText(std::string* first, std::string* second)
+{
+	for (unsigned int i = 0; i < first->size(); ++i)
+	{
+		if (first->at(i) == second->at(0))
+		{
+			std::string data = first->substr(i, first->size() - 1);
+			if (data == *second)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+void OG::FileCreate(const std::string& path, std::vector<std::string>& data)
+{
+	std::ofstream ofs(path);
+	for (int i = 0; i < data.size(); ++i)
+	{
+		ofs << data[i] << "\n";
+	}
+	ofs.close();
+}
