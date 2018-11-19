@@ -13,7 +13,6 @@ public:
 	virtual void Enter() = 0;
 	virtual void Exit() = 0;
 	virtual void Update() = 0;
-	//virtual std::string Param() = 0;
 	virtual bool Param(StateManager* manager) = 0;
 	unsigned int GetTime() const;
 	void TimeUp(const unsigned int cnt);
@@ -23,11 +22,7 @@ public:
 
 class StateManager : private NonCopyable
 {
-	//std::vector<std::pair<std::string, StateParam*>> list;
 	std::unordered_map<std::string, StateParam*> list;
-	/*StateParam* nowState;
-	StateParam* nextState;
-	StateParam* preState;*/
 	std::string nowState;
 	std::string nextState;
 	std::string preState;

@@ -2,6 +2,7 @@
 #include "OGSystem\ResourceManager\ResourceManager.h"
 #include "OG\_OGsystem.h"
 #include "Object\GameObject.h"
+#include "Texture\LayerTexture.h"
 #include <Windows.h>
 /**
 *State‚Æ“¯—l‚ÉÝŒv‚·‚é‚ªA
@@ -12,7 +13,11 @@
 
 class Effect : public GameObject
 {
+	unsigned int timeCnt;
+public:
 	virtual void Update() = 0;
+	virtual void Render2D() = 0;
+	unsigned int GetTimeCnt() const;
 };
 
 class EffectManager : private NonCopyable
@@ -21,15 +26,38 @@ class EffectManager : private NonCopyable
 public:
 	explicit EffectManager();
 	void SetEffect(const std::string& tag, Effect* effect);
-	Effect* GetEffect(const std::string& tag) const;
+	Effect* GetEffect(const std::string& tag);
 };
 
 class LayerEffect : public Effect
 {
-	void Update() override;
+	LayerTexture texture;
+	virtual void Update() = 0;
+	virtual void Render2D() = 0;
+public:
+	LayerTexture* GetTexture();
 };
 
 class TextureEffect : public Effect
 {
-	void Update() override;
+	Texture texture;
+	virtual void Update() = 0;
+	virtual void Render2D() = 0;
+public:
+	Texture* GetTexture();
+};
+
+class TestEffect : public TextureEffect
+{
+	void Update() override
+	{
+		if (this->GetTimeCnt() > 10)
+		{
+			this->Kill();
+		}
+	}
+	void Render2D() override
+	{
+		this->GetTexture()->Draw(Box2D(), Box2D());
+	}
 };

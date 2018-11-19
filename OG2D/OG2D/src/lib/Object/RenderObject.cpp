@@ -16,7 +16,7 @@ OG::Mode RenderObject::GetMode() const
 {
 	return this->mode;
 }
-bool RenderObject::ModeCheck(const OG::Mode& mode) const
+bool RenderObject::ModeCheck(const OG::Mode& _mode) const
 {
-	return this->mode == mode;
+	return this->mode == _mode;
 }
