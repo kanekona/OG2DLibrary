@@ -44,10 +44,12 @@ Vec2 Vec2::operator-(const Vec2& v) { return Vec2(x - v.x, y - v.y); }
 //Vec2 Vec2::operator-(const Vec2& v) { this->x -= v.x, this->y -= v.y; return *this; }
 Vec2 Vec2::operator*(const float n) { return Vec2(x*n, y*n); }
 //Vec2 Vec2::operator*(const float n) { this->x *= n, this->y *= n; return *this; }
+Vec2 Vec2::operator/(const float n) { return Vec2(x / n, y / n); }
 Vec2 Vec2::operator*(const Vec2& v) { return(Vec2(x*v.x, y*v.y)); }
 void Vec2::operator+=(const Vec2& v) { x += v.x; y += v.y; }
 void Vec2::operator*=(const float n) { x *= n; y *= n; }
 void Vec2::operator*=(const Vec2& v) { x *= v.x; y *= v.y; };
+void Vec2::operator/=(const float n) { x /= n; y /= n; }
 void Vec2::operator-=(const Vec2& v) { x -= v.x; y -= v.y; }
 bool Vec2::operator==(const Vec2& v) { return this->x == v.x && this->y == v.y; }
 bool Vec2::operator!=(const Vec2& v) { return this->x != v.x || this->y != v.y; }

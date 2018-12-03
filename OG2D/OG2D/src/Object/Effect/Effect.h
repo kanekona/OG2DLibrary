@@ -15,7 +15,8 @@ class Effect : public GameObject
 {
 	unsigned int timeCnt;
 public:
-	virtual void Update() = 0;
+	virtual void Active() = 0;
+	void Update() final;
 	virtual void Render2D() = 0;
 	unsigned int GetTimeCnt() const;
 };
@@ -25,31 +26,32 @@ class EffectManager : private NonCopyable
 	std::unordered_map<std::string, Effect*> data;
 public:
 	explicit EffectManager();
-	void SetEffect(const std::string& tag, Effect* effect);
-	Effect* GetEffect(const std::string& tag);
+	void Set(const std::string& tag, Effect* effect);
+	Effect* Get(const std::string& tag);
+	void Delete(const std::string& tag);
 };
 
 class LayerEffect : public Effect
 {
-	LayerTexture texture;
-	virtual void Update() = 0;
+	LayerTexture* texture;
 	virtual void Render2D() = 0;
+	virtual void Active() = 0;
 public:
 	LayerTexture* GetTexture();
 };
 
 class TextureEffect : public Effect
 {
-	Texture texture;
-	virtual void Update() = 0;
+	Texture* texture;
 	virtual void Render2D() = 0;
+	virtual void Active() = 0;
 public:
 	Texture* GetTexture();
 };
 
 class TestEffect : public TextureEffect
 {
-	void Update() override
+	void Active() override final
 	{
 		if (this->GetTimeCnt() > 10)
 		{

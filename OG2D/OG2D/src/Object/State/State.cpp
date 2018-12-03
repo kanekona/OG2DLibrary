@@ -24,7 +24,7 @@ StateManager::StateManager(const std::string& tag, StateParam* state)
 {
 	this->list[tag] = state;
 	this->nowState = tag;
-	this->list[tag]->Enter();
+	this->list[tag]->Enter(this);
 }
 
 StateManager::~StateManager()
@@ -62,14 +62,14 @@ void StateManager::Update()
 void StateManager::Param(const std::string& tag)
 {
 	this->preState = this->nowState;
-	this->list[this->preState]->Exit();
+	this->list[this->preState]->Exit(this);
 	this->nowState = tag;
-	this->list[this->nowState]->Enter();
+	this->list[this->nowState]->Enter(this);
 }
 void StateManager::Param()
 {
+	this->list[this->nowState]->Exit(this);
 	this->preState = this->nowState;
-	this->list[this->preState]->Exit();
 	this->nowState = this->nextState;
-	this->list[this->nowState]->Enter();
+	this->list[this->nowState]->Enter(this);
 }
