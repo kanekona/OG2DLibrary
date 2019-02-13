@@ -1,5 +1,4 @@
 #pragma once
-#include <Windows.h>
 #include "OG\_OGsystem.h"
 class WindowsEvent : private NonCopyable
 {

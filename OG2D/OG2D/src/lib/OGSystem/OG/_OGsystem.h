@@ -24,6 +24,9 @@
 #pragma comment(lib, "OPENGL32.lib")
 #pragma comment(lib, "GLU32.lib")
 #pragma comment(lib, "Win64/OpenAL32.lib")
+//OpenCV
+#pragma comment(lib, "opencv_core342.lib")
+#pragma comment(lib, "opencv_videoio342.lib")
 //LNK4098
 #pragma comment(lib, "freetype.lib")
 
@@ -47,16 +50,22 @@
 
 #define STR(var) #var
 
+#include <Windows.h>
+
 #if defined(_MSC_VER)
 //EWを先にインクルードする必要がある。
 #include <GL/glew.h>
 #endif
-
+//GLFW
 #include <GLFW/glfw3.h>
+//GLM
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+//OpenAL
 #include "al\al.h"
 #include "al\alc.h"
+//OpenCV
+#include "opencv2\opencv.hpp"
 
 #include <memory>
 #include <cmath>

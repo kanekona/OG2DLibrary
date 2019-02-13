@@ -1,8 +1,10 @@
 #pragma once
 #include "OG\OGsystem.h"
+#include "MovieImage\MovieImage.h"
 
 class Title : public SceneTask
 {
+	MovieImage movieImage;
 	/**
 	*@brief	constructor
 	*/

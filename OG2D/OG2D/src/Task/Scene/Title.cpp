@@ -7,11 +7,12 @@
 #include "SetUp.h"
 Title::Title()
 {
-	ge->SetGameObject(new Back("back"));
-	ge->SetGameObject(new TestObject("kiri"));
+	//ge->SetGameObject(new Back("back"));
+	//ge->SetGameObject(new TestObject("kiri"));
+	movieImage.Load("./data/image/kiritan/TestMovie.mp4");
 	//EventTask ev;
 	//ev.Load(Event::RESOURCE_LOAD, "./data/event/kiritanFile.og");
-	LOADFILE lf;
+	//LOADFILE lf;
 }
 Title::~Title()
 {
@@ -27,5 +28,5 @@ Title* Title::Create()
 }
 void Title::Update()
 {
-
+	movieImage.Draw(Box2D(ge->camera->GetPos(),ge->camera->GetSize()));
 }

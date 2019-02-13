@@ -53,6 +53,12 @@ public:
 	*/
 	bool Create(const std::string& path);
 	/**
+	*@brief	“®‰æ‚Ì1frame‚©‚ç‰æ‘œƒf[ƒ^‚ğ¶¬
+	*@param[in] cv::Mat mat OpenCVMatrix
+	*@return bool ¶¬¬Œ÷true
+	*/
+	bool Create(const cv::Mat& mat);
+	/**
 	*@brief	•`‰æˆ—
 	*@param[in]	Box2D draw •`‰æ”ÍˆÍ
 	*@param[in]	Box2D src ‰æ‘œ”ÍˆÍ

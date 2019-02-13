@@ -120,7 +120,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>src;include;Windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;Windows\include;src;src\lib;src\lib\OGSystem</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -128,9 +128,6 @@
       <AdditionalLibraryDirectories>Windows\lib\Release</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <Image Include="data\image\testicon.ico" />
-  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Back\Back.cpp" />
     <ClCompile Include="src\lib\Event\Event.cpp" />
@@ -152,6 +149,7 @@
     <ClCompile Include="src\lib\OGSystem\Font\TextureFont.cpp" />
     <ClCompile Include="src\lib\OGSystem\FPS\FPS.cpp" />
     <ClCompile Include="src\lib\OGSystem\Input\Input.cpp" />
+    <ClCompile Include="src\lib\OGSystem\MovieImage\MovieImage.cpp" />
     <ClCompile Include="src\lib\OGSystem\OG\OGlib.cpp" />
     <ClCompile Include="src\lib\OGSystem\OG\OGsystem.cpp" />
     <ClCompile Include="src\lib\OGSystem\OG\OGTask.cpp" />
@@ -204,6 +202,7 @@
     <ClInclude Include="src\lib\OGSystem\Font\TextureFont.h" />
     <ClInclude Include="src\lib\OGSystem\FPS\FPS.h" />
     <ClInclude Include="src\lib\OGSystem\Input\Input.h" />
+    <ClInclude Include="src\lib\OGSystem\MovieImage\MovieImage.h" />
     <ClInclude Include="src\lib\OGSystem\OG\OGlib.h" />
     <ClInclude Include="src\lib\OGSystem\OG\OGsystem.h" />
     <ClInclude Include="src\lib\OGSystem\OG\OGTask.h" />
@@ -230,9 +229,6 @@
     <ClInclude Include="src\Task\Scene\Title.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="data\event\sampleLoad.og">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
@@ -241,14 +237,18 @@
     </None>
     <None Include="data\shader\sample.fsh">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shader\font.vsh">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="data\shader\sample.vsh">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

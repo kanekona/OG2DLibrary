@@ -18,6 +18,10 @@ class FPS : private NonCopyable
 	int framerate;
 	//! oneframetime
 	float oneFrameTime;
+	//! FrameCount
+	unsigned int frameCount;
+	//! StartDeltaTime
+	const float startDeltaTime;
 public:
 	/**
 	*@brief	constructor

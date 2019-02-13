@@ -9,6 +9,30 @@ bool Texture::Create(const std::string& path)
 {
 	return this->Init(path);
 }
+bool Texture::Create(const cv::Mat& mat)
+{
+	if (!this->_TexId)
+	{
+		this->_TexId = new GLuint;
+		//テクスチャを1つだけ生成する
+		this->CreateID(1);
+	}
+	this->Bind(*this->_TexId);
+	//画像を読み込む
+	int width = mat.cols;
+	int height = mat.rows;
+	//画像データをOpenGLへ送る
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, mat.ptr());
+	this->TextureSize = Vec2(width, height);
+	//表示用設定
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	this->angle = 0.f;
+	return true;
+}
 Texture::Texture()
 	:FileName("./data/image/")
 {

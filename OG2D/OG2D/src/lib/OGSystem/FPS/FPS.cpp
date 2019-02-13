@@ -1,14 +1,16 @@
 #include "FPS.h"
 FPS::FPS()
+	:startDeltaTime((float)glfwGetTime())
 {
 	this->fps = 0.f;
 	//glfw内のTimeを初期化
-	glfwSetTime(0.0);
+	//glfwSetTime(0.0);
 	this->count = 0;
 	//fps計測用
 	this->lastTime = (float)glfwGetTime();
 	this->framerate = 60;
 	this->oneFrameTime = (float)glfwGetTime();
+	this->frameCount = 1;
 	OG::DataClear("./data/debug/fpsrate.og");
 }
 void FPS::Update() 
@@ -33,9 +35,13 @@ void FPS::SetFrameRate(const int rate)
 }
 bool FPS::FrameCheck()
 {
-	if ((float)glfwGetTime() - this->oneFrameTime >= 1.f / (float)this->framerate)
+	//( (float)glfwGetTime() - startTime ) / (1.f / (float)framerate) 何フレーム目かの計算
+	//
+	//if( ( (float)glfwGetTime() - startTime ) / (1.f / (float)framerate) == 0 )
+	if ((float)glfwGetTime() - this->startDeltaTime >= (1.f / (float)this->framerate) * this->frameCount)
 	{
-		this->oneFrameTime = (float)glfwGetTime();
+		//this->oneFrameTime = (float)glfwGetTime();
+		++frameCount;
 		return true;
 	}
 	return false;
