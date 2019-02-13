@@ -112,9 +112,17 @@ ResourceManager::~ResourceManager()
 			delete d.second;
 		}
 	}
+	for (auto& d : this->layerData)
+	{
+		if (d.second)
+		{
+			delete d.second;
+		}
+	}
 	this->soundData.clear();
 	this->textureData.clear();
 	this->shaderData.clear();
+	this->layerData.clear();
 }
 
 bool ResourceManager::DeleteTexture(const std::string& name)
@@ -173,6 +181,52 @@ bool ResourceManager::CreateShader(const std::string& name, const std::string& p
 Shader* ResourceManager::GetShaderData(const std::string& dataname)
 {
 	for (auto id = this->shaderData.begin(); id != this->shaderData.end(); ++id)
+	{
+		if ((*id).first == dataname)
+		{
+			return (*id).second;
+		}
+	}
+	return nullptr;
+}
+
+bool ResourceManager::CreateLayer(const std::string& name)
+{
+	for (auto id = this->layerData.begin(); id != this->layerData.end(); ++id)
+	{
+		if ((*id).first == name)
+		{
+			return false;
+		}
+	}
+	LayerTexture* layer = new LayerTexture();
+	std::pair<std::string, LayerTexture*> d;
+	d.first = name;
+	d.second = layer;
+	this->layerData.emplace_back(d);
+	return true;
+}
+
+bool ResourceManager::DeleteLayer(const std::string& name)
+{
+	for (auto id = this->layerData.begin(); id != this->layerData.end(); ++id)
+	{
+		if ((*id).first == name)
+		{
+			if ((*id).second)
+			{
+				delete (*id).second;
+			}
+			this->layerData.erase(id);
+			return true;
+		}
+	}
+	return false;
+}
+
+LayerTexture* ResourceManager::GetLayer(const std::string& dataname)
+{
+	for (auto id = this->layerData.begin(); id != this->layerData.end(); ++id)
 	{
 		if ((*id).first == dataname)
 		{

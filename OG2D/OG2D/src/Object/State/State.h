@@ -10,8 +10,8 @@ class StateParam
 	std::string tag;
 public:
 	explicit StateParam(const std::string& tag);
-	virtual void Enter() = 0;
-	virtual void Exit() = 0;
+	virtual void Enter(StateManager* manager) = 0;
+	virtual void Exit(StateManager* manager) = 0;
 	virtual void Update() = 0;
 	virtual bool Param(StateManager* manager) = 0;
 	unsigned int GetTime() const;

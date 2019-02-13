@@ -1,24 +1,26 @@
 #include "TestState.h"
-TestState::TestState(TestObject* obj,const std::string& tag)
+BaseParam::BaseParam(TestObject* obj, const std::string& tag)
 	:StateParam(tag)
 {
 	this->object = obj;
 }
-void TestState::Enter()
+TestState::TestState(TestObject* obj,const std::string& tag)
+	:BaseParam(obj,tag)
 {
-	std::cout << "TestStateEnter\n";
+	this->object = obj;
+}
+void TestState::Enter(StateManager* manager)
+{
 	this->ResetTime();
 	this->maxTime = random::GetRand(50, 150);
 }
-void TestState::Exit()
+void TestState::Exit(StateManager* manager)
 {
-	std::cout << "TestStateExit\n";
 	this->object->GetLayerData()->Get("kiri1")->color.alpha = 0.0f;
 	this->object->GetLayerData()->Get("kiri2")->color.alpha = 1.0f;
 }
 void TestState::Update()
 {
-	std::cout << "TestStateUpdate\n";
 	this->TimeUp(1);
 }
 bool TestState::Param(StateManager* manager)
@@ -32,24 +34,21 @@ bool TestState::Param(StateManager* manager)
 }
 
 Test2State::Test2State(TestObject* obj, const std::string& tag)
-	:StateParam(tag)
+	:BaseParam(obj, tag)
 {
 	this->object = obj;
 }
-void Test2State::Enter()
+void Test2State::Enter(StateManager* manager)
 {
-	std::cout << "Test2StateEnter\n";
 	this->ResetTime();
 }
-void Test2State::Exit()
+void Test2State::Exit(StateManager* manager)
 {
-	std::cout << "Test2StateExit\n";
 	this->object->GetLayerData()->Get("kiri2")->color.alpha = 0.0f;
 	this->object->GetLayerData()->Get("kiri3")->color.alpha = 1.0f;
 }
 void Test2State::Update()
 {
-	std::cout << "Test2StateUpdate\n";
 	this->TimeUp(1);
 }
 bool Test2State::Param(StateManager* manager)
@@ -63,24 +62,21 @@ bool Test2State::Param(StateManager* manager)
 }
 
 Test3State::Test3State(TestObject* obj, const std::string& tag)
-	:StateParam(tag)
+	:BaseParam(obj, tag)
 {
 	this->object = obj;
 }
-void Test3State::Enter()
+void Test3State::Enter(StateManager* manager)
 {
-	std::cout << "Test3StateEnter\n";
 	this->ResetTime();
 }
-void Test3State::Exit()
+void Test3State::Exit(StateManager* manager)
 {
-	std::cout << "Test3StateExit\n";
 	this->object->GetLayerData()->Get("kiri2")->color.alpha = 1.0f;
 	this->object->GetLayerData()->Get("kiri3")->color.alpha = 0.0f;
 }
 void Test3State::Update()
 {
-	std::cout << "Test3StateUpdate\n";
 	this->TimeUp(1);
 }
 bool Test3State::Param(StateManager* manager)
@@ -94,24 +90,21 @@ bool Test3State::Param(StateManager* manager)
 }
 
 Test4State::Test4State(TestObject* obj, const std::string& tag)
-	:StateParam(tag)
+	:BaseParam(obj, tag)
 {
 	this->object = obj;
 }
-void Test4State::Enter()
+void Test4State::Enter(StateManager* manager)
 {
-	std::cout << "Test3StateEnter\n";
 	this->ResetTime();
 }
-void Test4State::Exit()
+void Test4State::Exit(StateManager* manager)
 {
-	std::cout << "Test3StateExit\n";
 	this->object->GetLayerData()->Get("kiri1")->color.alpha = 1.0f;
 	this->object->GetLayerData()->Get("kiri2")->color.alpha = 0.0f;
 }
 void Test4State::Update()
 {
-	std::cout << "Test3StateUpdate\n";
 	this->TimeUp(1);
 }
 bool Test4State::Param(StateManager* manager)
