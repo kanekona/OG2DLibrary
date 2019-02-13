@@ -1,7 +1,7 @@
 
 #pragma once
 #include "OGSystem\Audio\Sound.h"
-#include "OGSystem\Texture\Texture.h"
+#include "OGSystem\Texture\LayerTexture.h"
 #include "OGSystem\Shader\shader.h"
 /**
 *@brief	リソースを生成、解放、管理を行うclass
@@ -20,6 +20,8 @@ class ResourceManager : private NonCopyable
 	std::vector<std::pair<std::string, Texture*>> textureData;
 	//! シェーダーデータ
 	std::vector<std::pair<std::string, Shader*>> shaderData;
+	//! レイヤーデータ
+	std::vector<std::pair<std::string, LayerTexture*>> layerData;
 public:
 	/**
 	*@brief	存在するサウンドデータのポインタを登録する
@@ -84,6 +86,24 @@ public:
 	*@return Shader* 登録されているシェーダーデータ
 	*/
 	Shader* GetShaderData(const std::string& name);
+	/**
+	*@brief	レイヤーを生成、登録する
+	*@param[in] const string& name 登録名
+	*@return bool 生成に成功でtrueを返す
+	*/
+	bool CreateLayer(const std::string& name);
+	/**
+	*@brief	レイヤーを削除する
+	*@param[in] const string& name 登録名
+	*@return bool 削除に成功でtrue
+	*/
+	bool DeleteLayer(const std::string& name);
+	/**
+	*@brief	レイヤーを取得する
+	*@param[in] const string& name 登録名
+	*@return LayerTexture* レイヤーデータ
+	*/
+	LayerTexture* GetLayer(const std::string& name);
 	/**
 	*@brief	destructor 
 	*全データを破棄,deleteする
