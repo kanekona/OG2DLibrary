@@ -6,7 +6,12 @@ void SceneManager::ChangeScene(Scene* next)
 }
 void SceneManager::SceneUpdate()
 {
-	Scene::EntityUpdate(nowScene);
+	std::cout << "SceneManagerUpdate" << std::endl;
+	if (nowScene)
+	{
+		Scene::EntityUpdate(nowScene);
+		ChangeAdaptation();
+	}
 }
 void SceneManager::ChangeAdaptation()
 {

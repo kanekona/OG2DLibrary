@@ -3,6 +3,8 @@
 Framework::Framework(bool* destroy)
 {
 	this->enableEngineDestroy = destroy;
+	//Window¶¬
+	this->window->Create();
 }
 Framework::~Framework()
 {

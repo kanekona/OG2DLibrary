@@ -5,6 +5,10 @@ class SceneManager : private NonCopyable
 {
 	Scene* nowScene;
 	Scene* nextScene;
+	/**
+	*@brief Scene Change Adaptation
+	*/
+	void ChangeAdaptation();
 public:
 	/**
 	*@brief	Scene Change
@@ -15,10 +19,6 @@ public:
 	*@brief Scene Update
 	*/
 	void SceneUpdate();
-	/**
-	*@brief Scene Change Adaptation
-	*/
-	void ChangeAdaptation();
 	/**
 	*@brief Get Now Scene
 	*@return Scene* Now Scene

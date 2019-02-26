@@ -44,6 +44,16 @@ bool Window::Create(const int wi, const int he, char* windowname, const bool scr
 	glfwSetWindowPos(this->window, (int)this->position.x, (int)this->position.y);
 	return true;
 }
+bool Window::Create()
+{
+	this->window = glfwCreateWindow(this->widht, this->height, this->name, this->enableFullScreen ? glfwGetPrimaryMonitor() : NULL, this->window ? this->window : NULL);
+	if (!this->window) {
+		glfwTerminate();
+		return false;
+	}
+	glfwSetWindowPos(this->window, (int)this->position.x, (int)this->position.y);
+	return true;
+}
 void Window::SetIcon(const std::string& path)
 {
 	//stbimage‚ğg‚Á‚Ä‰æ‘œ‚ğ“Ç‚İ‚Ş

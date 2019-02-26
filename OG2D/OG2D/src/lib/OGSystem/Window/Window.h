@@ -50,7 +50,7 @@ public:
 	*/
 	virtual ~Window();
 	/**
-	*@brief	constructor
+	*@brief	Create Window
 	*@param[in]	int x windowXサイズ
 	*@param[in] int y windowYサイズ
 	*@param[in]	char* name window名
@@ -64,6 +64,11 @@ public:
 		char* name,
 		const bool flag,
 		const Vec2& pos);
+	/**
+	*@brief	Create Window
+	*@return bool 生成に成功でtrue
+	*/
+	bool Create();
 	/**
 	*@brief	アイコンを設定する
 	*@param[in]	string path ファイルパス
