@@ -235,3 +235,24 @@ LayerTexture* ResourceManager::GetLayer(const std::string& dataname)
 	}
 	return nullptr;
 }
+
+ResourceManager* ResourceManager::Create()
+{
+	if (instance == nullptr)
+	{
+		instance = new ResourceManager();
+	}
+	return ResourceManager::Get();
+}
+ResourceManager* ResourceManager::Get()
+{
+	return instance;
+}
+void ResourceManager::Destroy()
+{
+	if (instance)
+	{
+		delete instance;
+		instance = nullptr;
+	}
+}

@@ -1,6 +1,6 @@
 #include "Random.h"
 
-void random::Init()
+void Random::Init()
 {
 	//—”¶¬ƒGƒ“ƒWƒ“‚Ì¶¬
 	std::random_device device;
@@ -8,25 +8,25 @@ void random::Init()
 	engine.seed(device());
 }
 
-int random::GetRand(const int min_,const int max_)
+int Random::GetRand(const int min_,const int max_)
 {
 	std::uniform_int_distribution<int> range(min_,max_);
 	return range(engine);
 }
 
-float random::GetRand(const float min_,const float max_)
+float Random::GetRand(const float min_,const float max_)
 {
 	std::uniform_real_distribution<float> range(min_,max_);
 	return range(engine);
 }
 
-float random::GetRand_Normal(const float mu, const float sig)
+float Random::GetRand_Normal(const float mu, const float sig)
 {
 	std::normal_distribution<float> range(mu, sig);
 	return range(engine);
 }
 
-std::string random::GetRand(const std::string& text, const std::size_t size)
+std::string Random::GetRand(const std::string& text, const std::size_t size)
 {
 	if (text.empty())
 	{
@@ -45,7 +45,7 @@ std::string random::GetRand(const std::string& text, const std::size_t size)
 	return ReturnText;
 }
 
-bool random::GetProportion(const float proportion)
+bool Random::GetProportion(const float proportion)
 {
 	std::bernoulli_distribution dist((double)proportion);
 	return dist(engine);

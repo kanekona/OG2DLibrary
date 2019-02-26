@@ -12,7 +12,7 @@ TestState::TestState(TestObject* obj,const std::string& tag)
 void TestState::Enter(StateManager* manager)
 {
 	this->ResetTime();
-	this->maxTime = random::GetRand(50, 150);
+	this->maxTime = Random::GetRand(50, 150);
 }
 void TestState::Exit(StateManager* manager)
 {

@@ -22,7 +22,7 @@
 /**
 *@brief	sceneを管理するclass
 */
-class SceneManager
+class SceneManager_
 {
 	//! 現在タスク
 	SceneTask* nowScene;
@@ -34,11 +34,11 @@ public:
 	/**
 	*@brief	constructor
 	*/
-	explicit SceneManager();
+	explicit SceneManager_();
 	/**
 	*@brief	destructor
 	*/
-	virtual ~SceneManager();
+	virtual ~SceneManager_();
 	/**
 	*@brief	タスクを登録する
 	*@param[in]	SceneTask* 現在に登録したいタスク
@@ -116,7 +116,7 @@ class EngineSystem : private NonCopyable
 	//! 登録予定UI
 	std::vector<UIObject*> addUIs;
 	//! タスク管理
-	SceneManager* _sceneManager;
+	SceneManager_* _sceneManager;
 	//! nextWindowCreate
 	bool nextWindowCreateEnable;
 	//! デバイス管理

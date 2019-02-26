@@ -5,7 +5,6 @@
 //--------------------------------------------------
 Camera2D::Camera2D()
 {
-
 }
 Camera2D::Camera2D(const Box2D& pos)
 {
@@ -47,8 +46,8 @@ void Camera2D::Update()
 	this->centerPos = { this->position.x + this->Scale.x / 2,this->position.y + this->Scale.y / 2 };
 	this->direScale = this->Scale * 1.5f;
 	this->collision.CreateHitBase(&this->centerPos, &this->direScale, &this->radius, &this->angle);
-	glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
-	this->SetProjectionMatrix(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
+	//glOrtho(_camera.x, _camera.w, _camera.h, _camera.y, -1.0f, 1.0f);
+	this->SetProjectionMatrix(_camera.x, _camera.w, _camera.h, _camera.y, -2000.0f, 2000.0f);
 }
 void Camera2D::MovePos(const Vec2& est)
 {

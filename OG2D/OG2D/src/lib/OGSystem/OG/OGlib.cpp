@@ -29,6 +29,9 @@ Vec2::Vec2(const float ex, const float ey)
 Vec2::Vec2(const int ex, const int ey)
 	:x((float)ex), y((float)ey)
 {}
+Vec2::Vec2(const Vec2Int& vec)
+	:x((float)vec.x),y((float)vec.y)
+{}
 void Vec2::Normalize() {
 	float len = this->GetLength();
 	if (len == 0) { return; }
@@ -39,20 +42,70 @@ float Vec2::GetLength() {
 	return powf(x*x + y * y, 0.5f);
 }
 Vec2 Vec2::operator+(const Vec2& v) { return Vec2(x + v.x, y + v.y); }
-//Vec2 Vec2::operator+(const Vec2& v) { this->x += v.x, this->y += v.y; return *this; }
+Vec2 Vec2::operator+(const Vec2Int& v) { return Vec2(x + (float)v.x, y + (float)v.y); }
 Vec2 Vec2::operator-(const Vec2& v) { return Vec2(x - v.x, y - v.y); }
-//Vec2 Vec2::operator-(const Vec2& v) { this->x -= v.x, this->y -= v.y; return *this; }
+Vec2 Vec2::operator-(const Vec2Int& v) { return Vec2(x - (float)v.x, y - (float)v.y); }
 Vec2 Vec2::operator*(const float n) { return Vec2(x*n, y*n); }
-//Vec2 Vec2::operator*(const float n) { this->x *= n, this->y *= n; return *this; }
 Vec2 Vec2::operator/(const float n) { return Vec2(x / n, y / n); }
 Vec2 Vec2::operator*(const Vec2& v) { return(Vec2(x*v.x, y*v.y)); }
+Vec2 Vec2::operator*(const Vec2Int& v) { return Vec2(x * (float)v.x, y * (float)v.y); }
 void Vec2::operator+=(const Vec2& v) { x += v.x; y += v.y; }
+void Vec2::operator+=(const Vec2Int& v) { x += (float)v.x; y += (float)v.y; }
 void Vec2::operator*=(const float n) { x *= n; y *= n; }
 void Vec2::operator*=(const Vec2& v) { x *= v.x; y *= v.y; };
+void Vec2::operator*=(const Vec2Int& v) { x *= (float)v.x; y *= (float)v.y; }
 void Vec2::operator/=(const float n) { x /= n; y /= n; }
 void Vec2::operator-=(const Vec2& v) { x -= v.x; y -= v.y; }
+void Vec2::operator-=(const Vec2Int& v) { x -= (float)v.x; y -= (float)v.y; }
 bool Vec2::operator==(const Vec2& v) { return this->x == v.x && this->y == v.y; }
+bool Vec2::operator==(const Vec2Int& v) { return this->x == (float)v.x && this->y == (float)v.y; }
 bool Vec2::operator!=(const Vec2& v) { return this->x != v.x || this->y != v.y; }
+bool Vec2::operator!=(const Vec2Int& v) { return this->x != (float)v.x || this->y != (float)v.y; }
+
+Vec2Int::Vec2Int()
+	:x(0),y(0)
+{}
+Vec2Int::Vec2Int(const int vx,const int vy)
+	:x(vx),y(vy)
+{}
+Vec2Int::Vec2Int(const float vx, const float vy)
+	: x((int)vx), y((int)vy)
+{}
+Vec2Int::Vec2Int(const Vec2& vec)
+	:x((int)vec.x),y((int)vec.y)
+{}
+void Vec2Int::Normalize()
+{
+	float len = this->GetLength();
+	if (len == 0) { return; }
+	x /= len;
+	y /= len;
+}
+float Vec2Int::GetLength()
+{
+	return powf(x*x + y * y, 0.5f);
+}
+Vec2Int Vec2Int::operator+(const Vec2& v) { return Vec2Int(x + (int)v.x, y + (int)v.y); }
+Vec2Int Vec2Int::operator+(const Vec2Int& v) { return Vec2Int(x + v.x, y + v.y); }
+Vec2Int Vec2Int::operator-(const Vec2& v) { return Vec2Int(x - (int)v.x, y - (int)v.y); }
+Vec2Int Vec2Int::operator-(const Vec2Int& v) { return Vec2Int(x - v.x, y - v.y); }
+Vec2Int Vec2Int::operator*(const int v) { return Vec2Int(x * v, y * v); }
+Vec2Int Vec2Int::operator*(const Vec2& v) { return Vec2Int(x * (int)v.x, y * (int)v.y); }
+Vec2Int Vec2Int::operator*(const Vec2Int& v) { return Vec2Int(x * v.x, y * v.y); }
+Vec2Int Vec2Int::operator/(const int v) { return Vec2Int(x / v, y / v); }
+void Vec2Int::operator+=(const Vec2& v) { x += (int)v.x; y += (int)v.y; }
+void Vec2Int::operator+=(const Vec2Int& v) { x += v.x; y += v.y; }
+void Vec2Int::operator-=(const Vec2& v) { x -= (int)v.x; y -= (int)v.y; }
+void Vec2Int::operator-=(const Vec2Int& v) { x -= v.x; y -= v.y; }
+void Vec2Int::operator*=(const int v) { x *= v; y *= v; }
+void Vec2Int::operator*=(const Vec2& v) { x *= (int)v.x; y *= (int)v.y; }
+void Vec2Int::operator*=(const Vec2Int& v) { x *= v.x; y *= v.y; }
+void Vec2Int::operator/=(const int v) { x /= v; y /= v; }
+bool Vec2Int::operator==(const Vec2& v) { return this->x == (int)v.x && this->y == (int)v.y; }
+bool Vec2Int::operator==(const Vec2Int& v) { return this->x == v.x && this->y == v.y; }
+bool Vec2Int::operator!=(const Vec2& v) { return this->x != (int)v.x || this->y != (int)v.y; }
+bool Vec2Int::operator!=(const Vec2Int& v) { return this->x != v.x || this->y != v.y; }
+
 
 Mat4::Mat4(const float ex, const float ey, const float ez, const float ew)
 {

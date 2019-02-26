@@ -9,7 +9,7 @@ class Window : private NonCopyable
 	//! アイコン情報
 	GLFWimage image[1];	
 	//! アイコン画像のID
-	GLuint id_;
+	GLuint id;
 	//! ウィンドウのアイコン化状況
 	bool enableIcon;
 	//! 可視化状況
@@ -19,9 +19,9 @@ class Window : private NonCopyable
 	//! 高さ
 	int height;
 	//! Windowの名
-	const char* _name;
+	const char* name;
 	//! フルスク設定
-	bool _screen;
+	bool enableFullScreen;
 	//! Windowの位置
 	Vec2 position;
 	//! Window情報
@@ -58,7 +58,7 @@ public:
 	*@param[in]	Vec2 pos window位置
 	*@return bool 生成に成功でtrue
 	*/
-	bool createWindow(
+	bool Create(
 		const int x,
 		const int y,
 		char* name,
@@ -72,17 +72,17 @@ public:
 	/**
 	*@brief	Windowのサイズとアスペクト比を固定する
 	*/
-	void LimitsWindow();
+	void Limits();
 	/**
 	*@brief	Windowのサイズとアスペクト比を固定する
 	*@param[in]	int w WindowSize_w
 	*@param[in]	int h WindowSize_h
 	*/
-	void LimitsWindow(const int w, const int h);
+	void Limits(const int w, const int h);
 	/**
 	*@brief	Windowをアイコン化、アイコン化から解除する
 	*/
-	void WindowIcon();
+	void Enable();
 	/**
 	*@brief	Windowを可視化、可視化から解除する
 	*/
@@ -106,12 +106,12 @@ public:
 	*@brief	生成するWindowの位置を設定する
 	*@param[in]	Vec2 pos Windowの位置
 	*/
-	void SetWindowPos(const Vec2& pos);
+	void CreatePosition(const Vec2& pos);
 	/**
 	*@brief	Window情報を返す
 	*@return GLFWWinfow* Window情報
 	*/
-	GLFWwindow* GetWindow() const;
+	GLFWwindow* GetFWWindow() const;
 	/**
 	*@brief	Windowの位置を設定する
 	*@param[in]	const Vec2& pos 位置
@@ -147,12 +147,12 @@ public:
 	*@param[in]	int h WindowSize_h
 	*@param[in]	bool flag true hullScreen
 	*/
-	void ChengeWindow(const int x,const int y,const int w, const int h, const bool flag);
+	void ChangeMode(const int x,const int y,const int w, const int h, const bool flag);
 	/**
 	*@brief	Windowモードを変更
 	*@param[in]	const Vec2& pos WindowPosition
 	*@param[in]	const Vec2& size WindowSize
 	*@param[in]	bool flag true hullScreen
 	*/
-	void ChengeWindow(const Vec2& pos, const Vec2& size, const bool flag);
+	void ChangeMode(const Vec2& pos, const Vec2& size, const bool flag);
 };

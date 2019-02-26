@@ -744,3 +744,24 @@ void Input::registAxis(const float regist)
 	}
 }
 Vec2 Input::Mouse::scroll;
+Input* Input::Create(GLFWwindow* window)
+{
+	if (instance == nullptr)
+	{
+		instance = new Input();
+		instance->Inputinit(window);
+	}
+	return Input::Get();
+}
+Input* Input::Get()
+{
+	return Input::instance;
+}
+void Input::Destroy()
+{
+	if (instance)
+	{
+		delete instance;
+		instance = nullptr;
+	}
+}

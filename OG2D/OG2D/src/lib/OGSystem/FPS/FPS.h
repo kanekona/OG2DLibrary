@@ -22,6 +22,8 @@ class FPS : private NonCopyable
 	unsigned int frameCount;
 	//! StartDeltaTime
 	const float startDeltaTime;
+	//! DeltaTime
+	float delta;
 public:
 	/**
 	*@brief	constructor
@@ -45,4 +47,9 @@ public:
 	*@return •bŠÔƒtƒŒ[ƒ€‚É’B‚µ‚Ä‚¢‚é‚È‚çtrue
 	*/
 	bool FrameCheck();
+	/**
+	*@brief Get DeltaTime
+	*@return float DeltaTime
+	*/
+	float DeltaTime();
 };

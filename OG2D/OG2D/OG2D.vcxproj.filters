@@ -157,6 +157,27 @@
     <Filter Include="ソース ファイル\OGLib\System\MovieImage">
       <UniqueIdentifier>{ad1fc233-4927-4efd-adbe-97347d8e37fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Entity">
+      <UniqueIdentifier>{485ec057-ff72-4d27-82ff-bc0d31d8cfdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\NonCopy">
+      <UniqueIdentifier>{072de4c6-545a-4d94-84e6-3089fd8ea0f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Engine">
+      <UniqueIdentifier>{f8b09f28-042d-4bc0-a322-131a6b1b8236}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Scene">
+      <UniqueIdentifier>{73b4c84d-3593-439f-8b8e-56934c93a8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\RenderingManager">
+      <UniqueIdentifier>{aac6072f-4985-45d9-8837-813d3842e6a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\System\Sprite">
+      <UniqueIdentifier>{4d884afa-f44d-42a4-bf31-6f8cb3934f1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\OGLib\Transform">
+      <UniqueIdentifier>{39f2086d-6901-4426-9d41-4544353b2bc6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\lib\Event\ResourceLoad\ResourceLoad.cpp">
@@ -293,6 +314,27 @@
     </ClCompile>
     <ClCompile Include="src\lib\OGSystem\MovieImage\MovieImage.cpp">
       <Filter>ソース ファイル\OGLib\System\MovieImage</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Entity\Entity.cpp">
+      <Filter>ソース ファイル\OGLib\System\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Engine\Framework.cpp">
+      <Filter>ソース ファイル\OGLib\System\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Scene\Scene.cpp">
+      <Filter>ソース ファイル\OGLib\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\RenderingManager\RenderingManager.cpp">
+      <Filter>ソース ファイル\OGLib\System\RenderingManager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Sprite\Sprite.cpp">
+      <Filter>ソース ファイル\OGLib\System\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Scene\SceneManager.cpp">
+      <Filter>ソース ファイル\OGLib\System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lib\OGSystem\Engine\Engine.cpp">
+      <Filter>ソース ファイル\OGLib\System\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -434,6 +476,33 @@
     <ClInclude Include="src\lib\OGSystem\MovieImage\MovieImage.h">
       <Filter>ソース ファイル\OGLib\System\MovieImage</Filter>
     </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Entity\Entity.h">
+      <Filter>ソース ファイル\OGLib\System\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\NonCopyable\NonCopyable.hpp">
+      <Filter>ソース ファイル\OGLib\System\NonCopy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Engine\Framework.h">
+      <Filter>ソース ファイル\OGLib\System\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Scene\Scene.h">
+      <Filter>ソース ファイル\OGLib\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\RenderingManager\RenderingManager.h">
+      <Filter>ソース ファイル\OGLib\System\RenderingManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Sprite\Sprite.h">
+      <Filter>ソース ファイル\OGLib\System\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Scene\SceneManager.h">
+      <Filter>ソース ファイル\OGLib\System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\Engine\Engine.h">
+      <Filter>ソース ファイル\OGLib\System\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\OGSystem\System\System_.h">
+      <Filter>ソース ファイル\OGLib\System\OG</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="data\shader\sample.fsh">
@@ -454,13 +523,23 @@
     <None Include="data\event\kiritan.og">
       <Filter>リソース ファイル\event</Filter>
     </None>
-    <None Include="data\shader\font.vsh">
-      <Filter>リソース ファイル\Shader</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="data\shader\sample.vsh">
       <Filter>リソース ファイル\Shader</Filter>
     </FxCompile>
+    <FxCompile Include="data\shader\font.vsh">
+      <Filter>リソース ファイル\Shader</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc">
+      <Filter>ソース ファイル\OGLib\System\Icon</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="data\image\testicon.ico">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

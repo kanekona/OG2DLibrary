@@ -170,6 +170,7 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 	glVertexAttribPointer(in_color, 4, GL_FLOAT, false, 0, color);
 
 	this->Bind(*this->_TexId);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, *_TexId, 0);
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
 bool Texture::Finalize()
@@ -268,4 +269,56 @@ void Texture::SetShaderData(Shader* shaderData)
 void Texture::SetShaderData(const std::string& shaderName)
 {
 	this->shader = rm->GetShaderData(shaderName);
+}
+
+Texture_::Texture_()
+{
+	glGenTextures(1, &this->id);
+}
+Texture_::Texture_(const std::string& path)
+{
+	glGenTextures(1, &this->id);
+	Load(path);
+}
+Texture_::~Texture_()
+{
+	glDeleteTextures(1, &this->id);
+}
+bool Texture_::Load(const std::string& path)
+{
+	glBindTexture(GL_TEXTURE_2D, this->id);
+	unsigned char* data = stbi_load(path.c_str(), &size.x, &size.y, &comp, 0);
+	if (data == NULL)
+	{
+		return false;
+	}
+	GLint type = (comp == 3) ? GL_RGB : GL_RGBA;
+	//画像データをOpenGLへ送る
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glTexImage2D(GL_TEXTURE_2D, 0, type, size.x, size.y, 0, type, GL_UNSIGNED_BYTE, data);
+	//元データの破棄
+	stbi_image_free(data);
+	//表示用設定
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	return true;
+}
+GLuint Texture_::GetID() const
+{
+	return this->id;
+}
+Vec2Int* Texture_::GetSize()
+{
+	return &this->size;
+}
+void Texture_::SetShader(Shader* addShader)
+{
+	this->shader = addShader;
+}
+Shader* Texture_::GetShader()
+{
+	return this->shader;
 }

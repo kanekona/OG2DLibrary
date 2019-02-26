@@ -8,7 +8,7 @@
 *
 *既存GameEngineを使用している場合は自動で生成、初期化される
 */
-namespace random
+namespace Random
 {
 	//! メルセンヌツイスター64bit
 	static std::mt19937_64 engine;

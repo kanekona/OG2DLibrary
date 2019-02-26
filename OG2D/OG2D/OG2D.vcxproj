@@ -145,6 +145,9 @@
     <ClCompile Include="src\lib\OGSystem\Button\Button.cpp" />
     <ClCompile Include="src\lib\OGSystem\Camera\Camera.cpp" />
     <ClCompile Include="src\lib\OGSystem\Collision\Collision.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Engine\Engine.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Engine\Framework.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Entity\Entity.cpp" />
     <ClCompile Include="src\lib\OGSystem\Font\Font.cpp" />
     <ClCompile Include="src\lib\OGSystem\Font\TextureFont.cpp" />
     <ClCompile Include="src\lib\OGSystem\FPS\FPS.cpp" />
@@ -157,8 +160,12 @@
     <ClCompile Include="src\lib\OGSystem\OG\_OGsystem.cpp" />
     <ClCompile Include="src\lib\OGSystem\Order\Order.cpp" />
     <ClCompile Include="src\lib\OGSystem\Random\Random.cpp" />
+    <ClCompile Include="src\lib\OGSystem\RenderingManager\RenderingManager.cpp" />
     <ClCompile Include="src\lib\OGSystem\ResourceManager\ResourceManager.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Scene\Scene.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Scene\SceneManager.cpp" />
     <ClCompile Include="src\lib\OGSystem\Shader\shader.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Sprite\Sprite.cpp" />
     <ClCompile Include="src\lib\OGSystem\Texture\LayerTexture.cpp" />
     <ClCompile Include="src\lib\OGSystem\Texture\Texture.cpp" />
     <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp" />
@@ -198,11 +205,15 @@
     <ClInclude Include="src\lib\OGSystem\Camera\Camera.h" />
     <ClInclude Include="src\lib\OGSystem\Collision\Collision.h" />
     <ClInclude Include="src\lib\OGSystem\Easing\easing.hpp" />
+    <ClInclude Include="src\lib\OGSystem\Engine\Engine.h" />
+    <ClInclude Include="src\lib\OGSystem\Engine\Framework.h" />
+    <ClInclude Include="src\lib\OGSystem\Entity\Entity.h" />
     <ClInclude Include="src\lib\OGSystem\Font\Font.h" />
     <ClInclude Include="src\lib\OGSystem\Font\TextureFont.h" />
     <ClInclude Include="src\lib\OGSystem\FPS\FPS.h" />
     <ClInclude Include="src\lib\OGSystem\Input\Input.h" />
     <ClInclude Include="src\lib\OGSystem\MovieImage\MovieImage.h" />
+    <ClInclude Include="src\lib\OGSystem\NonCopyable\NonCopyable.hpp" />
     <ClInclude Include="src\lib\OGSystem\OG\OGlib.h" />
     <ClInclude Include="src\lib\OGSystem\OG\OGsystem.h" />
     <ClInclude Include="src\lib\OGSystem\OG\OGTask.h" />
@@ -211,8 +222,13 @@
     <ClInclude Include="src\lib\OGSystem\Order\Order.h" />
     <ClInclude Include="src\lib\OGSystem\randmais.h" />
     <ClInclude Include="src\lib\OGSystem\Random\Random.h" />
+    <ClInclude Include="src\lib\OGSystem\RenderingManager\RenderingManager.h" />
     <ClInclude Include="src\lib\OGSystem\ResourceManager\ResourceManager.h" />
+    <ClInclude Include="src\lib\OGSystem\Scene\Scene.h" />
+    <ClInclude Include="src\lib\OGSystem\Scene\SceneManager.h" />
     <ClInclude Include="src\lib\OGSystem\Shader\shader.h" />
+    <ClInclude Include="src\lib\OGSystem\Sprite\Sprite.h" />
+    <ClInclude Include="src\lib\OGSystem\System\System_.h" />
     <ClInclude Include="src\lib\OGSystem\Texture\LayerTexture.h" />
     <ClInclude Include="src\lib\OGSystem\Texture\Texture.h" />
     <ClInclude Include="src\lib\OGSystem\Timer\glTimer.h" />
@@ -250,6 +266,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="data\image\testicon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

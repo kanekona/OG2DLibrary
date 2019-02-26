@@ -2,16 +2,18 @@
 #pragma once
 #include <cmath>
 #define PI 3.1415926f
-
+//Include修正のため分けてる、だけどここにいれておかないと全ファイルエラーでそうなんでここ残しておく。
+#include "NonCopyable\NonCopyable.hpp"
 class Circle;
 class Vec3;
 class Vec2;
+class Vec2Int;
 class Mat4;
 class Mat4x4;
 class Box3D;
 class Box2D;
 class Color;
-class NonCopyable;
+class Transform;
 
 /**
 *@brief	円データ型
@@ -45,21 +47,62 @@ public:
 	Vec2();
 	Vec2(const float, const float);
 	Vec2(const int, const int);
+	Vec2(const Vec2Int&);
 	void Normalize();
 	float GetLength();
 
 	Vec2 operator+(const Vec2&);
+	Vec2 operator+(const Vec2Int&);
 	Vec2 operator-(const Vec2&);
+	Vec2 operator-(const Vec2Int&);
 	Vec2 operator*(const float);
 	Vec2 operator*(const Vec2&);
+	Vec2 operator*(const Vec2Int&);
 	Vec2 operator/(const float);
 	void operator+=(const Vec2&);
+	void operator+=(const Vec2Int&);
 	void operator*=(const float);
 	void operator*=(const Vec2&);
+	void operator*=(const Vec2Int&);
 	void operator/=(const float);
 	void operator-=(const Vec2&);
+	void operator-=(const Vec2Int&);
 	bool operator==(const Vec2&);
+	bool operator==(const Vec2Int&);
 	bool operator!=(const Vec2&);
+	bool operator!=(const Vec2Int&);
+};
+class Vec2Int
+{
+public:
+	int x, y;
+	Vec2Int();
+	Vec2Int(const int, const int);
+	Vec2Int(const float, const float);
+	Vec2Int(const Vec2&);
+	void Normalize();
+	float GetLength();
+
+	Vec2Int operator+(const Vec2&);
+	Vec2Int operator+(const Vec2Int&);
+	Vec2Int operator-(const Vec2&);
+	Vec2Int operator-(const Vec2Int&);
+	Vec2Int operator*(const int);
+	Vec2Int operator*(const Vec2&);
+	Vec2Int operator*(const Vec2Int&);
+	Vec2Int operator/(const int);
+	void operator+=(const Vec2&);
+	void operator+=(const Vec2Int&);
+	void operator*=(const int);
+	void operator*=(const Vec2&);
+	void operator*=(const Vec2Int&);
+	void operator/=(const int);
+	void operator-=(const Vec2&);
+	void operator-=(const Vec2Int&);
+	bool operator==(const Vec2&);
+	bool operator==(const Vec2Int&);
+	bool operator!=(const Vec2&);
+	bool operator!=(const Vec2Int&);
 };
 /**
 *@brief	2*2行列
@@ -141,24 +184,16 @@ public:
 	Color operator*(const Color&);
 };
 /**
-*@brief	コピーを禁止するclass
-*
-*このclassを継承したclassはコピーコンストラクタと代入演算を禁止されます
+*@brief	Transform
 */
-class NonCopyable
+class Transform
 {
-	void operator=(const NonCopyable&) = delete;
-	NonCopyable(const NonCopyable&) = delete;
-protected:
-	explicit NonCopyable()
-	{
-
-	}
-	virtual ~NonCopyable()
-	{
-
-	}
+public:
+	Vec2 position;
+	Vec2 scale;
+	float angle;
 };
+
 /**
 *namespace OG
 *@brief	数学計算
@@ -179,4 +214,24 @@ namespace OG
 	float get_distance(const float, const float, const float, const float, const float, const float);
 	bool innerJudge(const Vec2* line, const Vec2* point);
 	//bool crossJudge(const Vec2* line1, const Vec2* line2);
+	template <class T> bool Destroy(T* t)
+	{
+		if (t)
+		{
+			delete t;
+			t = nullptr;
+			return true;
+		}
+		return false;
+	}
+	template <class T> bool Destroy(const T* t)
+	{
+		if (t)
+		{
+			delete t;
+			t = nullptr;
+			return true;
+		}
+		return false;
+	}
 }

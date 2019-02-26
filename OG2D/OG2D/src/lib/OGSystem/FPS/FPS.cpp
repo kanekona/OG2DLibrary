@@ -12,6 +12,7 @@ FPS::FPS()
 	this->oneFrameTime = (float)glfwGetTime();
 	this->frameCount = 1;
 	OG::DataClear("./data/debug/fpsrate.og");
+	delta = 0.0f;
 }
 void FPS::Update() 
 {
@@ -41,8 +42,14 @@ bool FPS::FrameCheck()
 	if ((float)glfwGetTime() - this->startDeltaTime >= (1.f / (float)this->framerate) * this->frameCount)
 	{
 		//this->oneFrameTime = (float)glfwGetTime();
+		delta = (float)glfwGetTime() - oneFrameTime;
+		oneFrameTime = (float)glfwGetTime();
 		++frameCount;
 		return true;
 	}
 	return false;
+}
+float FPS::DeltaTime()
+{
+	return this->delta;
 }

@@ -2,12 +2,12 @@
 //--------------------------------------------------
 //@:SceneManager
 //--------------------------------------------------
-SceneManager::SceneManager()
+SceneManager_::SceneManager_()
 {
 	this->nowScene = nullptr;
 	this->nextScene = nullptr;
 }
-SceneManager::~SceneManager()
+SceneManager_::~SceneManager_()
 {
 	OG::Destroy<SceneTask>(this->nowScene);
 	OG::Destroy<SceneTask>(this->nextScene);
@@ -16,23 +16,23 @@ SceneManager::~SceneManager()
 		OG::Destroy<SceneTask>(*id);
 	}
 }
-void SceneManager::SetNowTask(SceneTask* task)
+void SceneManager_::SetNowTask(SceneTask* task)
 {
 	OG::Destroy<SceneTask>(this->nowScene);
 	this->nowScene = task;
 }
-void SceneManager::SetNextTask(SceneTask* task)
+void SceneManager_::SetNextTask(SceneTask* task)
 {
 	OG::Destroy<SceneTask>(this->nextScene);
 	this->nextScene = task;
 }
-void SceneManager::SceneMigration()
+void SceneManager_::SceneMigration()
 {
 	OG::Destroy<SceneTask>(this->nowScene);
 	this->nowScene = this->nextScene;
 	this->nextScene = nullptr;
 }
-void SceneManager::OrtherSceneKillCheck()
+void SceneManager_::OrtherSceneKillCheck()
 {
 	for (auto id = this->otherScene.begin(); id != this->otherScene.end();)
 	{
@@ -47,19 +47,19 @@ void SceneManager::OrtherSceneKillCheck()
 		}
 	}
 }
-void SceneManager::SetOtherTask(SceneTask* task)
+void SceneManager_::SetOtherTask(SceneTask* task)
 {
 	this->otherScene.emplace_back(task);
 }
-SceneTask* SceneManager::GetNowTask() const
+SceneTask* SceneManager_::GetNowTask() const
 {
 	return this->nowScene;
 }
-SceneTask* SceneManager::GetNextTask() const
+SceneTask* SceneManager_::GetNextTask() const
 {
 	return this->nextScene;
 }
-std::vector<SceneTask*> SceneManager::GetOtherAllTask() const
+std::vector<SceneTask*> SceneManager_::GetOtherAllTask() const
 {
 	return this->otherScene;
 }
@@ -99,13 +99,13 @@ bool EngineSystem::Initialize()
 	this->fps = new FPS();
 	//入力関連の初期化
 	this->in = new Input();
-	this->in->Inputinit(this->window->GetWindow());
+	this->in->Inputinit(this->window->GetFWWindow());
 	//サウンド管理の初期化
 	this->soundManager = new SoundManager();
 	//オーディオデバイスの初期化と設定
 	this->audiodevice = new Audio();
 	//シーン管理を生成
-	this->_sceneManager = new SceneManager();
+	this->_sceneManager = new SceneManager_();
 	//各値の初期化
 	DebugFunction = false;
 	this->end = false;
@@ -122,7 +122,7 @@ void EngineSystem::SetWindow(const int width, const int height, const char* name
 void EngineSystem::WindowChenge(const Vec2& pos, const Vec2& size, const char* name, const bool screen)
 {
 	this->window->ChengeTitle(name);
-	this->window->ChengeWindow(pos, size, screen);
+	this->window->ChangeMode(pos, size, screen);
 	this->camera->Initialize(Box2D(0.f, 0.f, size.x, size.y));
 	glViewport(0, 0, (GLsizei)size.x, (GLsizei)size.y);
 }
@@ -131,7 +131,7 @@ void EngineSystem::WindowChenge(const int x,const int y,const int w,const int h,
 	//WindowのTitleを変更
 	this->window->ChengeTitle(name);
 	//Windowを変更
-	this->window->ChengeWindow(x, y, w, h, screen);
+	this->window->ChangeMode(x, y, w, h, screen);
 	//Windowに合わせてカメラを変更
 	this->camera->Initialize(Box2D(0, 0, w, h));
 	//ViewPortも変更
@@ -159,7 +159,7 @@ void EngineSystem::SetIcon(const std::string& filepath_)
 void EngineSystem::WindowConfig()
 {
 	//Window設定
-	this->window->LimitsWindow();
+	this->window->Limits();
 	this->window->InMouseMode(this->cursor_on);
 	this->window->SetIcon(this->path + this->file);
 }

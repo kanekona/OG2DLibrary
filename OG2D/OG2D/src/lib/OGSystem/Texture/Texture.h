@@ -119,3 +119,20 @@ public:
 	*/
 	void SetShaderData(const std::string& shaderName);
 };
+
+class Texture_
+{
+	GLuint id;
+	Vec2Int size;
+	int comp;
+	Shader* shader;
+public:
+	explicit Texture_();
+	explicit Texture_(const std::string& path);
+	virtual ~Texture_();
+	GLuint GetID() const;
+	Vec2Int* GetSize();
+	bool Load(const std::string& path);
+	void SetShader(Shader* shader);
+	Shader* GetShader();
+};

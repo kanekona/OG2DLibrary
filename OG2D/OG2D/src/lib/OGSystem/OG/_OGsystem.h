@@ -1,15 +1,11 @@
 #pragma once
-
-#if !defined (_DEBUG)
-// Degub版のみコンソールを表示する設定
-#pragma comment(linker, "/subsystem:windows /entry:mainCRTStartup")
-#endif
-
 // Windows:GLEWをスタティックライブラリ形式で利用
 #define GLEW_STATIC
 // GLFWのヘッダ内で他のライブラリを取り込む	
 #define GLFW_INCLUDE_GLEXT
 #define GLFW_INCLUDE_GLU
+
+#define GLM_SWIZZLE
 #define GLM_FORCE_SWIZZLE
 
 //GLM警告
@@ -50,6 +46,9 @@
 
 #define STR(var) #var
 
+//GLM
+//#include <glm/glm.hpp>
+
 #include <Windows.h>
 
 #if defined(_MSC_VER)
@@ -58,9 +57,6 @@
 #endif
 //GLFW
 #include <GLFW/glfw3.h>
-//GLM
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 //OpenAL
 #include "al\al.h"
 #include "al\alc.h"
@@ -117,24 +113,4 @@ namespace OG
 	void DataClear(const std::string& path);
 	bool CheckText(std::string* first, std::string* second);
 	void FileCreate(const std::string& path, std::vector<std::string>& data);
-	template <class T> bool Destroy(T* t)
-	{
-		if (t)
-		{
-			delete t;
-			t = nullptr;
-			return true;
-		}
-		return false;
-	}
-	template <class T> bool Destroy(const T* t)
-	{
-		if (t)
-		{
-			delete t;
-			t = nullptr;
-			return true;
-		}
-		return false;
-	}
 }

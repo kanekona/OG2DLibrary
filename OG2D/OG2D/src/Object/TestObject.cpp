@@ -7,6 +7,7 @@ TestObject::TestObject(const std::string& tag)
 	this->tex.Push("kiri2", rm->GetTextureData("kiri2"));
 	this->tex.Push("kiri3", rm->GetTextureData("kiri3"));
 	this->tex.Get("kiri0")->order = 0;
+	this->tex.Get("kiri0")->color.alpha = 1.0f;
 	this->tex.Get("kiri1")->order = 1;
 	this->tex.Get("kiri2")->order = 1;
 	this->tex.Get("kiri3")->order = 1;
@@ -27,7 +28,8 @@ TestObject::~TestObject()
 }
 void TestObject::Update()
 {
-	this->sm->Update();
+	//this->sm->Update();
+
 }
 void TestObject::Render2D()
 {

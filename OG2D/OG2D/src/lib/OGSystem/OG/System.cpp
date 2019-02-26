@@ -29,7 +29,7 @@ bool OGSystem::Create()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	//使用するウィンドウを設定する
-	glfwMakeContextCurrent(ge->window->GetWindow());
+	glfwMakeContextCurrent(ge->window->GetFWWindow());
 	//同期(ダブルバッファの入れ替えタイミングの指定)
 	glfwSwapInterval(1);
 #if defined(_MSC_VER)
@@ -59,7 +59,7 @@ bool OGSystem::Create()
 	//背景color
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	//初期化処理
-	random::Init();
+	Random::Init();
 	//TaskCreate
 	ogtk->StartTaskObject();
 	return true;
@@ -70,7 +70,7 @@ bool OGSystem::LibConfirmation()
 	if (ge->fps->FrameCheck())
 	{
 		//ダブルバッファ
-		glfwSwapBuffers(ge->window->GetWindow());
+		glfwSwapBuffers(ge->window->GetFWWindow());
 		//ウィンドウ、マウス、キーボードの入力の状態をアップデートする
 		glfwPollEvents();
 		//GameEngineの更新処理
@@ -81,6 +81,7 @@ bool OGSystem::LibConfirmation()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//有効になっている場合、計算されたフラグメントカラー値をカラーバッファの値とブレンドします。
 		glEnable(GL_BLEND);
+
 		//ピクセル演算を指定する
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		//各タスクの更新処理
@@ -89,10 +90,10 @@ bool OGSystem::LibConfirmation()
 		if (ge->in->key->down(In::ESCAPE) || ge->GetEnd())
 		{
 			//ウィンドウの破棄
-			glfwDestroyWindow(ge->window->GetWindow());
+			glfwDestroyWindow(ge->window->GetFWWindow());
 			ge->SetDeleteEngine(true);
 			return false;
 		}
 	}
-	return !glfwWindowShouldClose(ge->window->GetWindow());
+	return !glfwWindowShouldClose(ge->window->GetFWWindow());
 }

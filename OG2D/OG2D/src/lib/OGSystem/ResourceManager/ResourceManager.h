@@ -22,6 +22,8 @@ class ResourceManager : private NonCopyable
 	std::vector<std::pair<std::string, Shader*>> shaderData;
 	//! レイヤーデータ
 	std::vector<std::pair<std::string, LayerTexture*>> layerData;
+	//! Singleton
+	static ResourceManager* instance;
 public:
 	/**
 	*@brief	存在するサウンドデータのポインタを登録する
@@ -109,4 +111,19 @@ public:
 	*全データを破棄,deleteする
 	*/
 	virtual ~ResourceManager();
+	/**
+	*@brief	Create Singleton Instance
+	*@return ResourceManager* instance
+	*/
+	static ResourceManager* Create();
+	/**
+	*@brief	Get Instance
+	*@return ResourceManager* instance
+	*/
+	static ResourceManager* Get();
+	/**
+	*@brief	Destroy Instance
+	*/
+	static void Destroy();
 };
+//ResourceManager* ResourceManager::instance = nullptr;

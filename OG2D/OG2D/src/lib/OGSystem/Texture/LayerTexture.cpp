@@ -24,7 +24,8 @@ void LayerTexture::Draw(const Box2D& draw)
 {
 	for (int i = 0; i < this->layer.size(); ++i)
 	{
-		this->layer[this->order[i].id].second->Draw(draw);
+		//this->layer[this->order[i].id].second->Draw(draw);
+		this->layer[i].second->Draw(draw);
 	}
 }
 void LayerTexture::Push(const std::string& name, Texture* tex)

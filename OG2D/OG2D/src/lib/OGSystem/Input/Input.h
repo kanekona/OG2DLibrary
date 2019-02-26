@@ -1,6 +1,7 @@
 
 #pragma once
 #include "OG\_OGsystem.h"
+#include "OG\OGlib.h"
 #include "OGSystem\Collision\Collision.h"
 
 /**
@@ -700,6 +701,21 @@ public:
 	*@brief	destructor
 	*/
 	virtual ~Input();
+	/**
+	*@brief	Create Singleton
+	*@param[in] GLFWWindow* window Current Window
+	*@return Input* instance
+	*/
+	static Input* Create(GLFWwindow* window);
+	/**
+	*@brief	Get Singleton
+	*@return Input* instance
+	*/
+	static Input* Get();
+	/**
+	*@brief	Destroy Singleton
+	*/
+	static void Destroy();
 private:
 	/**
 	*@brief	入力状態をリセット
@@ -707,6 +723,8 @@ private:
 	void ResetInputData();
 	//! 入力データ
 	int inputData[256];
+	//! Singleton
+	static Input* instance;
 	/**
 	*@brief	ゲームパッド初期化
 	*@return vetor<GamePad*> 生成したゲームパッド達
@@ -725,3 +743,4 @@ private:
 	//! in分のデータ
 	InputData inputdata[24];
 };
+//Input* Input::instance = nullptr;
