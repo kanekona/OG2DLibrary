@@ -1,6 +1,9 @@
 
 #pragma once
-#include "OG\_OGsystem.h"
+#include "System\System_.h"
+#include "OG\OGlib.h"
+class WindowParameter;
+class Window;
 /**
 *@brief	Windowの生成、管理を行うclass
 */
@@ -23,7 +26,7 @@ class Window : private NonCopyable
 	//! フルスク設定
 	bool enableFullScreen;
 	//! Windowの位置
-	Vec2 position;
+	Vec2Int position;
 	//! Window情報
 	GLFWwindow *window;	
 public:
@@ -37,14 +40,14 @@ public:
 	*@param[in] int y windowYサイズ
 	*@param[in]	char* name window名
 	*@param[in] bool flag フルスク設定
-	*@param[in]	Vec2 pos window位置
+	*@param[in]	Vec2Int pos window位置
 	*/
 	explicit Window(
 		const int x,
 		const int y,
 		const char* name,
 		const bool flag,
-		const Vec2& pos);
+		const Vec2Int& pos);
 	/**
 	*@brief	destructor
 	*/
@@ -55,7 +58,7 @@ public:
 	*@param[in] int y windowYサイズ
 	*@param[in]	char* name window名
 	*@param[in] bool flag フルスク設定
-	*@param[in]	Vec2 pos window位置
+	*@param[in]	Vec2Int pos window位置
 	*@return bool 生成に成功でtrue
 	*/
 	bool Create(
@@ -63,7 +66,13 @@ public:
 		const int y,
 		char* name,
 		const bool flag,
-		const Vec2& pos);
+		const Vec2Int& pos);
+	/**
+	*@brief	Create Window
+	*@param[in] WindowParameter windowParameter
+	*@return bool 生成に成功でtrue
+	*/
+	bool Create(const WindowParameter& windowParameter);
 	/**
 	*@brief	Create Window
 	*@return bool 生成に成功でtrue
@@ -99,19 +108,19 @@ public:
 	void InMouseMode(const bool flag);
 	/**
 	*@brief	Windowのサイズを返す
-	*@return Vec2 Windowのサイズ
+	*@return Vec2Int Windowのサイズ
 	*/
-	Vec2 GetSize() const;
+	Vec2Int GetSize() const;
 	/**
 	*@brief	Windowの位置を返す
-	*@return Vec2 Windowの位置
+	*@return Vec2Int Windowの位置
 	*/
-	Vec2 GetPos() const;
+	Vec2Int GetPos() const;
 	/**
 	*@brief	生成するWindowの位置を設定する
-	*@param[in]	Vec2 pos Windowの位置
+	*@param[in]	Vec2Int pos Windowの位置
 	*/
-	void CreatePosition(const Vec2& pos);
+	void CreatePosition(const Vec2Int& pos);
 	/**
 	*@brief	Window情報を返す
 	*@return GLFWWinfow* Window情報
@@ -119,9 +128,9 @@ public:
 	GLFWwindow* GetFWWindow() const;
 	/**
 	*@brief	Windowの位置を設定する
-	*@param[in]	const Vec2& pos 位置
+	*@param[in]	const Vec2Int& pos 位置
 	*/
-	void SetPos(const Vec2& pos);
+	void SetPos(const Vec2Int& pos);
 	/**
 	*@brief	Windowの位置を設定する
 	*@param[in]	int x WindowPosition_x
@@ -130,9 +139,9 @@ public:
 	void SetPos(const int x, const int y);
 	/**
 	*@brief	Windowのサイズを設定する
-	*@param[in]	const Vec2& size サイズ
+	*@param[in]	const Vec2Int& size サイズ
 	*/
-	void SetSize(const Vec2& size);
+	void SetSize(const Vec2Int& size);
 	/**
 	*@brief	Windowのサイズを設定する
 	*@param[in]	int w WindowSize_w
@@ -155,9 +164,18 @@ public:
 	void ChangeMode(const int x,const int y,const int w, const int h, const bool flag);
 	/**
 	*@brief	Windowモードを変更
-	*@param[in]	const Vec2& pos WindowPosition
-	*@param[in]	const Vec2& size WindowSize
-	*@param[in]	bool flag true hullScreen
+	*@param[in]	const Vec2Int& pos WindowPosition
+	*@param[in]	const Vec2Int& size WindowSize
+	*@param[in]	bool flag true fullScreen
 	*/
-	void ChangeMode(const Vec2& pos, const Vec2& size, const bool flag);
+	void ChangeMode(const Vec2Int& pos, const Vec2Int& size, const bool flag);
+};
+class WindowParameter
+{
+public:
+	Vec2Int position;
+	Vec2Int size;
+	const char* name;
+	bool enableFullScreen;
+	WindowParameter(const Vec2Int& pos, const Vec2Int& scale, const char* name, const bool screen);
 };

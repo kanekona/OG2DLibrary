@@ -1,7 +1,4 @@
-#include "_OGsystem.h"
-//--------------------------------------------------
-//@:OGspace							
-//--------------------------------------------------
+#include "System.h"
 namespace OG {
 	void MulitMatrixf(GLfloat*src1, GLfloat*src2, GLfloat*dst) {
 		for (int y = 0; y < 4; y++) {
@@ -118,7 +115,7 @@ namespace OG {
 	{
 		OG::LineOvalDraw(pos->x, pos->y, scale->x, scale->y, linewidth, color);
 	}
-	void LineOvalDraw(const int x, const int y, const float ovalx, const float ovaly, const float linewidth,const Color& color)
+	void LineOvalDraw(const int x, const int y, const float ovalx, const float ovaly, const float linewidth, const Color& color)
 	{
 		glColor4f(color.red, color.green, color.blue, color.alpha);
 		for (float th1 = 0.0; th1 <= 360.0; th1 = th1 + 1.0)
@@ -127,10 +124,10 @@ namespace OG {
 			float th1_rad = th1 / 180.0 * PI;
 			float th2_rad = th2 / 180.0 * PI;
 
-			float x1 = cos(th1_rad)*(ovalx );
-			float y1 = sin(th1_rad)*(ovaly );
-			float x2 = cos(th2_rad)*(ovalx );
-			float y2 = sin(th2_rad)*(ovaly );
+			float x1 = cos(th1_rad)*(ovalx);
+			float y1 = sin(th1_rad)*(ovaly);
+			float x2 = cos(th2_rad)*(ovalx);
+			float y2 = sin(th2_rad)*(ovaly);
 
 			glBegin(GL_LINES);
 			glLineWidth(linewidth);
@@ -158,7 +155,7 @@ namespace OG {
 		glEnd();
 		glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 	}
-	void _Rotate(const float _ang, Vec2* _b)
+	void Rotate(const float _ang, Vec2* _b)
 	{
 		//ラジアンの値に変更
 		float tora = OG::ToRadian(_ang);

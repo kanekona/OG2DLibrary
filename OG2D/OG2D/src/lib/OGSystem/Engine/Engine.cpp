@@ -7,10 +7,14 @@ Engine::Engine()
 {
 	//OpenGL,OpenFW Initialize
 	GLFWInitialize();
+	//Create Engine Initializer
+	initializer = new Initializer();
 	//GameFramework‚Ì¶¬
 	framework = Framework::Create(&enable);
 	//Get Framework Window Address
 	window = framework->GetWindow();
+	//Window Create
+	window->Create(initializer->ConfigWindow());
 	//OutsideLibrary Initialize
 	OutsideLibraryInitialize();
 	//AudioDevice‚ÌÝ’è
@@ -19,6 +23,10 @@ Engine::Engine()
 	ResourceManager::Create();
 	//Input‚Ì¶¬
 	Input::Create(framework->GetWindow()->GetFWWindow());
+	//Scene Create
+	framework->CreateSceneManager(initializer->SceneAdaptation());
+	//Delete Engine Initializer
+	delete initializer;
 }
 Engine::~Engine()
 {
@@ -91,7 +99,7 @@ bool Engine::SystemUpdate()
 		//Framework Update
 		framework->Update();
 		//Delete Check
-		if (enable)
+		if (!enable)
 		{
 			glfwDestroyWindow(window->GetFWWindow());
 			return false;

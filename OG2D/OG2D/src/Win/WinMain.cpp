@@ -1,4 +1,5 @@
-#include "OG\System.h"
+#include "ResourceManager\ResourceManager.h"
+#include "Input\Input.h"
 #include "Engine\Engine.h"
 #if !defined (_DEBUG)
 // Degub版のみコンソールを表示する設定
@@ -20,17 +21,6 @@ ResourceManager* ResourceManager::instance = nullptr;
 int main() {
 	//メモリリーク検知
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	/*OGSystem* system = new OGSystem();
-	if (!system->Create())
-	{
-		OG::Destroy<OGSystem>(system);
-		return -1;
-	}
-	while (system->LibConfirmation()) 
-	{
-
-	}
-	OG::Destroy<OGSystem>(system);*/
 	Engine* engine = nullptr;
 	try
 	{

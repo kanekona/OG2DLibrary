@@ -1,4 +1,5 @@
 #include "TestState.h"
+#include "Random\Random.h"
 BaseParam::BaseParam(TestObject* obj, const std::string& tag)
 	:StateParam(tag)
 {

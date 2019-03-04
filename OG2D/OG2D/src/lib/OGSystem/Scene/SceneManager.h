@@ -24,4 +24,9 @@ public:
 	*@return Scene* Now Scene
 	*/
 	Scene* Get();
+	/**
+	*@brief	constructor
+	*@param[in] Scene* begin Start Scene
+	*/
+	explicit SceneManager(Scene* begin);
 };

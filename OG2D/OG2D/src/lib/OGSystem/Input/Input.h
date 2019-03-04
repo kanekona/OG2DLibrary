@@ -1,6 +1,6 @@
 
 #pragma once
-#include "OG\_OGsystem.h"
+
 #include "OG\OGlib.h"
 #include "OGSystem\Collision\Collision.h"
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "OGSystem\Texture\Texture.h"
+#include <unordered_map>
 /**
 *@brief	ƒtƒHƒ“ƒg‚Ì•`‰æclass
 *

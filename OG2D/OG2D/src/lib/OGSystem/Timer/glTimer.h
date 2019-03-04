@@ -1,6 +1,7 @@
 
 #pragma once
-#include "OG\_OGsystem.h"
+#include "System\System_.h"
+#include "NonCopyable\NonCopyable.hpp"
 /**
 *@brief	ŽÀŽžŠÔ‚ð“±‚­‚½‚ß‚Ìclass
 */

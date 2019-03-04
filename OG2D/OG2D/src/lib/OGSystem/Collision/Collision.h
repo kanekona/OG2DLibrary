@@ -1,5 +1,5 @@
 #pragma once
-#include "OG\_OGsystem.h"
+#include "System\System_.h"
 class CollisionBase;
 class CollisionBox;
 class CollisionCircle;

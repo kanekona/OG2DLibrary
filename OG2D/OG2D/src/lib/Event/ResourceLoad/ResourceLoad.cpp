@@ -1,5 +1,5 @@
 #include "ResourceLoad.h"
-
+#include "ResourceManager\ResourceManager.h"
 ResourceLoad::ResourceLoad(std::ifstream& ifs)
 {
 	std::string lineText;
@@ -36,17 +36,17 @@ void ResourceLoad::DataCreate(const std::string& text)
 	if (dataPath == "Texture")
 	{
 		ss >> path >> name;
-		rm->CreateTexture(name, path);
+		ResourceManager::Get()->CreateTexture(name, path);
 	}
 	else if (dataPath == "Sound")
 	{
 		ss >> path >> name;
-		rm->CreateSound(name, path);
+		ResourceManager::Get()->CreateSound(name, path);
 	}
 	else if (dataPath == "Shader")
 	{
 		ss >> path >> name;
-		rm->CreateShader(name, path);
+		ResourceManager::Get()->CreateShader(name, path);
 	}
 	else
 	{

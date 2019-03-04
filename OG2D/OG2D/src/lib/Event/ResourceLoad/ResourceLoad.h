@@ -1,5 +1,9 @@
 #pragma once
-#include "OG\OGsystem.h"
+#include <istream>
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <fstream>
 
 /**
 *@brief	リソースを読み込むイベントclass

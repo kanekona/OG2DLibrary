@@ -1,12 +1,12 @@
 #pragma once
-#include "OG\OGsystem.h"
+#include "Entity\Entity.h"
 #include "State\State.h"
+#include "Texture\LayerTexture.h"
 
-class TestObject : public GameObject
+class TestObject : public Entity
 {
 	LayerTexture tex;
 	void Update() override;
-	void Render2D() override;
 	StateManager* sm;
 public:
 	explicit TestObject(const std::string& tag);

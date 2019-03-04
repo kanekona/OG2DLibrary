@@ -1,5 +1,5 @@
 #pragma once
-#include "OG\_OGsystem.h"
+#include "System\System_.h"
 
 /**
 *@brief	シェーダーの生成と使用を行うclass

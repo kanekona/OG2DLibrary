@@ -43,8 +43,8 @@ bool CollisionBox::GetHit(CollisionBox* b)
 	{ hitBase.x,hitBase.h }
 	};
 	//回転の適用
-	OG::_Rotate(angle, _v);
-	OG::_Rotate(b->angle, _ver);
+	OG::Rotate(angle, _v);
+	OG::Rotate(b->angle, _ver);
 	//どちらかの範囲内に相手の頂点が存在する場合TRUEを返す
 	for (int i = 0; i < 4; ++i) {
 		if ((((_v[1].x - _v[0].x)*(_ver[i].y - _v[0].y)) - ((_ver[i].x - _v[0].x)*(_v[1].y - _v[0].y))) >= 0 &&
@@ -110,7 +110,7 @@ bool CollisionBox::GetHit(CollisionCircle* b)
 	{ hitBase.x,hitBase.h }
 	};
 	//Box型の回転の適用
-	OG::_Rotate(angle, _v);
+	OG::Rotate(angle, _v);
 	//円の中に頂点が存在する場合TRUEを返す
 	if ((((_v[1].x - _v[0].x)*(_ver[0].y - _v[0].y)) - ((_ver[0].x - _v[0].x)*(_v[1].y - _v[0].y))) >= b->hitBase.r*b->hitBase.r &&
 		(((_v[2].x - _v[1].x)*(_ver[0].y - _v[1].y)) - ((_ver[0].x - _v[1].x)*(_v[2].y - _v[1].y))) >= b->hitBase.r*b->hitBase.r &&
@@ -138,7 +138,7 @@ bool CollisionBox::GetHit(CollisionPointer* b)
 	{ hitBase.w - 1,hitBase.h },
 	{ hitBase.x,hitBase.h }
 	};
-	OG::_Rotate(angle, _v);
+	OG::Rotate(angle, _v);
 	for (int i = 0; i < 4; ++i)
 	{
 		if ((((_v[(i + 1) % 4].x - _v[i].x)*
@@ -214,7 +214,7 @@ bool CollisionCircle::GetHit(CollisionBox* b)
 	{ b->hitBase.x,b->hitBase.h }
 	};
 	//Box型の回転の適用
-	OG::_Rotate(b->Rotate(), _v);
+	OG::Rotate(b->Rotate(), _v);
 	//円の中に頂点が存在する場合TRUEを返す
 	if ((((_v[1].x - _v[0].x)*(_ver[0].y - _v[0].y)) - ((_ver[0].x - _v[0].x)*(_v[1].y - _v[0].y))) >= hitBase.r*hitBase.r &&
 		(((_v[2].x - _v[1].x)*(_ver[0].y - _v[1].y)) - ((_ver[0].x - _v[1].x)*(_v[2].y - _v[1].y))) >= hitBase.r*hitBase.r &&
@@ -307,7 +307,7 @@ bool CollisionPointer::GetHit(CollisionBox* b)
 	{ b->hitBase.w - 1,b->hitBase.h },
 	{ b->hitBase.x,b->hitBase.h }
 	};
-	OG::_Rotate(b->Rotate(), _v);
+	OG::Rotate(b->Rotate(), _v);
 	for (int i = 0; i < 4; ++i)
 	{
 		if ((((_v[(i + 1) % 4].x - _v[i].x)*

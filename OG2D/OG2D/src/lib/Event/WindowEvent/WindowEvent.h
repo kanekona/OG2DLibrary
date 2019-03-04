@@ -1,5 +1,6 @@
 #pragma once
-#include "OG\OGsystem.h"
+#include <fstream>
+#include <sstream>
 
 class WindowEvent
 {

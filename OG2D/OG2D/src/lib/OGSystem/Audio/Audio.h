@@ -1,6 +1,6 @@
 
 #pragma once
-#include "OG\_OGsystem.h"
+#include "System\System_.h"
 /**
 *@brief	デバイスを設定するためのclass
 */

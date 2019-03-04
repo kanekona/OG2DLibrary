@@ -32,7 +32,7 @@ StateManager::~StateManager()
 	auto id = this->list.begin();
 	while (id != this->list.end())
 	{
-		OG::Destroy<StateParam>(id->second);
+		delete id->second;
 		id = this->list.erase(id);
 	}
 }

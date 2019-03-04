@@ -1,4 +1,12 @@
 #pragma once
+//ファイル名は仮置き
+//engine.cpp
+//OGSystem_.hpp
+#if !defined (_DEBUG)
+// Degub版のみコンソールを表示する設定
+#pragma comment(linker, "/subsystem:windows /entry:mainCRTStartup")
+#endif
+
 // Windows:GLEWをスタティックライブラリ形式で利用
 #define GLEW_STATIC
 // GLFWのヘッダ内で他のライブラリを取り込む	
@@ -63,34 +71,17 @@
 //OpenCV
 #include "opencv2\opencv.hpp"
 
-#include <memory>
-#include <cmath>
-#include <fstream>
-#include <sstream>
-#include <cassert>
-#include <string>
-#include <iostream>
-#include <vector>
-#include <map>
-#include <unordered_map>
-#include <utility>
-
-
-#include "OGlib.h"
+#include "Engine\Data.h"
 #include "randmais.h"
-
-typedef unsigned char u_char;
-typedef unsigned int u_int;
-typedef unsigned long u_long;
 /**
 *namespace OG
 *@brief	便利機能関数や数学計算
 */
-namespace OG 
+namespace OG
 {
 	void MulitMatrixf(GLfloat*, GLfloat*, GLfloat*);
 	void Normalize(GLfloat*);
-	void _Rotate(const float _angle, Vec2*);
+	void Rotate(const float _angle, Vec2*);
 	void LineBoxDraw(const Box2D* box, const Color& color = { 1,1,1,1 }, const float linewidth = 1.0f);
 	void LineBoxDraw(const Box2D* box, const float linewidth, const Color& color = { 1,1,1,1 });
 	void LineBoxDraw(const Vec2* vec, const Color& color = { 1,1,1,1 }, const float linewidth = 1.0f);

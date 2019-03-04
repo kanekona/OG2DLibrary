@@ -1,4 +1,4 @@
-#include "OGlib.h"
+#include "Data.h"
 Circle::Circle()
 	:center_x(0.f), center_y(0.f), r(0.f)
 {}
@@ -78,12 +78,12 @@ void Vec2Int::Normalize()
 {
 	float len = this->GetLength();
 	if (len == 0) { return; }
-	x /= len;
-	y /= len;
+	x /= (int)len;
+	y /= (int)len;
 }
 float Vec2Int::GetLength()
 {
-	return powf(x*x + y * y, 0.5f);
+	return powf((float)(x*x + y * y), 0.5f);
 }
 Vec2Int Vec2Int::operator+(const Vec2& v) { return Vec2Int(x + (int)v.x, y + (int)v.y); }
 Vec2Int Vec2Int::operator+(const Vec2Int& v) { return Vec2Int(x + v.x, y + v.y); }
@@ -372,3 +372,5 @@ bool OG::innerJudge(const Vec2* line, const Vec2* point)
 //	}
 //	return false;
 //}
+
+Color Color::one = Color(1.f, 1.f, 1.f, 1.f);

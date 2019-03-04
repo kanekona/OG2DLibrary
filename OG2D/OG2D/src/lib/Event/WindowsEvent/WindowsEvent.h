@@ -1,5 +1,8 @@
 #pragma once
-#include "OG\_OGsystem.h"
+#include "NonCopyable\NonCopyable.hpp"
+#include <vector>
+#include <string>
+#include "System\System_.h"
 class WindowsEvent : private NonCopyable
 {
 	std::vector<std::string>* loadPath;

@@ -2,6 +2,7 @@
 #include "Entity\Entity.h"
 #include "RenderingManager\RenderingManager.h"
 #include "Camera\Camera.h"
+#include <typeinfo>
 class Scene : private NonCopyable
 {
 	//! AllEntity
@@ -66,6 +67,57 @@ public:
 	*@return std::vector<Entity*>* All Entity
 	*/
 	std::vector<Entity*>* GetEntitys();
+	/**
+	*@brief	Get Entity
+	*@tparam T assignment class
+	*@return T* assignment class Entity
+	*@detail ‘¶İ‚µ‚È‚¢ê‡‚Ínullptr‚ğ•Ô‚·
+	*@detail “o˜^‚µ‚Ä‚¢‚é‚à‚Ì‚Æ“o˜^—\’è‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
+	*/
+	template <class T> T* GetEntity()
+	{
+		for (auto it : entitys)
+		{
+			if ((typeid(T) == typeid(*it)))
+			{
+				return static_cast<T*>(it);
+			}
+		}
+		for (auto it : plansEntity)
+		{
+			if ((typeid(T) == typeid(*it)))
+			{
+				return static_cast<T*>(it);
+			}
+		}
+		return nullptr;
+	}
+	/**
+	*@brief	Get Entity
+	*@tparam T Assigment Class
+	*@param std::string tag Assigment Tag
+	*@return T* Assigment Tag Class Entity
+	*@detail ‘¶İ‚µ‚È‚¢ê‡‚Ínullptr‚ğ•Ô‚·
+	*@detail “o˜^‚µ‚Ä‚¢‚é‚à‚Ì‚Æ“o˜^—\’è‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
+	*/
+	template <class T> T* GetEntity(const std::string& tag)
+	{
+		for (auto it : entitys)
+		{
+			if (it->tag == tag)
+			{
+				return static_cast<T*>(it);
+			}
+		}
+		for (auto it : plansEntity)
+		{
+			if (it->tag == tag)
+			{
+				return static_cast<T*>(it);
+			}
+		}
+		return nullptr;
+	}
 	/**
 	*@brief	Entity State Chenge Adaptation
 	*@param[in] Scene* scene this

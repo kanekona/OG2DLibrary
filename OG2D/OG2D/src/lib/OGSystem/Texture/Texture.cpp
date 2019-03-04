@@ -1,7 +1,6 @@
 #include "Texture.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-#include "OG\OGsystem.h"
 //--------------------------------------------------
 //@:Textureclass									
 //--------------------------------------------------
@@ -48,7 +47,7 @@ Texture::Texture()
 	//nullƒf[ƒ^‚ð“o˜^
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 0, 0, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-	this->shader = rm->GetShaderData("simple");
+	//this->shader = rm->GetShaderData("simple");
 }
 Texture::Texture(const std::string& path)
 	:FileName("./data/image/")
@@ -96,7 +95,7 @@ bool Texture::Init(const std::string& path)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	this->Bind(0);
 	this->angle = 0.f;
-	this->shader = rm->GetShaderData("simple");
+	//this->shader = rm->GetShaderData("simple");
 	return true;
 }
 void Texture::SetBuffer(void* data, const unsigned int w, const unsigned int h)
@@ -163,7 +162,7 @@ void Texture::Draw(const Box2D& draw, const Box2D& src, const Color& color_) {
 	glEnableVertexAttribArray(in_color);
 
 	glUniform1f(in_texture, 0);
-	glUniformMatrix4fv(in_proj, 1, GL_FALSE, ge->camera->GetProjectionMatrix());
+	//glUniformMatrix4fv(in_proj, 1, GL_FALSE, ge->camera->GetProjectionMatrix());
 
 	glVertexAttribPointer(in_posLocation, 2, GL_FLOAT, false, 0, vtx);
 	glVertexAttribPointer(in_uvLocation, 2, GL_FLOAT, false, 0, texuv);
@@ -268,7 +267,7 @@ void Texture::SetShaderData(Shader* shaderData)
 }
 void Texture::SetShaderData(const std::string& shaderName)
 {
-	this->shader = rm->GetShaderData(shaderName);
+	//this->shader = rm->GetShaderData(shaderName);
 }
 
 Texture_::Texture_()

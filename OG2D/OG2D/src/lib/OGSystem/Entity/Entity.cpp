@@ -4,6 +4,7 @@ Entity::Entity()
 {
 	this->active = true;
 	this->stateCount = KL_ENTITY_NORMAL;
+	this->layer = Layer::Default;
 }
 Entity::~Entity()
 {

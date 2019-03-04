@@ -8,7 +8,7 @@
 class Framework : private NonCopyable
 {
 	//! Scene Manager
-	SceneManager sceneManager;
+	SceneManager* sceneManager;
 	//! Window
 	Window* window;
 	//! Enable Engine Destroy
@@ -63,4 +63,9 @@ public:
 	*@brief	Engine Destroy
 	*/
 	void EngineDestroy();
+	/**
+	*@brief	Create SceneManager
+	*@param[in] Scene* begin Start Scene
+	*/
+	void CreateSceneManager(Scene* begin);
 };

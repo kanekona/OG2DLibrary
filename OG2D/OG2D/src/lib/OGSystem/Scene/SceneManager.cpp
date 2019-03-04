@@ -1,12 +1,16 @@
 #include "SceneManager.h"
 
+SceneManager::SceneManager(Scene* begin)
+{
+	this->nowScene = begin;
+	this->nowScene->Enter();
+}
 void SceneManager::ChangeScene(Scene* next)
 {
 	this->nextScene = next;
 }
 void SceneManager::SceneUpdate()
 {
-	std::cout << "SceneManagerUpdate" << std::endl;
 	if (nowScene)
 	{
 		Scene::EntityUpdate(nowScene);

@@ -1,5 +1,6 @@
 #pragma once
-#include "OG\OGsystem.h"
+#include "NonCopyable\NonCopyable.hpp"
+#include <unordered_map>
 
 class StateParam;
 class StateManager;

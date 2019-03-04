@@ -2,8 +2,6 @@
 #pragma once
 #include <cmath>
 #define PI 3.1415926f
-//Include修正のため分けてる、だけどここにいれておかないと全ファイルエラーでそうなんでここ残しておく。
-#include "NonCopyable\NonCopyable.hpp"
 class Circle;
 class Vec3;
 class Vec2;
@@ -182,6 +180,7 @@ public:
 	Color operator+(const Color&);
 	Color operator-(const Color&);
 	Color operator*(const Color&);
+	static Color one;
 };
 /**
 *@brief	Transform

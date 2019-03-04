@@ -2,6 +2,7 @@
 #include "NonCopyable\NonCopyable.hpp"
 #include <vector>
 #include <string>
+#include "EntityLayer.h"
 #define KL_ENTITY_NORMAL 0x00
 #define KL_ENTITY_KILL 0x01
 #pragma warning (disable : 4100)
@@ -35,9 +36,30 @@ class Entity : private NonCopyable
 	*@brief Kill Check Children
 	*/
 	void KillChildren();
+	/**
+	*@brief	Children
+	*/
+	template <class T> static T* GetChildren(std::vector<Entity*>* entity)
+	{
+		for (auto it : *entity)
+		{
+			if ((typeid(*it) == typeid(T)))
+			{
+				return static_cast<T*>(it);
+			}
+			T* t = GetChildren<T>(it->childs);
+			if (t != nullptr)
+			{
+				return t;
+			}
+		}
+		return nullptr;
+	}
 public:
 	//! tag
 	std::string tag;
+	//! Layer
+	Layer layer;
 	/**
 	*@brief	constructor
 	*/
@@ -112,4 +134,15 @@ public:
 	*@return std::vector<Entity*>* All Children
 	*/
 	std::vector<Entity*>* GetChilds();
+	/**
+	*@brief	Get Children
+	*@tparam T assignment class
+	*@return T* assignment class Children
+	*@detail ‘¶İ‚µ‚È‚¢ê‡‚Ínullptr‚ğ•Ô‚·
+	*@detail “o˜^‚µ‚Ä‚¢‚é‚à‚Ì‚Æ“o˜^—\’è‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
+	*/
+	template <class T> T* GetChild()
+	{
+		return Entity::GetChildren<T>(&this->childs);
+	}
 };

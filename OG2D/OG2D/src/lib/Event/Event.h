@@ -1,5 +1,5 @@
 #pragma once
-#include "OG\_OGsystem.h"
+#include <fstream>
 /**
 *enum class Event
 *@brief	“Ç‚İ‚ŞƒCƒxƒ“ƒg‚Ìí—Ş

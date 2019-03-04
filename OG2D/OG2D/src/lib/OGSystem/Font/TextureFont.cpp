@@ -1,5 +1,5 @@
 #include "TextureFont.h"
-#include "OG\OGsystem.h"
+#include "ResourceManager\ResourceManager.h"
 Font::Font()
 	:TexFontSize(Vec2(70.f,71.f)),TexNumberSize(Vec2(39.8f,71.f)),TexHalfFontSize(Vec2(35,71))
 {
@@ -68,7 +68,7 @@ Box2D* Font::CharacterCheck(const std::string& c)
 }
 void Font::SetTexture(const std::string& path)
 {
-	this->fontTex = rm->GetTextureData(path);
+	this->fontTex = ResourceManager::Get()->GetTextureData(path);
 }
 void Font::CreateCharacter()
 {

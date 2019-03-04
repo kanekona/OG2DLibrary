@@ -1,13 +1,13 @@
 #pragma once
-#include "System/System_.h"
-#include "OG\OGlib.h"
+#include "System/System.h"
+#include "Data.h"
 #include "Texture\Texture.h"
 #include "ResourceManager\ResourceManager.h"
 #include "Engine\Framework.h"
 /**
 *@brief OpenGL Features
 */
-class OGSystem_
+class OGSystem
 {
 	static void Render(Texture_* texture, const GLfloat* vtx, const GLfloat* uv, const GLfloat* color)
 	{
@@ -87,39 +87,48 @@ class OGSystem_
 public:
 	static void Draw(Texture_* texture, const Transform* transform)
 	{
-		Draw(texture, &GetAbsolute(transform), 0.0f, &Color());
+		Box2D draw = GetAbsolute(transform);
+		Draw(texture, &draw, 0.0f, &Color::one);
 	}
 	static void Draw(Texture_* texture, const Transform* transform, const float angle)
 	{
-		Draw(texture, &GetAbsolute(transform), angle, &Color());
+		Box2D draw = GetAbsolute(transform);
+		Draw(texture, &draw, angle, &Color::one);
 	}
 	static void Draw(Texture_* texture, const Transform* transform, const Color* color)
 	{
-		Draw(texture, &GetAbsolute(transform), 0.0f, color);
+		Box2D draw = GetAbsolute(transform);
+		Draw(texture, &draw, 0.0f, color);
 	}
 	static void Draw(Texture_* texture, const Transform* transform, const float angle, const Color* color)
 	{
-		Draw(texture, &GetAbsolute(transform), angle, color);
+		Box2D draw = GetAbsolute(transform);
+		Draw(texture, &draw, angle, color);
 	}
 	static void Draw(Texture_* texture, const Transform* transform, const Box2D* src, const Color* color)
 	{
-		Draw(texture, &GetAbsolute(transform), src, transform->angle, color);
+		Box2D draw = GetAbsolute(transform);
+		Draw(texture, &draw, src, transform->angle, color);
 	}
 	static void Draw(Texture_* texture, const Transform* draw, const Transform* src)
 	{
-		Draw(texture, &GetAbsolute(draw), &GetAbsolute(src), draw->angle, &Color(1, 1, 1, 1));
+		Box2D boxdraw = GetAbsolute(draw);
+		Box2D boxsrc = GetAbsolute(src);
+		Draw(texture, &boxdraw, &boxsrc, draw->angle, &Color::one);
 	}
-	static void Draw(Texture_* texture, const const Transform* draw, const Transform* src, const Color* color)
+	static void Draw(Texture_* texture, const Transform* draw, const Transform* src, const Color* color)
 	{
-		Draw(texture, &GetAbsolute(draw), &GetAbsolute(src), draw->angle, color);
+		Box2D boxdraw = GetAbsolute(draw);
+		Box2D boxsrc = GetAbsolute(src);
+		Draw(texture, &boxdraw, &boxsrc, draw->angle, color);
 	}
 	static void Draw(Texture_* texture, const Box2D* draw)
 	{
-		Draw(texture, draw, 0.0f, &Color());
+		Draw(texture, draw, 0.0f, &Color::one);
 	}
 	static void Draw(Texture_* texture, const Box2D* draw, const float angle)
 	{
-		Draw(texture, draw, angle, &Color());
+		Draw(texture, draw, angle, &Color::one);
 	}
 	static void Draw(Texture_* texture, const Box2D* draw, const Color* color)
 	{
@@ -162,7 +171,7 @@ public:
 	}
 	static void Draw(Texture_* texture, const Box2D* draw, const Box2D* src)
 	{
-		Draw(texture, draw, src, 0.0f, &Color());
+		Draw(texture, draw, src, 0.0f, &Color::one);
 	}
 	static void Draw(Texture_* texture, const Box2D* draw, const Box2D* src, const float angle, const Color* color)
 	{

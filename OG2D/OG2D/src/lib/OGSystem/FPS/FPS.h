@@ -1,6 +1,7 @@
 
 #pragma once
-#include "OG\_OGsystem.h"
+#include "NonCopyable\NonCopyable.hpp"
+#include "System\System_.h"
 /**
 *@brief	フレームレートを計算,制限するclass
 *

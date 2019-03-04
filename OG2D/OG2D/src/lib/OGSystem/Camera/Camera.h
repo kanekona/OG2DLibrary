@@ -1,5 +1,5 @@
 #pragma once
-#include "OG\_OGsystem.h"
+
 #include "Collision\Collision.h"
 /**
 *@brief	2DCamera

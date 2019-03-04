@@ -23,6 +23,7 @@
     <ProjectGuid>{137CCAF0-2F19-4AD3-8592-A30339147471}</ProjectGuid>
     <RootNamespace>OG2D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectName>OG2D</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -129,61 +130,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Back\Back.cpp" />
     <ClCompile Include="src\lib\Event\Event.cpp" />
     <ClCompile Include="src\lib\Event\ResourceLoad\ResourceLoad.cpp" />
     <ClCompile Include="src\lib\Event\WindowEvent\WindowEvent.cpp" />
     <ClCompile Include="src\lib\Event\WindowsEvent\WindowsEvent.cpp" />
-    <ClCompile Include="src\lib\Object\GameObject.cpp" />
-    <ClCompile Include="src\lib\Object\RenderObject.cpp" />
-    <ClCompile Include="src\lib\Object\SceneTask.cpp" />
-    <ClCompile Include="src\lib\Object\UITask.cpp" />
     <ClCompile Include="src\lib\OGSystem\Audio\Audio.cpp" />
     <ClCompile Include="src\lib\OGSystem\Audio\Sound.cpp" />
     <ClCompile Include="src\lib\OGSystem\Audio\SoundManager.cpp" />
     <ClCompile Include="src\lib\OGSystem\Audio\StreamingSound.cpp" />
-    <ClCompile Include="src\lib\OGSystem\Button\Button.cpp" />
     <ClCompile Include="src\lib\OGSystem\Camera\Camera.cpp" />
     <ClCompile Include="src\lib\OGSystem\Collision\Collision.cpp" />
     <ClCompile Include="src\lib\OGSystem\Engine\Engine.cpp" />
     <ClCompile Include="src\lib\OGSystem\Engine\Framework.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Engine\Initializer.cpp" />
     <ClCompile Include="src\lib\OGSystem\Entity\Entity.cpp" />
     <ClCompile Include="src\lib\OGSystem\Font\Font.cpp" />
     <ClCompile Include="src\lib\OGSystem\Font\TextureFont.cpp" />
     <ClCompile Include="src\lib\OGSystem\FPS\FPS.cpp" />
     <ClCompile Include="src\lib\OGSystem\Input\Input.cpp" />
     <ClCompile Include="src\lib\OGSystem\MovieImage\MovieImage.cpp" />
-    <ClCompile Include="src\lib\OGSystem\OG\OGlib.cpp" />
-    <ClCompile Include="src\lib\OGSystem\OG\OGsystem.cpp" />
-    <ClCompile Include="src\lib\OGSystem\OG\OGTask.cpp" />
+    <ClCompile Include="src\lib\OGSystem\OG\Data.cpp" />
     <ClCompile Include="src\lib\OGSystem\OG\System.cpp" />
-    <ClCompile Include="src\lib\OGSystem\OG\_OGsystem.cpp" />
     <ClCompile Include="src\lib\OGSystem\Order\Order.cpp" />
     <ClCompile Include="src\lib\OGSystem\Random\Random.cpp" />
     <ClCompile Include="src\lib\OGSystem\RenderingManager\RenderingManager.cpp" />
     <ClCompile Include="src\lib\OGSystem\ResourceManager\ResourceManager.cpp" />
     <ClCompile Include="src\lib\OGSystem\Scene\Scene.cpp" />
     <ClCompile Include="src\lib\OGSystem\Scene\SceneManager.cpp" />
-    <ClCompile Include="src\lib\OGSystem\Shader\shader.cpp" />
+    <ClCompile Include="src\lib\OGSystem\Shader\Shader.cpp" />
     <ClCompile Include="src\lib\OGSystem\Sprite\Sprite.cpp" />
     <ClCompile Include="src\lib\OGSystem\Texture\LayerTexture.cpp" />
     <ClCompile Include="src\lib\OGSystem\Texture\Texture.cpp" />
     <ClCompile Include="src\lib\OGSystem\Timer\glTimer.cpp" />
     <ClCompile Include="src\lib\OGSystem\Window\Window.cpp" />
-    <ClCompile Include="src\lib\Task\WinConfig.cpp" />
-    <ClCompile Include="src\Map\Map.cpp" />
-    <ClCompile Include="src\Object\Effect\Effect.cpp" />
     <ClCompile Include="src\Object\State\State.cpp" />
     <ClCompile Include="src\Object\State\TestState.cpp" />
     <ClCompile Include="src\Object\TestObject.cpp" />
-    <ClCompile Include="src\Task\Scene\Game.cpp" />
-    <ClCompile Include="src\Task\Scene\Load.cpp" />
-    <ClCompile Include="src\Task\Scene\SetUp.cpp" />
-    <ClCompile Include="src\Task\Scene\Title.cpp" />
     <ClCompile Include="src\Win\WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Back\Back.h" />
     <None Include="data\event\kiritan.og" />
     <None Include="data\event\windowSize.og" />
     <None Include="src\lib\doxygen.h">
@@ -193,32 +178,26 @@
     <ClInclude Include="src\lib\Event\ResourceLoad\ResourceLoad.h" />
     <ClInclude Include="src\lib\Event\WindowEvent\WindowEvent.h" />
     <ClInclude Include="src\lib\Event\WindowsEvent\WindowsEvent.h" />
-    <ClInclude Include="src\lib\Object\GameObject.h" />
-    <ClInclude Include="src\lib\Object\RenderObject.h" />
-    <ClInclude Include="src\lib\Object\SceneTask.h" />
-    <ClInclude Include="src\lib\Object\UITask.h" />
     <ClInclude Include="src\lib\OGSystem\Audio\Audio.h" />
     <ClInclude Include="src\lib\OGSystem\Audio\Sound.h" />
     <ClInclude Include="src\lib\OGSystem\Audio\SoundManager.h" />
     <ClInclude Include="src\lib\OGSystem\Audio\StreamingSound.h" />
-    <ClInclude Include="src\lib\OGSystem\Button\Button.h" />
     <ClInclude Include="src\lib\OGSystem\Camera\Camera.h" />
     <ClInclude Include="src\lib\OGSystem\Collision\Collision.h" />
     <ClInclude Include="src\lib\OGSystem\Easing\easing.hpp" />
     <ClInclude Include="src\lib\OGSystem\Engine\Engine.h" />
     <ClInclude Include="src\lib\OGSystem\Engine\Framework.h" />
+    <ClInclude Include="src\lib\OGSystem\Engine\Initializer.h" />
+    <ClInclude Include="src\lib\OGSystem\Engine\OGF.hpp" />
     <ClInclude Include="src\lib\OGSystem\Entity\Entity.h" />
+    <ClInclude Include="src\lib\OGSystem\Entity\EntityLayer.h" />
     <ClInclude Include="src\lib\OGSystem\Font\Font.h" />
     <ClInclude Include="src\lib\OGSystem\Font\TextureFont.h" />
     <ClInclude Include="src\lib\OGSystem\FPS\FPS.h" />
     <ClInclude Include="src\lib\OGSystem\Input\Input.h" />
     <ClInclude Include="src\lib\OGSystem\MovieImage\MovieImage.h" />
     <ClInclude Include="src\lib\OGSystem\NonCopyable\NonCopyable.hpp" />
-    <ClInclude Include="src\lib\OGSystem\OG\OGlib.h" />
-    <ClInclude Include="src\lib\OGSystem\OG\OGsystem.h" />
-    <ClInclude Include="src\lib\OGSystem\OG\OGTask.h" />
-    <ClInclude Include="src\lib\OGSystem\OG\System.h" />
-    <ClInclude Include="src\lib\OGSystem\OG\_OGsystem.h" />
+    <ClInclude Include="src\lib\OGSystem\OG\Data.h" />
     <ClInclude Include="src\lib\OGSystem\Order\Order.h" />
     <ClInclude Include="src\lib\OGSystem\randmais.h" />
     <ClInclude Include="src\lib\OGSystem\Random\Random.h" />
@@ -226,23 +205,16 @@
     <ClInclude Include="src\lib\OGSystem\ResourceManager\ResourceManager.h" />
     <ClInclude Include="src\lib\OGSystem\Scene\Scene.h" />
     <ClInclude Include="src\lib\OGSystem\Scene\SceneManager.h" />
-    <ClInclude Include="src\lib\OGSystem\Shader\shader.h" />
+    <ClInclude Include="src\lib\OGSystem\Shader\Shader.h" />
     <ClInclude Include="src\lib\OGSystem\Sprite\Sprite.h" />
-    <ClInclude Include="src\lib\OGSystem\System\System_.h" />
+    <ClInclude Include="src\lib\OGSystem\System\System.h" />
     <ClInclude Include="src\lib\OGSystem\Texture\LayerTexture.h" />
     <ClInclude Include="src\lib\OGSystem\Texture\Texture.h" />
     <ClInclude Include="src\lib\OGSystem\Timer\glTimer.h" />
     <ClInclude Include="src\lib\OGSystem\Window\Window.h" />
-    <ClInclude Include="src\lib\Task\WinConfig.h" />
-    <ClInclude Include="src\Map\Map.h" />
-    <ClInclude Include="src\Object\Effect\Effect.h" />
     <ClInclude Include="src\Object\State\State.h" />
     <ClInclude Include="src\Object\State\TestState.h" />
     <ClInclude Include="src\Object\TestObject.h" />
-    <ClInclude Include="src\Task\Scene\Game.h" />
-    <ClInclude Include="src\Task\Scene\Load.h" />
-    <ClInclude Include="src\Task\Scene\SetUp.h" />
-    <ClInclude Include="src\Task\Scene\Title.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\event\sampleLoad.og">
@@ -269,9 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\lib\OGSystem\Icon\Resource.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="data\image\testicon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
